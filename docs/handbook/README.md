@@ -1,0 +1,38 @@
+# Autonomous Agent Architecture Handbook
+
+The handbook teaches the architecture in dependency order. It uses a running reference system named Atlas on an agent runtime named ARK, and applies a consistent sixteen-section chapter template covering motivation, mental models, architecture, state, interfaces, communication, failure modes, scale, and production engineering.
+
+## Available chapters
+
+| Chapter | Level | Focus |
+| --- | --- | --- |
+| [0. Evolution of AI Systems](chapters/00-evolution-of-ai-systems.md) | Foundations | The progression from completions to tools, loops, autonomy, multi-agent systems, and self-evolution |
+| [1. Anatomy of an Agent](chapters/01-anatomy-of-an-agent.md) | Foundations | Model, harness, environment, and the seven editable harness component types |
+| [2. Why an Agent Runtime Is a Distributed System](chapters/02-why-an-agent-runtime-is-a-distributed-system.md) | Foundations | Durability, expensive non-determinism, external effects, and interruptibility |
+| [3. Mental Models and the Reference System](chapters/03-mental-models-and-reference-system.md) | Foundations | Five reasoning lenses and the Atlas/ARK reference system |
+| [4. The Complete Runtime](chapters/04-complete-runtime-layers-and-process-topology.md) | High-level runtime | Six layers, two process types, the narrow waist, and the three flows |
+| [5. The Five Nouns](chapters/05-five-nouns.md) | High-level runtime | Run, Episode, Step, Activity, Park, and the custody gradient |
+| [6. State Separation](chapters/06-state-separation.md) | High-level runtime | Domain, run, model, and harness state ownership |
+| [7. The Edge and the Client Contract](chapters/07-edge-and-client-contract.md) | High-level runtime | Stateless ingress, read models, reconnect behavior, and human authority |
+
+## Completion status
+
+| Level | Planned chapters | Available | Status |
+| --- | ---: | ---: | --- |
+| 0 — Foundations | 0-3 | 4 of 4 | Complete |
+| 1 — High-Level Runtime Architecture | 4-9 | 4 of 6 | In progress |
+| 2 — Core Runtime Components | 10-20 | 0 of 11 | Planned |
+| 3 — Advanced Runtime Architecture | 21-32 | 0 of 12 | Planned |
+| 4 — Production Engineering | 33-41 | 0 of 9 | Planned |
+| 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
+
+The next planned chapters are Chapter 8, *Request Lifecycle and Runtime Lifecycle*, and Chapter 9, *Three Flows: Data, Control, Event*.
+
+## Blueprints
+
+- [Phase 1 — Structural Blueprint](blueprints/phase-1-structural-blueprint.md) defines the original book structure, glossary, diagram conventions, naming conventions, and decision log.
+- [Phase 2 — Revised Blueprint](blueprints/phase-2-revised-blueprint-v2.md) updates the table of contents, numbering, dependency spine, and roadmaps. It supersedes Phase 1 only where the document explicitly says so.
+
+## Compiled edition
+
+The [compiled Word handbook](compiled/next-generation-autonomous-ai-agent-architecture-handbook.docx) is a version 0.8 reading edition containing the Phase 1 and Phase 2 blueprints plus Chapters 0-7. For editable content and reviewable diffs, treat the Markdown files as canonical.
