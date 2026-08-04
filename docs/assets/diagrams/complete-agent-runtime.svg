@@ -1,0 +1,455 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2400" viewBox="0 0 1800 2400" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+<rect width="1800" height="2400" fill="#FFFFFF"/>
+
+<defs>
+  <marker id="aBlue" markerWidth="11" markerHeight="11" refX="8.5" refY="3.8" orient="auto"><path d="M0,0 L8.5,3.8 L0,7.6 z" fill="#1F3A93"/></marker>
+  <marker id="aAmber" markerWidth="11" markerHeight="11" refX="8.5" refY="3.8" orient="auto"><path d="M0,0 L8.5,3.8 L0,7.6 z" fill="#B85C00"/></marker>
+  <marker id="aGrey" markerWidth="11" markerHeight="11" refX="8.5" refY="3.8" orient="auto"><path d="M0,0 L8.5,3.8 L0,7.6 z" fill="#666"/></marker>
+  <marker id="aGreen" markerWidth="11" markerHeight="11" refX="8.5" refY="3.8" orient="auto"><path d="M0,0 L8.5,3.8 L0,7.6 z" fill="#1B7A3D"/></marker>
+</defs>
+
+<!-- ===================== HEADER ===================== -->
+<text x="900" y="46" text-anchor="middle" font-size="30" font-weight="bold" fill="#111">The Complete Agent Runtime — End to End</text>
+<text x="900" y="76" text-anchor="middle" font-size="15" fill="#555">Six layers · two process types · five execution nouns · six ports · one narrow waist · and the evolution loop that edits the harness around it</text>
+<line x1="60" y1="94" x2="1740" y2="94" stroke="#BBB" stroke-width="1.4"/>
+
+<!-- ===================== LEGEND ===================== -->
+<g font-size="11">
+  <rect x="60" y="108" width="26" height="16" rx="3" fill="#E8EDF9" stroke="#1F3A93" stroke-width="1.6"/><text x="94" y="121" fill="#333">kernel — you do not write this</text>
+  <rect x="300" y="108" width="26" height="16" rx="3" fill="#F7EDF7" stroke="#7B3F7B" stroke-width="1.6" stroke-dasharray="5 3"/><text x="334" y="121" fill="#333">ports and edge — code you write</text>
+  <rect x="562" y="108" width="26" height="16" rx="3" fill="#EFEFEF" stroke="#666" stroke-width="1.4"/><text x="596" y="121" fill="#333">your product and its surface</text>
+  <rect x="800" y="108" width="26" height="16" rx="3" fill="#ECEFF1" stroke="#37474F" stroke-width="1.4"/><text x="834" y="121" fill="#333">substrate — off the shelf</text>
+  <rect x="1020" y="108" width="26" height="16" rx="3" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.6"/><text x="1054" y="121" fill="#333">evolution loop and human authority</text>
+  <line x1="1300" y1="116" x2="1340" y2="116" stroke="#1F3A93" stroke-width="2" marker-end="url(#aBlue)"/><text x="1348" y="121" fill="#333">control</text>
+  <line x1="1416" y1="116" x2="1456" y2="116" stroke="#1B7A3D" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#aGreen)"/><text x="1464" y="121" fill="#333">event</text>
+  <line x1="1524" y1="116" x2="1564" y2="116" stroke="#B85C00" stroke-width="3.2" marker-end="url(#aAmber)"/><text x="1572" y="121" fill="#333">bulk data</text>
+</g>
+<line x1="60" y1="140" x2="1740" y2="140" stroke="#E4E4E4" stroke-width="1"/>
+
+<!-- ========================================================= LEFT / CENTRE COLUMN : THE RUNTIME STACK x 60 .. 1180 ========================================================= -->
+
+<!-- SURFACE -->
+<rect x="60" y="170" width="1120" height="64" rx="5" fill="#EFEFEF" stroke="#666" stroke-width="1.5"/>
+<text x="78" y="194" font-size="14" font-weight="bold" fill="#333">SURFACE</text>
+<text x="78" y="216" font-size="11.5" fill="#555">chat · IDE · inbox · dashboard · CLI · webhook · a schedule · another agent   —   anything may raise a goal</text>
+<text x="1162" y="205" text-anchor="end" font-size="10" fill="#999">you already have it</text>
+
+<line x1="300" y1="236" x2="300" y2="258" stroke="#1F3A93" stroke-width="2" marker-end="url(#aBlue)"/>
+<text x="312" y="252" font-size="10.5" fill="#33478C">(1) goal · approval · signal</text>
+<line x1="980" y1="258" x2="980" y2="236" stroke="#666" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#aGrey)"/>
+<text x="992" y="252" font-size="10.5" fill="#666">(B) progress — never durable</text>
+
+<!-- EDGE -->
+<rect x="60" y="262" width="1120" height="140" rx="5" fill="#F7EDF7" stroke="#7B3F7B" stroke-width="1.8" stroke-dasharray="7 4"/>
+<text x="78" y="286" font-size="14" font-weight="bold" fill="#5E2F5E">EDGE</text>
+<text x="140" y="286" font-size="11.5" font-style="italic" fill="#8A4E8A">stateless · EDGE PROCESS · holds nothing across a request</text>
+<text x="1162" y="286" text-anchor="end" font-size="12" font-weight="bold" fill="#A03030">no loop · no consumer · no model call</text>
+
+<rect x="78" y="298" width="530" height="90" rx="4" fill="#FFFFFF" stroke="#7B3F7B" stroke-width="1.2"/>
+<text x="343" y="317" text-anchor="middle" font-size="12" font-weight="bold" fill="#5E2F5E">INBOUND — intent · durable · idempotent</text>
+<text x="343" y="335" text-anchor="middle" font-size="10" fill="#6E3A6E">auth → tenancy → rate limit → validate → idempotency key</text>
+<g font-size="10" fill="#5E2F5E">
+  <rect x="92"  y="344" width="160" height="34" rx="3" fill="#FBF5FB" stroke="#B98BB9"/><text x="172" y="359" text-anchor="middle">submit(goal)</text><text x="172" y="372" text-anchor="middle" font-size="8.5">→ cmd.run.found</text>
+  <rect x="262" y="344" width="160" height="34" rx="3" fill="#FBF5FB" stroke="#B98BB9"/><text x="342" y="359" text-anchor="middle">resolve(approval)</text><text x="342" y="372" text-anchor="middle" font-size="8.5">→ the human decided</text>
+  <rect x="432" y="344" width="162" height="34" rx="3" fill="#FBF5FB" stroke="#B98BB9"/><text x="513" y="359" text-anchor="middle">signal(kind)</text><text x="513" y="372" text-anchor="middle" font-size="8.5">steer·cancel·pause·answer</text>
+</g>
+
+<rect x="632" y="298" width="530" height="90" rx="4" fill="#FFFFFF" stroke="#7B3F7B" stroke-width="1.2"/>
+<text x="897" y="317" text-anchor="middle" font-size="12" font-weight="bold" fill="#5E2F5E">OUTBOUND — view · fast · disposable</text>
+<text x="897" y="335" text-anchor="middle" font-size="10" fill="#6E3A6E">hydrate from a read model, THEN subscribe with a cursor</text>
+<g font-size="10" fill="#5E2F5E">
+  <rect x="646" y="344" width="246" height="34" rx="3" fill="#FBF5FB" stroke="#B98BB9"/><text x="769" y="359" text-anchor="middle">GET /runs/{id} → RunView + seq</text><text x="769" y="372" text-anchor="middle" font-size="8.5">projection · tenancy + redaction enforced here</text>
+  <rect x="902" y="344" width="246" height="34" rx="3" fill="#FBF5FB" stroke="#B98BB9"/><text x="1025" y="359" text-anchor="middle">GET /stream?since=seq</text><text x="1025" y="372" text-anchor="middle" font-size="8.5">NOTIFY → server-sent events</text>
+</g>
+
+<line x1="300" y1="404" x2="300" y2="426" stroke="#1F3A93" stroke-width="2" marker-end="url(#aBlue)"/>
+<text x="312" y="420" font-size="10.5" fill="#33478C">(2) command + (3) event — ONE transaction</text>
+<line x1="980" y1="426" x2="980" y2="404" stroke="#1B7A3D" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#aGreen)"/>
+<text x="992" y="420" font-size="10.5" fill="#1B7A3D">(6) read model query</text>
+
+<!-- SUBSTRATE -->
+<rect x="60" y="430" width="1120" height="150" rx="5" fill="#ECEFF1" stroke="#37474F" stroke-width="1.6"/>
+<text x="78" y="454" font-size="14" font-weight="bold" fill="#26343C">SUBSTRATE</text>
+<text x="188" y="454" font-size="11.5" fill="#37474F">one transactional database · one queue · nothing else</text>
+<text x="1162" y="454" text-anchor="end" font-size="10" fill="#78909C">off the shelf</text>
+
+<g font-family="DejaVu Sans Mono, monospace" font-size="10.5">
+  <rect x="78" y="466" width="256" height="46" rx="3" fill="#FFFFFF" stroke="#546E7A"/><text x="206" y="484" text-anchor="middle" fill="#26343C">events</text><text x="206" y="500" text-anchor="middle" font-size="8.5" fill="#607D8B">the outbox · seq · partition · claim</text>
+  <rect x="344" y="466" width="256" height="46" rx="3" fill="#FFFFFF" stroke="#546E7A"/><text x="472" y="484" text-anchor="middle" fill="#26343C">commands</text><text x="472" y="500" text-anchor="middle" font-size="8.5" fill="#607D8B">the write port · idempotency key</text>
+  <rect x="610" y="466" width="256" height="46" rx="3" fill="#FFFFFF" stroke="#546E7A"/><text x="738" y="484" text-anchor="middle" fill="#26343C">runs</text><text x="738" y="500" text-anchor="middle" font-size="8.5" fill="#607D8B">state · version · lease · budget</text>
+  <rect x="876" y="466" width="286" height="46" rx="3" fill="#FFFFFF" stroke="#546E7A"/><text x="1019" y="484" text-anchor="middle" fill="#26343C">run_steps</text><text x="1019" y="500" text-anchor="middle" font-size="8.5" fill="#607D8B">a replan writes new rows, edits none</text>
+
+  <rect x="78" y="520" width="256" height="46" rx="3" fill="#FFFFFF" stroke="#546E7A"/><text x="206" y="538" text-anchor="middle" fill="#26343C">activities</text><text x="206" y="554" text-anchor="middle" font-size="8.5" fill="#607D8B">has this already run, and cost what?</text>
+  <rect x="344" y="520" width="256" height="46" rx="3" fill="#FFFFFF" stroke="#546E7A"/><text x="472" y="538" text-anchor="middle" fill="#26343C">run_signals</text><text x="472" y="554" text-anchor="middle" font-size="8.5" fill="#607D8B">out-of-band human control</text>
+  <rect x="610" y="520" width="256" height="46" rx="3" fill="#FFFFFF" stroke="#546E7A"/><text x="738" y="538" text-anchor="middle" fill="#26343C">budget_ledger</text><text x="738" y="554" text-anchor="middle" font-size="8.5" fill="#607D8B">reserved → settled</text>
+  <rect x="876" y="520" width="286" height="46" rx="3" fill="#FFFFFF" stroke="#546E7A"/><text x="1019" y="538" text-anchor="middle" fill="#26343C">approvals</text><text x="1019" y="554" text-anchor="middle" font-size="8.5" fill="#607D8B">question · decision · signer · decided_at</text>
+</g>
+
+<line x1="300" y1="582" x2="300" y2="604" stroke="#1B7A3D" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#aGreen)"/>
+<text x="312" y="598" font-size="10.5" fill="#1B7A3D">(4) relay CLAIMS a batch — one in flight per partition, no cursor exists</text>
+
+<!-- KERNEL -->
+<rect x="60" y="608" width="1120" height="340" rx="5" fill="#E8EDF9" stroke="#1F3A93" stroke-width="2.2"/>
+<text x="78" y="634" font-size="14" font-weight="bold" fill="#152B6E">KERNEL</text>
+<text x="152" y="634" font-size="11.5" font-style="italic" fill="#3355AA">the part you do not write · WORKER PROCESS · horizontally scalable, lease + CAS ensures exactly one driver per run at any instant</text>
+
+<rect x="78" y="650" width="238" height="142" rx="4" fill="#FFFFFF" stroke="#1F3A93" stroke-width="1.4"/>
+<text x="197" y="672" text-anchor="middle" font-size="13" font-weight="bold" fill="#152B6E">RELAY</text>
+<text x="197" y="691" text-anchor="middle" font-size="10" fill="#33478C">claims rows, never a cursor</text>
+<text x="197" y="708" text-anchor="middle" font-size="10" fill="#33478C">FOR UPDATE SKIP LOCKED</text>
+<text x="197" y="725" text-anchor="middle" font-size="10" fill="#33478C">one in flight per partition</text>
+<text x="197" y="742" text-anchor="middle" font-size="10" fill="#33478C">N workers · zero coordination</text>
+<text x="197" y="765" text-anchor="middle" font-size="9.5" font-style="italic" fill="#5C77BE">a poison event blocks one</text>
+<text x="197" y="779" text-anchor="middle" font-size="9.5" font-style="italic" fill="#5C77BE">partition, never everyone</text>
+
+<rect x="330" y="650" width="176" height="142" rx="4" fill="#F2F5FC" stroke="#1F3A93" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="418" y="670" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#152B6E">(5) ROUTED BY</text>
+<text x="418" y="684" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#152B6E">LATENCY CLASS</text>
+<rect x="342" y="694" width="152" height="42" rx="14" fill="#FFFFFF" stroke="#3355AA"/>
+<text x="418" y="710" text-anchor="middle" font-size="11" font-weight="bold" fill="#152B6E">FAST QUEUE</text>
+<text x="418" y="726" text-anchor="middle" font-size="9" fill="#33478C">decisions · grading · 8–16</text>
+<rect x="342" y="742" width="152" height="42" rx="14" fill="#FFFFFF" stroke="#3355AA"/>
+<text x="418" y="758" text-anchor="middle" font-size="11" font-weight="bold" fill="#152B6E">SLOW QUEUE</text>
+<text x="418" y="774" text-anchor="middle" font-size="9" fill="#33478C">tools + models · 4–6</text>
+
+<rect x="520" y="650" width="300" height="142" rx="4" fill="#FFFFFF" stroke="#1F3A93" stroke-width="1.4"/>
+<text x="670" y="672" text-anchor="middle" font-size="13" font-weight="bold" fill="#152B6E">RUN DRIVER — the EPISODE</text>
+<text x="670" y="690" text-anchor="middle" font-size="10" fill="#33478C">(6) claim lease + version CAS, read state</text>
+<text x="670" y="706" text-anchor="middle" font-size="10" fill="#33478C">advance N steps · checkpoint after each</text>
+<text x="670" y="722" text-anchor="middle" font-size="10" fill="#33478C">read pending signals in the same transaction</text>
+<text x="670" y="740" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#A03030">holds NO connection across a model call</text>
+<text x="670" y="758" text-anchor="middle" font-size="9.5" fill="#5C77BE">exit on  E1 wall clock · E2 step budget</text>
+<text x="670" y="772" text-anchor="middle" font-size="9.5" fill="#5C77BE">E3 durable park · E4 signal arrived</text>
+<text x="670" y="786" text-anchor="middle" font-size="9.5" font-style="italic" fill="#5C77BE">step budget = 1 reproduces strict per-step execution</text>
+
+<rect x="834" y="650" width="328" height="142" rx="4" fill="#FFFFFF" stroke="#1F3A93" stroke-width="1.4"/>
+<text x="998" y="672" text-anchor="middle" font-size="13" font-weight="bold" fill="#152B6E">ACTIVITY RUNNER — the QUARANTINE</text>
+<text x="998" y="690" text-anchor="middle" font-size="10" fill="#33478C">(8) claim by id → reserve budget → acquire a slot</text>
+<text x="998" y="706" text-anchor="middle" font-size="10" fill="#33478C">→ run → settle → append the result event</text>
+<text x="998" y="724" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#A03030">ALL non-determinism lives in here</text>
+<rect x="848" y="732" width="300" height="24" rx="3" fill="#F2F5FC" stroke="#8FA3D8"/>
+<text x="998" y="748" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="9" fill="#152B6E">id = hash(run_id, plan_id, step_id, tool_id, input_digest)</text>
+<text x="998" y="772" text-anchor="middle" font-size="9.5" fill="#5C77BE">computed at PLAN time · a finished activity REPLAYS,</text>
+<text x="998" y="786" text-anchor="middle" font-size="9.5" fill="#5C77BE">it never re-spends · a partial match is an ALERT</text>
+
+<rect x="78" y="806" width="1084" height="58" rx="4" fill="#FFFFFF" stroke="#1F3A93" stroke-width="1.4"/>
+<text x="98" y="828" font-size="13" font-weight="bold" fill="#152B6E">SWEEPER</text>
+<text x="196" y="828" font-size="11" fill="#33478C">a cron, not a subsystem — expired run leases · expired activity leases · stale relay claims · attempt cap → dead letter</text>
+<text x="98" y="850" font-size="11" font-weight="bold" fill="#A03030">(C) recovery is CONTINUOUS, never only at boot</text>
+<text x="466" y="850" font-size="10.5" font-style="italic" fill="#5C77BE">a worker that sweeps once at start will never notice the run that was stranded four hours in</text>
+
+<text x="620" y="890" text-anchor="middle" font-size="11" fill="#33478C">(A) signals — steer · cancel · pause · answer — read at every checkpoint, and delivered mid-activity by notification</text>
+<text x="620" y="910" text-anchor="middle" font-size="11" font-weight="bold" fill="#A03030">a steer is a goal amendment: it forces a REPLAN, which mints a new plan id, so no stale activity result can be inherited</text>
+<text x="620" y="932" text-anchor="middle" font-size="11" fill="#33478C">target: under two seconds from the click to the model call actually stopping</text>
+
+<line x1="300" y1="950" x2="300" y2="972" stroke="#1F3A93" stroke-width="2" marker-end="url(#aBlue)"/>
+<text x="312" y="966" font-size="10.5" fill="#33478C">(9) planner + grader on the fast queue      (10) tool → model on the slow queue, abort signal reaches all the way down</text>
+
+<!-- PORTS -->
+<rect x="60" y="976" width="1120" height="160" rx="5" fill="#F7EDF7" stroke="#7B3F7B" stroke-width="2" stroke-dasharray="7 4"/>
+<text x="78" y="1000" font-size="14" font-weight="bold" fill="#5E2F5E">PORTS</text>
+<text x="142" y="1000" font-size="11.5" font-style="italic" fill="#8A4E8A">the six things you write — the ENTIRE extension surface. If what you need to change is not one of these six, this architecture is wrong for your product.</text>
+
+<g>
+  <rect x="78"  y="1012" width="170" height="66" rx="4" fill="#FFFFFF" stroke="#7B3F7B" stroke-width="1.3"/>
+  <text x="163" y="1032" text-anchor="middle" font-size="12" font-weight="bold" fill="#5E2F5E">1 · PLANNER</text>
+  <text x="163" y="1048" text-anchor="middle" font-size="9" fill="#7A4A7A">goal → ordered steps</text>
+  <text x="163" y="1062" text-anchor="middle" font-size="9" fill="#7A4A7A">a replan mints a NEW</text>
+  <text x="163" y="1074" text-anchor="middle" font-size="9" fill="#7A4A7A">plan identity</text>
+
+  <rect x="260" y="1012" width="170" height="66" rx="4" fill="#FFFFFF" stroke="#7B3F7B" stroke-width="1.3"/>
+  <text x="345" y="1032" text-anchor="middle" font-size="12" font-weight="bold" fill="#5E2F5E">2 · TOOL</text>
+  <text x="345" y="1048" text-anchor="middle" font-size="9" fill="#7A4A7A">your verbs, each tagged</text>
+  <text x="345" y="1062" text-anchor="middle" font-size="9" font-weight="bold" fill="#1B7A3D">pure</text>
+  <text x="345" y="1074" text-anchor="middle" font-size="9" font-weight="bold" fill="#A03030">effectful</text>
+
+  <rect x="442" y="1012" width="170" height="66" rx="4" fill="#FFFFFF" stroke="#7B3F7B" stroke-width="1.3"/>
+  <text x="527" y="1032" text-anchor="middle" font-size="12" font-weight="bold" fill="#5E2F5E">3 · MODEL</text>
+  <text x="527" y="1048" text-anchor="middle" font-size="9" fill="#7A4A7A">any provider, one interface</text>
+  <text x="527" y="1062" text-anchor="middle" font-size="9" fill="#7A4A7A">must honour an abort</text>
+  <text x="527" y="1074" text-anchor="middle" font-size="9" fill="#7A4A7A">signal mid-stream</text>
+
+  <rect x="624" y="1012" width="170" height="66" rx="4" fill="#FFFFFF" stroke="#7B3F7B" stroke-width="1.3"/>
+  <text x="709" y="1032" text-anchor="middle" font-size="12" font-weight="bold" fill="#5E2F5E">4 · GRADER</text>
+  <text x="709" y="1048" text-anchor="middle" font-size="9" fill="#7A4A7A">deterministic checks</text>
+  <text x="709" y="1062" text-anchor="middle" font-size="9" fill="#7A4A7A">a model judgment MAY</text>
+  <text x="709" y="1074" text-anchor="middle" font-size="9" fill="#7A4A7A">downgrade, never upgrade</text>
+
+  <rect x="806" y="1012" width="170" height="66" rx="4" fill="#FFFFFF" stroke="#7B3F7B" stroke-width="1.3"/>
+  <text x="891" y="1032" text-anchor="middle" font-size="12" font-weight="bold" fill="#5E2F5E">5 · APPROVAL</text>
+  <text x="891" y="1048" text-anchor="middle" font-size="9" fill="#7A4A7A">how a human is asked</text>
+  <text x="891" y="1062" text-anchor="middle" font-size="9" fill="#7A4A7A">and how the answer</text>
+  <text x="891" y="1074" text-anchor="middle" font-size="9" fill="#7A4A7A">comes back</text>
+
+  <rect x="988" y="1012" width="174" height="66" rx="4" fill="#FFFFFF" stroke="#7B3F7B" stroke-width="1.3"/>
+  <text x="1075" y="1032" text-anchor="middle" font-size="12" font-weight="bold" fill="#5E2F5E">6 · DOMAIN</text>
+  <text x="1075" y="1048" text-anchor="middle" font-size="9" fill="#7A4A7A">command → truth + event</text>
+  <text x="1075" y="1062" text-anchor="middle" font-size="9" fill="#7A4A7A">in ONE transaction</text>
+  <text x="1075" y="1074" text-anchor="middle" font-size="9" fill="#7A4A7A">imports nothing from here</text>
+</g>
+<text x="620" y="1100" text-anchor="middle" font-size="11" fill="#6E3A6E">THE HARNESS lives at this layer: system prompt · tool description · tool implementation · middleware · skill · sub-agent config · long-term memory</text>
+<text x="620" y="1120" text-anchor="middle" font-size="11" font-weight="bold" fill="#8A4600">this band, and only this band, is what the evolution loop at the foot of the page is allowed to edit</text>
+
+<!-- GATE -->
+<rect x="60" y="1164" width="1120" height="46" rx="6" fill="#FDF0E3" stroke="#B85C00" stroke-width="2"/>
+<text x="78" y="1193" font-size="13" font-weight="bold" fill="#8A4600">GATE</text>
+<text x="140" y="1193" font-size="11.5" fill="#7A4300">(11) an effectful step is STRUCTURALLY UNCALLABLE until a human decision is recorded — enforced in the runner, never by instructing the model.</text>
+<text x="1162" y="1193" text-anchor="end" font-size="11" font-weight="bold" fill="#A03030">the run PARKS here, holding nothing</text>
+
+<line x1="300" y1="1212" x2="300" y2="1230" stroke="#1F3A93" stroke-width="2" marker-end="url(#aBlue)"/>
+<line x1="980" y1="1230" x2="980" y2="1212" stroke="#1B7A3D" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#aGreen)"/>
+<text x="992" y="1226" font-size="10.5" fill="#1B7A3D">(12) truth + event</text>
+
+<!-- DOMAIN -->
+<rect x="60" y="1232" width="1120" height="104" rx="5" fill="#EFEFEF" stroke="#666" stroke-width="1.6"/>
+<text x="78" y="1256" font-size="14" font-weight="bold" fill="#333">YOUR DOMAIN</text>
+<text x="220" y="1256" font-size="11.5" fill="#555">aggregates · invariants · your own tables — a repo, a ledger, a CRM, a catalogue, a case file</text>
+<text x="78" y="1278" font-size="11.5" fill="#555">every mutation arrives as an idempotent command · every change appends its event in the same transaction · no run state ever lives here</text>
+<text x="78" y="1302" font-size="12.5" font-weight="bold" fill="#A03030">DELETE THE ENTIRE RUNTIME AND THIS LAYER STILL COMPILES — if it does not, the two have merged and every invariant on the right is unenforceable</text>
+<text x="78" y="1324" font-size="10.5" font-style="italic" fill="#777">(12) the cycle closes: the domain's event is appended to the outbox and re-enters at wire (4). There is no terminating branch and no outer loop in code — the loop is the data.</text>
+
+<!-- side rails -->
+<line x1="34" y1="430" x2="34" y2="1290" stroke="#B85C00" stroke-width="2" marker-end="url(#aAmber)"/>
+<text x="26" y="860" font-size="12" font-weight="bold" fill="#8A4600" transform="rotate(-90 26 860)" text-anchor="middle">COMMANDS — imperative, idempotency key, flow DOWN</text>
+<line x1="1208" y1="1290" x2="1208" y2="430" stroke="#1B7A3D" stroke-width="2" marker-end="url(#aGreen)"/>
+<text x="1216" y="860" font-size="12" font-weight="bold" fill="#1B7A3D" transform="rotate(90 1216 860)" text-anchor="middle">EVENTS — past tense, same transaction, flow UP</text>
+
+<!-- ========================================================= WIRE REFERENCE ========================================================= -->
+<rect x="60" y="1370" width="1120" height="360" rx="5" fill="#FAFAFA" stroke="#BBB" stroke-width="1.2"/>
+<text x="78" y="1394" font-size="14" font-weight="bold" fill="#333">WIRE REFERENCE — follow the numbers once and you have the system</text>
+<g font-size="10.5" fill="#444">
+  <text x="82" y="1420" font-weight="bold" fill="#1F3A93">1</text><text x="106" y="1420">A goal arrives. A person, a schedule, a webhook, or another agent may raise one.</text>
+  <text x="82" y="1442" font-weight="bold" fill="#1F3A93">2</text><text x="106" y="1442">The edge writes a command through the port. A duplicate key replays the prior result rather than acting twice.</text>
+  <text x="82" y="1464" font-weight="bold" fill="#1F3A93">3</text><text x="106" y="1464">The state change and its event are appended in ONE transaction — the transactional outbox.</text>
+  <text x="82" y="1486" font-weight="bold" fill="#1F3A93">4</text><text x="106" y="1486">The relay claims a batch, one in flight per partition. No cursor exists, so no cursor can drift.</text>
+  <text x="82" y="1508" font-weight="bold" fill="#1F3A93">5</text><text x="106" y="1508">Events are routed by latency class. Cheap decisions and slow tool calls never share a queue.</text>
+  <text x="82" y="1530" font-weight="bold" fill="#1F3A93">6</text><text x="106" y="1530">A run driver wakes, takes the lease, reads state, and runs an episode.</text>
+  <text x="82" y="1552" font-weight="bold" fill="#1F3A93">7</text><text x="106" y="1552">A step needing a tool is enqueued as an activity. The driver does not wait; it checkpoints and lets go.</text>
+  <text x="82" y="1574" font-weight="bold" fill="#1F3A93">8</text><text x="106" y="1574">The runner picks it up on the slow queue, under a model semaphore and a per-tenant admission cap.</text>
+  <text x="82" y="1596" font-weight="bold" fill="#1F3A93">9</text><text x="106" y="1596">The driver calls your planner and your grader. Both are cheap and run on the fast queue.</text>
+  <text x="82" y="1618" font-weight="bold" fill="#1F3A93">10</text><text x="106" y="1618">The runner calls your tool, which calls your model. The abort signal reaches all the way down.</text>
+  <text x="82" y="1640" font-weight="bold" fill="#1F3A93">11</text><text x="106" y="1640">An effectful step issues a command — and only after its gate has been resolved.</text>
+  <text x="82" y="1662" font-weight="bold" fill="#1F3A93">12</text><text x="106" y="1662">Your domain writes truth and appends its event. The cycle closes at wire 4.</text>
+  <text x="82" y="1690" font-weight="bold" fill="#B85C00">A</text><text x="106" y="1690" font-weight="bold">Signals: steer, cancel, pause, answer. Read at every checkpoint; delivered mid-activity by notification.</text>
+  <text x="82" y="1708" font-weight="bold" fill="#B85C00">B</text><text x="106" y="1708" font-weight="bold">Progress: telemetry straight to the client. Never written to the outbox — it is not a fact.</text>
+  <text x="82" y="1726" font-weight="bold" fill="#B85C00">C</text><text x="106" y="1726" font-weight="bold">Recovery: expired leases and stale claims are swept continuously, never only at boot.</text>
+</g>
+
+<!-- ========================================================= RIGHT COLUMN PANELS x 1240 .. 1740 ========================================================= -->
+
+<!-- P1 : THE FIVE NOUNS -->
+<rect x="1240" y="170" width="500" height="330" rx="5" fill="#FFFFFF" stroke="#1F3A93" stroke-width="1.6"/>
+<rect x="1240" y="170" width="500" height="28" rx="5" fill="#1F3A93"/>
+<text x="1490" y="189" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">THE FIVE NOUNS — AND THE CUSTODY GRADIENT</text>
+<g font-size="10.5">
+  <text x="1256" y="216" font-weight="bold" fill="#152B6E">NOUN</text><text x="1400" y="216" font-weight="bold" fill="#152B6E">LIFETIME</text><text x="1530" y="216" font-weight="bold" fill="#152B6E">HOLDS</text>
+  <line x1="1256" y1="222" x2="1724" y2="222" stroke="#CCC"/>
+  <text x="1256" y="242" font-weight="bold" fill="#333">RUN</text><text x="1400" y="242" fill="#555">minutes–weeks</text><text x="1530" y="242" fill="#1B7A3D">one row</text>
+  <text x="1256" y="264" font-weight="bold" fill="#333">PARK</text><text x="1400" y="264" fill="#555">unbounded</text><text x="1530" y="264" fill="#1B7A3D">nothing at all</text>
+  <text x="1256" y="286" font-weight="bold" fill="#333">ACTIVITY</text><text x="1400" y="286" fill="#555">seconds–minutes</text><text x="1530" y="286" fill="#B85C00">a model slot + budget</text>
+  <text x="1256" y="308" font-weight="bold" fill="#333">EPISODE</text><text x="1400" y="308" fill="#555">seconds</text><text x="1530" y="308" fill="#B85C00">one worker</text>
+  <text x="1256" y="330" font-weight="bold" fill="#333">STEP</text><text x="1400" y="330" fill="#555">milliseconds</text><text x="1530" y="330" fill="#A03030">a DB connection, ~5 ms</text>
+</g>
+<rect x="1256" y="344" width="468" height="52" rx="4" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.3"/>
+<text x="1490" y="364" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#8A4600">Scarcity × duration is held roughly constant.</text>
+<text x="1490" y="382" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#8A4600">Every custody violation is one noun moved up and to the right.</text>
+<text x="1256" y="418" font-size="10" fill="#555">1 Run : N Episodes, sequential and never concurrent</text>
+<text x="1256" y="436" font-size="10" fill="#555">1 Episode : 1–8 Steps, bounded by the step budget</text>
+<text x="1256" y="454" font-size="10" fill="#555">1 Step : 0–1 Activity   ·   1 Activity : 0–N executions, exactly 1 billed</text>
+<text x="1256" y="478" font-size="10" font-style="italic" fill="#777">At steady state roughly three quarters of runs are parked and fewer</text>
+<text x="1256" y="492" font-size="10" font-style="italic" fill="#777">than 3% are executing. Size workers for the executing population.</text>
+
+<!-- P2 : RUN STATE MACHINE -->
+<rect x="1240" y="520" width="500" height="430" rx="5" fill="#FFFFFF" stroke="#1F3A93" stroke-width="1.6"/>
+<rect x="1240" y="520" width="500" height="28" rx="5" fill="#1F3A93"/>
+<text x="1490" y="539" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">THE RUN STATE MACHINE</text>
+<g font-size="10.5">
+  <rect x="1420" y="562" width="140" height="26" rx="4" fill="#F5F5F5" stroke="#888"/><text x="1490" y="579" text-anchor="middle" fill="#333">CREATED</text>
+  <line x1="1490" y1="588" x2="1490" y2="606" stroke="#1F3A93" stroke-width="1.6" marker-end="url(#aBlue)"/>
+  <rect x="1420" y="608" width="140" height="26" rx="4" fill="#E8EDF9" stroke="#1F3A93"/><text x="1490" y="625" text-anchor="middle" fill="#152B6E">PLANNING</text>
+  <line x1="1490" y1="634" x2="1490" y2="652" stroke="#1F3A93" stroke-width="1.6" marker-end="url(#aBlue)"/>
+  <rect x="1420" y="654" width="140" height="26" rx="4" fill="#E8EDF9" stroke="#1F3A93" stroke-width="1.6"/><text x="1490" y="671" text-anchor="middle" font-weight="bold" fill="#152B6E">EXECUTING</text>
+
+  <path d="M1560 667 L1620 667 L1620 700" fill="none" stroke="#1F3A93" stroke-width="1.4" marker-end="url(#aBlue)"/>
+  <rect x="1552" y="702" width="172" height="26" rx="4" fill="#E8EDF9" stroke="#1F3A93"/><text x="1638" y="719" text-anchor="middle" font-size="9.5" fill="#152B6E">AWAITING_ACTIVITY</text>
+  <path d="M1552 715 L1500 715 L1500 682" fill="none" stroke="#1F3A93" stroke-width="1.4" marker-end="url(#aBlue)"/>
+
+  <path d="M1420 667 L1360 667 L1360 700" fill="none" stroke="#B85C00" stroke-width="1.6" marker-end="url(#aAmber)"/>
+  <rect x="1276" y="702" width="168" height="42" rx="4" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <text x="1360" y="719" text-anchor="middle" font-weight="bold" fill="#8A4600">PARKED</text>
+  <text x="1360" y="735" text-anchor="middle" font-size="9" fill="#7A4300">approval · input · timer · budget</text>
+  <path d="M1360 744 L1360 776 L1478 776 L1478 682" fill="none" stroke="#B85C00" stroke-width="1.4" marker-end="url(#aAmber)"/>
+  <text x="1290" y="768" font-size="9" fill="#8A4600">resolved by an event</text>
+
+  <path d="M1490 682 L1490 800" fill="none" stroke="#1F3A93" stroke-width="1.6" marker-end="url(#aBlue)"/>
+  <rect x="1276" y="802" width="140" height="26" rx="4" fill="#E8F5E9" stroke="#1B7A3D"/><text x="1346" y="819" text-anchor="middle" fill="#1B5E20">SUCCEEDED</text>
+  <rect x="1424" y="802" width="130" height="26" rx="4" fill="#FDECEA" stroke="#A03030"/><text x="1489" y="819" text-anchor="middle" fill="#8A2020">FAILED</text>
+  <rect x="1562" y="802" width="162" height="26" rx="4" fill="#F5F5F5" stroke="#888"/><text x="1643" y="819" text-anchor="middle" fill="#444">CANCELLED</text>
+  <line x1="1489" y1="828" x2="1489" y2="846" stroke="#A03030" stroke-width="1.4" marker-end="url(#aGrey)"/>
+  <rect x="1400" y="848" width="180" height="26" rx="4" fill="#FDECEA" stroke="#A03030"/><text x="1490" y="865" text-anchor="middle" font-size="9.5" fill="#8A2020">DEAD_LETTERED</text>
+</g>
+<text x="1256" y="898" font-size="10" font-weight="bold" fill="#A03030">Illegal transitions, enforced in code:</text>
+<text x="1256" y="915" font-size="9.5" fill="#555">· anything → EXECUTING without a committed plan</text>
+<text x="1256" y="930" font-size="9.5" fill="#555">· PARKED → EXECUTING without a resolution event</text>
+<text x="1256" y="945" font-size="9.5" fill="#555">· any terminal state → any other state</text>
+
+<!-- P3 : STATE CATEGORIES -->
+<rect x="1240" y="970" width="500" height="300" rx="5" fill="#FFFFFF" stroke="#1F3A93" stroke-width="1.6"/>
+<rect x="1240" y="970" width="500" height="28" rx="5" fill="#1F3A93"/>
+<text x="1490" y="989" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">FOUR CATEGORIES OF STATE — ONE OWNER EACH</text>
+<g font-size="10">
+  <rect x="1256" y="1008" width="468" height="52" rx="4" fill="#EFEFEF" stroke="#666"/>
+  <text x="1268" y="1026" font-size="11.5" font-weight="bold" fill="#333">DOMAIN — what is true?</text>
+  <text x="1268" y="1042" fill="#555">the merged branch, the invoice, the customer record</text>
+  <text x="1268" y="1055" fill="#777">permanent · strong and invariant-guarded · survives deleting the runtime</text>
+
+  <rect x="1256" y="1066" width="468" height="52" rx="4" fill="#E8EDF9" stroke="#1F3A93"/>
+  <text x="1268" y="1084" font-size="11.5" font-weight="bold" fill="#152B6E">RUN — what is happening?</text>
+  <text x="1268" y="1100" fill="#33478C">current step, plan, lease, attempts, budget spent, short-term memory</text>
+  <text x="1268" y="1113" fill="#5C77BE">ends with the run · checkpointed and recoverable · gone on deletion, correctly</text>
+
+  <rect x="1256" y="1124" width="468" height="52" rx="4" fill="#F7EDF7" stroke="#7B3F7B"/>
+  <text x="1268" y="1142" font-size="11.5" font-weight="bold" fill="#5E2F5E">MODEL — what does the model see right now?</text>
+  <text x="1268" y="1158" fill="#7A4A7A">the assembled context, cache prefix, token budget</text>
+  <text x="1268" y="1171" fill="#9A6A9A">one call · DERIVED, so never persisted as truth — persist it and replay breaks</text>
+
+  <rect x="1256" y="1182" width="468" height="56" rx="4" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.5"/>
+  <text x="1268" y="1200" font-size="11.5" font-weight="bold" fill="#8A4600">HARNESS — what has the system learned to do?</text>
+  <text x="1268" y="1216" fill="#7A4300">long-term memory, prompts, tools, middleware, skills</text>
+  <text x="1268" y="1230" font-weight="bold" fill="#A03030">outlives the run, is not domain truth, and is scoped by NOTHING by default</text>
+</g>
+<text x="1256" y="1256" font-size="10" font-style="italic" fill="#777">Harness state must be true of the SYSTEM, never of a customer.</text>
+
+<!-- P4 : INVARIANTS -->
+<rect x="1240" y="1290" width="500" height="440" rx="5" fill="#FFFFFF" stroke="#1F3A93" stroke-width="1.6"/>
+<rect x="1240" y="1290" width="500" height="28" rx="5" fill="#1F3A93"/>
+<text x="1490" y="1309" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">NINE INVARIANTS — each checkable by pointing at code</text>
+<g font-size="10">
+  <text x="1256" y="1338" font-weight="bold" fill="#152B6E">custody</text><text x="1256" y="1352" fill="#555">No work lives in a process. State is a row; a worker</text><text x="1256" y="1364" fill="#555">is a temporary reader of it.</text>
+  <text x="1256" y="1386" font-weight="bold" fill="#152B6E">one advance</text><text x="1256" y="1400" fill="#555">Exactly one driver advances a run at any instant,</text><text x="1256" y="1412" fill="#555">enforced by a lease and a version check.</text>
+  <text x="1256" y="1434" font-weight="bold" fill="#152B6E">no scarce hold</text><text x="1256" y="1448" fill="#555">No connection and no lock is held across a model or</text><text x="1256" y="1460" fill="#555">network call — ever, under any refactor.</text>
+  <text x="1256" y="1482" font-weight="bold" fill="#152B6E">quarantine</text><text x="1256" y="1496" fill="#555">All non-determinism lives inside activities, so</text><text x="1256" y="1508" fill="#555">orchestration is a function of state and events.</text>
+  <text x="1256" y="1530" font-weight="bold" fill="#152B6E">exactly-once effect</text><text x="1256" y="1544" fill="#555">At-least-once delivery plus idempotent handlers.</text><text x="1256" y="1556" fill="#555">Redelivery never double-charges or double-sends.</text>
+  <text x="1256" y="1578" font-weight="bold" fill="#152B6E">plan identity</text><text x="1256" y="1592" fill="#555">A result is reused only on a full identity match</text><text x="1256" y="1604" fill="#555">including the plan. A replan inherits no stale work.</text>
+  <text x="1256" y="1626" font-weight="bold" fill="#152B6E">timeout equals cancel</text><text x="1256" y="1640" fill="#555">A deadline aborts the real call. Abandoning the</text><text x="1256" y="1652" fill="#555">caller leaks the work and lets its effects land later.</text>
+  <text x="1256" y="1674" font-weight="bold" fill="#152B6E">structural authority</text><text x="1256" y="1688" fill="#555">An effectful tool is uncallable without a resolved</text><text x="1256" y="1700" fill="#555">approval — in the runner, never by prompting.</text>
+  <text x="1256" y="1722" font-weight="bold" fill="#152B6E">state separation</text><text x="1256" y="1736" fill="#555">No run state on a domain aggregate; no domain truth in the run.</text>
+</g>
+
+<!-- ========================================================= AHE EVOLUTION BAND ========================================================= -->
+<rect x="60" y="1786" width="1680" height="470" rx="6" fill="#FFFCF8" stroke="#B85C00" stroke-width="2.4"/>
+<rect x="60" y="1786" width="1680" height="32" rx="6" fill="#B85C00"/>
+<text x="900" y="1808" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFF">THE OUTER LOOP — AGENTIC HARNESS ENGINEERING · the base model is held FIXED and only the harness above is edited</text>
+
+<!-- pillar I -->
+<rect x="84" y="1836" width="330" height="222" rx="5" fill="#E8EDF9" stroke="#1F3A93" stroke-width="1.8"/>
+<rect x="84" y="1836" width="330" height="24" rx="5" fill="#1F3A93"/>
+<text x="249" y="1853" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFF">I · COMPONENT OBSERVABILITY</text>
+<text x="249" y="1878" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#152B6E">THE HARNESS, AS FILES</text>
+<g font-size="9.5" fill="#152B6E">
+  <rect x="98"  y="1888" width="148" height="20" rx="3" fill="#FFF" stroke="#1F3A93"/><text x="172" y="1902" text-anchor="middle">system prompt</text>
+  <rect x="252" y="1888" width="148" height="20" rx="3" fill="#FFF" stroke="#1F3A93"/><text x="326" y="1902" text-anchor="middle">tool description</text>
+  <rect x="98"  y="1912" width="148" height="20" rx="3" fill="#FFF" stroke="#1F3A93"/><text x="172" y="1926" text-anchor="middle">tool implementation</text>
+  <rect x="252" y="1912" width="148" height="20" rx="3" fill="#FFF" stroke="#1F3A93"/><text x="326" y="1926" text-anchor="middle">middleware</text>
+  <rect x="98"  y="1936" width="148" height="20" rx="3" fill="#FFF" stroke="#1F3A93"/><text x="172" y="1950" text-anchor="middle">skill</text>
+  <rect x="252" y="1936" width="148" height="20" rx="3" fill="#FFF" stroke="#1F3A93"/><text x="326" y="1950" text-anchor="middle">sub-agent config</text>
+  <rect x="98"  y="1960" width="302" height="20" rx="3" fill="#FFF" stroke="#1F3A93"/><text x="249" y="1974" text-anchor="middle">long-term memory</text>
+</g>
+<text x="249" y="1998" text-anchor="middle" font-size="9.5" font-style="italic" fill="#33478C">one failure pattern → one component class</text>
+<text x="249" y="2012" text-anchor="middle" font-size="9.5" font-style="italic" fill="#33478C">one edit → one commit → file-level rollback</text>
+<text x="249" y="2032" text-anchor="middle" font-size="10" font-weight="bold" fill="#A03030">measured: memory, tools and middleware carry</text>
+<text x="249" y="2046" text-anchor="middle" font-size="10" font-weight="bold" fill="#A03030">the gain — the system prompt alone regresses</text>
+
+<!-- rollout -->
+<rect x="440" y="1856" width="220" height="182" rx="5" fill="#FFFFFF" stroke="#666" stroke-width="1.6"/>
+<text x="550" y="1880" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#333">ROLLOUT</text>
+<text x="550" y="1900" text-anchor="middle" font-size="10" fill="#555">the runtime above, run over</text>
+<text x="550" y="1915" text-anchor="middle" font-size="10" fill="#555">a task set, k times per task</text>
+<text x="550" y="1938" text-anchor="middle" font-size="10" fill="#555">a fresh isolated sandbox per</text>
+<text x="550" y="1953" text-anchor="middle" font-size="10" fill="#555">rollout, so side effects</text>
+<text x="550" y="1968" text-anchor="middle" font-size="10" fill="#555">cannot leak between tasks</text>
+<text x="550" y="1994" text-anchor="middle" font-size="10" font-weight="bold" fill="#A03030">infrastructure-aborted trials</text>
+<text x="550" y="2008" text-anchor="middle" font-size="10" font-weight="bold" fill="#A03030">COUNT AS FAILURES</text>
+<text x="550" y="2028" text-anchor="middle" font-size="9.5" font-style="italic" fill="#777">your failure semantics become</text>
+<text x="550" y="2042" text-anchor="middle" font-size="9.5" font-style="italic" fill="#777">the loop's reward shaping</text>
+
+<!-- pillar II -->
+<rect x="686" y="1836" width="380" height="222" rx="5" fill="#E8EDF9" stroke="#1F3A93" stroke-width="1.8"/>
+<rect x="686" y="1836" width="380" height="24" rx="5" fill="#1F3A93"/>
+<text x="876" y="1853" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFF">II · EXPERIENCE OBSERVABILITY</text>
+<text x="876" y="1878" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#152B6E">AGENT DEBUGGER</text>
+<rect x="702" y="1890" width="152" height="52" rx="4" fill="#FFF" stroke="#90A4AE"/>
+<text x="778" y="1908" text-anchor="middle" font-size="10" fill="#444">raw trajectories</text>
+<text x="778" y="1928" text-anchor="middle" font-size="13" font-weight="bold" fill="#A03030">~10M tokens</text>
+<line x1="858" y1="1916" x2="892" y2="1916" stroke="#1F3A93" stroke-width="2" marker-end="url(#aBlue)"/>
+<text x="875" y="1908" text-anchor="middle" font-size="8" fill="#33478C">distil</text>
+<rect x="898" y="1890" width="152" height="52" rx="4" fill="#FFF" stroke="#1F3A93" stroke-width="1.4"/>
+<text x="974" y="1908" text-anchor="middle" font-size="10" fill="#444">evidence corpus</text>
+<text x="974" y="1928" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B7A3D">~10K tokens</text>
+<text x="876" y="1962" text-anchor="middle" font-size="9.5" fill="#33478C">trajectories as a navigable file environment · progressive disclosure</text>
+<text x="876" y="1978" text-anchor="middle" font-size="9.5" fill="#33478C">per-task root-cause reports  →  one benchmark-level overview</text>
+<rect x="702" y="1990" width="348" height="56" rx="4" fill="#F5F7FD" stroke="#8FA3D8"/>
+<text x="876" y="2008" text-anchor="middle" font-size="10" font-style="italic" fill="#33478C">the evolver consumes structured root causes, never raw logs</text>
+<text x="876" y="2026" text-anchor="middle" font-size="10" font-weight="bold" fill="#8A4600">separate machine time from PARKED time before attributing</text>
+<text x="876" y="2040" text-anchor="middle" font-size="10" font-weight="bold" fill="#8A4600">anything — human latency is not a property of the harness</text>
+
+<!-- pillar III -->
+<rect x="1090" y="1836" width="380" height="222" rx="5" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.8"/>
+<rect x="1090" y="1836" width="380" height="24" rx="5" fill="#B85C00"/>
+<text x="1280" y="1853" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFF">III · DECISION OBSERVABILITY</text>
+<text x="1280" y="1878" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#8A4600">EVOLVE AGENT · CHANGE MANIFEST</text>
+<g font-size="9.5" fill="#7A4300">
+  <rect x="1104" y="1888" width="172" height="20" rx="3" fill="#FFF" stroke="#C98A45"/><text x="1190" y="1902" text-anchor="middle">failure evidence</text>
+  <rect x="1284" y="1888" width="172" height="20" rx="3" fill="#FFF" stroke="#C98A45"/><text x="1370" y="1902" text-anchor="middle">inferred root cause</text>
+  <rect x="1104" y="1912" width="172" height="20" rx="3" fill="#FFF" stroke="#C98A45"/><text x="1190" y="1926" text-anchor="middle">targeted fix</text>
+  <rect x="1284" y="1912" width="172" height="20" rx="3" fill="#FFF" stroke="#C98A45"/><text x="1370" y="1926" text-anchor="middle">which component level, and why</text>
+  <rect x="1104" y="1936" width="172" height="20" rx="3" fill="#FFF" stroke="#C98A45"/><text x="1190" y="1950" text-anchor="middle">predicted fixes</text>
+  <rect x="1284" y="1936" width="172" height="20" rx="3" fill="#FFF" stroke="#C98A45"/><text x="1370" y="1950" text-anchor="middle">at-risk regressions</text>
+</g>
+<rect x="1104" y="1966" width="352" height="42" rx="4" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.3"/>
+<text x="1280" y="1983" text-anchor="middle" font-size="10" font-weight="bold" fill="#8A4600">next round intersects predictions with observed task deltas</text>
+<text x="1280" y="1999" text-anchor="middle" font-size="10" font-weight="bold" fill="#8A4600">verdict → KEEP · IMPROVE · ROLLBACK AND PIVOT</text>
+<text x="1280" y="2026" text-anchor="middle" font-size="10" fill="#7A4300">fix predictions land ~5× above chance —</text>
+<text x="1280" y="2042" text-anchor="middle" font-size="10" font-weight="bold" fill="#A03030">but regression predictions only ~2×. The loop is blind sideways.</text>
+
+<!-- loop arrows -->
+<line x1="414" y1="1947" x2="436" y2="1947" stroke="#1F3A93" stroke-width="2.4" marker-end="url(#aBlue)"/>
+<line x1="660" y1="1947" x2="682" y2="1947" stroke="#1F3A93" stroke-width="2.4" marker-end="url(#aBlue)"/>
+<line x1="1066" y1="1947" x2="1086" y2="1947" stroke="#B85C00" stroke-width="2.4" marker-end="url(#aAmber)"/>
+<path d="M1280 2058 L1280 2086 L249 2086 L249 2062" fill="none" stroke="#B85C00" stroke-width="2.4" marker-end="url(#aAmber)"/>
+<text x="765" y="2080" text-anchor="middle" font-size="11" font-weight="bold" fill="#8A4600">edit the harness — and ONLY the harness</text>
+
+<!-- controllability -->
+<rect x="84" y="2104" width="1386" height="60" rx="5" fill="#F6F6F6" stroke="#999" stroke-dasharray="6 3"/>
+<text x="777" y="2124" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">CONTROLLABILITY — the evolve agent writes only inside the harness workspace</text>
+<text x="777" y="2142" text-anchor="middle" font-size="10.5" fill="#555">the runs directory, the tracer, the verifier and the model configuration are all read-only. It never touches the kernel, the substrate, or your domain.</text>
+<text x="777" y="2157" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#A03030">Without that boundary an unconstrained self-modifier disables the verifier or raises the reasoning budget, and no recorded gain is attributable to anything.</text>
+
+<rect x="1490" y="1836" width="230" height="328" rx="5" fill="#FFFFFF" stroke="#B85C00" stroke-width="1.6"/>
+<text x="1605" y="1858" text-anchor="middle" font-size="12" font-weight="bold" fill="#8A4600">WHY THIS BAND EXISTS</text>
+<text x="1504" y="1882" font-size="10" fill="#555">The optimal harness is specific</text>
+<text x="1504" y="1896" font-size="10" fill="#555">to a base model, and must be</text>
+<text x="1504" y="1910" font-size="10" fill="#555">re-adapted when that model</text>
+<text x="1504" y="1924" font-size="10" fill="#555">changes. Models ship faster than</text>
+<text x="1504" y="1938" font-size="10" fill="#555">a manual loop can keep up with.</text>
+<line x1="1504" y1="1952" x2="1706" y2="1952" stroke="#E0C0A0"/>
+<text x="1504" y="1974" font-size="10" font-weight="bold" fill="#8A4600">The bottleneck is observability,</text>
+<text x="1504" y="1988" font-size="10" font-weight="bold" fill="#8A4600">not agent capability.</text>
+<line x1="1504" y1="2002" x2="1706" y2="2002" stroke="#E0C0A0"/>
+<text x="1504" y="2024" font-size="10" fill="#555">Components interact NON-</text>
+<text x="1504" y="2038" font-size="10" fill="#555">ADDITIVELY. Three individually</text>
+<text x="1504" y="2052" font-size="10" fill="#555">positive edits summing to +11.1</text>
+<text x="1504" y="2066" font-size="10" fill="#555">points delivered +7.3 together.</text>
+<line x1="1504" y1="2080" x2="1706" y2="2080" stroke="#E0C0A0"/>
+<text x="1504" y="2102" font-size="10" fill="#555">Evolution is not a layer you add</text>
+<text x="1504" y="2116" font-size="10" fill="#555">on top. It is a payoff you become</text>
+<text x="1504" y="2130" font-size="10" fill="#555">eligible for by building the</text>
+<text x="1504" y="2144" font-size="10" fill="#555">runtime above it correctly.</text>
+
+<!-- ===================== FOOTER ===================== -->
+<line x1="60" y1="2290" x2="1740" y2="2290" stroke="#BBB" stroke-width="1.2"/>
+<text x="60" y="2314" font-size="11" fill="#666">Next-Generation Autonomous AI Agent Architecture Handbook — master reference figure. The runtime stack is developed in Chapters 4 to 9; the nouns in Chapter 5; state</text>
+<text x="60" y="2332" font-size="11" fill="#666">separation in Chapter 6; the edge in Chapter 7; gates and human authority in Chapter 30; the invariants throughout Level 3; and the evolution band across Level 5.</text>
+<text x="60" y="2358" font-size="10.5" font-style="italic" fill="#888">Sources: runtime structure, ports, invariants and wire reference after A Durable Agent Runtime v1.0 · evolution band after Agentic Harness Engineering (Lin, Liu, Pan et al.) · synthesis, the custody</text>
+<text x="60" y="2374" font-size="10.5" font-style="italic" fill="#888">gradient, the four state categories and the harness-state boundary are the handbook's own engineering inference.</text>
+</svg>

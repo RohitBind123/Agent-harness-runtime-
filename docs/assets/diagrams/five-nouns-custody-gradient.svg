@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+  <rect width="920" height="560" fill="#FFFFFF"/>
+  <text x="460" y="32" text-anchor="middle" font-size="19" font-weight="bold" fill="#1A1A1A">Figure C — The Five Nouns and the Custody Gradient</text>
+  <text x="460" y="52" text-anchor="middle" font-size="12" fill="#666">Scarcity × duration is held roughly constant: the longer a noun lives, the less scarce the thing it may hold</text>
+
+  <!-- RUN -->
+  <rect x="40" y="76" width="840" height="200" rx="6" fill="#F5F7FD" stroke="#1F3A93" stroke-width="2"/>
+  <text x="56" y="98" font-size="13" font-weight="bold" fill="#152B6E">RUN</text>
+  <text x="100" y="98" font-size="10.5" fill="#33478C">one goal under execution · minutes to weeks · holds one row</text>
+
+  <!-- episodes -->
+  <rect x="60" y="112" width="230" height="106" rx="5" fill="#E8EDF9" stroke="#3355AA" stroke-width="1.5"/>
+  <text x="74" y="132" font-size="11.5" font-weight="bold" fill="#152B6E">EPISODE 1</text>
+  <text x="152" y="132" font-size="9" fill="#33478C">seconds · holds a worker</text>
+  <g font-size="9.5">
+    <rect x="74" y="142" width="46" height="30" rx="3" fill="#FFF" stroke="#7B8FC7"/><text x="97" y="156" text-anchor="middle" fill="#333">STEP</text><text x="97" y="167" text-anchor="middle" fill="#777">decide</text>
+    <rect x="126" y="142" width="46" height="30" rx="3" fill="#FFF" stroke="#7B8FC7"/><text x="149" y="156" text-anchor="middle" fill="#333">STEP</text><text x="149" y="167" text-anchor="middle" fill="#777">decide</text>
+    <rect x="178" y="142" width="46" height="30" rx="3" fill="#FDF0E3" stroke="#B85C00"/><text x="201" y="156" text-anchor="middle" fill="#8A4600">STEP</text><text x="201" y="167" text-anchor="middle" fill="#8A4600">ACT</text>
+    <rect x="230" y="142" width="46" height="30" rx="3" fill="#FFF" stroke="#7B8FC7"/><text x="253" y="156" text-anchor="middle" fill="#333">STEP</text><text x="253" y="167" text-anchor="middle" fill="#777">decide</text>
+  </g>
+  <text x="74" y="190" font-size="9" fill="#33478C">checkpoint after every step (~5 ms, connection released)</text>
+  <text x="74" y="205" font-size="9" font-weight="bold" fill="#A03030">exit: E1 wall clock · E2 step budget · E3 park · E4 signal</text>
+
+  <rect x="306" y="112" width="180" height="106" rx="5" fill="#E8EDF9" stroke="#3355AA" stroke-width="1.5"/>
+  <text x="320" y="132" font-size="11.5" font-weight="bold" fill="#152B6E">EPISODE 2</text>
+  <g font-size="9.5">
+    <rect x="320" y="142" width="46" height="30" rx="3" fill="#FDF0E3" stroke="#B85C00"/><text x="343" y="156" text-anchor="middle" fill="#8A4600">STEP</text><text x="343" y="167" text-anchor="middle" fill="#8A4600">ACT</text>
+    <rect x="372" y="142" width="46" height="30" rx="3" fill="#FDF0E3" stroke="#B85C00"/><text x="395" y="156" text-anchor="middle" fill="#8A4600">STEP</text><text x="395" y="167" text-anchor="middle" fill="#8A4600">ACT</text>
+    <rect x="424" y="142" width="46" height="30" rx="3" fill="#FFF" stroke="#7B8FC7"/><text x="447" y="156" text-anchor="middle" fill="#333">STEP</text><text x="447" y="167" text-anchor="middle" fill="#777">decide</text>
+  </g>
+  <text x="320" y="190" font-size="9" fill="#33478C">a DIFFERENT worker — no worker</text>
+  <text x="320" y="203" font-size="9" fill="#33478C">owns the run; it borrows it</text>
+
+  <!-- park -->
+  <rect x="502" y="112" width="170" height="106" rx="5" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.8" stroke-dasharray="6 3"/>
+  <text x="587" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#8A4600">PARK</text>
+  <text x="587" y="153" text-anchor="middle" font-size="9.5" fill="#7A4300">unbounded duration</text>
+  <text x="587" y="170" text-anchor="middle" font-size="11" font-weight="bold" fill="#A03030">HOLDS NOTHING</text>
+  <text x="587" y="188" text-anchor="middle" font-size="9" fill="#7A4300">no process · no connection</text>
+  <text x="587" y="201" text-anchor="middle" font-size="9" fill="#7A4300">no in-memory timer · one row</text>
+
+  <rect x="688" y="112" width="174" height="106" rx="5" fill="#E8EDF9" stroke="#3355AA" stroke-width="1.5"/>
+  <text x="702" y="132" font-size="11.5" font-weight="bold" fill="#152B6E">EPISODE 3</text>
+  <g font-size="9.5">
+    <rect x="702" y="142" width="46" height="30" rx="3" fill="#FDF0E3" stroke="#B85C00"/><text x="725" y="156" text-anchor="middle" fill="#8A4600">STEP</text><text x="725" y="167" text-anchor="middle" fill="#8A4600">ACT</text>
+    <rect x="754" y="142" width="46" height="30" rx="3" fill="#FFF" stroke="#7B8FC7"/><text x="777" y="156" text-anchor="middle" fill="#333">STEP</text><text x="777" y="167" text-anchor="middle" fill="#777">done</text>
+  </g>
+  <text x="702" y="190" font-size="9" fill="#33478C">resumes at the exact step</text>
+  <text x="702" y="203" font-size="9" fill="#33478C">it left, after any restart</text>
+
+  <text x="56" y="243" font-size="10.5" fill="#333">ACTIVITY — one idempotent, leased, cancellable, budgeted tool invocation. The only place non-determinism is permitted.</text>
+  <text x="56" y="262" font-size="10.5" fill="#333">Shown above as the amber ACT steps. Identity = hash(run_id, plan_id, step_id, tool_id, input_digest), computed at plan time.</text>
+
+  <!-- gradient chart -->
+  <text x="40" y="312" font-size="13" font-weight="bold" fill="#1A1A1A">The custody gradient</text>
+  <line x1="150" y1="332" x2="150" y2="504" stroke="#999" stroke-width="1.2"/>
+  <line x1="150" y1="504" x2="870" y2="504" stroke="#999" stroke-width="1.2"/>
+  <text x="510" y="528" text-anchor="middle" font-size="10.5" fill="#666">lifetime  (log scale)</text>
+  <text x="34" y="418" font-size="10.5" fill="#666" transform="rotate(-90 34 418)" text-anchor="middle">scarcity of what it holds</text>
+
+  <g font-size="9.5" fill="#666">
+    <text x="210" y="518" text-anchor="middle">milliseconds</text>
+    <text x="360" y="518" text-anchor="middle">seconds</text>
+    <text x="510" y="518" text-anchor="middle">minutes</text>
+    <text x="660" y="518" text-anchor="middle">hours</text>
+    <text x="810" y="518" text-anchor="middle">weeks</text>
+  </g>
+  <g font-size="9.5" fill="#666">
+    <text x="144" y="352" text-anchor="end">very scarce</text>
+    <text x="144" y="412" text-anchor="end">scarce</text>
+    <text x="144" y="492" text-anchor="end">abundant</text>
+  </g>
+
+  <path d="M210 346 C 330 366, 420 400, 510 428 C 620 462, 730 486, 830 492" fill="none" stroke="#B85C00" stroke-width="2" stroke-dasharray="6 4"/>
+
+  <circle cx="210" cy="346" r="7" fill="#1F3A93"/>
+  <text x="210" y="332" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#152B6E">STEP</text>
+  <text x="222" y="360" font-size="9" fill="#555">a DB connection, ~5 ms</text>
+
+  <circle cx="360" cy="382" r="7" fill="#1F3A93"/>
+  <text x="360" y="368" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#152B6E">EPISODE</text>
+  <text x="372" y="396" font-size="9" fill="#555">a worker, ~60 s</text>
+
+  <circle cx="510" cy="428" r="7" fill="#1F3A93"/>
+  <text x="510" y="414" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#152B6E">ACTIVITY</text>
+  <text x="522" y="442" font-size="9" fill="#555">a model slot + budget reservation</text>
+
+  <circle cx="700" cy="482" r="7" fill="#B85C00"/>
+  <text x="700" y="468" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#8A4600">PARK</text>
+  <text x="712" y="496" font-size="9" fill="#555">a row</text>
+
+  <circle cx="830" cy="492" r="7" fill="#1F3A93"/>
+  <text x="836" y="478" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#152B6E">RUN</text>
+  <text x="800" y="470" font-size="9" fill="#555"> </text>
+
+  <rect x="560" y="336" width="300" height="52" rx="5" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.3"/>
+  <text x="710" y="356" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#8A4600">Every custody violation is one noun</text>
+  <text x="710" y="372" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#8A4600">moved up and to the right.</text>
+</svg>
