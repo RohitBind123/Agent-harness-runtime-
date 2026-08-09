@@ -11,6 +11,7 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 0 — Foundations | [Level 0](levels/level-0-foundations.md) | 0-3 |
 | 1 — High-Level Runtime Architecture | [Level 1](levels/level-1-high-level-runtime.md) | 4-9 |
 | 2 — Core Runtime Components | [Level 2](levels/level-2-core-components.md) | 10-20 |
+| 3 — Advanced Runtime Architecture | [Level 3](levels/level-3-advanced-runtime.md) | 21-32 |
 
 ## Available chapters
 
@@ -40,6 +41,15 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [21. Durable Execution](chapters/21-durable-execution.md) | Advanced runtime | Resume, re-run, and replay as three operations, and the record window that does not close |
 | [22. The Event Spine](chapters/22-the-event-spine.md) | Advanced runtime | The outbox as the only durability primitive, and why a cursor is an outage waiting for a bad row |
 | [23. The Scheduler](chapters/23-the-scheduler.md) | Advanced runtime | Convoy effects, work classes with reserved capacity, and three resources that need three bounds |
+| [24. The Task Graph](chapters/24-the-task-graph.md) | Advanced runtime | Separating dependency from sequence, and why fan-in is a durable counter rather than a feature |
+| [25. The World Model](chapters/25-the-world-model.md) | Advanced runtime | Beliefs about the environment, and the run's own effects as the dominant source of staleness |
+| [26. Planning Algorithms](chapters/26-planning-algorithms.md) | Advanced runtime | Retry, repair, and replan at 1x, 3x, and 30x, and contracts written before the work |
+| [27. Failure, Recovery, and Rollback](chapters/27-failure-recovery-and-rollback.md) | Advanced runtime | Three tiers of reversibility, the effect ledger, and compensation as a real node |
+| [28. Reflection, Grading, and Self-Correction](chapters/28-reflection-grading-and-self-correction.md) | Advanced runtime | The verdict lattice: a floor set by checks that a model judgment may lower and never raise |
+| [29. Long-Running Agents](chapters/29-long-running-agents.md) | Advanced runtime | Progress as novel durable state, budget allocation over six hours, and timeout coupling |
+| [30. Human Authority](chapters/30-human-authority.md) | Advanced runtime | The gate as a park holding nothing, and steering as the same mechanism as crash recovery |
+| [31. Safety, Sandboxing, and Untrusted Content](chapters/31-safety-sandboxing-and-untrusted-content.md) | Advanced runtime | Capability that cannot read content, and blast radius as four bounds written down |
+| [32. Distributed Execution](chapters/32-distributed-execution.md) | Advanced runtime | What a lease actually guarantees, fence tokens, and exactly-one-driver as an operational property |
 
 ## Completion status
 
@@ -48,11 +58,11 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 0 — Foundations | 0-3 | 4 of 4 | Complete |
 | 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
 | 2 — Core Runtime Components | 10-20 | 11 of 11 | Complete |
-| 3 — Advanced Runtime Architecture | 21-32 | 9 of 12 | In progress |
-| 4 — Production Engineering | 33-41 | 0 of 9 | Planned |
+| 3 — Advanced Runtime Architecture | 21-32 | 12 of 12 | Complete |
+| 4 — Production Engineering | 33-41 | 0 of 9 | In progress |
 | 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
 
-Level 3 is in progress. Chapter 30, *Human Authority*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Levels 0-3 are complete. Level 4 opens at Chapter 33, *Scalability and Capacity Planning*, which is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
 

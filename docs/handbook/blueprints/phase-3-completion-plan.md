@@ -563,7 +563,7 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 | SVGs | 6 of the planned 9 |
 | Commits | one per batch, on `main` |
 
-**To resume, start at Chapter 30 (Human Authority).** The procedure for any remaining chapter:
+**To resume, start at Chapter 33 (Scalability and Capacity Planning), the first chapter of Level 4.** The procedure for any remaining chapter:
 
 1. Read the chapter's brief in §6 of this document, and its `Requires`/`Unlocks` in the Phase 2 §4
    spine.
@@ -612,11 +612,11 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 - [x] Interlude I
 - [x] L2 opener + `level-2-component-map.svg`
 - [x] C18 consistency pass against C5, C6, C17
-- [ ] READMEs updated · [ ] linter green · [ ] commit
+- [x] READMEs updated · [x] linter green · [x] commit
 
 ### Batch 3 — Level 3
-- [x] C21 · [x] C22 · [x] C23 · [x] C24 · [x] C25 · [x] C26 · [x] C27 · [x] C28 · [x] C29 · [ ] C30 · [ ] C31 · [ ] C32
-- [ ] L3 opener + `level-3-advanced-runtime.svg`
+- [x] C21 · [x] C22 · [x] C23 · [x] C24 · [x] C25 · [x] C26 · [x] C27 · [x] C28 · [x] C29 · [x] C30 · [x] C31 · [x] C32
+- [x] L3 opener + `level-3-advanced-runtime.svg`
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 
 ### Batch 4 — Level 4

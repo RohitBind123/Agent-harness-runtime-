@@ -6,7 +6,7 @@
 > chapter by `tools/build_glossary.py`. To change an entry, edit the defining
 > chapter's table and regenerate.
 
-Covering 30 chapters and 303 terms.
+Covering 33 chapters and 329 terms.
 
 Provenance tags: `[AHE]` the Agentic Harness Engineering paper · `[DAR]` the durable
 runtime specification · `[INF]` handbook inference · `[BP]` industry practice ·
@@ -33,6 +33,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Algorithm 1** | Benchmark, attribute, distil, edit, commit — with attribution deliberately before distillation. | `[AHE]` | Ch 20 |
 | **Amplification** | Untruncated output on the data axis re-entering the next step's context and multiplying, with no decision having changed. | `[INF]` | Ch 9, Ch 14 |
 | **Argument binding at apply time** | Recording a compensation's arguments when the effect happens rather than computing them at reversal, so a reversal cannot target the wrong thing. | `[INF]` | Ch 27 |
+| **Argument-hash scoping** | Binding an approval to a specific call's exact arguments, so a replan invalidates it and a retry reuses it. | `[INF]` | Ch 30 |
 | **ARK** | The Agent Runtime Kernel designed across this book: domain-independent, knows nothing about any particular product. | `[INF]` | Ch 3 |
 | **ARK/Evolve** | The outer loop that edits Atlas's harness, introduced in Ch 20 and built in Level 5. It may edit the harness and never the kernel. | `[INF]` | Ch 3 |
 | **At-least-once delivery** | The guarantee a relay can make, with consumers responsible for making duplicates harmless. | `[BP]` | Ch 22 |
@@ -48,8 +49,9 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Backstop age** | A maximum age used only as a safety net behind event-driven invalidation, never as the primary expiry rule. | `[BP]` | Ch 25 |
 | **Belief** | A claim plus its provenance, its event-log position, and the scope it covers — the last three being what make invalidation possible. | `[INF]` | Ch 25 |
+| **Belief versus ownership** | The unsynchronisable gap between what a worker thinks it holds and what the store records, which every mechanism here accommodates rather than fixes. | `[INF]` | Ch 32 |
 | **Binding resource** | Whichever of the three bounds is currently limiting; a measurement rather than a configuration. | `[INF]` | Ch 23 |
-| **Blast radius** | Everything outside the system a run could touch if every guard failed. A quantity you size deliberately, not audit later. | `[INF]` | Ch 2 |
+| **Blast radius** | Everything outside the system a run could touch if every guard failed. A quantity you size deliberately, not audit later. | `[INF]` | Ch 2, Ch 31 |
 | **Budget axis** | Which of tokens, wall clock, or steps was exhausted, reported always because the three name different diagnoses. | `[INF]` | Ch 29 |
 | **Budget carving** | Taking a child's cap out of the parent's remaining allowance, so tree spend stays bounded. | `[INF]` | Ch 19 |
 | **Budget share** | The fraction of the working budget a source is entitled to; required, and summing to one across all sources. | `[INF]` | Ch 11 |
@@ -62,13 +64,14 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Cancellation cascade** | Terminal states propagating from parent to children, while waiting states do not propagate at all. | `[INF]` | Ch 19 |
 | **Cancellation latency** | One step plus a checkpoint; determined entirely by where signals are read. | `[INF]` | Ch 18 |
 | **Capability** | What the model itself can do — reason, write code, follow an instruction. Bought from a provider, not built by you. | `[INF]` | Ch 0 |
-| **Capability scoping** | Restricting what a run may do by omitting tools from what the model is shown, rather than by instructing it. | `[INF]` | Ch 14 |
+| **Capability scoping** | Issuing the narrowest credential a step declared it needs, expiring with the step, with no path to widen mid-execution. | `[BP]` | Ch 14, Ch 31 |
 | **Change manifest** | The append-only record of each edit: evidence, root cause, fix, predicted fixes, at-risk tasks, constraint level. | `[AHE]` | Ch 20 |
 | **Checkpoint** | The few-millisecond write at a step boundary that saves progress, renews the lease, and reads pending signals in one transaction. | `[DAR]` | Ch 5, Ch 17 |
 | **Claim** | Marking a row as owned by one consumer, instead of sharing a position marker. Immune to one bad row stalling everyone. | `[DAR]` | Ch 2, Ch 8 |
 | **Claim race** | Two workers attempting one run, resolved by one of them affecting zero rows; a normal outcome, never an error. | `[DAR]` | Ch 17 |
 | **Claim-based consumption** | Marking individual rows as taken, so one unprocessable row cannot halt the stream. | `[DAR]` | Ch 22 |
 | **Classification procedure** | Four questions asked in a fixed order, first "yes" wins, that assign any field to exactly one category. | `[INF]` | Ch 6 |
+| **Clock discipline** | Using one clock or one sequence for any decision, with monotonic clocks for local durations and wall clocks for humans only. | `[BP]` | Ch 32 |
 | **Command** | An instruction sent down into the domain asking it to change something, carrying an idempotency key. | `[DAR]` | Ch 4 |
 | **Command port** | The single downward path into a domain, carrying an idempotency key and refusable via an event. | `[DAR]` | Ch 22 |
 | **Commit-keyed sharing** | Reusing an expensive structure probe across every run at the same repository commit, which is safe precisely because the key names the commit. | `[FUT]` | Ch 25 |
@@ -94,6 +97,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Convoy effect** | Short work queueing behind long work in a shared FIFO, degrading latency in proportion to what is ahead. | `[BP]` | Ch 23 |
 | **Counter-example** | An argument example showing wrong usage and its consequence, teaching the boundary rather than the shape. | `[INF]` | Ch 15 |
 | **Critical path** | The longest chain of dependent nodes, which is the floor on a run's wall-clock time regardless of worker count. | `[BP]` | Ch 24 |
+| **Cross-process fairness** | Concurrency limits held in the store rather than per process, because a process-local counter multiplies every limit by the worker count. | `[INF]` | Ch 32 |
 | **Curation** | The periodic sweep that decays, retires, and reports on size; never per run, and never deletes. | `[INF]` | Ch 12 |
 | **Cursor** | A shared stream position; standard elsewhere, and here an outage waiting for a malformed row. | `[BP]` | Ch 2, Ch 22 |
 | **Cursor (client)** | The position a client resumes a stream from, so a reconnect neither repeats nor skips. | `[INF]` | Ch 7 |
@@ -108,6 +112,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Dead letter** | A durable record of an obligation the system cannot discharge, written for a person, alerted on by age rather than count. | `[BP]` | Ch 2, Ch 22, Ch 27 |
 | **Decay** | Confidence falling with time since `last_confirmed`, so claims about a moved world lose authority. | `[INF]` | Ch 12 |
 | **Decision observability** | Every edit paired with a prediction recorded before the result, making it checkable. | `[AHE]` | Ch 20 |
+| **Declared needs** | Scopes, egress hosts, and sandbox profile written on the plan node at mint time, which is what makes capability independent of content. | `[INF]` | Ch 31 |
 | **Defer** | Replacing material with a reference the model can expand later, rather than including or dropping it now. | `[INF]` | Ch 11 |
 | **Deferral** | An accepted run visibly waiting on capacity, with a position, distinct from a park. | `[INF]` | Ch 23 |
 | **Delegation contract** | The complete brief plus the declared return shape, fixed at dispatch because no follow-up is possible. | `[INF]` | Ch 19 |
@@ -132,6 +137,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Effect log** | What an activity actually changed, recorded alongside its result so a resumed run knows what may already have happened. | `[INF]` | Ch 21 |
 | **Effect tag** | Pure or effectful, held in the registry and never supplied by the model; the whole of the safety model. | `[DAR]` | Ch 10, Ch 14 |
 | **Effort tier** | The reasoning-effort setting, pinned with the harness version because gains across tiers are not monotone. | `[AHE]` | Ch 13 |
+| **Egress allowlist** | A per-step set of permitted destinations defaulting to empty, and the only control over a failure that produces no symptom. | `[BP]` | Ch 31 |
 | **Enforcement strength** | How hard a component is to ignore: code compels, prose asks. Fixes belong at the weakest level that can still enforce them. | `[INF]` | Ch 1 |
 | **Environment** | The real world the work happens in — filesystem, shell, network, repositories — which you can constrain and observe but not control. | `[AHE]` | Ch 1 |
 | **Episode** | One bounded working session over a run — a worker picks it up, advances it, and puts it down. Not a row; a function invocation. | `[DAR]` | Ch 5 |
@@ -145,6 +151,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Event spine** | The outbox, relay, and command port together: how one thing that happened reliably causes the next. | `[DAR]` | Ch 22 |
 | **Eviction horizon** | How far back history is kept verbatim; the dial that determines whether run cost is linear or quadratic in steps. | `[INF]` | Ch 11 |
 | **Evidence corpus** | The retained, distilled subset of trajectories that the evolution loop reads. | `[AHE]` | Ch 16 |
+| **Exactly one driver** | An operational property achieved by bounding the window and protecting its contents, never a design claim that a lease establishes. | `[DAR]` | Ch 32 |
 | **Exit condition** | One of the four reasons an episode ends: wall clock, step budget, park, or signal. | `[DAR]` | Ch 5, Ch 18 |
 | **Experience observability** | Trajectories distilled into a navigable evidence corpus the loop can afford to read. | `[AHE]` | Ch 20 |
 | **Expiry lag** | How overdue the most overdue lease was when the sweeper reached it; the direct measurement of recovery health. | `[INF]` | Ch 8 |
@@ -160,6 +167,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **False pass** | A grader saying pass when the truth is fail, which corrupts every downstream record and is not comparable to its opposite. | `[BP]` | Ch 28 |
 | **Fan-in** | Several branches converging on one successor, which requires a durable counter and is where the subsystem's real difficulty lives. | `[INF]` | Ch 24 |
 | **Fan-out** | A node with several outgoing edges, which requires no mechanism beyond the ready set being a set. | `[BP]` | Ch 24 |
+| **Fence token** | A monotonic per-run integer carried with an effect so the downstream can reject a stale caller — the only protection that works during a process pause. | `[BP]` | Ch 32 |
 | **Finish reserve** | Budget held back and sized from the measured cost of the graph's terminal nodes, so a long run ends with a deliverable. | `[BP]` | Ch 29 |
 | **Fix routing** | Deciding which surface a model's mistake belongs to, so the fix lands somewhere that can prevent it. | `[INF]` | Ch 15 |
 | **Floor** | The verdict produced by deterministic checks alone, which nothing may raise. | `[DAR]` | Ch 28 |
@@ -171,6 +179,10 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
+| **Gate** | A pre-execution check at the tool boundary that returns without acting when no decision exists for this exact call. | `[DAR]` | Ch 30 |
+| **Gate expiry** | The rule that an unanswered gate fails the run, because treating silence as consent defeats the control with an inattentive afternoon. | `[BP]` | Ch 30 |
+| **Gate policy** | A pure function over tool, tier, arguments, and environment that defaults to requiring approval for anything unrecognised. | `[INF]` | Ch 30 |
+| **Gated-effect coverage** | The fraction of applied effects at gated tiers that have a matching decision row, which must be exactly one. | `[INF]` | Ch 30 |
 | **Generation (G0-G5)** | One of five stages of AI system, from a plain completion call to a system that edits its own supporting components. | `[INF]` | Ch 0 |
 | **Golden set** | A fixed corpus with known verdicts that grades the grader, never edited to make a run pass. | `[BP]` | Ch 28 |
 | **Guarantee** | A promise the system could make before a capability was added, such as "this terminates" or "running it twice is harmless". | `[INF]` | Ch 0 |
@@ -214,7 +226,8 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
-| **Lease** | A time-limited, durable claim that one worker owns a piece of work, with an expiry others can see. | `[DAR]` | Ch 2 |
+| **Label inheritance** | Derived content taking the minimum label of its inputs, which closes the fetch-then-summarise laundering path. | `[INF]` | Ch 31 |
+| **Lease** | A claim with a store-evaluated expiry, which controls acquisition and never evicts an existing holder. | `[DAR]` | Ch 2, Ch 32 |
 | **Lease column** | Ownership stored as data — holder and expiry — so it is queryable, indexable, and outlives its holder. | `[DAR]` | Ch 17 |
 | **Lease period** | How long a claim lasts, and therefore how long an orphaned run can go unnoticed. | `[DAR]` | Ch 8 |
 | **Least-to-most** | Decomposing into sub-goals before steps, which earns its extra model call when a flat plan's step costs are wildly uneven. | `[BP]` | Ch 26 |
@@ -257,16 +270,18 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Observation system** | The component that captures how the runtime perceived itself, distinct from the monitoring operators use. | `[DAR]` | Ch 16 |
 | **Oldest unprocessed age** | The age of the longest-waiting outbox row; the only detector for a silently stalled spine. | `[INF]` | Ch 22 |
+| **One proposer, four vetoes** | The property that the planner alone proposes while budget, gate, and grader may only stop or downgrade, and only a human may also start. | `[INF]` | Ch 30 |
 | **One proposer, three vetoes** | The property that only the planner proposes a step, while budget, gate, and grader may only stop or downgrade one. | `[INF]` | Ch 9 |
 | **Outcome-weighted retention** | Deciding at seal what to keep based on how the run ended, rather than sampling uniformly and losing the rare interesting runs. | `[INF]` | Ch 16 |
 | **Outer loop** | The iteration that edits the harness, running in hours, as distinct from the runtime loop that advances a run in seconds. | `[AHE]` | Ch 20 |
 | **Outstanding obligation** | An applied effect neither reversed nor resolved, whose oldest age is the single number this subsystem must alert on. | `[INF]` | Ch 27 |
+| **Override** | Proceeding past a failed check as a named, expiring, append-only decision that leaves the verdict unchanged. | `[BP]` | Ch 30 |
 
 ## P
 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
-| **Park** | A durable pause that holds no resource at all, ended by an event rather than a timer expiring. | `[DAR]` | Ch 5 |
+| **Park** | A run suspended as a durable row holding no worker, lease, slot, connection, or timer, so that gating costs no capacity. | `[DAR]` | Ch 5, Ch 30 |
 | **Parked time** | Wall age minus active time; measures human and external latency, never runtime performance. | `[INF]` | Ch 8 |
 | **Parking** | Suspending a run at a gate while it holds no worker, lease, or semaphore slot, so that parking is economically free. | `[DAR]` | Ch 29 |
 | **Partial expiry index** | An index on `lease_until` restricted to non-terminal runs, making recovery cost scale with failures rather than runs. | `[INF]` | Ch 17 |
@@ -291,6 +306,8 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Progress** | Telemetry with no business meaning, streamed straight to a client and never written to the outbox. The opposite of a fact. | `[DAR]` | Ch 7 |
 | **Progressive disclosure** | Exposing material as navigable structure so the model pulls only what it needs, instead of everything being pushed in advance. | `[AHE]` | Ch 11 |
 | **Projection** | Something derived from durable facts and rebuilt on demand — assembled context, read models, progress. | `[INF]` | Ch 6, Ch 9 |
+| **Provenance label** | A trust level attached to content at fetch time, before any model sees it, and never recoverable later. | `[DAR]` | Ch 31 |
+| **Provenance lattice** | Trusted, semi-trusted, untrusted, with content moving down freely and never up, because any promoting operation would be reachable by the content. | `[INF]` | Ch 31 |
 | **Provider adapter** | The one module per provider where its SDK is imported and its vocabulary exists. | `[INF]` | Ch 13 |
 | **Provisional entry** | A written but uncorroborated entry, which influences nothing until a later run confirms it. | `[INF]` | Ch 12 |
 
@@ -312,6 +329,8 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Reflection** | The run reconsidering its own work mid-flight, useful for generation and carrying no authority over any verdict. | `[INF]` | Ch 28 |
 | **Relay** | The worker that claims outbox rows and turns them into work, enqueued, commanded, or published. | `[DAR]` | Ch 4, Ch 22 |
 | **Release** | Giving a lease back at an episode boundary or at drain, without finishing the work. | `[DAR]` | Ch 8 |
+| **Rendered arguments** | A deterministic, human-readable statement of what will happen, never a model-generated summary of the model's own request. | `[BP]` | Ch 30 |
+| **Renewal disarming** | Switching the effect path into a refusing state the instant a renewal fails, rather than logging and retrying. | `[BP]` | Ch 32 |
 | **Repair** | Re-deriving a plan's unexecuted tail while carrying the executed prefix by identity hash, at roughly a tenth the cost of replanning. | `[INF]` | Ch 26 |
 | **Replan** | Minting a new lineage because the decomposition itself was wrong, permitted only when the failure record carries information the last one did not. | `[DAR]` | Ch 10, Ch 26 |
 | **Replan storm** | Repeated identical replans from unchanged inputs, structurally impossible once a replan without new information is refused. | `[INF]` | Ch 26 |
@@ -334,6 +353,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Run lifecycle** | The life of one goal, from arrival to a terminal state, independent of every process that touches it. | `[DAR]` | Ch 8 |
 | **Run state** | What is happening right now in one run; owned by the runtime and meaningless once the run ends. | `[DAR]` | Ch 6 |
 | **Run store** | The narrow, hot table holding one row per run; everything that grows lives elsewhere. | `[INF]` | Ch 17 |
+| **Run taint** | A monotonic flag set when untrusted content enters a run, cleared by nothing, and scoped down only by moving the read into a sub-run. | `[INF]` | Ch 31 |
 | **Runtime lifecycle** | The life of one process — boot, serve, drain, exit — which has no obligation to any run. | `[INF]` | Ch 8 |
 | **Runtime loop** | The forty lines that claim a run, advance it under bounded limits, and release it, calling six ports and deciding nothing. | `[DAR]` | Ch 18 |
 
@@ -342,11 +362,14 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
 | **Same-transaction rule** | A state change and the event announcing it are committed together, or the gap between them is undetectable. | `[DAR]` | Ch 9 |
+| **Sandbox lifecycle** | Create fresh, attach, execute, optionally snapshot, destroy — with reuse forbidden because state between units of work is a channel. | `[AHE]` | Ch 31 |
 | **Sandbox profile** | The isolation configuration a tool runs under, named in the registry rather than chosen per call. | `[AHE]` | Ch 14 |
 | **Scope** | The set of things a belief covers or an effect touches, matched by overlap to decide what an effect invalidates. | `[INF]` | Ch 12, Ch 25 |
 | **Seal** | Closing a trajectory at run end, when the outcome is finally known and the retention class can be assigned. | `[INF]` | Ch 16 |
 | **Self-invalidation** | The dominant staleness case, in which the run's own committed effects make its own beliefs false. | `[INF]` | Ch 25 |
+| **Self-modification gap** | The unsolved question of what prevents a self-editing harness from editing its own safety boundary, answered today only by there being no write path. | `[FUT]` | Ch 31 |
 | **Settlement** | Replacing a reservation with what a call actually cost, or with the reservation itself when the actual is unknowable. | `[INF]` | Ch 13 |
+| **Sharded relay** | Partitioned outbox delivery with one claimer per partition, where rebalancing is the operation during which the guarantee is weakest. | `[INF]` | Ch 32 |
 | **Short-term memory** | What the model can see on one call; the assembled context, rebuilt every time. | `[INF]` | Ch 12 |
 | **Signal** | Out-of-band control over a live run: steer, cancel, pause, or answer. | `[DAR]` | Ch 7 |
 | **Signal exit (E4)** | Ending an episode because a cancel, pause, or steer was read at a checkpoint. | `[DAR]` | Ch 18 |
@@ -360,14 +383,16 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Standing cost** | Tokens an ACI improvement adds to every model call forever, as against a cost paid only on failure. | `[INF]` | Ch 15 |
 | **State manager** | The component that records where a run has got to and who is entitled to advance it. | `[DAR]` | Ch 17 |
 | **Stateless ingress** | An edge that keeps nothing in process memory, so any instance can serve any request and a deploy loses nothing. | `[DAR]` | Ch 7 |
-| **Steer** | A goal amendment delivered mid-run that forces a replan instead of editing the running plan. | `[DAR]` | Ch 7 |
+| **Steer** | A human amendment to the goal, which ends the plan lineage and mints a new one by the same path a crash recovery takes. | `[DAR]` | Ch 7, Ch 30 |
 | **Step** | One advance of a run's state machine, taking milliseconds and recorded as a row. | `[DAR]` | Ch 5 |
 | **Step budget** | The maximum number of steps one episode may take before it must yield the worker. | `[DAR]` | Ch 5 |
 | **Step-budget exit (E2)** | Bounds work between plan-level checkpoints, making cost per episode predictable. | `[DAR]` | Ch 18 |
 | **Steps per episode** | The distribution whose mode reveals whether the step budget is doing anything. | `[INF]` | Ch 18 |
 | **Steps per plan** | The distribution whose mode tells you whether the planner is planning or looping. | `[INF]` | Ch 10 |
 | **Stopping rule** | Decompose until every step has a checkable postcondition and fits one context assembly, then stop. | `[INF]` | Ch 26 |
+| **Store-evaluated expiry** | Deciding lease validity with the store's clock inside the claim statement, because a paused worker's clock is paused with it. | `[DAR]` | Ch 32 |
 | **Strategy** | Which planning method produced a plan; ReAct is one value of this field, not the architecture. | `[BP]` | Ch 10 |
+| **Structural enforcement** | Putting the authority check in the runner rather than the instructions, because the enforcer cannot be the party being constrained. | `[DAR]` | Ch 30 |
 | **Sub-agent** | A nested run with its own context, driven by the same loop through the same ports. | `[AHE]` | Ch 19 |
 | **Sub-agent configuration** | The definition of a nested agent used to isolate context, not to build an org chart. | `[AHE]` | Ch 1 |
 | **Sub-run** | A child plan minted by a completing node, used when the number of branches is unknown until run time, so the parent graph stays immutable. | `[INF]` | Ch 24 |
@@ -428,6 +453,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Wall age** | Time since a run was created, including every hour it spent parked. | `[INF]` | Ch 8 |
 | **Wall-clock exit (E1)** | Bounds one run's hold on a worker, so slow steps cannot monopolise it. | `[DAR]` | Ch 18 |
+| **Window of ambiguity** | The interval from a worker losing the ability to verify its lease to its in-flight effect completing, during which two workers may both act. | `[INF]` | Ch 32 |
 | **Withholding** | Omitting a belief the runtime cannot afford to refresh, on the grounds that no map beats a wrong map nothing can detect. | `[INF]` | Ch 25 |
 | **Work class** | A category of work with its own queue and reserved capacity, so short work is never stuck behind long. | `[DAR]` | Ch 23 |
 | **Working budget** | What remains of the context window after output reserve, system prompt, tool definitions, and long-term memory are paid for. | `[INF]` | Ch 11 |
@@ -475,3 +501,6 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Ch 27 | Effect ledger, Reversibility tier, Rollback, Compensation, Escaped effect, Failure table, Dead letter, Sweeper, Attempt cap, Argument binding at apply time, Outstanding obligation |
 | Ch 28 | Verdict lattice, Floor, Downgrade-only, Reflection, Judge independence, Golden set, Superficially passing case, False pass, Attempted upgrade, Evaluator-isomorphic validation, Ungradable |
 | Ch 29 | Novel durable state, Stall, Novelty window, Stall escalation, Budget axis, Finish reserve, Point of no return, Timeout coupling, Parking, Draining |
+| Ch 30 | Structural enforcement, Gate, Park, Argument-hash scoping, Steer, Override, Gate policy, Gated-effect coverage, Gate expiry, Rendered arguments, One proposer, four vetoes |
+| Ch 31 | Provenance label, Provenance lattice, Label inheritance, Blast radius, Capability scoping, Declared needs, Egress allowlist, Run taint, Sandbox lifecycle, Self-modification gap |
+| Ch 32 | Lease, Window of ambiguity, Fence token, Exactly one driver, Store-evaluated expiry, Renewal disarming, Sharded relay, Cross-process fairness, Clock discipline, Belief versus ownership |
