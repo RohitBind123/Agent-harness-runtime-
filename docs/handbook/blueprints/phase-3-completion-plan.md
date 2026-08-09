@@ -563,7 +563,7 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 | SVGs | 6 of the planned 9 |
 | Commits | one per batch, on `main` |
 
-**To resume, start at Chapter 38 (Deployment, Versioning, and Configuration).** The procedure for any remaining chapter:
+**To resume, start at Chapter 42 (The Case for Harness Evolution), the first chapter of Level 5.** The procedure for any remaining chapter:
 
 1. Read the chapter's brief in §6 of this document, and its `Requires`/`Unlocks` in the Phase 2 §4
    spine.
@@ -620,10 +620,10 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 
 ### Batch 4 — Level 4
-- [x] C33 · [x] C34 · [x] C35 · [x] C36 · [x] C37 · [ ] C38 · [ ] C39 · [ ] C40 · [ ] C41
-- [ ] Interlude II
-- [ ] L4 opener + `level-4-production-surfaces.svg`
-- [ ] READMEs updated · [ ] linter green · [ ] commit
+- [x] C33 · [x] C34 · [x] C35 · [x] C36 · [x] C37 · [x] C38 · [x] C39 · [x] C40 · [x] C41
+- [x] Interlude II
+- [x] L4 opener + `level-4-production-surfaces.svg`
+- [x] READMEs updated · [x] linter green · [x] commit
 
 ### Batch 5 — Level 5
 - [ ] C42 · [ ] C43 · [ ] C44 · [ ] C45 · [ ] C46 · [ ] C47 · [ ] C48 · [ ] C49

@@ -24,7 +24,7 @@ Use the [compiled handbook draft](handbook/compiled/next-generation-autonomous-a
 
 | Area | Purpose | Current state |
 | --- | --- | --- |
-| [Handbook chapters](handbook/chapters/) | Progressive explanation and production guidance | Chapters 0-37 available |
+| [Handbook chapters](handbook/chapters/) | Progressive explanation and production guidance | Chapters 0-41 available; Levels 0-4 complete |
 | [Authoring conventions](handbook/CONVENTIONS.md) | Chapter skeleton, on-ramp blocks, diagram and naming rules, definition of done | Current; enforced by the linter |
 | [Appendix A — Glossary](handbook/appendices/a-glossary.md) | Every defined term with provenance and defining chapter | Generated from the chapters |
 | [Level openers](handbook/levels/) | What each level teaches, what it assumes, and its exit condition | Levels 0-2 available |

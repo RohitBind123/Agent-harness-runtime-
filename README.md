@@ -2,9 +2,11 @@
 
 A documentation-first reference for understanding and designing production-grade autonomous agent runtimes and self-evolving agent harnesses.
 
-> **Project status:** architecture and handbook work in progress. This repository currently contains 38 of the planned 50 handbook chapters, a detailed runtime specification, a compiled handbook draft, source diagrams, and the Agentic Harness Engineering research paper. It is a knowledge base, not an executable runtime implementation.
+> **Project status:** architecture and handbook work in progress. This repository currently contains 42 of the planned 50 handbook chapters, a detailed runtime specification, a compiled handbook draft, source diagrams, and the Agentic Harness Engineering research paper. It is a knowledge base, not an executable runtime implementation.
 >
-> The remaining 12 chapters are scoped and scheduled in the [Phase 3 completion plan](docs/handbook/blueprints/phase-3-completion-plan.md).
+> Levels 0-4 are complete. The remaining 8 chapters (Level 5, self-evolving systems) are scoped in the [Phase 3 completion plan](docs/handbook/blueprints/phase-3-completion-plan.md).
+>
+> New readers should start with the [Reading Map](docs/handbook/READING-MAP.md), which summarises every chapter in plain language and suggests where to begin.
 
 Every chapter is written to be followable by an engineer new to both AI systems and distributed systems: each opens with a plain-language summary and an analogy whose breaking point is stated explicitly, derives its subject from first principles rather than asserting it, and closes with a glossary of the terms it introduced.
 

@@ -12,6 +12,7 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 1 — High-Level Runtime Architecture | [Level 1](levels/level-1-high-level-runtime.md) | 4-9 |
 | 2 — Core Runtime Components | [Level 2](levels/level-2-core-components.md) | 10-20 |
 | 3 — Advanced Runtime Architecture | [Level 3](levels/level-3-advanced-runtime.md) | 21-32 |
+| 4 — Production Engineering | [Level 4](levels/level-4-production.md) | 33-41 |
 
 ## Available chapters
 
@@ -55,6 +56,10 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [35. Cost Engineering and Token Economics](chapters/35-cost-engineering-and-token-economics.md) | Production engineering | Cost per successful outcome, reserve-then-settle, and why input dominates output twenty to one |
 | [36. Reliability and SLOs](chapters/36-reliability-and-slos.md) | Production engineering | Promise liveness, honesty, and accounting; publish quality; never degrade it silently |
 | [37. Tenancy, Secrets, and Data Governance](chapters/37-tenancy-secrets-and-data-governance.md) | Production engineering | Nine stores, two cross-run by design, and the derivation boundary that is one-way |
+| [38. Deployment, Versioning, and Configuration](chapters/38-deployment-versioning-and-configuration.md) | Production engineering | Three version axes, and a model change as an invalidation event rather than a dependency bump |
+| [39. GitOps and CI/CD for Agent Systems](chapters/39-gitops-and-cicd-for-agent-systems.md) | Production engineering | The harness as code, two gates, and why review is not the control |
+| [40. Testing a Non-Deterministic System](chapters/40-testing-a-non-deterministic-system.md) | Production engineering | Three tiers around the model port, replay from real traces, and the retry prohibition |
+| [41. Evaluation Infrastructure](chapters/41-evaluation-infrastructure.md) | Production engineering | The noise floor, rollouts per task, and the gate into Level 5 |
 
 ## Completion status
 
@@ -64,12 +69,14 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
 | 2 — Core Runtime Components | 10-20 | 11 of 11 | Complete |
 | 3 — Advanced Runtime Architecture | 21-32 | 12 of 12 | Complete |
-| 4 — Production Engineering | 33-41 | 5 of 9 | In progress |
-| 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
+| 4 — Production Engineering | 33-41 | 9 of 9 | Complete |
+| 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Not started |
 
-Levels 0-3 are complete. Level 4 is in progress; Chapter 38, *Deployment, Versioning, and Configuration*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Levels 0-4 are complete (Chapters 0-41, both interludes, five level openers). Level 5 is scoped and not started; Chapter 42, *The Case for Harness Evolution*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
+
+- [READING-MAP.md](READING-MAP.md) — a plain-language summary of every chapter and suggested starting points. **Start here if you are deciding what to read.**
 
 - [CONVENTIONS.md](CONVENTIONS.md) — the authoring card: chapter skeleton, the four on-ramp blocks, diagram vocabulary, provenance rules, naming, prohibited words, and the definition of done.
 - [Appendix A — Glossary](appendices/a-glossary.md) — every term the handbook defines, generated from the chapters.
