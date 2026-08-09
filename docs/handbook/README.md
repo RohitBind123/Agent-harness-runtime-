@@ -30,6 +30,7 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [12. The Memory System](chapters/12-the-memory-system.md) | Core components | Four subsystems behind one word, and why the only component a run writes to itself needs evidence and decay |
 | [13. The Reasoning Engine](chapters/13-the-reasoning-engine.md) | Core components | One metered, capped, abortable door to the model, and why stopping waiting is not stopping spending |
 | [14. The Tool Execution Engine](chapters/14-the-tool-execution-engine.md) | Core components | Description and implementation as two surfaces, the effect tag as the safety model, and truncation at the boundary |
+| [15. Agent-Computer Interface Design](chapters/15-agent-computer-interface-design.md) | Core components | Verbs, arguments, results, and errors as a designed surface, and why errors are instructions rather than diagnoses |
 
 ## Completion status
 
@@ -37,12 +38,12 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | --- | ---: | ---: | --- |
 | 0 — Foundations | 0-3 | 4 of 4 | Complete |
 | 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
-| 2 — Core Runtime Components | 10-20 | 5 of 11 | In progress |
+| 2 — Core Runtime Components | 10-20 | 6 of 11 | In progress |
 | 3 — Advanced Runtime Architecture | 21-32 | 0 of 12 | Planned |
 | 4 — Production Engineering | 33-41 | 0 of 9 | Planned |
 | 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
 
-Level 2 is in progress. Chapter 15, *Agent-Computer Interface Design*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Level 2 is in progress. Chapter 16, *The Observation System*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
 

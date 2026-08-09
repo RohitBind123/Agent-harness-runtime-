@@ -6,13 +6,13 @@
 > chapter by `tools/build_glossary.py`. To change an entry, edit the defining
 > chapter's table and regenerate.
 
-Covering 15 chapters and 157 terms.
+Covering 16 chapters and 168 terms.
 
 Provenance tags: `[AHE]` the Agentic Harness Engineering paper · `[DAR]` the durable
 runtime specification · `[INF]` handbook inference · `[BP]` industry practice ·
 `[FUT]` speculative proposal.
 
-**Jump to:** [A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [I](#i) · [J](#j) · [K](#k) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [R](#r) · [S](#s) · [T](#t) · [V](#v) · [W](#w) · [Z](#z)
+**Jump to:** [A](#a) · [B](#b) · [C](#c) · [D](#d) · [E](#e) · [F](#f) · [G](#g) · [H](#h) · [I](#i) · [J](#j) · [K](#k) · [L](#l) · [M](#m) · [N](#n) · [O](#o) · [P](#p) · [Q](#q) · [R](#r) · [S](#s) · [T](#t) · [V](#v) · [W](#w) · [Z](#z)
 
 ---
 
@@ -27,6 +27,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Activity identity** | A fingerprint of a tool call — run, plan, step, tool, and inputs — that decides whether a stored result may be reused instead of re-run. | `[DAR]` | Ch 2 |
 | **Activity runner** | The kernel component that dispatches a tool call, then releases its resources rather than waiting on them. | `[DAR]` | Ch 4 |
 | **Admission control** | Refusing or delaying work at the door so that accepted work can actually be served. | `[BP]` | Ch 2 |
+| **Agent-Computer Interface (ACI)** | A tool as the model experiences it — verbs, arguments, results, errors — as distinct from the mechanism that executes it. | `[BP]` | Ch 15 |
 | **Amplification** | Untruncated output on the data axis re-entering the next step's context and multiplying, with no decision having changed. | `[INF]` | Ch 9, Ch 14 |
 | **ARK** | The Agent Runtime Kernel designed across this book: domain-independent, knows nothing about any particular product. | `[INF]` | Ch 3 |
 | **ARK/Evolve** | The outer loop that edits Atlas's harness, introduced in Ch 20 and built in Level 5. It may edit the harness and never the kernel. | `[INF]` | Ch 3 |
@@ -59,6 +60,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Context system** | The component that assembles, per model call, everything the model is allowed to see, under a budget and an ordering contract. | `[DAR]` | Ch 11 |
 | **Contradiction** | A later observation that opposes an existing entry, lowering its confidence rather than rewriting it. | `[INF]` | Ch 12 |
 | **Control flow** | The reading that answers what happens next and who decided it; measured in decisions. | `[INF]` | Ch 9 |
+| **Counter-example** | An argument example showing wrong usage and its consequence, teaching the boundary rather than the shape. | `[INF]` | Ch 15 |
 | **Curation** | The periodic sweep that decays, retires, and reports on size; never per run, and never deletes. | `[INF]` | Ch 12 |
 | **Cursor** | A shared position marker in a stream; standard elsewhere, an outage waiting to happen here. | `[BP]` | Ch 2 |
 | **Cursor (client)** | The position a client resumes a stream from, so a reconnect neither repeats nor skips. | `[INF]` | Ch 7 |
@@ -103,6 +105,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
 | **Fact** | Something durable that a later reader is entitled to rely on; the thing progress is deliberately not. | `[DAR]` | Ch 7 |
+| **Fix routing** | Deciding which surface a model's mistake belongs to, so the fix lands somewhere that can prevent it. | `[INF]` | Ch 15 |
 | **Flow annotation** | A span attribute recording which axis a trace span belongs to, so a trace can be filtered to one reading. | `[INF]` | Ch 9 |
 | **Flow routing** | Deciding which of the three axes a question belongs to before trying to answer it. | `[INF]` | Ch 9 |
 | **Forced move** | A component you have no choice about once you have granted a capability, because the capability removed a guarantee that must be restored some other way. | `[INF]` | Ch 0 |
@@ -130,6 +133,8 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Idempotency** | Doing something twice leaves the world exactly as doing it once did. | `[DAR]` | Ch 2 |
 | **Idempotency key** | The value that lets a receiver recognise a repeat request as the same request, rather than a second one. | `[DAR]` | Ch 2 |
+| **Instructive error** | An error naming what happened, why, and what to do next, so the following attempt can succeed. | `[INF]` | Ch 15 |
+| **Instructiveness ratio** | Errors followed by success over errors followed by the same error; a behavioural measure of error quality. | `[INF]` | Ch 15 |
 | **Interruption matrix** | The table of what is lost when a process dies at each point, and how long recovery takes. | `[INF]` | Ch 8 |
 
 ## J
@@ -205,6 +210,12 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Provider adapter** | The one module per provider where its SDK is imported and its vocabulary exists. | `[INF]` | Ch 13 |
 | **Provisional entry** | A written but uncorroborated entry, which influences nothing until a later run confirms it. | `[INF]` | Ch 12 |
 
+## Q
+
+| Term | Definition | Tag | Defined in |
+|------|------------|-----|------------|
+| **Quote, do not compute** | Preferring arguments the model can copy from a prior result over ones it must derive or count. | `[INF]` | Ch 15 |
+
 ## R
 
 | Term | Definition | Tag | Defined in |
@@ -216,10 +227,12 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Replan** | Producing a new plan with a new id in response to a steer, failure, downgrade, or budget change — never an edit. | `[DAR]` | Ch 10 |
 | **Replay** | Re-running from a checkpoint, reusing stored results rather than re-spending on them. The correct alternative to a blind retry. | `[DAR]` | Ch 2 |
 | **Replay test** | Delete every read model, progress message, and cached context; if run state cannot be reconstructed, an axis has leaked. | `[INF]` | Ch 9 |
+| **Representation agreement** | The requirement that any two tools addressing the same object address it the same way. | `[INF]` | Ch 15 |
 | **Reservation** | Budget held for an in-flight call; always settled or released, never abandoned. | `[DAR]` | Ch 13 |
 | **Reserve-then-settle** | Committing the worst-case cost before a call and replacing it with the actual afterwards, so a cap is a limit rather than a report. | `[DAR]` | Ch 13 |
 | **Retirement** | Moving an entry below the floor out of use while keeping it resolvable forever. | `[INF]` | Ch 12 |
 | **Retry** | Doing the work again from the start. Cheap in ordinary systems, a cost incident here. | `[BP]` | Ch 2 |
+| **Retry loop** | A model repeating an identical call because the error taught it nothing; the loud ACI failure. | `[INF]` | Ch 15 |
 | **Run** | One goal under execution: a durable, versioned row that lives from minutes to weeks and holds nothing else. | `[DAR]` | Ch 5 |
 | **Run driver** | The kernel component that advances one run, replacing the banned word "orchestrator". | `[DAR]` | Ch 4 |
 | **Run lifecycle** | The life of one goal, from arrival to a terminal state, independent of every process that touches it. | `[DAR]` | Ch 8 |
@@ -236,7 +249,9 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Settlement** | Replacing a reservation with what a call actually cost, or with the reservation itself when the actual is unknowable. | `[INF]` | Ch 13 |
 | **Short-term memory** | What the model can see on one call; the assembled context, rebuilt every time. | `[INF]` | Ch 12 |
 | **Signal** | Out-of-band control over a live run: steer, cancel, pause, or answer. | `[DAR]` | Ch 7 |
+| **Silent misread** | A well-formed result the model draws a wrong conclusion from; the expensive ACI failure, with no automatic detector. | `[INF]` | Ch 15 |
 | **Skill** | A packaged, reusable procedure loaded only when it is relevant, so its tokens are not always resident. | `[AHE]` | Ch 1 |
+| **Standing cost** | Tokens an ACI improvement adds to every model call forever, as against a cost paid only on failure. | `[INF]` | Ch 15 |
 | **Stateless ingress** | An edge that keeps nothing in process memory, so any instance can serve any request and a deploy loses nothing. | `[DAR]` | Ch 7 |
 | **Steer** | A goal amendment delivered mid-run that forces a replan instead of editing the running plan. | `[DAR]` | Ch 7 |
 | **Step** | One advance of a run's state machine, taking milliseconds and recorded as a row. | `[DAR]` | Ch 5 |
@@ -267,6 +282,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
+| **Verb granularity** | How large each tool is, bounded below by the tool tax and above by the effect tag needing one value. | `[INF]` | Ch 15 |
 | **Volatile boundary** | The offset before which the context is asserted byte-identical to the previous call in this run. | `[INF]` | Ch 11 |
 | **Volatility band** | Whether material changes per deploy, per replan, or per step; the axis assembly order sorts on. | `[INF]` | Ch 11 |
 
@@ -304,3 +320,4 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Ch 12 | Short-term memory, Episodic memory, Procedural memory, Long-term memory, Memory proposal, Abstraction at write time, Confidence, Load floor, Provisional entry, Contradiction, Decay, Retirement, Scope, Curation |
 | Ch 13 | Model port, Provider adapter, Reserve-then-settle, Reservation, Settlement, Abort handle, Token kinds, Reasoning tokens, Effort tier, Model policy, Normalisation, Model semaphore, Content refusal, Estimated cost |
 | Ch 14 | Tool execution engine, Tool registry, Tool description, Tool implementation, Description drift, Effect tag, Middleware, Truncation policy, Amplification, Partial success, Capability scoping, Sandbox profile, Tool tax |
+| Ch 15 | Agent-Computer Interface (ACI), Verb granularity, Representation agreement, Instructive error, Instructiveness ratio, Retry loop, Silent misread, Quote, do not compute, Counter-example, Fix routing, Standing cost |
