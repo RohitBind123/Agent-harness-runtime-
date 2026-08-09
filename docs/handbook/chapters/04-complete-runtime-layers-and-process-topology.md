@@ -29,7 +29,30 @@ eight months earlier, is held across a model call. The pool is not exhausted; on
 Four hours, for a defect that would have been visible in ninety seconds if the layers had been
 separable enough to bisect.
 
-### 1.2 Why this chapter exists
+### 1.2 In plain language
+
+So far the book has argued that a system has to be built around the model. This chapter is the
+first one that draws it.
+
+The drawing has six horizontal bands. At the top is the **surface** — the app or terminal a person
+actually looks at. Below it the **edge**, a thin layer that accepts goals and hands back progress
+and does no thinking of its own. Below that the **kernel**, the small generic engine that actually
+drives work forward. Below that the **ports**, which are the plug sockets where your specific
+behaviour gets attached: how to plan, which tools exist, which model to call, how to grade, who
+approves. Then the **domain**, which is your product — for Atlas, everything about repositories and
+patches. Underneath everything, the **substrate**: the database and queues that make the whole thing
+survive a restart.
+
+The single most important idea is the one in the middle. The runtime and the product talk to each
+other through a deliberately tiny opening: the runtime sends **commands** down ("apply this patch")
+and the product sends **events** back up ("the patch was applied"). Nothing else crosses. They share
+no tables and neither imports the other's code.
+
+The test for whether you got it right is blunt: delete the runtime entirely, and your product should
+still make sense on its own. If it does not, the two have grown together, and every guarantee later
+in this book becomes unenforceable — because there is no longer a boundary at which to enforce it.
+
+### 1.3 Why this chapter exists
 
 There is a second cost, quieter and larger. Three weeks after that incident, someone asks whether
 the runtime could carry a second product — a support agent, sharing none of Atlas's domain. The
@@ -44,7 +67,7 @@ boundary at which to enforce it.
 
 This is the map chapter. Every remaining chapter zooms into one region of Figure 4.1.
 
-### 1.3 What previous framings got wrong
+### 1.4 What previous framings got wrong
 
 **"Layers are bureaucracy."** Layers are a debugging affordance. The cold open is a bisection failure:
 without boundaries there is nothing to bisect.
@@ -62,7 +85,66 @@ layering one.
 
 ## 2. High-Level Mental Model
 
-### 2.1 The narrow waist
+### 2.1 The analogy, and where it breaks
+
+A shipping port.
+
+Ships arrive carrying anything at all — grain, cars, refrigerators, chemicals. The port handles none
+of that variety directly. It handles **containers**: one standard box, one standard way to lift it,
+one standard way to stack it. The crane operator does not know or care what is inside. That single
+constraint is what lets one port serve every industry, and what lets a container move from ship to
+train to lorry without anybody unpacking it.
+
+The runtime is the port and your product is the cargo. The kernel lifts containers: it starts runs,
+drives steps, dispatches tool calls, and never once needs to know what a repository is. Commands and
+events are the containers — two standard shapes, and the only things permitted across the dock.
+
+The layers fall out of the same picture. The **edge** is the gate where lorries are checked in and
+turned around quickly, so a slow crane never blocks the entrance. The **substrate** is the yard where
+containers sit safely if everyone goes home. The **ports** — the naming overlap is unfortunate and
+worth noticing — are the specialised handling equipment you bolt on for your particular cargo.
+
+**Where the analogy breaks.** A shipping container is opaque and the port genuinely never opens it.
+The runtime is not quite that pure: it must know whether a command is *reversible*, because an
+irreversible one requires a human gate before it may be sent (Chapter 30). So the container is
+opaque as to contents but not as to consequence — every command carries one bit the runtime is
+entitled to read. That bit is the whole safety model, and it is the one place the analogy would
+otherwise lead you to build something unsafe.
+
+### 2.2 Why the waist must be narrow
+
+"Narrow waist" sounds like an aesthetic preference. It is the load-bearing decision of the chapter,
+and it is forced by the two costs in the cold open:
+
+```
+  1. The runtime must be debuggable by bisection: given a stuck run,
+     you must be able to say "runtime" or "product" before reading
+     any code.
+  2. Bisection requires a boundary that can be observed and tested
+     independently on each side.
+  3. A boundary is only observable if EVERYTHING crossing it is
+     enumerable. If the two sides also share a database table, the
+     shared table is an unobservable second channel, and bisection
+     fails.
+  4. Therefore state must not be shared: the only crossings are
+     messages.
+  5. Two directions are needed and sufficient. The runtime must ask the
+     product to change something (a command, going down), and the
+     product must report that something changed (an event, going up).
+  6. Anything richer -- the runtime calling arbitrary product functions,
+     or the product reaching into run state -- reintroduces the
+     unenumerable channel from step 3.
+  7. Therefore: commands down, events up, no shared tables, no imports
+     either way. Two message kinds is the smallest interface that is
+     still sufficient.
+```
+
+Step 3 is the one teams skip. Sharing one table "just between the runtime and the domain" feels
+harmless and destroys the property, because the coupling that matters is not in the imports — it is
+in the transactions, as §1.4 notes. A single transaction spanning both sides cannot be split later
+without redesigning both.
+
+### 2.3 The narrow waist
 
 Six layers, and one boundary that matters more than the other five.
 
@@ -78,7 +160,7 @@ runtime's tables and your domain's tables are joined by nothing `[DAR §11]`, an
 feature you must actively defend, because every convenient shortcut in the next two years will
 propose adding one join.
 
-### 2.2 The test
+### 2.4 The test
 
 `[DAR §3.3]` gives it, and it is the sharpest tool in the chapter:
 
@@ -88,7 +170,7 @@ Not "would be inconvenient to delete." Deleted. Your domain tables still make se
 still hold, your product still compiles. If a `current_step` column on a domain aggregate goes
 dangling, you have failed the test, and the guarantees in Chapter 13 are now unenforceable.
 
-### 2.3 Two of the six are already yours
+### 2.5 Two of the six are already yours
 
 A framing that lowers the perceived cost of all this. Of the six layers, **two already exist in your
 system** — the surface and your domain. **One you buy** — the substrate. **One you do not write at
@@ -476,7 +558,7 @@ The same wiring, read three ways. Chapter 9 develops this as a discipline; here 
   CONTEXT                                                              big one
   completion      model   ===> runner                    ~5-50 KB
   tool output     sandbox ===> runner                    ~1 KB - 10 MB <-- the
-                                                                        variable
+                                                                      variable
   trajectory      runner  ===> trace store               ~1-10 MB per run
   progress        kernel  ~~~> surface                   continuous, discarded
 
@@ -808,6 +890,25 @@ evolution loop, which is one more reason this chapter comes forty chapters befor
    HTTP request. Every other process split should wait for a metric.
 7. **The layer diagram is the action-space diagram.** Forty chapters early, this is what will bound
    the evolution loop.
+
+**Terms introduced in this chapter**
+
+| Term | In one sentence | Tag | Next needed in |
+|------|-----------------|-----|----------------|
+| **Surface** | The app, terminal, or chat window a person actually looks at. Outside the runtime entirely. | `[DAR]` | Ch 7 |
+| **Edge** | A thin stateless layer that accepts goals and streams progress, and deliberately runs no loop, no consumer, and no model call. | `[DAR]` | Ch 7 |
+| **Kernel** | The small generic engine that drives work forward — relay, run driver, activity runner, sweeper — and knows nothing about any product. | `[DAR]` | Ch 18 |
+| **Port** | One of six plug sockets where product-specific behaviour attaches: planner, tool, model, grader, approval, domain. | `[DAR]` | Ch 10-14 |
+| **Domain** | Your product's own logic and tables, which must remain coherent with the runtime deleted. | `[DAR]` | Ch 6 |
+| **Substrate** | The durable storage and queues everything else rests on; usually bought rather than built. | `[DAR]` | Ch 22 |
+| **Narrow waist** | The deliberately tiny opening between runtime and domain: commands down, events up, nothing else. | `[DAR]` | Ch 6, Ch 22 |
+| **Command** | An instruction sent down into the domain asking it to change something, carrying an idempotency key. | `[DAR]` | Ch 22 |
+| **Event** | A past-tense statement travelling up that something happened, written in the same transaction as the change itself. | `[DAR]` | Ch 22 |
+| **Deletion test** | Delete the runtime; if the product no longer makes sense on its own, the layers have merged. | `[DAR]` | Ch 6 |
+| **Run driver** | The kernel component that advances one run, replacing the banned word "orchestrator". | `[DAR]` | Ch 18 |
+| **Activity runner** | The kernel component that dispatches a tool call, then releases its resources rather than waiting on them. | `[DAR]` | Ch 14, Ch 21 |
+| **Relay** | The kernel component that picks up appended events and turns them back into work. | `[DAR]` | Ch 22 |
+| **Sweeper** | The recurring job that expires stale leases and dead-letters exhausted work; the only cron in the kernel. | `[DAR]` | Ch 27 |
 
 ---
 

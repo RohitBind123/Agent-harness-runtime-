@@ -2,6 +2,14 @@
 
 The handbook teaches the architecture in dependency order. It uses a running reference system named Atlas on an agent runtime named ARK, and applies a consistent sixteen-section chapter template covering motivation, mental models, architecture, state, interfaces, communication, failure modes, scale, and production engineering.
 
+Every chapter is written to be followable by an engineer new to both AI systems and distributed systems: each opens with a plain-language summary and a concrete analogy with its breaking point stated, derives its subject from first principles, and closes with a glossary of the terms it introduced. The rules are in [CONVENTIONS.md](CONVENTIONS.md) and are enforced by `tools/check_handbook.py`.
+
+## Levels
+
+| Level | Opener | Chapters |
+| --- | --- | --- |
+| 0 — Foundations | [Level 0](levels/level-0-foundations.md) | 0-3 |
+
 ## Available chapters
 
 | Chapter | Level | Focus |
@@ -28,10 +36,27 @@ The handbook teaches the architecture in dependency order. It uses a running ref
 
 The next planned chapters are Chapter 8, *Request Lifecycle and Runtime Lifecycle*, and Chapter 9, *Three Flows: Data, Control, Event*.
 
+## Reference material
+
+- [CONVENTIONS.md](CONVENTIONS.md) — the authoring card: chapter skeleton, the four on-ramp blocks, diagram vocabulary, provenance rules, naming, prohibited words, and the definition of done.
+- [Appendix A — Glossary](appendices/a-glossary.md) — every term the handbook defines, generated from the chapters.
+
 ## Blueprints
 
 - [Phase 1 — Structural Blueprint](blueprints/phase-1-structural-blueprint.md) defines the original book structure, glossary, diagram conventions, naming conventions, and decision log.
 - [Phase 2 — Revised Blueprint](blueprints/phase-2-revised-blueprint-v2.md) updates the table of contents, numbering, dependency spine, and roadmaps. It supersedes Phase 1 only where the document explicitly says so.
+- [Phase 3 — Completion Plan](blueprints/phase-3-completion-plan.md) is the execution plan for the remaining 42 chapters: scope, the newcomer on-ramp, the production template, batch schedule, and per-chapter briefs.
+
+## Tooling
+
+Run from the repository root:
+
+```bash
+python3 tools/check_handbook.py     # convention linter; must exit zero
+python3 tools/build_glossary.py     # regenerate Appendix A from the chapters
+```
+
+The linter checks figure counts against the declared tier, diagram width and ASCII purity, section structure, on-ramp blocks, header and dependency-spine consistency, prohibited words, provenance tags, cross-reference validity, and the chapter hand-off.
 
 ## Compiled edition
 

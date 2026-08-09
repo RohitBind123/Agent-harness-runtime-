@@ -35,7 +35,32 @@ golden-set replay has to skip ninety percent of the log to find the four facts t
 
 Both the bug and the fix came from the same missing idea.
 
-### 1.2 Why this chapter exists
+### 1.2 In plain language
+
+The edge is the layer a person actually touches: the HTTP API behind the web app, the CLI, the
+GitHub integration. Its job sounds trivial — accept a goal, show what is happening — and this
+chapter is about why it is not.
+
+Every API you have written before assumed the client is present for the whole job. You ask, you
+wait, you get an answer. Here the job runs for six hours. Somebody watches for four minutes, shuts
+their laptop, and opens the page again the next morning on a different device, expecting to
+understand what happened while they were gone.
+
+That single fact drives everything else. It means what the client sees must be something it can
+**ask for**, not only something that gets **pushed** at it. A live stream is a fast path on top of a
+queryable state, never a replacement for it — because a stream can only tell you what happened
+while you were listening.
+
+The chapter also draws a sharp line between two things that travel in opposite directions.
+**Inbound** — goals, approvals, cancellations — must never be lost: a dropped approval stalls a run
+forever. **Outbound** — progress updates — can be dropped freely, because the next one supersedes
+it. Teams reliably get this backwards, making progress durable because it is the part they can see,
+and treating approvals as best-effort because they are rare. Visibility is not importance.
+
+Finally: the edge must contain no loop, no queue consumer, and no model call. The chapter names the
+three well-intentioned ways each one sneaks in anyway.
+
+### 1.3 Why this chapter exists
 
 The edge is one row in Chapter 4's layer table and one line in the reference architecture: stateless,
 accepts goals, approvals and signals, streams read-models, runs no consumer, no loop, no model call
@@ -50,7 +75,7 @@ property changes the contract, and the cold open is what happens when it is not 
 This chapter also carries a second job. The edge is the layer where three specific, well-intentioned
 mistakes get made, and each one puts a loop in a place that must not have one.
 
-### 1.3 What previous framings got wrong
+### 1.4 What previous framings got wrong
 
 **"The edge is a thin HTTP layer."** It is thin, and thinness is a rule rather than an observation.
 Section 5 gives the three ways it thickens.
@@ -67,7 +92,66 @@ trail, and the replay path with data that will never be read again `[DAR §7.1]`
 
 ## 2. High-Level Mental Model
 
-### 2.1 The edge is a translator
+### 2.1 The analogy, and where it breaks
+
+The reception desk of a workshop that repairs things.
+
+You bring in a broken instrument. The receptionist takes it, writes a ticket, gives you a stub with
+a number on it, and puts the instrument on the rack behind them. They do not repair anything. They
+have no opinion about how the repair should go. If you ask "how is it coming along?", they look up
+the ticket and read you the current status; they do not walk into the workshop and watch.
+
+That is the edge. Goals come in and become durable tickets. Questions come in and are answered from
+the record. No work happens at the desk.
+
+Now the two properties that matter. First, the stub in your pocket is the whole contract: you can
+come back in three weeks, on a different day, and be told exactly where things stand, because the
+*state is queryable from the ticket number*. Second, if the receptionist happens to shout "they've
+opened it up!" across the room as you leave, that is a nice courtesy — and losing it costs nothing,
+because the ticket still says everything that matters. Shouted updates are progress. The ticket is
+the read model.
+
+The failure in the cold open is a workshop that only shouts and never writes tickets. Stand there
+and you learn a lot; step outside and you learn nothing, ever again. The failed fix is a workshop
+that decides to solve this by *filing every shout in the permanent archive* — which is why the
+events table grew fourteenfold.
+
+**Where the analogy breaks.** A receptionist can decide to walk into the workshop and hurry
+something along. The edge structurally cannot: no loop, no consumer, no model call. And there is a
+sharper difference on the inbound side. If a receptionist loses a message, the customer eventually
+follows up. If the edge loses an approval, nothing follows up — the run parks forever, holding
+nothing, silently, and §12 explains why that silence is the dangerous part. Inbound intent has to be
+durable in a way no reception desk ever needs to be.
+
+### 2.2 Why the edge must be this thin
+
+"Thin" is a rule here, not a description, and every part of it is a defence against a specific
+failure:
+
+```
+  1. A run outlives any connection, so the client MUST be able to
+     reconstruct its view by asking, not only by listening.
+  2. Answering "what is happening?" therefore requires only a query
+     against durable state -- no work, no waiting, no model call.
+  3. So nothing about serving a client requires the edge to run work.
+     The remaining question is whether it MAY.
+  4. If the edge runs a loop, the run's progress depends on that
+     process staying alive -- and an edge process is the one thing in
+     the system that gets rolled, scaled, and killed constantly.
+  5. If the edge consumes events, a rolling deploy processes some twice
+     and drops others, because two versions consume concurrently.
+  6. If the edge calls a model, provider latency becomes HTTP latency,
+     and the edge can no longer be scaled on request volume.
+  7. Each of 4, 5, 6 destroys a property that has no cheap recovery,
+     and none of them buys anything step 2 did not already provide.
+     Therefore: no loop, no consumer, no model call.
+```
+
+The structure of that argument is worth noting. The three rules are not three separate policies to
+remember — they are one conclusion, reached because the edge never *needed* to do work in the first
+place, and doing it costs a property each time.
+
+### 2.3 The edge is a translator
 
 > **The edge converts human intent into durable facts, and durable facts into a human view. It
 > participates in neither direction.**
@@ -75,7 +159,7 @@ trail, and the replay path with data that will never be read again `[DAR §7.1]`
 Everything in this chapter follows from taking that literally. A translator holds no state, makes no
 decisions, and — critically — does not do the work it is describing.
 
-### 2.2 The two directions are not symmetric
+### 2.4 The two directions are not symmetric
 
 `[INF]` The single most useful framing for edge design, and the one the cold open got backwards in
 both halves.
@@ -93,7 +177,7 @@ Teams reliably get this inverted. They make progress durable because it is visib
 best-effort because they are rare. Both instincts are wrong for the same reason: **visibility is not
 importance.**
 
-### 2.3 The three rules, and why each exists
+### 2.5 The three rules, and why each exists
 
 `[DAR §4.2]` states them as a list. Each is a specific defence:
 
@@ -724,6 +808,20 @@ gate that should be removed, and this is where the data to prove it comes from.
    consumer. Each was written for a good reason.
 7. **The edge is on the human-authority critical path.** If it is down, no gate resolves and every
    irreversible action stops. That belongs in your SLO with that framing.
+
+**Terms introduced in this chapter**
+
+| Term | In one sentence | Tag | Next needed in |
+|------|-----------------|-----|----------------|
+| **Read model** | A view of a run assembled by the edge for a client, built from durable facts and never authoritative itself. | `[INF]` | Ch 9, Ch 34 |
+| **Progress** | Telemetry with no business meaning, streamed straight to a client and never written to the outbox. The opposite of a fact. | `[DAR]` | Ch 34 |
+| **Fact** | Something durable that a later reader is entitled to rely on; the thing progress is deliberately not. | `[DAR]` | Ch 22 |
+| **Signal** | Out-of-band control over a live run: steer, cancel, pause, or answer. | `[DAR]` | Ch 30 |
+| **Steer** | A goal amendment delivered mid-run that forces a replan instead of editing the running plan. | `[DAR]` | Ch 10, Ch 30 |
+| **Hydrate-then-subscribe** | Load current state by query first, then attach a stream with a cursor — the contract that survives a disconnect. | `[INF]` | Ch 9 |
+| **Cursor (client)** | The position a client resumes a stream from, so a reconnect neither repeats nor skips. | `[INF]` | Ch 9 |
+| **Stateless ingress** | An edge that keeps nothing in process memory, so any instance can serve any request and a deploy loses nothing. | `[DAR]` | Ch 33 |
+| **Human authority** | The requirement that certain irreversible actions wait for a person, which makes the edge availability-critical. | `[DAR]` | Ch 30 |
 
 ---
 

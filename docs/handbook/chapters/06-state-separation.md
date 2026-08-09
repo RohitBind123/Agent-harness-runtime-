@@ -38,7 +38,35 @@ Atlas's domain tables enforce tenant isolation on every query.
 The leak happened through the one piece of mutable state that belonged to none of those categories
 and was therefore scoped by none of their rules.
 
-### 1.2 Why this chapter exists
+### 1.2 In plain language
+
+Every system stores things. This chapter says that in an agent system there are four *kinds* of
+stored thing, that each kind has exactly one owner, and that almost every leak happens in the kind
+nobody assigned an owner to.
+
+**Domain state** is what is true about the world: this repository exists, this patch was applied.
+It belongs to your product and it survives even if you deleted the entire runtime tomorrow.
+
+**Run state** is what is currently happening: this run is on step four, holds this lease, has spent
+this much. It belongs to the runtime and it is meaningless once the run is over.
+
+**Model state** is what the model can see on this one call — the assembled context. It is not a
+record of anything; it is rebuilt from other stored facts every time. Save it as though it were the
+truth and replay stops working.
+
+**Harness state** is what the system has *learned* to do: notes in long-term memory, edited tool
+descriptions. It outlives any single run without being a fact about the world.
+
+The cold open is the fourth category leaking, and it is worth understanding why that is the one that
+leaks. Run state is scoped to a customer because the run row carries a customer id. Domain state is
+scoped because the domain enforces it. Long-term memory was scoped by nothing at all — not through
+negligence, but because nobody had decided which of the four it was. State that belongs to no
+category is scoped by nobody.
+
+The chapter ends by turning all of that into four automated checks, so it is enforced by CI rather
+than remembered in review.
+
+### 1.3 Why this chapter exists
 
 Chapter 4 gave you a one-sentence test: delete the runtime and the product must still be coherent
 `[DAR §3.3]`. That test is correct and it is not sufficient, because it only separates *two*
@@ -49,7 +77,7 @@ This chapter classifies every piece of state in an agent system into exactly one
 gives each its owner, lifetime, consistency model, and deletion behaviour, and turns the whole thing
 into checks you can run in CI rather than principles you can violate in review.
 
-### 1.3 What previous framings got wrong
+### 1.4 What previous framings got wrong
 
 **"State is state."** Four categories with four owners, four lifetimes, and four consistency models.
 Treating them uniformly is how a lease ends up on a domain aggregate and a credential ends up in a
@@ -66,7 +94,70 @@ domain truth. The cold open is what that means when nobody has said whose it is.
 
 ## 2. High-Level Mental Model
 
-### 2.1 Four questions, four categories
+### 2.1 The analogy, and where it breaks
+
+A hospital's records.
+
+The **patient's medical record** is domain state. It is the truth about a person, it outlives every
+admission, and if the hospital replaced its entire scheduling system tomorrow the record would still
+be valid and still be the thing that matters. It is owned by the medical staff, and access to it is
+governed by rules that exist independently of any particular visit.
+
+The **whiteboard on the ward** — who is in which bed, which round they are on, who is on call for
+them — is run state. It is intensely important while it is true and completely meaningless a week
+later. It belongs to the ward, and it is wiped when the admission ends.
+
+The **notes a doctor carries into a single consultation** — a page assembled from the record for
+this one conversation — are model state. Nobody files that page as though it were the medical
+record, because it is a *selection* from the record made for one purpose. If it were filed, the two
+would eventually disagree, and the copy would win by accident.
+
+The **hospital's own protocols** — "in this ward, always check X before Y", learned from experience
+and written on a laminated card — are harness state. They belong to the institution, not to any
+patient, and they persist across every admission.
+
+The point of the analogy is the last category's failure mode. Somebody writes a genuinely useful
+protocol card, and the card names a specific patient's specific circumstances because that is the
+case that taught them the lesson. Now a fact about one patient is stored in the institution's
+permanent instructions, scoped by nothing. That is the cold open exactly.
+
+**Where the analogy breaks.** Hospital protocols are written by people who know they are writing an
+institutional document and adjust their language accordingly. Harness state is written by a model
+mid-run, from a context that is saturated with one customer's specifics, with no sense of audience
+at all. Worse, an evolution loop (Chapter 46) rewards specificity, because specific memories work
+better — so the pressure is *toward* the leak, not away from it. That is why §5.4 insists on
+abstracting at write time: there is no equivalent of a professional instinct to rely on.
+
+### 2.2 Why four categories and not two
+
+The reference architecture names two categories, and two is genuinely enough to pass Chapter 4's
+deletion test. The other two are forced by questions the deletion test cannot answer:
+
+```
+  1. The deletion test sorts state into "survives the runtime" and
+     "does not". That is a binary, so it yields two categories.
+  2. Now ask of the assembled context: does it survive deleting the
+     runtime? No. So it is run state, and run state is persisted.
+  3. But persisting the assembled context as truth breaks replay --
+     a replayed run must REBUILD context from stored facts, or it is
+     not replaying, it is reading a transcript.
+  4. So there exists state that is not domain state and must NOT be
+     persisted. The binary has no room for it. -> MODEL STATE.
+  5. Now ask of a long-term memory note: does it survive deleting the
+     runtime? Yes -- it is a file. So the binary says domain state.
+  6. But it is not a fact about the world, and the domain's tenancy
+     rules do not cover it, so filing it as domain state scopes it
+     by nothing.
+  7. So there exists state that outlives the run without being a fact
+     about the world. -> HARNESS STATE.
+  8. Four categories, arrived at by finding two things the binary
+     classifies wrongly rather than by preferring a bigger taxonomy.
+```
+
+Steps 3 and 6 are each a real defect, and each is the subject of a later chapter — replay in Chapter
+21, tenancy in Chapter 37. The classification exists to make both expressible.
+
+### 2.3 Four questions, four categories
 
 | Category | Answers | Owner | Lifetime |
 |----------|---------|-------|----------|
@@ -78,7 +169,7 @@ domain truth. The cold open is what that means when nobody has said whose it is.
 The first two are `[DAR §3.3]` verbatim. The third and fourth are `[INF]` — the handbook's additions,
 and §5.3 and §5.4 argue for each.
 
-### 2.2 The classification procedure
+### 2.4 The classification procedure
 
 `[INF]` Four questions, asked in order. The first "yes" wins.
 
@@ -102,7 +193,7 @@ and §5.3 and §5.4 argue for each.
 Run every field in your schema through it once. The exercise takes an afternoon and it is the
 cheapest audit in this book.
 
-### 2.3 The mental model to carry
+### 2.5 The mental model to carry
 
 > **Each category has exactly one owner, and the owner is responsible for scoping it. State that
 > belongs to no category is scoped by nobody.**
@@ -740,6 +831,20 @@ production, and Chapter 43 states it as a precondition rather than a caveat.
    work and what makes it leak, and an evolution loop optimises directly toward it.
 7. **Four CI checks catch the whole failure table.** Deletion test, column names, import graph,
    harness tenancy. About two hundred lines.
+
+**Terms introduced in this chapter**
+
+| Term | In one sentence | Tag | Next needed in |
+|------|-----------------|-----|----------------|
+| **Domain state** | What is true about the world; owned by your product and still valid with the runtime deleted. | `[DAR]` | Ch 22 |
+| **Run state** | What is happening right now in one run; owned by the runtime and meaningless once the run ends. | `[DAR]` | Ch 17 |
+| **Model state** | What the model can see on one call — the assembled context. Rebuilt every time, never persisted as truth. | `[INF]` | Ch 11 |
+| **Harness state** | What the system has learned to do, outliving any run without being a fact about the world. | `[INF]` | Ch 12, Ch 43 |
+| **Read model** | A view assembled for a reader from authoritative facts, which is never itself authoritative. | `[INF]` | Ch 7 |
+| **Projection** | The act of deriving a read model; the reason a context window is not a source of truth. | `[INF]` | Ch 11 |
+| **Classification procedure** | Four questions asked in a fixed order, first "yes" wins, that assign any field to exactly one category. | `[INF]` | Ch 37 |
+| **Deletion test** | Remove the runtime; whatever must still make sense is domain state. Necessary but not sufficient on its own. | `[DAR]` | Ch 37 |
+| **Abstraction at write time** | Removing customer specifics as a memory is written, because filtering when it is read is already too late. | `[INF]` | Ch 12, Ch 37 |
 
 ---
 

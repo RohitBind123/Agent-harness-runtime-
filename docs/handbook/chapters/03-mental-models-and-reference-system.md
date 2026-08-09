@@ -37,7 +37,29 @@ model, holding it for the duration is obviously wrong.
 Both are reasoning correctly. They cannot converge, because the disagreement lives upstream of the
 argument they are having.
 
-### 1.2 Why this chapter exists
+### 1.2 In plain language
+
+Engineers rarely disagree about facts. They disagree because they are picturing the system in
+different ways and neither has said which picture they are using. The cold open is three days lost
+to exactly that: two people arguing about a lease, when the real disagreement was that one pictured
+a job being handed to a worker and the other pictured a process being scheduled onto a processor.
+
+This chapter hands you five pictures and tells you which kind of question each one answers. One is
+borrowed from operating systems and answers "who runs this, when, and for how long?". One is
+borrowed from accounting and answers "did this already happen, and what did it cost?". One is
+borrowed from protocol design and answers "where should this rule be enforced?". One is borrowed
+from functional programming and answers "why is it safe to run this again?". One is borrowed from
+network architecture and answers "why are there two separate paths through this system?".
+
+The second half of the chapter introduces the two names used for the rest of the book: **ARK**, the
+runtime being designed, and **Atlas**, the product built on it — a coding agent that fixes real
+issues in real repositories. Every later example lives in that one system, so you never have to
+work out how a chapter's example connects to the last chapter's.
+
+The practical value is immediate: when a design argument stalls, naming the picture ends it in one
+sentence.
+
+### 1.3 Why this chapter exists
 
 Chapters 0 through 2 gave you history, anatomy, and a transfer map. This chapter gives you the
 thinking tools, and then the concrete system every remaining chapter will build.
@@ -51,7 +73,7 @@ Then ARK and Atlas, specified concretely enough to carry forty-six chapters. Eve
 story, and code example from Chapter 4 onward lives in this one system. No chapter invents a new
 example.
 
-### 1.3 What previous framings got wrong
+### 1.4 What previous framings got wrong
 
 **"Metaphors are hand-waving."** They are the opposite. The cold open is what an *absent* shared
 metaphor costs, and the cost is measured in days. Two engineers with the same model resolve that
@@ -70,7 +92,62 @@ an exercise.
 
 ## 2. High-Level Mental Model
 
-### 2.1 Five lenses on one system
+### 2.1 The analogy, and where it breaks
+
+Five specialists walking through the same hospital.
+
+The **operations manager** sees beds, shifts, and who is on call: a question about capacity or
+scheduling is theirs, and nobody else can answer it well. The **finance officer** sees a ledger of
+what was done and what it cost. The **compliance officer** sees which procedures require a signature
+and who is permitted to give it. The **infection-control specialist** sees which areas must stay
+sealed from which. The **hospital administrator** sees two distinct networks — one that treats
+patients, one that decides policy — and knows that mixing them is how a hospital becomes
+ungovernable.
+
+None of the five is looking at a different hospital. None is more correct than the others. But if
+you ask the finance officer where to put a quarantine boundary, you get a confident, useless answer.
+The skill is not having a favourite specialist; it is recognising, within one sentence, whose
+question you are asking.
+
+That is exactly what the five mental models are. Process, ledger, contract, quarantine, and planes
+are five specialists walking through one runtime.
+
+**Where the analogy breaks.** Hospital specialists are different people, so the handoff is obvious —
+you physically fetch someone else. In a design discussion the five live inside one head, and
+switching between them is silent. Nobody announces "I have stopped reasoning about cost and started
+reasoning about scheduling", which is precisely why the cold open takes three days: both engineers
+had already switched, neither noticed, and the models are close enough that each could keep
+producing sentences the other found almost reasonable.
+
+### 2.2 Why five models rather than one
+
+Every book of this kind is tempted to offer a single unifying metaphor. Resisting that is a
+deliberate choice, and it follows from what a model is for:
+
+```
+  1. A mental model earns its place by PREDICTING answers to questions
+     you have not yet asked -- not by summarising what you already know.
+  2. A model predicts by importing the consequences of a discipline
+     that has already solved a class of problem.
+  3. Each discipline solved a DIFFERENT class. Operating systems solved
+     custody and scheduling. Accounting solved "did this happen, and
+     what did it cost". Protocol design solved where to enforce a rule.
+  4. So a model imported from one discipline is silent -- or worse,
+     confidently wrong -- outside that class.
+  5. A single unifying metaphor must therefore either cover one class
+     well and mislead everywhere else, or be so general it predicts
+     nothing.
+  6. Five models, each with a stated range and a stated breaking point,
+     dominate one model with an unstated range.
+  7. The cost is a new skill: identifying which model a question belongs
+     to before answering it. That skill is section 4.
+```
+
+Point 6 carries a requirement the rest of the chapter honours: each of the five is presented *with
+its breaking point*, not only its uses. A model whose limits are unstated is the thing this section
+argues against.
+
+### 2.3 Five lenses on one system
 
 ```
                                                        CONCEPTUAL VIEW
@@ -105,7 +182,7 @@ an exercise.
   Figure 3.1 -- Five lenses (conceptual)
 ```
 
-### 2.2 The meta-model
+### 2.4 The meta-model
 
 > **Every hard question in this architecture belongs to exactly one of five lenses. Identifying the
 > lens is most of the work; the answer usually follows.**
@@ -721,6 +798,20 @@ develops and neither source attempts.
    genuine irreversibility, and a strict rule that evolution edits the harness and never the kernel.
 6. **The ledger model is the seductive one.** It makes you expect verified improvements to
    accumulate. Measured, they do not.
+
+**Terms introduced in this chapter**
+
+| Term | In one sentence | Tag | Next needed in |
+|------|-----------------|-----|----------------|
+| **Mental model (MM1-MM5)** | One of five borrowed pictures — process, ledger, contract, quarantine, planes — each answering a different class of design question. | `[INF]` | every chapter |
+| **MM1 Process model** | Treats a run like an operating-system process that workers borrow for a slice of time, rather than a job a worker owns. | `[INF]` | Ch 5, Ch 17 |
+| **MM2 Ledger model** | Treats every effect and every cost as an appended entry that is never edited, so history is auditable. | `[INF]` | Ch 22, Ch 35 |
+| **MM3 Contract model** | Asks where a rule is enforced, and insists the answer be a place code runs rather than a sentence in a prompt. | `[INF]` | Ch 14, Ch 30 |
+| **MM4 Quarantine model** | Confines everything unpredictable to marked regions, so the rest of the system can be replayed safely. | `[INF]` | Ch 21 |
+| **MM5 Control plane vs data plane** | Separates the path that decides what happens from the path that carries the work, because the two have different latency and failure needs. | `[INF]` | Ch 7, Ch 9 |
+| **ARK** | The Agent Runtime Kernel designed across this book: domain-independent, knows nothing about any particular product. | `[INF]` | every chapter |
+| **Atlas** | The product built on ARK throughout the book: a coding agent that resolves issues in real repositories, with genuinely irreversible actions. | `[INF]` | every chapter |
+| **ARK/Evolve** | The outer loop that edits Atlas's harness, introduced in Ch 20 and built in Level 5. It may edit the harness and never the kernel. | `[INF]` | Ch 20, Ch 46 |
 
 ---
 

@@ -33,7 +33,27 @@ grader, and nothing made the destructive command require a second thought. A doc
 exactly this pattern — an agent reaching a passing state and then destroying it during cleanup —
 appears in the AHE case studies `[AHE App. C.1.2]`.
 
-### 1.2 Why this chapter exists
+### 1.2 In plain language
+
+A language model, on its own, does exactly one thing: you give it some text, it gives you some text
+back. Everything else an AI system appears to do — read a file, run a test, fix a bug, work for six
+hours without being asked twice — is machinery that engineers built around it.
+
+This chapter is the story of how that machinery got built, in five steps. Each step let the system
+do something new, and each step quietly took away a promise the step before it could make. Letting
+the model call a tool gave it reach into the real world, and took away the promise that running it
+twice is harmless. Letting it decide for itself when to stop gave it independence, and took away the
+promise that it would stop at all.
+
+Everything you meet later in this book exists to give one of those broken promises back *without*
+handing back the capability that broke it. Read the history that way and the architecture in Chapter
+4 stops looking like a pile of parts somebody chose, and starts looking like the only thing left to
+do.
+
+Skip this chapter and the rest of the book still works — but every component will feel arbitrary,
+because you will not have watched the thing it protects against go wrong.
+
+### 1.3 Why this chapter exists
 
 You are about to spend forty-nine chapters building the system around the model. Before any of it
 makes sense, you need to know why it is shaped the way it is — and the honest answer is that it is
@@ -46,7 +66,7 @@ one capability and broke one guarantee. The broken guarantee is what the next ge
 to restore. Follow the breaks and the architecture of Chapter 4 stops looking like an arbitrary pile
 of components and starts looking like the only remaining option.
 
-### 1.3 What previous framings got wrong
+### 1.4 What previous framings got wrong
 
 Three framings you will meet in the wild, and why each misleads:
 
@@ -65,7 +85,57 @@ Three framings you will meet in the wild, and why each misleads:
 
 ## 2. High-Level Mental Model
 
-### 2.1 Two axes, not one
+### 2.1 The analogy, and where it breaks
+
+Think about how much authority an organisation gives a new employee, and what it has to build each
+time it gives more.
+
+On the first day they answer questions from a desk. They are safe and they are not very useful.
+Hand them a company card and they can now buy what a job needs — real reach, and the first time
+they are wrong it costs real money, so the organisation invents an expense policy. Let them book
+their own travel and commit to customers, and now they can finish work end to end — so the
+organisation invents approvals for the decisions that cannot be undone. Let them set their own
+priorities for a week at a time, and someone has to be able to find out what they are working on
+and redirect them — so the organisation invents status reports and one-to-ones.
+
+Nobody designed that scaffolding up front. Each piece was forced into existence by a specific
+authority that had already been granted. Expense policies exist because company cards exist. That
+is the exact shape of this chapter: five grants of authority to a model, and the machinery each one
+forced into existence.
+
+**Where the analogy breaks.** A new employee has judgement about when to stop and ask, and they
+remember yesterday. A model has neither by default. An employee who is about to exceed their
+authority usually notices; a model does not notice, because noticing is not a property of predicting
+the next token. So every guardrail in this book has to be *structural* — enforced by code outside
+the model, in a place the model cannot route around — rather than a policy the model is trusted to
+follow. Chapter 1 §5 makes that distinction precise, and it is the single most important place the
+human analogy will mislead you.
+
+### 2.2 Why the history is the dependency order
+
+It is fair to ask why a book about architecture opens with a history instead of the finished
+diagram. The answer is a forced move:
+
+```
+  1. The finished runtime has roughly forty distinct components.
+  2. A list of forty components, presented flat, is neither memorable
+     nor arguable -- the reader has no basis to object to any of them.
+  3. Each of those components exists to restore exactly one guarantee
+     that some earlier capability took away.
+  4. A guarantee is invisible until you have watched it break. Nobody
+     values bounded termination until something failed to terminate.
+  5. So a component can only be justified AFTER the reader has seen the
+     break it repairs.
+  6. The breaks happened in a fixed order, because each capability was
+     only reachable once the previous one existed.
+  7. Therefore the chronological order IS the justification order, and
+     the history IS the dependency graph.
+```
+
+This is why Chapter 4 can present the whole runtime on one page without it reading as an arbitrary
+pile: by then, every box on it is a repair you have already watched become necessary.
+
+### 2.3 Two axes, not one
 
 The single most useful correction to make before Chapter 1: **capability and survivability are
 independent axes, and progress along them happened at different times for different reasons.**
@@ -104,7 +174,7 @@ G2 to G3 is not a capability story. The model barely changed. What changed is th
 it at a six-hour task, and four properties appeared at once that ordinary request handling cannot
 provide `[DAR §2.1]`. The vertical jump in Figure 0.1 is the subject of this book.
 
-### 2.2 The forced move
+### 2.4 The forced move
 
 The organising idea of this chapter, and the reading habit to carry into every later one:
 
@@ -701,6 +771,17 @@ Claims in this chapter, separated by provenance. Nothing below is blended.
    driving in the wrong direction `[DAR §16]`.
 6. **Which generation you are building is a decision, not a discovery.** Make it before Chapter 4,
    and be willing to answer G2 and stop reading.
+
+**Terms introduced in this chapter**
+
+| Term | In one sentence | Tag | Next needed in |
+|------|-----------------|-----|----------------|
+| **Generation (G0-G5)** | One of five stages of AI system, from a plain completion call to a system that edits its own supporting components. | `[INF]` | Ch 1 |
+| **Capability** | What the model itself can do — reason, write code, follow an instruction. Bought from a provider, not built by you. | `[INF]` | Ch 1 |
+| **Survivability** | What the system around the model can withstand — a crash, a restart, a six-hour task, a bad decision. Built by you, never bought. | `[INF]` | Ch 2 |
+| **Forced move** | A component you have no choice about once you have granted a capability, because the capability removed a guarantee that must be restored some other way. | `[INF]` | Ch 2, Ch 4 |
+| **Guarantee** | A promise the system could make before a capability was added, such as "this terminates" or "running it twice is harmless". | `[INF]` | Ch 2 |
+| **Harness** | Everything around the model that you write: the machinery that turns a text-in/text-out box into a system that does work. Defined properly in Ch 1. | `[AHE]` | Ch 1 |
 
 ---
 

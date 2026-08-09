@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+  <rect width="920" height="620" fill="#FFFFFF"/>
+  <text x="460" y="32" text-anchor="middle" font-size="19" font-weight="bold" fill="#1A1A1A">Level 0 — Five Generations: What Each Added, What Each Broke</text>
+  <text x="460" y="52" text-anchor="middle" font-size="12" fill="#666">Capability and survivability are independent axes. The vertical jump from G2 to G3 is the subject of this book.</text>
+
+  <!-- axes -->
+  <line x1="150" y1="86" x2="150" y2="318" stroke="#999" stroke-width="1.2"/>
+  <line x1="150" y1="318" x2="880" y2="318" stroke="#999" stroke-width="1.2"/>
+  <text x="515" y="342" text-anchor="middle" font-size="10.5" fill="#666">capability  —  what the model itself can do</text>
+  <text x="40" y="202" font-size="10.5" fill="#666" transform="rotate(-90 40 202)" text-anchor="middle">survivability — what the system can withstand</text>
+
+  <g font-size="9.5" fill="#666">
+    <text x="144" y="112" text-anchor="end">high</text>
+    <text x="144" y="306" text-anchor="end">low</text>
+  </g>
+
+  <!-- the flat capability era -->
+  <path d="M210 300 L 330 296 L 450 292" fill="none" stroke="#1F3A93" stroke-width="2"/>
+
+  <!-- the discontinuity -->
+  <path d="M450 292 L 450 150" fill="none" stroke="#B85C00" stroke-width="2.4" stroke-dasharray="7 4"/>
+  <path d="M450 150 L 610 144 L 770 138" fill="none" stroke="#1F3A93" stroke-width="2"/>
+
+  <rect x="474" y="176" width="252" height="66" rx="5" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.3"/>
+  <text x="600" y="197" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#8A4600">The discontinuity: a systems problem</text>
+  <text x="600" y="213" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#8A4600">appears all at once, and the model</text>
+  <text x="600" y="229" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#8A4600">barely changed.</text>
+
+  <g font-size="10.5" font-weight="bold" fill="#152B6E">
+    <circle cx="210" cy="300" r="6.5" fill="#1F3A93"/><text x="210" y="286" text-anchor="middle">G0</text>
+    <circle cx="330" cy="296" r="6.5" fill="#1F3A93"/><text x="330" y="282" text-anchor="middle">G1</text>
+    <circle cx="450" cy="292" r="6.5" fill="#1F3A93"/><text x="440" y="278" text-anchor="middle">G2</text>
+    <circle cx="450" cy="150" r="6.5" fill="#B85C00"/><text x="432" y="140" text-anchor="middle" fill="#8A4600">G3</text>
+    <circle cx="610" cy="144" r="6.5" fill="#1F3A93"/><text x="610" y="130" text-anchor="middle">G4</text>
+    <circle cx="770" cy="138" r="6.5" fill="#1F3A93"/><text x="770" y="124" text-anchor="middle">G5</text>
+  </g>
+
+  <g font-size="9" fill="#555">
+    <text x="210" y="316" text-anchor="middle">completion</text>
+    <text x="330" y="316" text-anchor="middle">tool use</text>
+    <text x="450" y="316" text-anchor="middle">loop</text>
+    <text x="610" y="162" text-anchor="middle">multi-agent</text>
+    <text x="770" y="156" text-anchor="middle">self-evolution</text>
+    <text x="382" y="150" text-anchor="middle">autonomy</text>
+  </g>
+
+  <!-- the forced-move table -->
+  <text x="40" y="382" font-size="13" font-weight="bold" fill="#1A1A1A">Each generation bought a capability by giving up a guarantee</text>
+
+  <g font-size="10">
+    <rect x="40" y="394" width="90" height="26" fill="#EEF1F8" stroke="#7B8FC7" stroke-width="1"/>
+    <rect x="130" y="394" width="180" height="26" fill="#EEF1F8" stroke="#7B8FC7" stroke-width="1"/>
+    <rect x="310" y="394" width="250" height="26" fill="#EEF1F8" stroke="#7B8FC7" stroke-width="1"/>
+    <rect x="560" y="394" width="320" height="26" fill="#EEF1F8" stroke="#7B8FC7" stroke-width="1"/>
+    <text x="50" y="411" font-weight="bold" fill="#152B6E">GEN</text>
+    <text x="140" y="411" font-weight="bold" fill="#152B6E">ADDED</text>
+    <text x="320" y="411" font-weight="bold" fill="#A03030">BROKE</text>
+    <text x="570" y="411" font-weight="bold" fill="#152B6E">RESTORED BY (the forced move)</text>
+  </g>
+
+  <g font-size="9.5" fill="#333">
+    <rect x="40" y="420" width="90" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <rect x="130" y="420" width="180" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <rect x="310" y="420" width="250" height="34" fill="#FDF6F6" stroke="#C7D0E6"/>
+    <rect x="560" y="420" width="320" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <text x="50" y="435" font-weight="bold" fill="#152B6E">G1</text>
+    <text x="50" y="448" font-size="8.5" fill="#777">tool use</text>
+    <text x="140" y="441">reach into the real world</text>
+    <text x="320" y="441" fill="#A03030">running it twice is harmless</text>
+    <text x="570" y="435">activity identity, idempotency keys</text>
+    <text x="570" y="448" font-size="8.5" fill="#777">Ch 21 Durable Execution · Ch 22 Event Spine</text>
+
+    <rect x="40" y="454" width="90" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <rect x="130" y="454" width="180" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <rect x="310" y="454" width="250" height="34" fill="#FDF6F6" stroke="#C7D0E6"/>
+    <rect x="560" y="454" width="320" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <text x="50" y="469" font-weight="bold" fill="#152B6E">G2</text>
+    <text x="50" y="482" font-size="8.5" fill="#777">loop</text>
+    <text x="140" y="475">multi-step work</text>
+    <text x="320" y="475" fill="#A03030">bounded termination and cost</text>
+    <text x="570" y="469">step budgets, wall clock, budget ledger</text>
+    <text x="570" y="482" font-size="8.5" fill="#777">Ch 18 Runtime Loop · Ch 35 Cost Engineering</text>
+
+    <rect x="40" y="488" width="90" height="34" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.4"/>
+    <rect x="130" y="488" width="180" height="34" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.4"/>
+    <rect x="310" y="488" width="250" height="34" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.4"/>
+    <rect x="560" y="488" width="320" height="34" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.4"/>
+    <text x="50" y="503" font-weight="bold" fill="#8A4600">G3</text>
+    <text x="50" y="516" font-size="8.5" fill="#8A4600">autonomy</text>
+    <text x="140" y="509" fill="#8A4600">work outlives the request</text>
+    <text x="320" y="509" fill="#A03030" font-weight="bold">durability — the process was the system</text>
+    <text x="570" y="503" fill="#8A4600">runs table, leases, checkpoints, parks</text>
+    <text x="570" y="516" font-size="8.5" fill="#8A4600">Ch 5 Five Nouns · Ch 17 State Manager</text>
+
+    <rect x="40" y="522" width="90" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <rect x="130" y="522" width="180" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <rect x="310" y="522" width="250" height="34" fill="#FDF6F6" stroke="#C7D0E6"/>
+    <rect x="560" y="522" width="320" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <text x="50" y="537" font-weight="bold" fill="#152B6E">G4</text>
+    <text x="50" y="550" font-size="8.5" fill="#777">multi-agent</text>
+    <text x="140" y="543">context isolation</text>
+    <text x="320" y="543" fill="#A03030">one legible trace of what happened</text>
+    <text x="570" y="537">trajectory capture, delegation contracts</text>
+    <text x="570" y="550" font-size="8.5" fill="#777">Ch 16 Observation · Ch 19 Multi-Agent</text>
+
+    <rect x="40" y="556" width="90" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <rect x="130" y="556" width="180" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <rect x="310" y="556" width="250" height="34" fill="#FDF6F6" stroke="#C7D0E6"/>
+    <rect x="560" y="556" width="320" height="34" fill="#FFF" stroke="#C7D0E6"/>
+    <text x="50" y="571" font-weight="bold" fill="#152B6E">G5</text>
+    <text x="50" y="584" font-size="8.5" fill="#777">self-evolution</text>
+    <text x="140" y="577">the harness edits itself</text>
+    <text x="320" y="577" fill="#A03030">config is human-authored and reviewed</text>
+    <text x="570" y="571">change manifest, attribution, rollback</text>
+    <text x="570" y="584" font-size="8.5" fill="#777">Ch 45 Decision Observability · Ch 47 Attribution</text>
+  </g>
+
+  <text x="40" y="608" font-size="10" fill="#666">Read the table right-to-left and it becomes the dependency order of the book: every component repairs a break you have already seen.</text>
+</svg>

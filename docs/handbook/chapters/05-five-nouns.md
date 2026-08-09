@@ -33,7 +33,27 @@ indefinitely, holding nothing — and there was no word available that said so.
 Three engineers spent forty minutes each because one sentence contained a noun that means five
 things.
 
-### 1.2 Why this chapter exists
+### 1.2 In plain language
+
+"The agent is stuck." That sentence, in this system, can mean five completely different things, with
+five completely different fixes — and the cold open is what it costs when nobody can say which.
+
+This chapter hands out five words so that it never happens again.
+
+A **Run** is one goal being worked on. It can last from minutes to weeks, and while it exists it
+occupies almost nothing: one row in a table. An **Episode** is one working session on that run — a
+worker picks the run up, makes some progress, and puts it back down. Episodes last seconds, and
+there is never more than one happening for a given run at a time. A **Step** is one small advance
+inside an episode, measured in milliseconds. An **Activity** is the expensive part: one call out to
+a model or a tool, which costs money and takes seconds or minutes. A **Park** is the run waiting —
+for a person to approve something, for a timer, for an external reply — and it can last indefinitely
+because it is holding nothing at all.
+
+The organising insight is a trade: **the longer something lasts, the less it is allowed to hold on
+to.** A step holds the scarcest thing in the system for five milliseconds. A park holds nothing for
+a week. Nearly every serious scaling bug you will hit is some version of breaking that trade.
+
+### 1.3 Why this chapter exists
 
 Chapter 4 gave you the layers. This chapter gives you the units those layers manipulate, and it is
 the shortest chapter in Level 1 with the longest tail: **every subsequent chapter is written in this
@@ -44,7 +64,7 @@ to scarce resources, and no two can be merged without losing a property the arch
 By the end you should be able to replace "the agent is stuck" with a sentence that names which noun,
 in which state, and therefore what to do.
 
-### 1.3 What previous framings got wrong
+### 1.4 What previous framings got wrong
 
 **"The agent is the unit."** It is not a unit at all. It is a category error that averages five
 things with lifetimes spanning nine orders of magnitude, from a millisecond step to a park that can
@@ -61,7 +81,62 @@ of a state machine. Section 5.6 maps between them, and they do not line up one t
 
 ## 2. High-Level Mental Model
 
-### 2.1 The table that is the whole chapter
+### 2.1 The analogy, and where it breaks
+
+A legal case working its way through a court.
+
+The **case** is the Run. It can last two years, and for almost all of that time it occupies nothing
+but a folder in a filing cabinet — an abundant, cheap resource. A **hearing** is the Episode: a
+session in front of a judge, occupying a courtroom and a judge's afternoon, which are scarce. The
+case is adjourned between hearings, and a different judge may take the next one. A **ruling entered
+into the record** is the Step: minutes of work, durably recorded, and the thing you can query later
+to reconstruct what happened. **Expert testimony commissioned from an outside firm** is the
+Activity: it costs real money, it takes weeks, it happens outside the court's control, and nobody
+commissions the same report twice by accident. An **adjournment pending a witness's return** is the
+Park: it can last six months and it occupies no courtroom at all.
+
+Now read the resources rather than the names, and the whole chapter falls out. The courtroom is
+scarce and is held for one afternoon. The filing cabinet is abundant and holds the case for two
+years. Nobody would keep a courtroom empty and reserved for two years waiting on a witness — and
+that instinct, stated generally, is §2.4's custody gradient.
+
+**Where the analogy breaks.** In a real court the case is assigned to a judge, who owns it
+throughout. Here, no worker owns a run. Workers *borrow* a run for one episode and give it back,
+which is exactly the disagreement that stalled the Chapter 3 code review for three days. If you
+carry over the idea that someone is assigned to the case for its duration, you will hold a lease
+across a park and rediscover the cold open from the other side.
+
+### 2.2 Why five nouns, and not one
+
+The obvious objection is that five words for one thing is four words too many. The count is not
+arbitrary; it is derived:
+
+```
+  1. Support reports "the agent is stuck". Somebody must act.
+  2. Acting requires knowing WHICH scarce resource is being held, and
+     for HOW LONG -- those two facts select the fix.
+  3. The things in this system hold wildly different resources for
+     wildly different durations:
+        a pooled connection ....... ~5 ms
+        a worker .................. ~60 s
+        a model concurrency slot .. 1-2 min
+        a row ..................... minutes to weeks
+        nothing ................... unbounded
+  4. One word covering all five cannot tell you which resource is at
+     risk, so it cannot select a fix.
+  5. Exhaustion is per-resource: a drained connection pool, starved
+     workers, contended model slots, and a run waiting on a human are
+     four different incidents with four different responses.
+  6. So the vocabulary needs at least one word per distinct
+     (resource, duration) pair.
+  7. There are exactly five such pairs. Hence five nouns -- and
+     section 2.5 shows which property each merge would destroy.
+```
+
+Step 3 is the table in §2.3, and step 7 is why that table is described there as "the whole chapter".
+Everything else is elaboration.
+
+### 2.3 The table that is the whole chapter
 
 | Noun | Lifetime | Holds | Scarcity of what it holds |
 |------|----------|-------|--------------------------|
@@ -73,7 +148,7 @@ of a state machine. Section 5.6 maps between them, and they do not line up one t
 
 Read the two right-hand columns together and the design falls out.
 
-### 2.2 The custody gradient
+### 2.4 The custody gradient
 
 `[INF]` The organising principle of this chapter, and a prediction machine for the rest of the book:
 
@@ -92,7 +167,7 @@ mistake, and the gradient names it before you make it.
 This is Chapter 2's custody rule `[DAR §5.2]` generalised from one rule about connections into a
 property of the whole noun set.
 
-### 2.3 Why not fewer nouns
+### 2.5 Why not fewer nouns
 
 Each merge that looks tempting, and what it costs:
 
@@ -763,6 +838,21 @@ them alongside the components, and Chapter 1's cold open is what happens when yo
 6. **Most runs are parked most of the time.** Size capacity for the executing population, and watch
    the parked one for a gate backlog.
 7. **"The agent" is not a noun.** Three engineers, forty minutes each. Name the noun.
+
+**Terms introduced in this chapter**
+
+| Term | In one sentence | Tag | Next needed in |
+|------|-----------------|-----|----------------|
+| **Run** | One goal under execution: a durable, versioned row that lives from minutes to weeks and holds nothing else. | `[DAR]` | Ch 6, Ch 17 |
+| **Episode** | One bounded working session over a run — a worker picks it up, advances it, and puts it down. Not a row; a function invocation. | `[DAR]` | Ch 18 |
+| **Step** | One advance of a run's state machine, taking milliseconds and recorded as a row. | `[DAR]` | Ch 18 |
+| **Activity** | One leased, budgeted, cancellable call out to a tool or model — the only place non-determinism is allowed. | `[DAR]` | Ch 14, Ch 21 |
+| **Park** | A durable pause that holds no resource at all, ended by an event rather than a timer expiring. | `[DAR]` | Ch 30 |
+| **Custody gradient** | Scarcity times duration stays roughly constant: the longer a noun lives, the less scarce the thing it may hold. | `[INF]` | Ch 23, Ch 33 |
+| **Checkpoint** | The few-millisecond write at a step boundary that saves progress, renews the lease, and reads pending signals in one transaction. | `[DAR]` | Ch 17, Ch 21 |
+| **Plan id** | The identity of one plan; a replan mints a new one rather than editing the old, which is what makes steering and idempotency the same mechanism. | `[DAR]` | Ch 10, Ch 30 |
+| **Step budget** | The maximum number of steps one episode may take before it must yield the worker. | `[DAR]` | Ch 18, Ch 29 |
+| **Exit condition** | One of the four reasons an episode ends: wall clock, step budget, park, or signal. | `[DAR]` | Ch 18 |
 
 ---
 

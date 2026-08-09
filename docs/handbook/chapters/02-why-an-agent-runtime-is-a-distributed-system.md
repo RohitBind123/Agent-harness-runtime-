@@ -17,20 +17,18 @@
 
 The Atlas team knows how to build backend systems. When the in-process loop stops being viable, they
 do the obvious correct thing: put it on a job queue. Workers, retries with exponential backoff, a
-dead-letter queue, structured logging, a dashboard. This is the same shape they have shipped a dozen
-times, and it has always worked.
+dead-letter queue, structured logging, a dashboard. The same shape they have shipped a dozen times.
 
 Three weeks in, three things have happened.
 
-The finance dashboard shows a spend spike nobody can explain. It turns out a class of task was
-timing out at the ninety-minute mark, retrying three times as configured, and each retry was a
-complete re-execution costing roughly forty dollars in model calls. The retry policy was correct by
-every standard the team had ever applied. It was also, here, a way to multiply a failure by four.
+The finance dashboard shows a spend spike nobody can explain. A class of task was timing out at
+ninety minutes, retrying three times as configured, each retry a complete re-execution costing
+roughly forty dollars in model calls. The retry policy was correct by every standard the team had
+ever applied. It was also, here, a way to multiply a failure by four.
 
 The connection pool wedges under moderate load. Adding connections helps for two days. The workers
-are holding a pooled connection for the duration of each model call, because that is what every
-other job in the codebase does and no job in the codebase has ever taken ninety seconds inside a
-single step.
+hold a pooled connection for the duration of each model call, because that is what every other job
+in the codebase does — and no other job has ever spent ninety seconds inside one step.
 
 And a customer reports that Atlas force-pushed to a branch it should not have touched. The system
 prompt asked it to confirm before destructive operations. It usually did.
@@ -40,7 +38,31 @@ well-understood fix — a framing this handbook takes directly from the referenc
 `[DAR §2.1]`. What makes them worth a chapter is that a competent backend team walked into all three
 while doing what competence normally recommends.
 
-### 1.2 Why this chapter exists
+### 1.2 In plain language
+
+An ordinary web request is short. Code starts, does its work, sends an answer, and forgets
+everything. If the machine dies halfway through, the person presses refresh and nothing has really
+been lost.
+
+An agent run is not short. It can take six hours, spend hundreds of dollars in model calls, change
+files in somebody's repository, and need a human to approve something in the middle. The moment
+work lasts that long, four things become true that were not true before:
+
+- the work outlives the request that asked for it, so it cannot live inside that request;
+- every attempt costs real money, and no two attempts are the same, so "try again" is a financial
+  decision rather than a free one;
+- the work changes things outside your system that you cannot undo by forgetting them;
+- a person may need to stop it, or redirect it, while it is still running.
+
+Each of those four has a standard, well-understood solution that databases and job systems worked
+out decades ago, and this chapter names the solution for each one. It also names the places where
+the standard solution is *wrong* here — which happens mostly because ordinary systems assume that
+retrying is cheap and repeatable, and here it is neither.
+
+If you have built backend systems before, this chapter is the one that tells you which of your
+instincts to keep and which will cost you money.
+
+### 1.3 Why this chapter exists
 
 You already know distributed systems. That is an advantage and a trap.
 
@@ -55,7 +77,7 @@ resources here. This chapter is the map: what transfers unchanged, what transfer
 the three places where agent workloads genuinely differ from every other long-running job you have
 run.
 
-### 1.3 What previous framings got wrong
+### 1.4 What previous framings got wrong
 
 **"It is a job queue with a model call in it."** The cold open is what that assumption costs. The
 differences are not in the queue; they are in the properties of the work the queue is carrying.
@@ -73,7 +95,66 @@ and the migration is a rewrite. Section 13 gives the ordering that avoids this.
 
 ## 2. High-Level Mental Model
 
-### 2.1 What transfers, and what does not
+### 2.1 The analogy, and where it breaks
+
+Ordering a coffee, versus renovating a building.
+
+Ordering a coffee is a web request. You stand at the counter, it takes ninety seconds, and if
+something goes wrong you order again. Nothing needs to be written down, because nothing survives the
+transaction. Every technique that works here — retry on failure, hold your place in the queue, time
+out and give up — works because starting over is cheap and harmless.
+
+A renovation is an agent run. It takes months. Subcontractors do irreversible things: once a wall is
+down, it is down. It costs enough that doing it twice by accident is a serious event. Some steps
+legally require a permit before they may begin. And the owner may walk in on a Tuesday and change
+their mind.
+
+Look at what a renovation therefore needs, none of which a coffee order needs: a written schedule
+that outlives any one worker's shift, a site log recording what was actually done, a permit process
+that blocks specific steps until a human signs, a change-order procedure for when the owner
+redirects mid-project, and a way to halt work today rather than at the end. That list is this book's
+table of contents. The plan is Chapter 10, the site log is Chapter 22, the permit is Chapter 30, the
+change order is steering, and the halt is cancellation.
+
+**Where the analogy breaks.** A renovation is planned before work begins, by an architect who is not
+one of the builders. The plan is a document you can price, approve, and validate in advance.
+
+An agent's plan is written *during* the work, *by* the thing doing the work. That single difference
+is the third of the three genuine differences in §2.4, and it is why three standard project
+techniques do not transfer: you cannot pre-validate a plan that does not exist yet, you cannot
+pre-authorise steps nobody has proposed, and you cannot pre-budget work whose shape is unknown. Gates
+(Chapter 30), budget reservations (Chapter 35), and plan identity (Chapter 10) are what replace them.
+
+### 2.2 Why the in-process loop must be abandoned
+
+Most teams start with a loop inside a request handler, and the move away from it feels like a
+scaling decision made for performance reasons. It is not. It is forced, and it is forced early:
+
+```
+  1. A loop inside a request handler lives exactly as long as the
+     request does.
+  2. Agent work routinely outlives any request timeout you would be
+     willing to configure.
+  3. So the loop must run somewhere that outlives the request. Call
+     that a worker.
+  4. A worker can be killed at any moment -- deploy, crash, spot
+     reclaim. If the loop's progress exists only in that worker's
+     memory, the kill loses all of it.
+  5. Starting over is not free here. It re-spends money already spent,
+     and it may repeat effects already applied to the outside world.
+  6. Therefore progress must be written to durable storage at points
+     from which resuming is provably safe.
+  7. Two processes coordinating through shared durable state, where
+     either may die at any point, IS a distributed system. There is no
+     lighter-weight name for it.
+```
+
+The conclusion is worth stating flatly, because it is the thesis of the chapter: **you do not choose
+whether to build a distributed system. You choose only whether to admit it.** A team that has not
+admitted it still has leases, retries, and partial failure — but has them by accident, spelled
+differently, and without the vocabulary to debug them.
+
+### 2.3 What transfers, and what does not
 
 ```
                                                        CONCEPTUAL VIEW
@@ -103,7 +184,7 @@ and the migration is a rewrite. Section 13 gives the ordering that avoids this.
   Figure 2.1 -- The transfer map (conceptual)
 ```
 
-### 2.2 The three genuine differences
+### 2.4 The three genuine differences
 
 `[INF]` The left column of Figure 2.1 is standard practice. The right column is what this book is
 actually about, and it is worth stating each one carefully.
@@ -138,7 +219,7 @@ a model, based on what it found. The consequences cascade:
 Each row has a component answer later in the book — gates for the second, budget reservation for the
 third, plan identity for the fourth. All four exist because of this one property.
 
-### 2.3 The mental model to carry
+### 2.5 The mental model to carry
 
 > **An agent runtime is an ordinary distributed system executing an extraordinary workload: one whose
 > steps are unknown in advance, whose retries are non-reproducible, and whose attempts are
@@ -689,6 +770,24 @@ building Levels 1 through 4 correctly.
 6. **Build activity identity first.** Everything else retrofits. Identity does not.
 7. **Know the disqualifiers.** One-turn work, no irreversible actions, or a genuine need for
    cross-region durability at scale all mean you should be building something else.
+
+**Terms introduced in this chapter**
+
+| Term | In one sentence | Tag | Next needed in |
+|------|-----------------|-----|----------------|
+| **Durability** | The property that progress already made survives a process being killed at any moment. | `[DAR]` | Ch 21 |
+| **Idempotency** | Doing something twice leaves the world exactly as doing it once did. | `[DAR]` | Ch 21 |
+| **Idempotency key** | The value that lets a receiver recognise a repeat request as the same request, rather than a second one. | `[DAR]` | Ch 22 |
+| **Activity identity** | A fingerprint of a tool call — run, plan, step, tool, and inputs — that decides whether a stored result may be reused instead of re-run. | `[DAR]` | Ch 21 |
+| **Replay** | Re-running from a checkpoint, reusing stored results rather than re-spending on them. The correct alternative to a blind retry. | `[DAR]` | Ch 21 |
+| **Retry** | Doing the work again from the start. Cheap in ordinary systems, a cost incident here. | `[BP]` | Ch 27 |
+| **Lease** | A time-limited, durable claim that one worker owns a piece of work, with an expiry others can see. | `[DAR]` | Ch 17 |
+| **Claim** | Marking a row as owned by one consumer, instead of sharing a position marker. Immune to one bad row stalling everyone. | `[DAR]` | Ch 22 |
+| **Cursor** | A shared position marker in a stream; standard elsewhere, an outage waiting to happen here. | `[BP]` | Ch 22 |
+| **Dead letter** | Terminally failed work parked for a human to look at, so it stops blocking everything behind it. | `[DAR]` | Ch 27 |
+| **Custody** | Which scarce resource a piece of work is holding, and for how long. Sets the concurrency ceiling. | `[DAR]` | Ch 5 |
+| **Blast radius** | Everything outside the system a run could touch if every guard failed. A quantity you size deliberately, not audit later. | `[INF]` | Ch 31 |
+| **Admission control** | Refusing or delaying work at the door so that accepted work can actually be served. | `[BP]` | Ch 23 |
 
 ---
 

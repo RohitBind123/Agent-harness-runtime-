@@ -4,7 +4,7 @@
   Requires   C0 Evolution of AI Systems
   Unlocks    C2 Why a Runtime Is a Distributed System, C3 Mental Models,
              C14 Tool Execution Engine, C43 Component Observability
-  Diagrams   Light (3)
+  Diagrams   Light (4)
   Variant    Foundational — sections 4-9 describe models, not components
 ```
 
@@ -35,7 +35,28 @@ at the tier it was tuned on, +2.3 again at the tier above — and the authors at
 shape to step budget and per-task timeout having been fitted to one operating point `[AHE §4.3,
 Limitations]`.
 
-### 1.2 Why this chapter exists
+### 1.2 In plain language
+
+When a team says "we built an AI agent", almost none of what they built is the AI. The model is a
+fixed thing they rent: it takes text and returns text, it cannot open a file, and it remembers
+nothing between calls. Everything that makes it look like it can open a file and remember things is
+code somebody wrote around it.
+
+This chapter gives that code a name — the **harness** — and draws its boundaries. There are three
+regions. The **model** is rented and unchangeable. The **environment** is the real world the work
+happens in: repositories, shells, networks, other people's services. The **harness** is everything
+in between, and it is the only one of the three that is simultaneously yours to write, safe to
+change, and decisive for how well the system performs.
+
+The chapter then breaks the harness into seven kinds of part, and shows that they are not equally
+powerful. Some of them are code, which the model has no choice but to obey. Some of them are
+sentences in a prompt, which the model may quietly ignore. Knowing which is which is how you decide
+where to put a fix.
+
+What goes wrong without this chapter: you spend your time rewriting prompts, because the prompt is
+the only part you can see — and the prompt is measurably the weakest of the seven.
+
+### 1.3 Why this chapter exists
 
 Chapter 0 said the model box never grows and everything added is outside it. That is a slogan until
 you can draw the line precisely, and you cannot design a system around a line you cannot draw.
@@ -46,7 +67,7 @@ region owns it. That skill is not academic. The entire premise of Level 5 is tha
 regions is machine-editable, and an evolution loop that cannot tell the regions apart edits the
 wrong one.
 
-### 1.3 What previous framings got wrong
+### 1.4 What previous framings got wrong
 
 **"The prompt is the agent."** The most durable misconception in the field, and the one with the
 cleanest counter-evidence. In a component-level ablation where each layer was swapped into a minimal
@@ -66,7 +87,62 @@ sentence costs when nobody believes it.
 
 ## 2. High-Level Mental Model
 
-### 2.1 Three regions
+### 2.1 The analogy, and where it breaks
+
+A driver, a car, and a road.
+
+The **driver** is the model. Skilled, rented, and fixed: you can choose which driver you hire and
+you can tell them where to go, but you cannot make them a better driver. The **road** is the
+environment. You choose the route and you can put up barriers, but you cannot move where the road
+goes or stop it being wet. The **car** is the harness — the steering, the mirrors, the dashboard,
+the seatbelt, the speed limiter. It is the only one of the three you actually build, and it is
+entirely load-bearing: a superb driver in a car with no mirrors will hit things.
+
+The analogy carries further than it first looks. Mirrors are the observation system. The dashboard
+is context: what the driver is shown, when. The speed limiter is middleware — a rule enforced by
+the machine rather than requested of the person. And the reason "just hire a better driver" is bad
+advice is that the car is where most of the recoverable errors live.
+
+**Where the analogy breaks.** Two places, and both matter.
+
+First, a car's controls do not change how good the driver is; a harness does change how well the
+model performs. Showing the model different things, in a different order, with different tools
+available, changes the quality of its decisions and not merely their execution. The dashboard is
+part of the driving.
+
+Second, a human driver adapts to an unfamiliar car in about five minutes. A harness does not
+transfer that way: one tuned for a particular model can actively *hurt* a different model, which is
+exactly what the cold open describes `[AHE §1]`. There is no equivalent of "any competent driver
+can drive any car" here, and Chapter 38 turns that into a versioning rule.
+
+### 2.2 Why the harness must be a named region
+
+Teams routinely build a harness without ever naming it, and then cannot version it, test it, or
+measure it. The name is forced:
+
+```
+  1. The model is a pure function: text in, text out. It cannot read a
+     file, call a service, or remember the previous call.
+  2. Real work requires reading files, calling services, and remembering.
+  3. So something outside the model must do all three on its behalf.
+  4. That something must choose WHAT to show the model, and WHICH actions
+     to expose to it. Those are choices, and choices are code.
+  5. That code is not the model -- you did not train it. It is not the
+     environment -- the repository does not contain it. It sits between
+     them and belongs to neither.
+  6. Your model provider ships no name for it, because your provider does
+     not ship it. So teams call it "the app" and it disappears into the
+     product.
+  7. What has no name is not versioned, not tested, and not measured.
+     Therefore it needs its own name -- harness -- before anything in
+     Level 5 is even expressible.
+```
+
+Step 7 is the one that pays off latest and matters most. An evolution loop that edits the harness
+(Chapter 46) can only exist if the harness is a distinct, addressable thing with its own files and
+its own version. Naming it here is what makes that possible forty-five chapters later.
+
+### 2.3 Three regions
 
 ```
                                                        CONCEPTUAL VIEW
@@ -102,7 +178,7 @@ Three regions, and three very different relationships to your engineering:
 | **Harness** | write it, version it, test it, evolve it | avoid it — every capability the model has reaches the world through it |
 | **Environment** | constrain it, isolate it, observe it | fully control it; it changes underneath you |
 
-### 2.2 The mental model to carry
+### 2.4 The mental model to carry
 
 > **The harness is the only region that is simultaneously yours, editable, and load-bearing.**
 
@@ -242,7 +318,7 @@ type.
 
 ### 4.5 Skill — `workspace/skills/<name>/SKILL.md`
 
-A packaged, reusable workflow loaded on demand rather than resident in context. Progressive
+A packaged, reusable procedure loaded on demand rather than resident in context. Progressive
 disclosure: the model pays for the tokens only when the skill is relevant `[AHE §3.2]`.
 
 **Use it for:** procedures that are long, occasionally needed, and stable.
@@ -698,6 +774,24 @@ they are co-primary here and why neither is allowed to absorb the other's vocabu
    falls short of the sum.
 6. **The harness is fitted to a model.** A harness version that does not include the model identity
    is describing something that does not exist — which is the cold open, and Chapter 38's rule.
+
+**Terms introduced in this chapter**
+
+| Term | In one sentence | Tag | Next needed in |
+|------|-----------------|-----|----------------|
+| **Model** | The rented, fixed thing that turns text into text; you select and configure it, you never change it. | `[AHE]` | Ch 13 |
+| **Harness** | Everything you write between the model and the world: the only region that is yours, editable, and load-bearing at once. | `[AHE]` | every chapter |
+| **Environment** | The real world the work happens in — filesystem, shell, network, repositories — which you can constrain and observe but not control. | `[AHE]` | Ch 25, Ch 31 |
+| **Component type** | One of seven kinds of harness part, chosen so that each failure pattern maps to exactly one of them. | `[AHE]` | Ch 43 |
+| **System prompt** | Standing instructions sent with every call; the weakest of the seven, because the model may ignore prose. | `[AHE]` | Ch 11 |
+| **Tool description** | What the model is told a tool does, as distinct from what the tool actually does. | `[AHE]` | Ch 14, Ch 15 |
+| **Tool implementation** | The code that runs when a tool is called; enforces rather than requests. | `[AHE]` | Ch 14 |
+| **Middleware** | Code hooked into the loop that intercepts or transforms every pass through it, whether the model wants it or not. | `[AHE]` | Ch 14 |
+| **Skill** | A packaged, reusable procedure loaded only when it is relevant, so its tokens are not always resident. | `[AHE]` | Ch 11 |
+| **Sub-agent configuration** | The definition of a nested agent used to isolate context, not to build an org chart. | `[AHE]` | Ch 19 |
+| **Long-term memory** | Facts kept across runs as a file the model reads, rather than a store it queries. | `[AHE]` | Ch 12 |
+| **Enforcement strength** | How hard a component is to ignore: code compels, prose asks. Fixes belong at the weakest level that can still enforce them. | `[INF]` | Ch 46 |
+| **Harness version** | The identity of a complete component set, pinned together with the model identity, because neither is meaningful alone. | `[INF]` | Ch 38 |
 
 ---
 

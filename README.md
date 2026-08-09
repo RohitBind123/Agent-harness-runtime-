@@ -3,6 +3,10 @@
 A documentation-first reference for understanding and designing production-grade autonomous agent runtimes and self-evolving agent harnesses.
 
 > **Project status:** architecture and handbook work in progress. This repository currently contains 8 of the planned 50 handbook chapters, a detailed runtime specification, a compiled handbook draft, source diagrams, and the Agentic Harness Engineering research paper. It is a knowledge base, not an executable runtime implementation.
+>
+> The remaining 42 chapters are scoped and scheduled in the [Phase 3 completion plan](docs/handbook/blueprints/phase-3-completion-plan.md).
+
+Every chapter is written to be followable by an engineer new to both AI systems and distributed systems: each opens with a plain-language summary and an analogy whose breaking point is stated explicitly, derives its subject from first principles rather than asserting it, and closes with a glossary of the terms it introduced.
 
 ![Complete agent runtime architecture](docs/assets/diagrams/complete-agent-runtime.svg)
 
@@ -28,19 +32,25 @@ A documentation-first reference for understanding and designing production-grade
 ```text
 .
 ├── README.md
-└── docs
-    ├── README.md
-    ├── architecture
-    │   └── universal-runtime-v1.0-architecture-specification.md
-    ├── assets
-    │   └── diagrams
-    ├── handbook
-    │   ├── README.md
-    │   ├── blueprints
-    │   ├── chapters
-    │   └── compiled
-    └── research
-        └── agentic-harness-engineering-paper.pdf
+├── docs
+│   ├── README.md
+│   ├── architecture
+│   │   └── universal-runtime-v1.0-architecture-specification.md
+│   ├── assets
+│   │   └── diagrams
+│   ├── handbook
+│   │   ├── README.md
+│   │   ├── CONVENTIONS.md      authoring card, enforced by the linter
+│   │   ├── appendices          generated from the chapters
+│   │   ├── blueprints          structure, revisions, completion plan
+│   │   ├── chapters
+│   │   ├── compiled
+│   │   └── levels              level openers
+│   └── research
+│       └── agentic-harness-engineering-paper.pdf
+└── tools
+    ├── check_handbook.py       convention linter
+    └── build_glossary.py       regenerates Appendix A
 ```
 
 ## Core architecture in one paragraph
