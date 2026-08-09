@@ -27,6 +27,7 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [9. Three Flows: Data, Control, Event](chapters/09-three-flows-data-control-event.md) | High-level runtime | One runtime read three ways, and routing a question to the axis that answers it |
 | [10. The Planner](chapters/10-the-planner.md) | Core components | Plan identity, why a replan mints a new plan, and the validator that rejects rather than repairs |
 | [11. The Context System](chapters/11-the-context-system.md) | Core components | Context as a budgeted, cache-keyed resource: assembly order, deferral, compaction, and the junk drawer |
+| [12. The Memory System](chapters/12-the-memory-system.md) | Core components | Four subsystems behind one word, and why the only component a run writes to itself needs evidence and decay |
 
 ## Completion status
 
@@ -34,12 +35,12 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | --- | ---: | ---: | --- |
 | 0 — Foundations | 0-3 | 4 of 4 | Complete |
 | 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
-| 2 — Core Runtime Components | 10-20 | 2 of 11 | In progress |
+| 2 — Core Runtime Components | 10-20 | 3 of 11 | In progress |
 | 3 — Advanced Runtime Architecture | 21-32 | 0 of 12 | Planned |
 | 4 — Production Engineering | 33-41 | 0 of 9 | Planned |
 | 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
 
-Level 2 is in progress. Chapter 12, *The Memory System*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Level 2 is in progress. Chapter 13, *The Reasoning Engine*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
 
