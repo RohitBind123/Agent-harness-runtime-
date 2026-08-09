@@ -563,7 +563,7 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 | SVGs | 6 of the planned 9 |
 | Commits | one per batch, on `main` |
 
-**To resume, start at Chapter 24 (The Task Graph).** The procedure for any remaining chapter:
+**To resume, start at Chapter 30 (Human Authority).** The procedure for any remaining chapter:
 
 1. Read the chapter's brief in §6 of this document, and its `Requires`/`Unlocks` in the Phase 2 §4
    spine.
@@ -615,7 +615,7 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 
 ### Batch 3 — Level 3
-- [x] C21 · [x] C22 · [x] C23 · [ ] C24 · [ ] C25 · [ ] C26 · [ ] C27 · [ ] C28 · [ ] C29 · [ ] C30 · [ ] C31 · [ ] C32
+- [x] C21 · [x] C22 · [x] C23 · [x] C24 · [x] C25 · [x] C26 · [x] C27 · [x] C28 · [x] C29 · [ ] C30 · [ ] C31 · [ ] C32
 - [ ] L3 opener + `level-3-advanced-runtime.svg`
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 

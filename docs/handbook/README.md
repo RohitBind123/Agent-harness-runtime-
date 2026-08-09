@@ -48,11 +48,11 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 0 — Foundations | 0-3 | 4 of 4 | Complete |
 | 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
 | 2 — Core Runtime Components | 10-20 | 11 of 11 | Complete |
-| 3 — Advanced Runtime Architecture | 21-32 | 3 of 12 | In progress |
+| 3 — Advanced Runtime Architecture | 21-32 | 9 of 12 | In progress |
 | 4 — Production Engineering | 33-41 | 0 of 9 | Planned |
 | 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
 
-Level 3 is in progress. Chapter 24, *The Task Graph*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Level 3 is in progress. Chapter 30, *Human Authority*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
 
