@@ -9,6 +9,7 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | Level | Opener | Chapters |
 | --- | --- | --- |
 | 0 — Foundations | [Level 0](levels/level-0-foundations.md) | 0-3 |
+| 1 — High-Level Runtime Architecture | [Level 1](levels/level-1-high-level-runtime.md) | 4-9 |
 
 ## Available chapters
 
@@ -22,19 +23,21 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [5. The Five Nouns](chapters/05-five-nouns.md) | High-level runtime | Run, Episode, Step, Activity, Park, and the custody gradient |
 | [6. State Separation](chapters/06-state-separation.md) | High-level runtime | Domain, run, model, and harness state ownership |
 | [7. The Edge and the Client Contract](chapters/07-edge-and-client-contract.md) | High-level runtime | Stateless ingress, read models, reconnect behavior, and human authority |
+| [8. Request Lifecycle and Runtime Lifecycle](chapters/08-request-and-runtime-lifecycles.md) | High-level runtime | Two independent clocks, claim and release, drain, and why recovery must be continuous |
+| [9. Three Flows: Data, Control, Event](chapters/09-three-flows-data-control-event.md) | High-level runtime | One runtime read three ways, and routing a question to the axis that answers it |
 
 ## Completion status
 
 | Level | Planned chapters | Available | Status |
 | --- | ---: | ---: | --- |
 | 0 — Foundations | 0-3 | 4 of 4 | Complete |
-| 1 — High-Level Runtime Architecture | 4-9 | 4 of 6 | In progress |
+| 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
 | 2 — Core Runtime Components | 10-20 | 0 of 11 | Planned |
 | 3 — Advanced Runtime Architecture | 21-32 | 0 of 12 | Planned |
 | 4 — Production Engineering | 33-41 | 0 of 9 | Planned |
 | 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
 
-The next planned chapters are Chapter 8, *Request Lifecycle and Runtime Lifecycle*, and Chapter 9, *Three Flows: Data, Control, Event*.
+The next planned chapters are Level 2, Chapters 10-20, the core runtime components. Chapter 10, *The Planner*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
 

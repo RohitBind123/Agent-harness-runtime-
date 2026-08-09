@@ -6,7 +6,7 @@ This repository combines three complementary sources: a teaching-oriented handbo
 
 ### Learn the system from first principles
 
-Read the [handbook](handbook/README.md) in chapter order. Chapters 0-3 establish the foundations; Chapters 4-7 introduce the runtime layers, execution nouns, state ownership, and client boundary.
+Read the [handbook](handbook/README.md) in chapter order. Chapters 0-3 establish the foundations; Chapters 4-9 introduce the runtime layers, execution nouns, state ownership, client boundary, lifecycles, and the three flows.
 
 ### Design or review a runtime
 
@@ -24,14 +24,14 @@ Use the [compiled handbook draft](handbook/compiled/next-generation-autonomous-a
 
 | Area | Purpose | Current state |
 | --- | --- | --- |
-| [Handbook chapters](handbook/chapters/) | Progressive explanation and production guidance | Chapters 0-7 available |
+| [Handbook chapters](handbook/chapters/) | Progressive explanation and production guidance | Chapters 0-9 available |
 | [Authoring conventions](handbook/CONVENTIONS.md) | Chapter skeleton, on-ramp blocks, diagram and naming rules, definition of done | Current; enforced by the linter |
 | [Appendix A — Glossary](handbook/appendices/a-glossary.md) | Every defined term with provenance and defining chapter | Generated from the chapters |
-| [Level openers](handbook/levels/) | What each level teaches, what it assumes, and its exit condition | Level 0 available |
+| [Level openers](handbook/levels/) | What each level teaches, what it assumes, and its exit condition | Levels 0-1 available |
 | [Handbook blueprints](handbook/blueprints/) | Planned 50-chapter structure, dependency graph, conventions, roadmaps, and the completion plan | Phase 3 is the execution plan |
 | [Architecture specification](architecture/universal-runtime-v1.0-architecture-specification.md) | Detailed runtime system design and contracts | v1.0 specification |
 | [Research paper](research/agentic-harness-engineering-paper.pdf) | Evidence and method for observability-driven harness evolution | arXiv v4, 18 May 2026 |
-| [Diagrams](assets/diagrams/README.md) | Reusable visual summaries | Four SVG figures |
+| [Diagrams](assets/diagrams/README.md) | Reusable visual summaries | Five SVG figures |
 
 ## Provenance legend
 

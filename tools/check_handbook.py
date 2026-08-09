@@ -36,11 +36,13 @@ LAST_CHAPTER = 49
 
 TIER_FIGURE_COUNT = {"Light": None, "Core": 5, "Full": 9}
 
-# Word-count bands include the on-ramp blocks (Phase 3 section 0, decision 6).
+# Prose-word bands, including the on-ramp blocks (Phase 3 section 0, decision 6)
+# and excluding diagrams, tables, and code. Baselined against the nine written
+# chapters, whose prose measures 5,176-6,352.
 TIER_WORD_BAND = {
-    "Light": (5_000, 7_500),
-    "Core": (5_000, 7_500),
-    "Full": (5_500, 8_500),
+    "Light": (4_500, 7_000),
+    "Core": (4_500, 7_000),
+    "Full": (4_500, 7_500),
 }
 
 # CONCEPTUAL VIEW is the Light-tier axis: foundational chapters draw models, not
@@ -519,7 +521,10 @@ def check_cold_open(ch: Chapter) -> list[Finding]:
 
 
 def check_word_count(ch: Chapter) -> list[Finding]:
-    words = len("\n".join(ch.lines).split())
+    # Prose only. Counting diagrams, tables, and code would penalise a chapter
+    # for carrying more of them, which is the opposite of the intent: the band
+    # exists to stop the PROSE becoming an essay.
+    words = len(" ".join(l for _, l in ch.prose_lines).split())
     band = TIER_WORD_BAND.get(ch.tier or "")
     if not band:
         return []

@@ -294,32 +294,26 @@ style correction inside a level is cheap.
 
 ---
 
-### Batch 0 — Foundation for the run *(no new chapters)*
+### Batch 0 — Foundation
+- [x] `tools/check_handbook.py` with all 12 checks
+- [x] `docs/handbook/CONVENTIONS.md` authoring card
+- [x] Appendix working files created under `docs/handbook/appendices/`
+- [x] Ch 0 on-ramp retrofit · [x] Ch 1 · [x] Ch 2 · [x] Ch 3 · [x] Ch 4 · [x] Ch 5 · [x] Ch 6 · [x] Ch 7
+- [x] Ch 1 figure-count defect resolved
+- [x] Ch 3 and Ch 4 80-column diagram lines fixed
+- [x] L0 opener + `level-0-evolution.svg`
+- [x] Linter exits zero on Ch 0–7
 
-| Deliverable | Detail |
-|---|---|
-| `tools/check_handbook.py` | All 12 checks in §4 |
-| On-ramp retrofit, Ch 0–7 | N1, N2, N3, N4 added to all eight chapters |
-| Convention fixes | Ch 1 figure-count mismatch; Ch 3 and Ch 4 80-column lines |
-| `docs/handbook/CONVENTIONS.md` | One-page authoring card extracted from Phase 1 §6–§7 + Phase 2 §7 + this document, so conventions are not spread across three blueprints |
-| Appendix A working file | `docs/handbook/appendices/a-glossary.md` seeded from Phase 1 §5 and the Ch 0–7 N4 tables |
-| L0 level opener + SVG | `docs/assets/diagrams/level-0-evolution.svg` |
+**Delivered.** Also produced beyond the original scope: `tools/build_glossary.py`, which generates
+Appendix A from the per-chapter N4 tables, so the glossary cannot drift from the chapters.
 
-**Exit criteria:** linter exits zero on Ch 0–7; the eight existing chapters each open with a
-plain-language block; Appendix A contains every term Ch 0–7 defines.
+### Batch 1 — Level 1 complete
+- [x] C8 Request Lifecycle and Runtime Lifecycle
+- [x] C9 Three Flows: Data, Control, Event
+- [x] L1 opener
+- [x] READMEs updated · [x] linter green · [x] commit
 
-**Why first:** every convention defect not caught here is repeated 42 times.
-
----
-
-### Batch 1 — Finish Level 1 *(Ch 8–9, 2 chapters, Core, 10 figures)*
-
-Completes the high-level architecture. Ch 9 is the synthesis chapter for the whole level; after
-it, a reader can draw the runtime from memory.
-
-**Exit criteria:** Level 1 shows `6 of 6` in the handbook README. L1 level opener written.
-
----
+**Delivered.** Level 1 is closed: 6 of 6 chapters.
 
 ### Batch 2 — Level 2 *(Ch 10–20, 11 chapters, all Full, 99 figures)*
 

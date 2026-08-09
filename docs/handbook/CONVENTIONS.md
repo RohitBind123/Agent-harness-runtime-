@@ -223,6 +223,7 @@ Recorded here so the blueprints are not silently contradicted.
 | Light-tier figure count | "High-Level Arch + one conceptual diagram" (Phase 1 §1.4) | **2–4, declared in the header** | Ch 0, 2, and 3 carry 3; Ch 1 carries 4. The header count is authoritative and the linter enforces header-matches-actual rather than a fixed number. |
 | `[AHE]` glossary wording for Skill | "reusable workflow package" | "reusable **procedure** package" | The original wording used a word Phase 1 §7.6 bans. The meaning is unchanged. |
 | Axis labels | three (LAYER / TIME / STATE) | **four**, adding `CONCEPTUAL VIEW` | Foundational chapters draw models, not components, so they have no layer, time, or state axis. Already used consistently in Ch 0–3. |
+| Chapter length | total words, Core ≈5,500 / Full ≈6,500 (Phase 3 §0) | **prose words**, 4,500–7,000 (7,500 at Full) | Counting diagrams, tables, and code penalised a chapter for carrying more of them, which inverts the intent — the band exists to stop the *prose* becoming an essay. Baselined on the nine written chapters, whose prose measures 5,176–6,352. |
 
 ---
 
