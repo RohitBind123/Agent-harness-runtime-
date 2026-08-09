@@ -6,7 +6,7 @@
 > chapter by `tools/build_glossary.py`. To change an entry, edit the defining
 > chapter's table and regenerate.
 
-Covering 10 chapters and 100 terms.
+Covering 11 chapters and 110 terms.
 
 Provenance tags: `[AHE]` the Agentic Harness Engineering paper · `[DAR]` the durable
 runtime specification · `[INF]` handbook inference · `[BP]` industry practice ·
@@ -70,6 +70,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
 | **Edge** | A thin stateless layer that accepts goals and streams progress, and deliberately runs no loop, no consumer, and no model call. | `[DAR]` | Ch 4 |
+| **Effect tag** | Whether a step is pure or effectful, read from the tool registry and never from the model. | `[DAR]` | Ch 10 |
 | **Enforcement strength** | How hard a component is to ignore: code compels, prose asks. Fixes belong at the weakest level that can still enforce them. | `[INF]` | Ch 1 |
 | **Environment** | The real world the work happens in — filesystem, shell, network, repositories — which you can constrain and observe but not control. | `[AHE]` | Ch 1 |
 | **Episode** | One bounded working session over a run — a worker picks it up, advances it, and puts it down. Not a row; a function invocation. | `[DAR]` | Ch 5 |
@@ -158,7 +159,12 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Park** | A durable pause that holds no resource at all, ended by an event rather than a timer expiring. | `[DAR]` | Ch 5 |
 | **Parked time** | Wall age minus active time; measures human and external latency, never runtime performance. | `[INF]` | Ch 8 |
+| **Plan** | An immutable, ordered set of proposed steps with its own identity; a value rather than an object. | `[DAR]` | Ch 10 |
+| **Plan chain** | The `supersedes` links from the current plan back to the first; its depth measures thrash. | `[INF]` | Ch 10 |
 | **Plan id** | The identity of one plan; a replan mints a new one rather than editing the old, which is what makes steering and idempotency the same mechanism. | `[DAR]` | Ch 5 |
+| **Plan identity** | The `plan_id` that makes every reference into a plan stable, because the plan it points into can never change. | `[DAR]` | Ch 10 |
+| **Plan validator** | The component that rejects a malformed proposal and never repairs one, so planner defects stay visible. | `[INF]` | Ch 10 |
+| **Planner** | The only component permitted to propose a step, and permitted to do nothing else. | `[DAR]` | Ch 10 |
 | **Port** | One of six plug sockets where product-specific behaviour attaches: planner, tool, model, grader, approval, domain. | `[DAR]` | Ch 4 |
 | **Progress** | Telemetry with no business meaning, streamed straight to a client and never written to the outbox. The opposite of a fact. | `[DAR]` | Ch 7 |
 | **Projection** | Something derived from durable facts and rebuilt on demand — assembled context, read models, progress. | `[INF]` | Ch 6, Ch 9 |
@@ -170,6 +176,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Read model** | A view of a run assembled by the edge for a client, built from durable facts and never authoritative itself. | `[INF]` | Ch 6, Ch 7 |
 | **Relay** | The kernel component that picks up appended events and turns them back into work. | `[DAR]` | Ch 4 |
 | **Release** | Giving a lease back at an episode boundary or at drain, without finishing the work. | `[DAR]` | Ch 8 |
+| **Replan** | Producing a new plan with a new id in response to a steer, failure, downgrade, or budget change — never an edit. | `[DAR]` | Ch 10 |
 | **Replay** | Re-running from a checkpoint, reusing stored results rather than re-spending on them. The correct alternative to a blind retry. | `[DAR]` | Ch 2 |
 | **Replay test** | Delete every read model, progress message, and cached context; if run state cannot be reconstructed, an axis has leaked. | `[INF]` | Ch 9 |
 | **Retry** | Doing the work again from the start. Cheap in ordinary systems, a cost incident here. | `[BP]` | Ch 2 |
@@ -190,8 +197,11 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Steer** | A goal amendment delivered mid-run that forces a replan instead of editing the running plan. | `[DAR]` | Ch 7 |
 | **Step** | One advance of a run's state machine, taking milliseconds and recorded as a row. | `[DAR]` | Ch 5 |
 | **Step budget** | The maximum number of steps one episode may take before it must yield the worker. | `[DAR]` | Ch 5 |
+| **Steps per plan** | The distribution whose mode tells you whether the planner is planning or looping. | `[INF]` | Ch 10 |
+| **Strategy** | Which planning method produced a plan; ReAct is one value of this field, not the architecture. | `[BP]` | Ch 10 |
 | **Sub-agent configuration** | The definition of a nested agent used to isolate context, not to build an org chart. | `[AHE]` | Ch 1 |
 | **Substrate** | The durable storage and queues everything else rests on; usually bought rather than built. | `[DAR]` | Ch 4 |
+| **Supersede** | Marking a plan as no longer current while retaining it forever, and voiding every approval that referenced it. | `[INF]` | Ch 10 |
 | **Surface** | The app, terminal, or chat window a person actually looks at. Outside the runtime entirely. | `[DAR]` | Ch 4 |
 | **Survivability** | What the system around the model can withstand — a crash, a restart, a six-hour task, a bad decision. Built by you, never bought. | `[INF]` | Ch 0 |
 | **Sweeper** | The continuously scheduled job that expires leases on elapsed time alone; the only component belonging to neither lifecycle. | `[DAR]` | Ch 4, Ch 8 |
@@ -232,3 +242,4 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Ch 7 | Read model, Progress, Fact, Signal, Steer, Hydrate-then-subscribe, Cursor (client), Stateless ingress, Human authority |
 | Ch 8 | Run lifecycle, Runtime lifecycle, Claim, Release, Drain, Sweeper, Lease period, Wall age, Active time, Parked time, Interruption matrix, Zombie advance, Expiry lag |
 | Ch 9 | Control flow, Data flow, Event flow, Flow routing, One proposer, three vetoes, Same-transaction rule, Projection, Replay test, Flow annotation, Amplification |
+| Ch 10 | Planner, Plan, Plan identity, Replan, Supersede, Plan validator, Effect tag, Strategy, Plan chain, Steps per plan |

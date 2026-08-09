@@ -558,7 +558,7 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 
 ### Batch 2 — Level 2
-- [ ] C10 · [ ] C11 · [ ] C12 · [ ] C13 · [ ] C14 · [ ] C15 · [ ] C16 · [ ] C17 · [ ] C18 · [ ] C19 · [ ] C20
+- [x] C10 · [ ] C11 · [ ] C12 · [ ] C13 · [ ] C14 · [ ] C15 · [ ] C16 · [ ] C17 · [ ] C18 · [ ] C19 · [ ] C20
 - [ ] Interlude I
 - [ ] L2 opener + `level-2-component-map.svg`
 - [ ] C18 consistency pass against C5, C6, C17
