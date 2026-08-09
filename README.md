@@ -10,6 +10,46 @@ A documentation-first reference for understanding and designing production-grade
 
 Every chapter is written to be followable by an engineer new to both AI systems and distributed systems: each opens with a plain-language summary and an analogy whose breaking point is stated explicitly, derives its subject from first principles rather than asserting it, and closes with a glossary of the terms it introduced.
 
+![The documented architecture, by layer](docs/assets/diagrams/documented-architecture-stack.svg)
+
+## Architecture
+
+The material treats an autonomous agent as considerably more than a model in a loop. What is
+documented divides into three bands, each built on the one below.
+
+**The runtime (Levels 1-3, Chapters 4-32).** A thin stateless edge accepts goals, approvals, and
+signals. A durable substrate — one transactional database and one queue — holds commands, events,
+run state, activities, budgets, and approvals. A generic kernel drives leased, checkpointed work
+through a loop of roughly forty lines that sequences six ports and decides nothing itself; every
+judgement lives behind one of those ports. A narrow command/event boundary keeps the product domain
+independent of all of it.
+
+Level 3 is what that costs in reality: durable execution and replay, a transactional outbox with
+claim-based delivery, latency-class scheduling with per-tenant admission, work as a dependency graph
+with durable joins, plan repair distinguished from replan, three tiers of effect reversibility,
+grading on a lattice where a model judgement may lower a verdict and never raise it, progress
+defined as novel durable state, human authority enforced in the runner rather than in the prompt,
+capability that cannot read the content it is protecting against, and an honest account of what a
+lease does and does not guarantee across machines.
+
+**The operational surfaces (Level 4, Chapters 33-41).** Capacity sized per surface from measured
+service times; two observability systems answering two different questions; cost denominated in
+successful outcomes rather than calls; service levels promising what the runtime controls and
+publishing what it does not; tenancy and deletion across every store that holds customer material;
+the harness versioned separately from the model and shipped through a pipeline with two gates; a
+test suite in which retrying is forbidden; and — the gate into the final band — an evaluation
+harness that knows its own noise floor.
+
+**The evolution loop (Level 5, Chapters 42-49, scoped and not yet written).** A second agent that
+reads the first one's traces and rewrites its harness, under containment. Chapter 20 introduces the
+frame early so it can be carried through the levels below it, and eight places in Chapters 12-41
+independently conclude that some specific thing must sit outside what such a loop may edit.
+
+The harness surrounding the ports is observable and versioned throughout, so that it can be
+evaluated, evolved, and rolled back without changing the base model.
+
+### The runtime in detail
+
 ![Complete agent runtime architecture](docs/assets/diagrams/complete-agent-runtime.svg)
 
 ## What this repository covers
@@ -20,14 +60,26 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 - Durable execution vocabulary: Run, Episode, Step, Activity, and Park.
 - Separation of domain, run, model, and harness state.
 - Client and edge contracts for work that outlives a request or connection.
+- Crash recovery, exactly-once event delivery, fair scheduling, and dependency graphs with durable joins.
+- Failure taxonomy: what can be rolled back, what needs compensation, and what has escaped entirely.
+- Grading that a biased judge cannot inflate, and progress defined so a stalled run cannot claim it.
+- Human authority enforced structurally, and blast radius bounded in four independent parts.
+- Capacity, observability, cost, reliability, and data governance for systems that are non-deterministic by design.
+- Versioning and shipping the harness as code, and measuring whether a change to it helped.
 - Observability-driven evolution of prompts, tools, middleware, skills, sub-agents, and memory.
 
 ## Start here
 
-1. Read the [documentation index](docs/README.md) to choose a learning path.
+1. **[Reading Map](docs/handbook/READING-MAP.md)** — every chapter in one or two plain sentences, with
+   suggested entry points for different readers. Start here if you are deciding what to read.
 2. Follow the [handbook chapters](docs/handbook/README.md) for the concepts in teaching order.
 3. Use the [Universal Runtime v1.0 architecture specification](docs/architecture/universal-runtime-v1.0-architecture-specification.md) as the detailed system reference.
 4. Read the [Agentic Harness Engineering paper](docs/research/agentic-harness-engineering-paper.pdf) for the research basis of autonomous harness evolution.
+5. See [tasks/todo.md](tasks/todo.md) for what remains and [the completion plan](docs/handbook/blueprints/phase-3-completion-plan.md) for the per-chapter briefs.
+
+Already running an agent system in production? Read
+[Chapter 41 — Evaluation Infrastructure](docs/handbook/chapters/41-evaluation-infrastructure.md)
+first. It is short, and its conclusion is actionable within a week.
 
 ## Repository structure
 
@@ -42,22 +94,22 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 │   │   └── diagrams
 │   ├── handbook
 │   │   ├── README.md
+│   │   ├── READING-MAP.md      plain-language summary of every chapter
 │   │   ├── CONVENTIONS.md      authoring card, enforced by the linter
 │   │   ├── appendices          generated from the chapters
 │   │   ├── blueprints          structure, revisions, completion plan
-│   │   ├── chapters
+│   │   ├── chapters            0-41 written, 42-49 scoped
 │   │   ├── compiled
+│   │   ├── interludes          narrative chapters, no template
 │   │   └── levels              level openers
 │   └── research
 │       └── agentic-harness-engineering-paper.pdf
+├── tasks
+│   └── todo.md                 remaining work, as checkable items
 └── tools
     ├── check_handbook.py       convention linter
     └── build_glossary.py       regenerates Appendix A
 ```
-
-## Core architecture in one paragraph
-
-The material treats an autonomous agent as more than an LLM in a loop. A thin edge accepts goals and human signals; a durable substrate stores commands, events, run state, activities, budgets, and approvals; a generic kernel drives leased, checkpointed work; explicit ports isolate model, planning, tools, grading, approval, and domain behavior; and a narrow command/event boundary keeps the product domain independent. The harness surrounding those ports is observable and versioned so it can be evaluated, evolved, and rolled back without changing the base model.
 
 ## Source and editorial conventions
 

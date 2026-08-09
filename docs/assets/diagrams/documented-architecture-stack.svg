@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="886" viewBox="0 0 1040 886" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+  <rect width="1040" height="886" fill="#FFFFFF"/>
+
+  <text x="520" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#1A1A1A">The Documented Architecture, by Layer</text>
+  <text x="520" y="56" text-anchor="middle" font-size="12" fill="#666">Each layer is built on the one below and adds one property. Chapters 0-41 are written; 42-49 are scoped.</text>
+
+  <!-- legend -->
+  <rect x="640" y="74" width="14" height="12" rx="2" fill="#EEF3FB" stroke="#3355AA" stroke-width="1.4"/>
+  <text x="662" y="84" font-size="10.5" fill="#555">written</text>
+  <rect x="726" y="74" width="14" height="12" rx="2" fill="#F7F7F7" stroke="#999" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text x="748" y="84" font-size="10.5" fill="#555">scoped, not written</text>
+  <text x="60" y="84" font-size="10.5" font-style="italic" fill="#888">read bottom-up to build it, top-down to understand why it is shaped this way</text>
+
+  <!-- L5 -->
+  <rect x="60" y="98" width="700" height="96" rx="6" fill="#F7F7F7" stroke="#999" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <text x="76" y="120" font-size="13" font-weight="bold" fill="#555">LEVEL 5 — SELF-EVOLVING SYSTEMS</text>
+  <text x="352" y="120" font-size="11" fill="#888">Ch 42-49 · not written</text>
+  <text x="76" y="141" font-size="10.5" fill="#777">A second agent that reads the first one's traces and rewrites its harness.</text>
+  <g font-size="10">
+    <rect x="76" y="150" width="128" height="32" rx="4" fill="#FFF" stroke="#AAA" stroke-dasharray="4 3"/>
+    <text x="140" y="163" text-anchor="middle" fill="#777">component</text>
+    <text x="140" y="176" text-anchor="middle" fill="#777">observability</text>
+    <rect x="212" y="150" width="128" height="32" rx="4" fill="#FFF" stroke="#AAA" stroke-dasharray="4 3"/>
+    <text x="276" y="163" text-anchor="middle" fill="#777">experience</text>
+    <text x="276" y="176" text-anchor="middle" fill="#777">observability</text>
+    <rect x="348" y="150" width="128" height="32" rx="4" fill="#FFF" stroke="#AAA" stroke-dasharray="4 3"/>
+    <text x="412" y="163" text-anchor="middle" fill="#777">decision</text>
+    <text x="412" y="176" text-anchor="middle" fill="#777">observability</text>
+    <rect x="484" y="150" width="120" height="32" rx="4" fill="#FFF" stroke="#AAA" stroke-dasharray="4 3"/>
+    <text x="544" y="170" text-anchor="middle" fill="#777">the Evolve Agent</text>
+    <rect x="612" y="150" width="132" height="32" rx="4" fill="#FFF" stroke="#AAA" stroke-dasharray="4 3"/>
+    <text x="678" y="163" text-anchor="middle" fill="#777">attribution and</text>
+    <text x="678" y="176" text-anchor="middle" fill="#777">rollback</text>
+  </g>
+  <text x="778" y="130" font-size="10.5" font-weight="bold" fill="#8A4600">ADDS</text>
+  <text x="778" y="148" font-size="10.5" fill="#777">the harness improves</text>
+  <text x="778" y="163" font-size="10.5" fill="#777">itself, under</text>
+  <text x="778" y="178" font-size="10.5" fill="#777">containment</text>
+
+  <!-- gate marker -->
+  <rect x="60" y="202" width="920" height="26" rx="4" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.6"/>
+  <text x="520" y="219" text-anchor="middle" font-size="11" font-weight="bold" fill="#8A4600">GATE — Ch 41: if a benchmark cannot resolve the effect of one harness edit, nothing above this line works</text>
+
+  <!-- L4 -->
+  <rect x="60" y="238" width="700" height="112" rx="6" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.8"/>
+  <text x="76" y="260" font-size="13" font-weight="bold" fill="#8A4600">LEVEL 4 — PRODUCTION ENGINEERING</text>
+  <text x="352" y="260" font-size="11" fill="#A07040">Ch 33-41</text>
+  <text x="76" y="281" font-size="10.5" fill="#7A4300">Nine measurements, each of which has no symptom when it is missing.</text>
+  <g font-size="10">
+    <rect x="76" y="290" width="104" height="24" rx="4" fill="#FFF" stroke="#B85C00"/>
+    <text x="128" y="306" text-anchor="middle" fill="#7A4300">capacity</text>
+    <rect x="188" y="290" width="104" height="24" rx="4" fill="#FFF" stroke="#B85C00"/>
+    <text x="240" y="306" text-anchor="middle" fill="#7A4300">observability</text>
+    <rect x="300" y="290" width="104" height="24" rx="4" fill="#FFF" stroke="#B85C00"/>
+    <text x="352" y="306" text-anchor="middle" fill="#7A4300">cost</text>
+    <rect x="412" y="290" width="104" height="24" rx="4" fill="#FFF" stroke="#B85C00"/>
+    <text x="464" y="306" text-anchor="middle" fill="#7A4300">SLOs</text>
+    <rect x="524" y="290" width="104" height="24" rx="4" fill="#FFF" stroke="#B85C00"/>
+    <text x="576" y="306" text-anchor="middle" fill="#7A4300">governance</text>
+    <rect x="636" y="290" width="108" height="24" rx="4" fill="#FFF" stroke="#B85C00"/>
+    <text x="690" y="306" text-anchor="middle" fill="#7A4300">versioning</text>
+
+    <rect x="76" y="318" width="160" height="24" rx="4" fill="#FFF" stroke="#B85C00"/>
+    <text x="156" y="334" text-anchor="middle" fill="#7A4300">harness pipeline</text>
+    <rect x="244" y="318" width="160" height="24" rx="4" fill="#FFF" stroke="#B85C00"/>
+    <text x="324" y="334" text-anchor="middle" fill="#7A4300">testing</text>
+    <rect x="412" y="318" width="332" height="24" rx="4" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.6"/>
+    <text x="578" y="334" text-anchor="middle" font-weight="bold" fill="#8A4600">evaluation — the noise floor</text>
+  </g>
+  <text x="778" y="272" font-size="10.5" font-weight="bold" fill="#8A4600">ADDS</text>
+  <text x="778" y="290" font-size="10.5" fill="#7A4300">you can tell whether</text>
+  <text x="778" y="305" font-size="10.5" fill="#7A4300">a change to any of</text>
+  <text x="778" y="320" font-size="10.5" fill="#7A4300">it made anything</text>
+  <text x="778" y="335" font-size="10.5" fill="#7A4300">better</text>
+
+  <!-- L3 -->
+  <rect x="60" y="360" width="700" height="112" rx="6" fill="#EEF3FB" stroke="#3355AA" stroke-width="1.8"/>
+  <text x="76" y="382" font-size="13" font-weight="bold" fill="#152B6E">LEVEL 3 — ADVANCED RUNTIME</text>
+  <text x="300" y="382" font-size="11" fill="#5570B0">Ch 21-32</text>
+  <text x="76" y="403" font-size="10.5" fill="#33478C">Twelve failures, and not one of them raises an error.</text>
+  <g font-size="10">
+    <rect x="76" y="412" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="128" y="428" text-anchor="middle" fill="#33478C">durability</text>
+    <rect x="188" y="412" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="240" y="428" text-anchor="middle" fill="#33478C">event spine</text>
+    <rect x="300" y="412" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="352" y="428" text-anchor="middle" fill="#33478C">scheduler</text>
+    <rect x="412" y="412" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="464" y="428" text-anchor="middle" fill="#33478C">task graph</text>
+    <rect x="524" y="412" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="576" y="428" text-anchor="middle" fill="#33478C">planning</text>
+    <rect x="636" y="412" width="108" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="690" y="428" text-anchor="middle" fill="#33478C">recovery</text>
+
+    <rect x="76" y="440" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="128" y="456" text-anchor="middle" fill="#33478C">grading</text>
+    <rect x="188" y="440" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="240" y="456" text-anchor="middle" fill="#33478C">long runs</text>
+    <rect x="300" y="440" width="104" height="24" rx="4" fill="#E8EDF9" stroke="#1F3A93" stroke-width="1.6"/>
+    <text x="352" y="456" text-anchor="middle" font-weight="bold" fill="#152B6E">authority</text>
+    <rect x="412" y="440" width="104" height="24" rx="4" fill="#E8EDF9" stroke="#1F3A93" stroke-width="1.6"/>
+    <text x="464" y="456" text-anchor="middle" font-weight="bold" fill="#152B6E">safety</text>
+    <rect x="524" y="440" width="220" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="634" y="456" text-anchor="middle" fill="#33478C">distributed execution</text>
+  </g>
+  <text x="778" y="394" font-size="10.5" font-weight="bold" fill="#152B6E">ADDS</text>
+  <text x="778" y="412" font-size="10.5" fill="#33478C">it survives crashes,</text>
+  <text x="778" y="427" font-size="10.5" fill="#33478C">contention, hostile</text>
+  <text x="778" y="442" font-size="10.5" fill="#33478C">input, and many</text>
+  <text x="778" y="457" font-size="10.5" fill="#33478C">machines</text>
+
+  <!-- L2 -->
+  <rect x="60" y="482" width="700" height="112" rx="6" fill="#EEF3FB" stroke="#3355AA" stroke-width="1.8"/>
+  <text x="76" y="504" font-size="13" font-weight="bold" fill="#152B6E">LEVEL 2 — CORE COMPONENTS</text>
+  <text x="300" y="504" font-size="11" fill="#5570B0">Ch 10-20</text>
+  <text x="76" y="525" font-size="10.5" fill="#33478C">The loop sequences six ports and decides nothing. Every judgement lives behind one of them.</text>
+  <g font-size="10">
+    <rect x="76" y="534" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="128" y="550" text-anchor="middle" fill="#33478C">planner</text>
+    <rect x="188" y="534" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="240" y="550" text-anchor="middle" fill="#33478C">context</text>
+    <rect x="300" y="534" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="352" y="550" text-anchor="middle" fill="#33478C">memory</text>
+    <rect x="412" y="534" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="464" y="550" text-anchor="middle" fill="#33478C">model port</text>
+    <rect x="524" y="534" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="576" y="550" text-anchor="middle" fill="#33478C">tools + ACI</text>
+    <rect x="636" y="534" width="108" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="690" y="550" text-anchor="middle" fill="#33478C">observation</text>
+
+    <rect x="76" y="562" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="128" y="578" text-anchor="middle" fill="#33478C">state manager</text>
+    <rect x="188" y="562" width="216" height="24" rx="4" fill="#E8EDF9" stroke="#1F3A93" stroke-width="2"/>
+    <text x="296" y="578" text-anchor="middle" font-weight="bold" fill="#152B6E">THE RUNTIME LOOP — ~40 lines</text>
+    <rect x="412" y="562" width="104" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="464" y="578" text-anchor="middle" fill="#33478C">sub-agents</text>
+    <rect x="524" y="562" width="220" height="24" rx="4" fill="#FFF" stroke="#3355AA"/>
+    <text x="634" y="578" text-anchor="middle" fill="#33478C">evolution overview (Ch 20)</text>
+  </g>
+  <text x="778" y="516" font-size="10.5" font-weight="bold" fill="#152B6E">ADDS</text>
+  <text x="778" y="534" font-size="10.5" fill="#33478C">each subsystem can</text>
+  <text x="778" y="549" font-size="10.5" fill="#33478C">be implemented in</text>
+  <text x="778" y="564" font-size="10.5" fill="#33478C">isolation, with a</text>
+  <text x="778" y="579" font-size="10.5" fill="#33478C">stated contract</text>
+
+  <!-- L1 -->
+  <rect x="60" y="604" width="700" height="84" rx="6" fill="#F0F7F1" stroke="#1D6B3A" stroke-width="1.8"/>
+  <text x="76" y="626" font-size="13" font-weight="bold" fill="#15522C">LEVEL 1 — HIGH-LEVEL RUNTIME</text>
+  <text x="308" y="626" font-size="11" fill="#4E8A66">Ch 4-9</text>
+  <text x="76" y="647" font-size="10.5" fill="#1D6B3A">The whole system from far enough back to see all of it.</text>
+  <g font-size="10">
+    <rect x="76" y="656" width="128" height="24" rx="4" fill="#FFF" stroke="#1D6B3A"/>
+    <text x="140" y="672" text-anchor="middle" fill="#1D6B3A">six layers</text>
+    <rect x="212" y="656" width="128" height="24" rx="4" fill="#FFF" stroke="#1D6B3A"/>
+    <text x="276" y="672" text-anchor="middle" fill="#1D6B3A">the five nouns</text>
+    <rect x="348" y="656" width="128" height="24" rx="4" fill="#FFF" stroke="#1D6B3A"/>
+    <text x="412" y="672" text-anchor="middle" fill="#1D6B3A">state separation</text>
+    <rect x="484" y="656" width="120" height="24" rx="4" fill="#FFF" stroke="#1D6B3A"/>
+    <text x="544" y="672" text-anchor="middle" fill="#1D6B3A">the edge</text>
+    <rect x="612" y="656" width="132" height="24" rx="4" fill="#FFF" stroke="#1D6B3A"/>
+    <text x="678" y="672" text-anchor="middle" fill="#1D6B3A">two clocks · 3 flows</text>
+  </g>
+  <text x="778" y="638" font-size="10.5" font-weight="bold" fill="#15522C">ADDS</text>
+  <text x="778" y="656" font-size="10.5" fill="#1D6B3A">a shared vocabulary</text>
+  <text x="778" y="671" font-size="10.5" fill="#1D6B3A">precise enough to</text>
+  <text x="778" y="686" font-size="10.5" fill="#1D6B3A">argue with</text>
+
+  <!-- L0 -->
+  <rect x="60" y="698" width="700" height="62" rx="6" fill="#F5F5F5" stroke="#777" stroke-width="1.8"/>
+  <text x="76" y="720" font-size="13" font-weight="bold" fill="#333">LEVEL 0 — FOUNDATIONS</text>
+  <text x="272" y="720" font-size="11" fill="#777">Ch 0-3</text>
+  <g font-size="10">
+    <rect x="76" y="730" width="160" height="22" rx="4" fill="#FFF" stroke="#777"/>
+    <text x="156" y="745" text-anchor="middle" fill="#444">how we got here</text>
+    <rect x="244" y="730" width="160" height="22" rx="4" fill="#FFF" stroke="#777"/>
+    <text x="324" y="745" text-anchor="middle" fill="#444">model / harness / world</text>
+    <rect x="412" y="730" width="160" height="22" rx="4" fill="#FFF" stroke="#777"/>
+    <text x="492" y="745" text-anchor="middle" fill="#444">why it is distributed</text>
+    <rect x="580" y="730" width="164" height="22" rx="4" fill="#FFF" stroke="#777"/>
+    <text x="662" y="745" text-anchor="middle" fill="#444">ARK and Atlas</text>
+  </g>
+  <text x="778" y="722" font-size="10.5" font-weight="bold" fill="#333">ADDS</text>
+  <text x="778" y="740" font-size="10.5" fill="#555">the premise: the harness</text>
+  <text x="778" y="755" font-size="10.5" fill="#555">is the engineerable part</text>
+
+  <!-- cross-cutting -->
+  <rect x="60" y="774" width="920" height="42" rx="6" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.6"/>
+  <text x="76" y="792" font-size="11" font-weight="bold" fill="#8A4600">CROSS-CUTTING — one tag from Chapter 14, pure or effectful, answers four questions nobody asked it:</text>
+  <text x="76" y="808" font-size="10.5" fill="#7A4300">does this need a gate (Ch 14) · may this branch be raced (Ch 24) · does this invalidate a belief (Ch 25) · which reversibility tier applies, and where does it gate (Ch 27, Ch 30)</text>
+
+  <text x="60" y="840" font-size="10.5" fill="#666">Levels 1-3 are the runtime. Level 4 is what it takes to operate and change it. Level 5 is a second agent that changes it for you.</text>
+  <text x="60" y="856" font-size="10" font-style="italic" fill="#888">Sources: runtime structure and invariants after A Durable Agent Runtime v1.0 · evolution band after Agentic Harness Engineering.</text>
+  <text x="60" y="870" font-size="10" font-style="italic" fill="#888">The level synthesis and the cross-cutting observation are the handbook's own engineering inference.</text>
+</svg>
