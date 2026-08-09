@@ -6,7 +6,7 @@
 > chapter by `tools/build_glossary.py`. To change an entry, edit the defining
 > chapter's table and regenerate.
 
-Covering 16 chapters and 168 terms.
+Covering 17 chapters and 179 terms.
 
 Provenance tags: `[AHE]` the Agentic Harness Engineering paper · `[DAR]` the durable
 runtime specification · `[INF]` handbook inference · `[BP]` industry practice ·
@@ -57,6 +57,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Confidence** | How much evidence stands behind an entry, raised by corroboration and lowered by contradiction. | `[INF]` | Ch 12 |
 | **Content refusal** | A deterministic provider refusal, which is terminal rather than retryable because the same request will be refused again. | `[INF]` | Ch 13 |
 | **Context accounting** | Per-call, per-source record of tokens and disposition; the basis of every signal in this chapter. | `[INF]` | Ch 11 |
+| **Context span** | The capture of what the model could see for one call: stable digest, semi-stable digest, and the volatile band verbatim. | `[INF]` | Ch 16 |
 | **Context system** | The component that assembles, per model call, everything the model is allowed to see, under a budget and an ordering contract. | `[DAR]` | Ch 11 |
 | **Contradiction** | A later observation that opposes an existing entry, lowering its confidence rather than rewriting it. | `[INF]` | Ch 12 |
 | **Control flow** | The reading that answers what happens next and who decided it; measured in decisions. | `[INF]` | Ch 9 |
@@ -97,6 +98,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Event** | A past-tense statement travelling up that something happened, written in the same transaction as the change itself. | `[DAR]` | Ch 4 |
 | **Event flow** | The reading that answers what is durable and replayable; measured in committed records. | `[DAR]` | Ch 9 |
 | **Eviction horizon** | How far back history is kept verbatim; the dial that determines whether run cost is linear or quadratic in steps. | `[INF]` | Ch 11 |
+| **Evidence corpus** | The retained, distilled subset of trajectories that the evolution loop reads. | `[AHE]` | Ch 16 |
 | **Exit condition** | One of the four reasons an episode ends: wall clock, step budget, park, or signal. | `[DAR]` | Ch 5 |
 | **Expiry lag** | How overdue the most overdue lease was when the sweeper reached it; the direct measurement of recovery health. | `[INF]` | Ch 8 |
 
@@ -187,7 +189,9 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
+| **Observation system** | The component that captures how the runtime perceived itself, distinct from the monitoring operators use. | `[DAR]` | Ch 16 |
 | **One proposer, three vetoes** | The property that only the planner proposes a step, while budget, gate, and grader may only stop or downgrade one. | `[INF]` | Ch 9 |
+| **Outcome-weighted retention** | Deciding at seal what to keep based on how the run ended, rather than sampling uniformly and losing the rare interesting runs. | `[INF]` | Ch 16 |
 
 ## P
 
@@ -222,6 +226,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Read model** | A view of a run assembled by the edge for a client, built from durable facts and never authoritative itself. | `[INF]` | Ch 6, Ch 7 |
 | **Reasoning tokens** | Internal tokens some models emit before answering; usually billed as output, invisible in the completion, and scaling with the effort tier. | `[BP]` | Ch 13 |
+| **Redaction at capture** | Removing secrets as a trajectory is written rather than when it is read, because a store with history cannot be cleaned afterwards. | `[INF]` | Ch 16 |
 | **Relay** | The kernel component that picks up appended events and turns them back into work. | `[DAR]` | Ch 4 |
 | **Release** | Giving a lease back at an episode boundary or at drain, without finishing the work. | `[DAR]` | Ch 8 |
 | **Replan** | Producing a new plan with a new id in response to a steer, failure, downgrade, or budget change — never an edit. | `[DAR]` | Ch 10 |
@@ -230,6 +235,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Representation agreement** | The requirement that any two tools addressing the same object address it the same way. | `[INF]` | Ch 15 |
 | **Reservation** | Budget held for an in-flight call; always settled or released, never abandoned. | `[DAR]` | Ch 13 |
 | **Reserve-then-settle** | Committing the worst-case cost before a call and replacing it with the actual afterwards, so a cap is a limit rather than a report. | `[DAR]` | Ch 13 |
+| **Result envelope** | The fixed identity wrapper on every observation, which is what makes a trajectory navigable rather than a pile of records. | `[DAR]` | Ch 16 |
 | **Retirement** | Moving an entry below the floor out of use while keeping it resolvable forever. | `[INF]` | Ch 12 |
 | **Retry** | Doing the work again from the start. Cheap in ordinary systems, a cost incident here. | `[BP]` | Ch 2 |
 | **Retry loop** | A model repeating an identical call because the error taught it nothing; the loud ACI failure. | `[INF]` | Ch 15 |
@@ -246,11 +252,13 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Same-transaction rule** | A state change and the event announcing it are committed together, or the gap between them is undetectable. | `[DAR]` | Ch 9 |
 | **Sandbox profile** | The isolation configuration a tool runs under, named in the registry rather than chosen per call. | `[AHE]` | Ch 14 |
 | **Scope** | Whether an entry is about one repository, one tenant, or all work; what makes retrieval unnecessary. | `[INF]` | Ch 12 |
+| **Seal** | Closing a trajectory at run end, when the outcome is finally known and the retention class can be assigned. | `[INF]` | Ch 16 |
 | **Settlement** | Replacing a reservation with what a call actually cost, or with the reservation itself when the actual is unknowable. | `[INF]` | Ch 13 |
 | **Short-term memory** | What the model can see on one call; the assembled context, rebuilt every time. | `[INF]` | Ch 12 |
 | **Signal** | Out-of-band control over a live run: steer, cancel, pause, or answer. | `[DAR]` | Ch 7 |
 | **Silent misread** | A well-formed result the model draws a wrong conclusion from; the expensive ACI failure, with no automatic detector. | `[INF]` | Ch 15 |
 | **Skill** | A packaged, reusable procedure loaded only when it is relevant, so its tokens are not always resident. | `[AHE]` | Ch 1 |
+| **Span** | One observed operation inside a run, wrapped in an envelope that carries its identity and harness version. | `[BP]` | Ch 16 |
 | **Standing cost** | Tokens an ACI improvement adds to every model call forever, as against a cost paid only on failure. | `[INF]` | Ch 15 |
 | **Stateless ingress** | An edge that keeps nothing in process memory, so any instance can serve any request and a deploy loses nothing. | `[DAR]` | Ch 7 |
 | **Steer** | A goal amendment delivered mid-run that forces a replan instead of editing the running plan. | `[DAR]` | Ch 7 |
@@ -271,11 +279,14 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
 | **Token kinds** | Input, cached, reasoning, and output — priced differently, and meaningless when aggregated into one number. | `[INF]` | Ch 13 |
+| **Tombstone** | The envelope that survives when a trajectory's content expires, preserving aggregate answers and an auditable deletion. | `[INF]` | Ch 16 |
 | **Tool description** | The prose the model reads and the only thing it knows about a tool; an editable harness surface in its own right. | `[AHE]` | Ch 1, Ch 14 |
 | **Tool execution engine** | The single door to the world: resolves, validates, authorises, invokes, normalises, truncates, and records every tool call. | `[DAR]` | Ch 14 |
 | **Tool implementation** | The code that runs, editable separately from the description and at a different rate. | `[AHE]` | Ch 1, Ch 14 |
 | **Tool registry** | The one source for what a tool is, feeding descriptions to the model and enforcement properties to the runtime. | `[INF]` | Ch 14 |
 | **Tool tax** | The fixed cost every tool definition levies on every model call, whether or not the tool is used. | `[INF]` | Ch 11, Ch 14 |
+| **Trace store** | The durable home of trajectories; the largest and highest-risk dataset in the architecture. | `[INF]` | Ch 16 |
+| **Trajectory** | The full record of one run — every span, with what the model could see at each — and the raw material of the evidence corpus. | `[AHE]` | Ch 16 |
 | **Truncation policy** | Per-tool rules for cutting output at the boundary, before it is stored or moved anywhere. | `[INF]` | Ch 14 |
 
 ## V
@@ -321,3 +332,4 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Ch 13 | Model port, Provider adapter, Reserve-then-settle, Reservation, Settlement, Abort handle, Token kinds, Reasoning tokens, Effort tier, Model policy, Normalisation, Model semaphore, Content refusal, Estimated cost |
 | Ch 14 | Tool execution engine, Tool registry, Tool description, Tool implementation, Description drift, Effect tag, Middleware, Truncation policy, Amplification, Partial success, Capability scoping, Sandbox profile, Tool tax |
 | Ch 15 | Agent-Computer Interface (ACI), Verb granularity, Representation agreement, Instructive error, Instructiveness ratio, Retry loop, Silent misread, Quote, do not compute, Counter-example, Fix routing, Standing cost |
+| Ch 16 | Observation system, Trajectory, Trace store, Span, Result envelope, Context span, Redaction at capture, Outcome-weighted retention, Seal, Tombstone, Evidence corpus |

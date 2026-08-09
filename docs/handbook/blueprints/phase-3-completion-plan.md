@@ -325,7 +325,7 @@ a reader can draw the runtime from memory.
 
 ---
 
-### Batch 2 — Level 2 *(Ch 10–20, 11 chapters, all Full, 99 figures)* — **6 of 11**
+### Batch 2 — Level 2 *(Ch 10–20, 11 chapters, all Full, 99 figures)* — **7 of 11**
 
 The largest batch and the heart of the book: every core component, each with nine diagrams.
 Sub-groups: `C10–C12` (planner, context, memory) → `C13–C15` (reasoning, tools, ACI) →
@@ -551,19 +551,19 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 
 ## 9a. Where this stands, and how to resume
 
-**Delivered: batches 0 and 1 in full, plus the first six chapters of batch 2.** The handbook is at 16 of
+**Delivered: batches 0 and 1 in full, plus the first seven chapters of batch 2.** The handbook is at 17 of
 50 chapters, Levels 0 and 1 are complete, and the linter reports zero errors across all of them.
 
 | | State |
 |---|---|
-| Chapters | 0–15 written; Level 0 complete, Level 1 complete, Level 2 at 6 of 11 |
+| Chapters | 0–16 written; Level 0 complete, Level 1 complete, Level 2 at 7 of 11 |
 | Tooling | `check_handbook.py` (13 checks), `build_glossary.py` (Appendix A, 110 terms) |
 | Conventions | `CONVENTIONS.md` is the single authoring card; four revisions recorded in its §7 |
 | Level openers | L0 and L1 written; L2–L5 outstanding |
 | SVGs | 5 of the planned 9 (`level-0-evolution.svg` added) |
 | Commits | one per batch, on `main` |
 
-**To resume, start at Chapter 16 (The Observation System).** The procedure for any remaining chapter:
+**To resume, start at Chapter 17 (The State Manager).** The procedure for any remaining chapter:
 
 1. Read the chapter's brief in §6 of this document, and its `Requires`/`Unlocks` in the Phase 2 §4
    spine.
@@ -607,8 +607,8 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 - [x] L1 opener
 - [x] READMEs updated · [x] linter green · [x] commit
 
-### Batch 2 — Level 2 — **6 of 11**
-- [x] C10 · [x] C11 · [x] C12 · [x] C13 · [x] C14 · [x] C15 · [ ] C16 · [ ] C17 · [ ] C18 · [ ] C19 · [ ] C20
+### Batch 2 — Level 2 — **7 of 11**
+- [x] C10 · [x] C11 · [x] C12 · [x] C13 · [x] C14 · [x] C15 · [x] C16 · [ ] C17 · [ ] C18 · [ ] C19 · [ ] C20
 - [ ] Interlude I
 - [ ] L2 opener + `level-2-component-map.svg`
 - [ ] C18 consistency pass against C5, C6, C17
