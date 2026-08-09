@@ -551,19 +551,19 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 
 ## 9a. Where this stands, and how to resume
 
-**Delivered: batches 0, 1, and 2 in full.** The handbook is at 21 of
+**Delivered: batches 0, 1, and 2 in full, plus the first three chapters of batch 3.** The handbook is at 24 of
 50 chapters, Levels 0 and 1 are complete, and the linter reports zero errors across all of them.
 
 | | State |
 |---|---|
-| Chapters | 0–20 written; Levels 0, 1, and 2 complete |
+| Chapters | 0–23 written; Levels 0-2 complete, Level 3 at 3 of 12 |
 | Tooling | `check_handbook.py` (13 checks), `build_glossary.py` (Appendix A, 110 terms) |
 | Conventions | `CONVENTIONS.md` is the single authoring card; four revisions recorded in its §7 |
 | Level openers | L0, L1, L2 written; L3-L5 outstanding |
 | SVGs | 6 of the planned 9 |
 | Commits | one per batch, on `main` |
 
-**To resume, start at Chapter 21 (Durable Execution), which begins Level 3.** The procedure for any remaining chapter:
+**To resume, start at Chapter 24 (The Task Graph).** The procedure for any remaining chapter:
 
 1. Read the chapter's brief in §6 of this document, and its `Requires`/`Unlocks` in the Phase 2 §4
    spine.
@@ -615,7 +615,7 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 
 ### Batch 3 — Level 3
-- [ ] C21 · [ ] C22 · [ ] C23 · [ ] C24 · [ ] C25 · [ ] C26 · [ ] C27 · [ ] C28 · [ ] C29 · [ ] C30 · [ ] C31 · [ ] C32
+- [x] C21 · [x] C22 · [x] C23 · [ ] C24 · [ ] C25 · [ ] C26 · [ ] C27 · [ ] C28 · [ ] C29 · [ ] C30 · [ ] C31 · [ ] C32
 - [ ] L3 opener + `level-3-advanced-runtime.svg`
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 

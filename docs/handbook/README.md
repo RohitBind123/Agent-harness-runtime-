@@ -37,6 +37,9 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [18. The Runtime Loop](chapters/18-the-runtime-loop.md) | Core components | The keystone: bounded episodes, four exit conditions, and nothing scarce held across a model call |
 | [19. The Multi-Agent Runtime](chapters/19-the-multi-agent-runtime.md) | Core components | Sub-agents as context boundaries rather than job titles, and when a tool is strictly better |
 | [20. The Self-Evolving Runtime (AHE) — Overview](chapters/20-the-self-evolving-runtime-overview.md) | Core components | The closed loop in one chapter: three pillars, the change manifest, and the containment boundary |
+| [21. Durable Execution](chapters/21-durable-execution.md) | Advanced runtime | Resume, re-run, and replay as three operations, and the record window that does not close |
+| [22. The Event Spine](chapters/22-the-event-spine.md) | Advanced runtime | The outbox as the only durability primitive, and why a cursor is an outage waiting for a bad row |
+| [23. The Scheduler](chapters/23-the-scheduler.md) | Advanced runtime | Convoy effects, work classes with reserved capacity, and three resources that need three bounds |
 
 ## Completion status
 
@@ -45,11 +48,11 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 0 — Foundations | 0-3 | 4 of 4 | Complete |
 | 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
 | 2 — Core Runtime Components | 10-20 | 11 of 11 | Complete |
-| 3 — Advanced Runtime Architecture | 21-32 | 0 of 12 | Planned |
+| 3 — Advanced Runtime Architecture | 21-32 | 3 of 12 | In progress |
 | 4 — Production Engineering | 33-41 | 0 of 9 | Planned |
 | 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
 
-Level 3, Chapters 21-32, is next. Chapter 21, *Durable Execution*, begins the level. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Level 3 is in progress. Chapter 24, *The Task Graph*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
 
