@@ -176,16 +176,17 @@ def main() -> int:
     except FileNotFoundError:
         existing = None
 
+    unique = len({e.sort_key for e in entries})
+
     if args.check:
         if existing != content:
             print(f"{OUTPUT} is out of date; run tools/build_glossary.py",
                   file=sys.stderr)
             return 1
-        print(f"{OUTPUT} is up to date ({len(entries)} terms)")
+        print(f"{OUTPUT} is up to date ({unique} terms)")
         return 0
 
     open(OUTPUT, "w", encoding="utf-8").write(content)
-    unique = len({e.sort_key for e in entries})
     print(f"wrote {OUTPUT}: {unique} terms ({len(entries)} rows) "
           f"from {len(paths)} chapters")
     return 0
