@@ -294,28 +294,38 @@ style correction inside a level is cheap.
 
 ---
 
-### Batch 0 — Foundation
-- [x] `tools/check_handbook.py` with all 12 checks
-- [x] `docs/handbook/CONVENTIONS.md` authoring card
-- [x] Appendix working files created under `docs/handbook/appendices/`
-- [x] Ch 0 on-ramp retrofit · [x] Ch 1 · [x] Ch 2 · [x] Ch 3 · [x] Ch 4 · [x] Ch 5 · [x] Ch 6 · [x] Ch 7
-- [x] Ch 1 figure-count defect resolved
-- [x] Ch 3 and Ch 4 80-column diagram lines fixed
-- [x] L0 opener + `level-0-evolution.svg`
-- [x] Linter exits zero on Ch 0–7
+### Batch 0 — Foundation *(no new chapters)* — **DELIVERED**
 
-**Delivered.** Also produced beyond the original scope: `tools/build_glossary.py`, which generates
-Appendix A from the per-chapter N4 tables, so the glossary cannot drift from the chapters.
+| Deliverable | Detail |
+|---|---|
+| `tools/check_handbook.py` | 13 convention checks (§4) |
+| On-ramp retrofit, Ch 0–7 | N1, N2, N3, N4 added to all eight chapters |
+| Convention fixes | Ch 1 figure-count mismatch; Ch 4 80-column line; Ch 1 prohibited word; Ch 2 cold-open length |
+| `docs/handbook/CONVENTIONS.md` | One-page authoring card consolidating Phase 1 §6–§7, Phase 2 §7, and this document |
+| `tools/build_glossary.py` | **Beyond original scope.** Generates Appendix A from the per-chapter N4 tables, so the glossary cannot drift from the chapters |
+| Appendix A | `docs/handbook/appendices/a-glossary.md`, generated |
+| L0 level opener + SVG | `docs/assets/diagrams/level-0-evolution.svg` |
 
-### Batch 1 — Level 1 complete
-- [x] C8 Request Lifecycle and Runtime Lifecycle
-- [x] C9 Three Flows: Data, Control, Event
-- [x] L1 opener
-- [x] READMEs updated · [x] linter green · [x] commit
+**Exit criteria met:** linter exits zero on Ch 0–7; all eight open with a plain-language block;
+Appendix A contains every term Ch 0–7 define.
 
-**Delivered.** Level 1 is closed: 6 of 6 chapters.
+**Why it came first:** every convention defect not caught here is repeated 42 times. The linter
+found three real defects in the existing chapters on its first run, and has since caught a
+prohibited word or an over-wide diagram in *every* new chapter on first pass — including all three
+written after it.
 
-### Batch 2 — Level 2 *(Ch 10–20, 11 chapters, all Full, 99 figures)*
+---
+
+### Batch 1 — Finish Level 1 *(Ch 8–9, 2 chapters, Core, 10 figures)* — **DELIVERED**
+
+Completes the high-level architecture. Ch 9 is the synthesis chapter for the whole level; after it,
+a reader can draw the runtime from memory.
+
+**Exit criteria met:** Level 1 shows `6 of 6` in the handbook README; L1 level opener written.
+
+---
+
+### Batch 2 — Level 2 *(Ch 10–20, 11 chapters, all Full, 99 figures)* — **1 of 11**
 
 The largest batch and the heart of the book: every core component, each with nine diagrams.
 Sub-groups: `C10–C12` (planner, context, memory) → `C13–C15` (reasoning, tools, ACI) →
@@ -539,25 +549,65 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 
 ---
 
+## 9a. Where this stands, and how to resume
+
+**Delivered: batches 0 and 1 in full, plus the first chapter of batch 2.** The handbook is at 11 of
+50 chapters, Levels 0 and 1 are complete, and the linter reports zero errors across all of them.
+
+| | State |
+|---|---|
+| Chapters | 0–10 written; Level 0 complete, Level 1 complete, Level 2 at 1 of 11 |
+| Tooling | `check_handbook.py` (13 checks), `build_glossary.py` (Appendix A, 110 terms) |
+| Conventions | `CONVENTIONS.md` is the single authoring card; four revisions recorded in its §7 |
+| Level openers | L0 and L1 written; L2–L5 outstanding |
+| SVGs | 5 of the planned 9 (`level-0-evolution.svg` added) |
+| Commits | one per batch, on `main` |
+
+**To resume, start at Chapter 11 (The Context System).** The procedure for any remaining chapter:
+
+1. Read the chapter's brief in §6 of this document, and its `Requires`/`Unlocks` in the Phase 2 §4
+   spine.
+2. Read `CONVENTIONS.md` — particularly §2 (the four on-ramp blocks) and §8 (definition of done).
+3. Write the chapter against the §3 skeleton. Copy the header block from the preceding chapter and
+   edit it; the linter checks that `Requires` precede and `Unlocks` follow this chapter's number.
+4. Run `python3 tools/check_handbook.py`. It must exit zero.
+5. Run `python3 tools/build_glossary.py` to fold the new N4 table into Appendix A.
+6. Update the three READMEs' status tables, tick the boxes in §10, and commit.
+
+**Three things learned writing Ch 8, 9, and 10**, which the remaining chapters should carry:
+
+- **Plan the nine figures before writing a Full-tier chapter.** Nine ASCII figures in document order
+  cannot be retrofitted cheaply; Ch 10 needed a renumbering pass because two were added late. Decide
+  the D1–D9 set and which section each lands in first.
+- **Write N3 early, not last.** The forced-move derivation repeatedly surfaced the strongest framing
+  in the chapter. In Ch 10 it produced the observation that idempotency and human authority are the
+  same problem — which then became the chapter's spine.
+- **Expect the linter to fail on first run.** It caught a prohibited word or an over-wide diagram in
+  every chapter written so far. That is the tool working, not a nuisance; do not weaken a check to
+  make a chapter pass.
+
+---
+
 ## 10. Progress tracker
 
-### Batch 0 — Foundation
-- [ ] `tools/check_handbook.py` with all 12 checks
-- [ ] `docs/handbook/CONVENTIONS.md` authoring card
-- [ ] Appendix working files created under `docs/handbook/appendices/`
-- [ ] Ch 0 on-ramp retrofit · [ ] Ch 1 · [ ] Ch 2 · [ ] Ch 3 · [ ] Ch 4 · [ ] Ch 5 · [ ] Ch 6 · [ ] Ch 7
-- [ ] Ch 1 figure-count defect resolved
-- [ ] Ch 3 and Ch 4 80-column diagram lines fixed
-- [ ] L0 opener + `level-0-evolution.svg`
-- [ ] Linter exits zero on Ch 0–7
+### Batch 0 — Foundation — **complete**
+- [x] `tools/check_handbook.py` with all 12 checks
+- [x] `docs/handbook/CONVENTIONS.md` authoring card
+- [x] Appendix working files created under `docs/handbook/appendices/`
+- [x] Ch 0 on-ramp retrofit · [x] Ch 1 · [x] Ch 2 · [x] Ch 3 · [x] Ch 4 · [x] Ch 5 · [x] Ch 6 · [x] Ch 7
+- [x] Ch 1 figure-count defect resolved
+- [x] Ch 4 80-column diagram line fixed; Ch 1 prohibited word; Ch 2 cold open
+- [x] L0 opener + `level-0-evolution.svg`
+- [x] Linter exits zero on Ch 0–7
+- [x] `tools/build_glossary.py` (beyond scope): Appendix A generated from the chapters
 
-### Batch 1 — Level 1 complete
-- [ ] C8 Request Lifecycle and Runtime Lifecycle
-- [ ] C9 Three Flows: Data, Control, Event
-- [ ] L1 opener
-- [ ] READMEs updated · [ ] linter green · [ ] commit
+### Batch 1 — Level 1 complete — **complete**
+- [x] C8 Request Lifecycle and Runtime Lifecycle
+- [x] C9 Three Flows: Data, Control, Event
+- [x] L1 opener
+- [x] READMEs updated · [x] linter green · [x] commit
 
-### Batch 2 — Level 2
+### Batch 2 — Level 2 — **1 of 11**
 - [x] C10 · [ ] C11 · [ ] C12 · [ ] C13 · [ ] C14 · [ ] C15 · [ ] C16 · [ ] C17 · [ ] C18 · [ ] C19 · [ ] C20
 - [ ] Interlude I
 - [ ] L2 opener + `level-2-component-map.svg`
