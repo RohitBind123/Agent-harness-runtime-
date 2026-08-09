@@ -50,6 +50,11 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [30. Human Authority](chapters/30-human-authority.md) | Advanced runtime | The gate as a park holding nothing, and steering as the same mechanism as crash recovery |
 | [31. Safety, Sandboxing, and Untrusted Content](chapters/31-safety-sandboxing-and-untrusted-content.md) | Advanced runtime | Capability that cannot read content, and blast radius as four bounds written down |
 | [32. Distributed Execution](chapters/32-distributed-execution.md) | Advanced runtime | What a lease actually guarantees, fence tokens, and exactly-one-driver as an operational property |
+| [33. Scalability and Capacity Planning](chapters/33-scalability-and-capacity-planning.md) | Production engineering | Little's Law per surface, and an outage caused by correctly applying the standard pool formula |
+| [34. Observability](chapters/34-observability.md) | Production engineering | Two observability systems for two questions, eleven signals, and alerting on absence |
+| [35. Cost Engineering and Token Economics](chapters/35-cost-engineering-and-token-economics.md) | Production engineering | Cost per successful outcome, reserve-then-settle, and why input dominates output twenty to one |
+| [36. Reliability and SLOs](chapters/36-reliability-and-slos.md) | Production engineering | Promise liveness, honesty, and accounting; publish quality; never degrade it silently |
+| [37. Tenancy, Secrets, and Data Governance](chapters/37-tenancy-secrets-and-data-governance.md) | Production engineering | Nine stores, two cross-run by design, and the derivation boundary that is one-way |
 
 ## Completion status
 
@@ -59,10 +64,10 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
 | 2 — Core Runtime Components | 10-20 | 11 of 11 | Complete |
 | 3 — Advanced Runtime Architecture | 21-32 | 12 of 12 | Complete |
-| 4 — Production Engineering | 33-41 | 0 of 9 | In progress |
+| 4 — Production Engineering | 33-41 | 5 of 9 | In progress |
 | 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
 
-Levels 0-3 are complete. Level 4 opens at Chapter 33, *Scalability and Capacity Planning*, which is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Levels 0-3 are complete. Level 4 is in progress; Chapter 38, *Deployment, Versioning, and Configuration*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
 

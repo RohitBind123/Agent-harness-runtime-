@@ -563,7 +563,7 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 | SVGs | 6 of the planned 9 |
 | Commits | one per batch, on `main` |
 
-**To resume, start at Chapter 33 (Scalability and Capacity Planning), the first chapter of Level 4.** The procedure for any remaining chapter:
+**To resume, start at Chapter 38 (Deployment, Versioning, and Configuration).** The procedure for any remaining chapter:
 
 1. Read the chapter's brief in §6 of this document, and its `Requires`/`Unlocks` in the Phase 2 §4
    spine.
@@ -620,8 +620,8 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 
 ### Batch 4 — Level 4
-- [ ] C33 · [ ] C34 · [ ] C35 · [ ] C36 · [ ] C37 · [ ] C38 · [ ] C39 · [ ] C40 · [ ] C41
-- [x] Interlude II
+- [x] C33 · [x] C34 · [x] C35 · [x] C36 · [x] C37 · [ ] C38 · [ ] C39 · [ ] C40 · [ ] C41
+- [ ] Interlude II
 - [ ] L4 opener + `level-4-production-surfaces.svg`
 - [ ] READMEs updated · [ ] linter green · [ ] commit
 
