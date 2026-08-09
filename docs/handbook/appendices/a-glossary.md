@@ -6,7 +6,7 @@
 > chapter by `tools/build_glossary.py`. To change an entry, edit the defining
 > chapter's table and regenerate.
 
-Covering 14 chapters and 150 terms.
+Covering 15 chapters and 157 terms.
 
 Provenance tags: `[AHE]` the Agentic Harness Engineering paper · `[DAR]` the durable
 runtime specification · `[INF]` handbook inference · `[BP]` industry practice ·
@@ -27,7 +27,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Activity identity** | A fingerprint of a tool call — run, plan, step, tool, and inputs — that decides whether a stored result may be reused instead of re-run. | `[DAR]` | Ch 2 |
 | **Activity runner** | The kernel component that dispatches a tool call, then releases its resources rather than waiting on them. | `[DAR]` | Ch 4 |
 | **Admission control** | Refusing or delaying work at the door so that accepted work can actually be served. | `[BP]` | Ch 2 |
-| **Amplification** | Untruncated output on the data axis re-entering the next step's context and multiplying, with no decision having changed. | `[INF]` | Ch 9 |
+| **Amplification** | Untruncated output on the data axis re-entering the next step's context and multiplying, with no decision having changed. | `[INF]` | Ch 9, Ch 14 |
 | **ARK** | The Agent Runtime Kernel designed across this book: domain-independent, knows nothing about any particular product. | `[INF]` | Ch 3 |
 | **ARK/Evolve** | The outer loop that edits Atlas's harness, introduced in Ch 20 and built in Level 5. It may edit the harness and never the kernel. | `[INF]` | Ch 3 |
 | **Atlas** | The product built on ARK throughout the book: a coding agent that resolves issues in real repositories, with genuinely irreversible actions. | `[INF]` | Ch 3 |
@@ -45,6 +45,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Cache-stable prefix** | The leading span of a request that matches the previous call exactly and is therefore discounted by the provider. | `[BP]` | Ch 11 |
 | **Capability** | What the model itself can do — reason, write code, follow an instruction. Bought from a provider, not built by you. | `[INF]` | Ch 0 |
+| **Capability scoping** | Restricting what a run may do by omitting tools from what the model is shown, rather than by instructing it. | `[INF]` | Ch 14 |
 | **Checkpoint** | The few-millisecond write at a step boundary that saves progress, renews the lease, and reads pending signals in one transaction. | `[DAR]` | Ch 5 |
 | **Claim** | Marking a row as owned by one consumer, instead of sharing a position marker. Immune to one bad row stalling everyone. | `[DAR]` | Ch 2, Ch 8 |
 | **Classification procedure** | Four questions asked in a fixed order, first "yes" wins, that assign any field to exactly one category. | `[INF]` | Ch 6 |
@@ -73,6 +74,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Decay** | Confidence falling with time since `last_confirmed`, so claims about a moved world lose authority. | `[INF]` | Ch 12 |
 | **Defer** | Replacing material with a reference the model can expand later, rather than including or dropping it now. | `[INF]` | Ch 11 |
 | **Deletion test** | Remove the runtime; whatever must still make sense is domain state. Necessary but not sufficient on its own. | `[DAR]` | Ch 4, Ch 6 |
+| **Description drift** | A tool's behaviour changing while its description does not, producing valid answers to the wrong question. | `[INF]` | Ch 14 |
 | **Domain** | Your product's own logic and tables, which must remain coherent with the runtime deleted. | `[DAR]` | Ch 4 |
 | **Domain state** | What is true about the world; owned by your product and still valid with the runtime deleted. | `[DAR]` | Ch 6 |
 | **Drain** | Shutdown that stops claiming, finishes the current step, checkpoints, and releases every lease. | `[BP]` | Ch 8 |
@@ -83,7 +85,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
 | **Edge** | A thin stateless layer that accepts goals and streams progress, and deliberately runs no loop, no consumer, and no model call. | `[DAR]` | Ch 4 |
-| **Effect tag** | Whether a step is pure or effectful, read from the tool registry and never from the model. | `[DAR]` | Ch 10 |
+| **Effect tag** | Pure or effectful, held in the registry and never supplied by the model; the whole of the safety model. | `[DAR]` | Ch 10, Ch 14 |
 | **Effort tier** | The reasoning-effort setting, pinned with the harness version because gains across tiers are not monotone. | `[AHE]` | Ch 13 |
 | **Enforcement strength** | How hard a component is to ignore: code compels, prose asks. Fixes belong at the weakest level that can still enforce them. | `[INF]` | Ch 1 |
 | **Environment** | The real world the work happens in — filesystem, shell, network, repositories — which you can constrain and observe but not control. | `[AHE]` | Ch 1 |
@@ -157,7 +159,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Memory proposal** | An observation submitted at run end for possible storage; the model proposes and never writes. | `[INF]` | Ch 12 |
 | **Mental model (MM1-MM5)** | One of five borrowed pictures — process, ledger, contract, quarantine, planes — each answering a different class of design question. | `[INF]` | Ch 3 |
-| **Middleware** | Code hooked into the loop that intercepts or transforms every pass through it, whether the model wants it or not. | `[AHE]` | Ch 1 |
+| **Middleware** | Code wrapping every invocation that the model cannot decline, and therefore the strongest enforcement surface in the harness. | `[AHE]` | Ch 1, Ch 14 |
 | **MM1 Process model** | Treats a run like an operating-system process that workers borrow for a slice of time, rather than a job a worker owns. | `[INF]` | Ch 3 |
 | **MM2 Ledger model** | Treats every effect and every cost as an appended entry that is never edited, so history is auditable. | `[INF]` | Ch 3 |
 | **MM3 Contract model** | Asks where a rule is enforced, and insists the answer be a place code runs rather than a sentence in a prompt. | `[INF]` | Ch 3 |
@@ -188,6 +190,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 |------|------------|-----|------------|
 | **Park** | A durable pause that holds no resource at all, ended by an event rather than a timer expiring. | `[DAR]` | Ch 5 |
 | **Parked time** | Wall age minus active time; measures human and external latency, never runtime performance. | `[INF]` | Ch 8 |
+| **Partial success** | An outcome where the world changed incompletely, requiring a replan rather than a retry. | `[INF]` | Ch 14 |
 | **Plan** | An immutable, ordered set of proposed steps with its own identity; a value rather than an object. | `[DAR]` | Ch 10 |
 | **Plan chain** | The `supersedes` links from the current plan back to the first; its depth measures thrash. | `[INF]` | Ch 10 |
 | **Plan id** | The identity of one plan; a replan mints a new one rather than editing the old, which is what makes steering and idempotency the same mechanism. | `[DAR]` | Ch 5 |
@@ -228,6 +231,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
 | **Same-transaction rule** | A state change and the event announcing it are committed together, or the gap between them is undetectable. | `[DAR]` | Ch 9 |
+| **Sandbox profile** | The isolation configuration a tool runs under, named in the registry rather than chosen per call. | `[AHE]` | Ch 14 |
 | **Scope** | Whether an entry is about one repository, one tenant, or all work; what makes retrieval unnecessary. | `[INF]` | Ch 12 |
 | **Settlement** | Replacing a reservation with what a call actually cost, or with the reservation itself when the actual is unknowable. | `[INF]` | Ch 13 |
 | **Short-term memory** | What the model can see on one call; the assembled context, rebuilt every time. | `[INF]` | Ch 12 |
@@ -252,9 +256,12 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Term | Definition | Tag | Defined in |
 |------|------------|-----|------------|
 | **Token kinds** | Input, cached, reasoning, and output — priced differently, and meaningless when aggregated into one number. | `[INF]` | Ch 13 |
-| **Tool description** | What the model is told a tool does, as distinct from what the tool actually does. | `[AHE]` | Ch 1 |
-| **Tool implementation** | The code that runs when a tool is called; enforces rather than requests. | `[AHE]` | Ch 1 |
-| **Tool tax** | The fixed cost every tool definition levies on every model call, whether or not the tool is used. | `[INF]` | Ch 11 |
+| **Tool description** | The prose the model reads and the only thing it knows about a tool; an editable harness surface in its own right. | `[AHE]` | Ch 1, Ch 14 |
+| **Tool execution engine** | The single door to the world: resolves, validates, authorises, invokes, normalises, truncates, and records every tool call. | `[DAR]` | Ch 14 |
+| **Tool implementation** | The code that runs, editable separately from the description and at a different rate. | `[AHE]` | Ch 1, Ch 14 |
+| **Tool registry** | The one source for what a tool is, feeding descriptions to the model and enforcement properties to the runtime. | `[INF]` | Ch 14 |
+| **Tool tax** | The fixed cost every tool definition levies on every model call, whether or not the tool is used. | `[INF]` | Ch 11, Ch 14 |
+| **Truncation policy** | Per-tool rules for cutting output at the boundary, before it is stored or moved anywhere. | `[INF]` | Ch 14 |
 
 ## V
 
@@ -296,3 +303,4 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Ch 11 | Context system, Working budget, Volatility band, Volatile boundary, Cache-stable prefix, Defer, Progressive disclosure, Compaction, Condensation, Eviction horizon, Budget share, Junk drawer, Tool tax, Context accounting |
 | Ch 12 | Short-term memory, Episodic memory, Procedural memory, Long-term memory, Memory proposal, Abstraction at write time, Confidence, Load floor, Provisional entry, Contradiction, Decay, Retirement, Scope, Curation |
 | Ch 13 | Model port, Provider adapter, Reserve-then-settle, Reservation, Settlement, Abort handle, Token kinds, Reasoning tokens, Effort tier, Model policy, Normalisation, Model semaphore, Content refusal, Estimated cost |
+| Ch 14 | Tool execution engine, Tool registry, Tool description, Tool implementation, Description drift, Effect tag, Middleware, Truncation policy, Amplification, Partial success, Capability scoping, Sandbox profile, Tool tax |
