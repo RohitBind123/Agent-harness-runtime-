@@ -10,6 +10,7 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | --- | --- | --- |
 | 0 — Foundations | [Level 0](levels/level-0-foundations.md) | 0-3 |
 | 1 — High-Level Runtime Architecture | [Level 1](levels/level-1-high-level-runtime.md) | 4-9 |
+| 2 — Core Runtime Components | [Level 2](levels/level-2-core-components.md) | 10-20 |
 
 ## Available chapters
 
@@ -32,6 +33,10 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [14. The Tool Execution Engine](chapters/14-the-tool-execution-engine.md) | Core components | Description and implementation as two surfaces, the effect tag as the safety model, and truncation at the boundary |
 | [15. Agent-Computer Interface Design](chapters/15-agent-computer-interface-design.md) | Core components | Verbs, arguments, results, and errors as a designed surface, and why errors are instructions rather than diagnoses |
 | [16. The Observation System](chapters/16-the-observation-system.md) | Core components | Capturing what the model could see, redaction at capture, and outcome-weighted retention |
+| [17. The State Manager](chapters/17-the-state-manager.md) | Core components | Ownership as a value rather than a lock: lease, version CAS, and recovery as one indexed query |
+| [18. The Runtime Loop](chapters/18-the-runtime-loop.md) | Core components | The keystone: bounded episodes, four exit conditions, and nothing scarce held across a model call |
+| [19. The Multi-Agent Runtime](chapters/19-the-multi-agent-runtime.md) | Core components | Sub-agents as context boundaries rather than job titles, and when a tool is strictly better |
+| [20. The Self-Evolving Runtime (AHE) — Overview](chapters/20-the-self-evolving-runtime-overview.md) | Core components | The closed loop in one chapter: three pillars, the change manifest, and the containment boundary |
 
 ## Completion status
 
@@ -39,17 +44,18 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | --- | ---: | ---: | --- |
 | 0 — Foundations | 0-3 | 4 of 4 | Complete |
 | 1 — High-Level Runtime Architecture | 4-9 | 6 of 6 | Complete |
-| 2 — Core Runtime Components | 10-20 | 7 of 11 | In progress |
+| 2 — Core Runtime Components | 10-20 | 11 of 11 | Complete |
 | 3 — Advanced Runtime Architecture | 21-32 | 0 of 12 | Planned |
 | 4 — Production Engineering | 33-41 | 0 of 9 | Planned |
 | 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Planned |
 
-Level 2 is in progress. Chapter 17, *The State Manager*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Level 3, Chapters 21-32, is next. Chapter 21, *Durable Execution*, begins the level. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
 
 ## Reference material
 
 - [CONVENTIONS.md](CONVENTIONS.md) — the authoring card: chapter skeleton, the four on-ramp blocks, diagram vocabulary, provenance rules, naming, prohibited words, and the definition of done.
 - [Appendix A — Glossary](appendices/a-glossary.md) — every term the handbook defines, generated from the chapters.
+- [Interlude I — Assembling a Minimal Runtime](interludes/interlude-1-assembling-a-minimal-runtime.md) — a narrative build of stages 0-2, after Chapter 20.
 
 ## Blueprints
 

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="600" viewBox="0 0 920 600" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+  <rect width="920" height="600" fill="#FFFFFF"/>
+  <text x="460" y="30" text-anchor="middle" font-size="19" font-weight="bold" fill="#1A1A1A">Level 2 — The Core Components, and What Each Is Forbidden To Do</text>
+  <text x="460" y="50" text-anchor="middle" font-size="12" fill="#666">The loop sequences six ports and decides nothing. Every judgement lives behind one of them.</text>
+
+  <!-- the loop, centre -->
+  <rect x="330" y="238" width="260" height="86" rx="6" fill="#E8EDF9" stroke="#1F3A93" stroke-width="2.5"/>
+  <text x="460" y="264" text-anchor="middle" font-size="14" font-weight="bold" fill="#152B6E">THE RUNTIME LOOP</text>
+  <text x="460" y="283" text-anchor="middle" font-size="10.5" fill="#33478C">Ch 18 — the keystone, ~40 lines</text>
+  <text x="460" y="300" text-anchor="middle" font-size="10" fill="#33478C">claim → [ step → checkpoint ]* → release</text>
+  <text x="460" y="316" text-anchor="middle" font-size="10" font-weight="bold" fill="#A03030">decides nothing</text>
+
+  <!-- ports around it -->
+  <g font-size="10.5">
+    <!-- planner -->
+    <rect x="60" y="120" width="176" height="62" rx="5" fill="#FFF" stroke="#3355AA" stroke-width="1.6"/>
+    <text x="72" y="140" font-weight="bold" fill="#152B6E">Ch 10  Planner</text>
+    <text x="72" y="156" font-size="9.5" fill="#555">proposes; never acts</text>
+    <text x="72" y="171" font-size="9.5" fill="#A03030">plans are immutable</text>
+
+    <!-- context -->
+    <rect x="60" y="196" width="176" height="62" rx="5" fill="#FFF" stroke="#3355AA" stroke-width="1.6"/>
+    <text x="72" y="216" font-weight="bold" fill="#152B6E">Ch 11  Context</text>
+    <text x="72" y="232" font-size="9.5" fill="#555">largest data movement</text>
+    <text x="72" y="247" font-size="9.5" fill="#A03030">writes nothing, ever</text>
+
+    <!-- memory -->
+    <rect x="60" y="272" width="176" height="62" rx="5" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.6"/>
+    <text x="72" y="292" font-weight="bold" fill="#8A4600">Ch 12  Memory</text>
+    <text x="72" y="308" font-size="9.5" fill="#7A4300">four subsystems</text>
+    <text x="72" y="323" font-size="9.5" fill="#A03030">a run writes this one</text>
+
+    <!-- reasoning -->
+    <rect x="60" y="348" width="176" height="62" rx="5" fill="#FFF" stroke="#3355AA" stroke-width="1.6"/>
+    <text x="72" y="368" font-weight="bold" fill="#152B6E">Ch 13  Model port</text>
+    <text x="72" y="384" font-size="9.5" fill="#555">metered, capped, abortable</text>
+    <text x="72" y="399" font-size="9.5" fill="#A03030">exactly one door</text>
+
+    <!-- tools -->
+    <rect x="684" y="120" width="176" height="62" rx="5" fill="#FFF" stroke="#3355AA" stroke-width="1.6"/>
+    <text x="696" y="140" font-weight="bold" fill="#152B6E">Ch 14  Tool engine</text>
+    <text x="696" y="156" font-size="9.5" fill="#555">two surfaces, one gate</text>
+    <text x="696" y="171" font-size="9.5" fill="#A03030">effect tag from registry</text>
+
+    <!-- aci -->
+    <rect x="684" y="196" width="176" height="62" rx="5" fill="#FFF" stroke="#3355AA" stroke-width="1.6"/>
+    <text x="696" y="216" font-weight="bold" fill="#152B6E">Ch 15  ACI design</text>
+    <text x="696" y="232" font-size="9.5" fill="#555">verbs, args, results, errors</text>
+    <text x="696" y="247" font-size="9.5" fill="#A03030">errors are instructions</text>
+
+    <!-- observation -->
+    <rect x="684" y="272" width="176" height="62" rx="5" fill="#FFF8F0" stroke="#B85C00" stroke-width="1.6"/>
+    <text x="696" y="292" font-weight="bold" fill="#8A4600">Ch 16  Observation</text>
+    <text x="696" y="308" font-size="9.5" fill="#7A4300">what the model COULD see</text>
+    <text x="696" y="323" font-size="9.5" fill="#A03030">never fails a run</text>
+
+    <!-- state manager -->
+    <rect x="684" y="348" width="176" height="62" rx="5" fill="#FFF" stroke="#3355AA" stroke-width="1.6"/>
+    <text x="696" y="368" font-weight="bold" fill="#152B6E">Ch 17  State manager</text>
+    <text x="696" y="384" font-size="9.5" fill="#555">lease + version CAS</text>
+    <text x="696" y="399" font-size="9.5" fill="#A03030">ownership is a value</text>
+  </g>
+
+  <!-- connectors -->
+  <g stroke="#7B8FC7" stroke-width="1.4" fill="none">
+    <path d="M236 151 C 290 151, 300 262, 330 268"/>
+    <path d="M236 227 C 290 227, 300 268, 330 274"/>
+    <path d="M236 303 C 290 303, 300 288, 330 288"/>
+    <path d="M236 379 C 290 379, 300 300, 330 296"/>
+    <path d="M684 151 C 630 151, 620 262, 590 268"/>
+    <path d="M684 227 C 630 227, 620 268, 590 274"/>
+    <path d="M684 303 C 630 303, 620 288, 590 288"/>
+    <path d="M684 379 C 630 379, 620 300, 590 296"/>
+  </g>
+
+  <!-- multi-agent below -->
+  <rect x="330" y="356" width="260" height="54" rx="5" fill="#FFF" stroke="#3355AA" stroke-width="1.6"/>
+  <text x="460" y="376" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#152B6E">Ch 19  Multi-agent</text>
+  <text x="460" y="392" text-anchor="middle" font-size="9.5" fill="#555">a sub-agent is a nested run: same loop, same ports</text>
+  <text x="460" y="405" text-anchor="middle" font-size="9.5" fill="#A03030">a context boundary, never a job title</text>
+  <path d="M460 324 L 460 356" stroke="#7B8FC7" stroke-width="1.4" fill="none"/>
+
+  <!-- containment band -->
+  <rect x="60" y="440" width="800" height="98" rx="6" fill="#FDF0E3" stroke="#B85C00" stroke-width="1.8"/>
+  <text x="460" y="462" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#8A4600">Ch 20 — six chapters independently arrived at the same boundary</text>
+  <text x="460" y="480" text-anchor="middle" font-size="10" fill="#7A4300">Each of these sits OUTSIDE what an evolution loop may edit, because an outcome-based reward would remove the protection.</text>
+  <g font-size="9.5" fill="#7A4300">
+    <text x="86" y="502">Ch 12  memory abstraction</text>
+    <text x="86" y="518" fill="#A03030">specific memories perform better — and leak</text>
+    <text x="330" y="502">Ch 13  model id and effort tier</text>
+    <text x="330" y="518" fill="#A03030">raise the tier, spend more, score better</text>
+    <text x="604" y="502">Ch 14  the effect tag</text>
+    <text x="604" y="518" fill="#A03030">re-tag effectful as pure, remove a slow gate</text>
+    <text x="86" y="533">Ch 16  redaction rules</text>
+    <text x="330" y="533">Ch 19  tool subsets (narrow only)</text>
+    <text x="604" y="533">Ch 28  the verifier</text>
+  </g>
+
+  <text x="460" y="566" text-anchor="middle" font-size="10.5" fill="#666">None of these is malicious. Each is what a competent engineer would do if the benchmark score were the only feedback.</text>
+  <text x="460" y="586" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#152B6E">Interlude I then builds stages 0–2 of this, in order, and stops where Level 3 becomes necessary.</text>
+</svg>

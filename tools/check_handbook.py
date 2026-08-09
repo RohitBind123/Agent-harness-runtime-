@@ -53,6 +53,20 @@ KNOWN_FENCE_LANGUAGES = {"python", "sql", "yaml", "json", "text", "bash", "diff"
 
 PROVENANCE_TAGS = {"AHE", "DAR", "INF", "BP", "FUT"}
 
+# Scripts that have no place in an English handbook. Latin-1 accents,
+# em dashes, and the section mark are deliberately NOT here: prose uses
+# them. See check_prose_script.
+FOREIGN_SCRIPT_RANGES = (
+    (0x0400, 0x04FF),   # Cyrillic
+    (0x0590, 0x05FF),   # Hebrew
+    (0x0600, 0x06FF),   # Arabic
+    (0x0900, 0x097F),   # Devanagari
+    (0x3040, 0x30FF),   # Hiragana, Katakana
+    (0x3400, 0x4DBF),   # CJK extension A
+    (0x4E00, 0x9FFF),   # CJK unified ideographs
+    (0xAC00, 0xD7AF),   # Hangul
+)
+
 # Section 5 and 7 are chapter-specific by design; the rest carry a fixed stem.
 SECTION_STEMS: dict[int, tuple[str, ...]] = {
     1: ("Motivation",),
@@ -416,6 +430,26 @@ def check_fence_languages(ch: Chapter) -> list[Finding]:
     return out
 
 
+def check_prose_script(ch: Chapter) -> list[Finding]:
+    """Catch non-Latin script in prose.
+
+    Prose legitimately contains em dashes, section marks, and accented
+    Latin, so a blanket ASCII rule (which diagrams do get) is wrong here.
+    But CJK, Cyrillic, Arabic, and similar have no place in an English
+    handbook, and they arrive as generation artifacts that read as
+    plausible until someone greps. Found in Ch 17 after it was written.
+    """
+    out: list[Finding] = []
+    for line_no, line in ch.prose_lines:
+        stray = sorted({c for c in line if any(
+            start <= ord(c) <= end for start, end in FOREIGN_SCRIPT_RANGES
+        )})
+        if stray:
+            out.append(Finding("error", line_no, "script",
+                               f"non-Latin script character(s) {stray} in prose"))
+    return out
+
+
 def check_prohibited_words(ch: Chapter) -> list[Finding]:
     out: list[Finding] = []
     for line_no, line in ch.prose_lines:
@@ -543,6 +577,7 @@ CHECKS = (
     check_figures,
     check_diagram_rendering,
     check_fence_languages,
+    check_prose_script,
     check_prohibited_words,
     check_provenance,
     check_cross_references,
