@@ -1,11 +1,11 @@
 # Reading Map
 
 **What this is:** a one-paragraph summary of every chapter, in plain language, so you can decide
-where to start without reading anything twice.
+where to start without reading anything twice. For the four structured reading tracks, see
+[F.1 — How to Read This Handbook](front-matter/f1-how-to-read-this-handbook.md).
 
 **What the book is:** how to build, operate, and improve the software that runs an AI agent — the
-*harness*, as distinct from the model. Forty-two chapters are written (0–41). The final eight
-(42–49, on systems that rewrite their own harness) are scoped and not yet written.
+*harness*, as distinct from the model. All fifty chapters are written (0–49).
 
 **How chapters are built:** every chapter opens with a real failure, explains the idea in plain
 language before any jargon, derives the mechanism instead of asserting it, and ends with the terms
@@ -43,7 +43,7 @@ conclusion is actionable this week.
 | **2 — Core components** | 10–20 | Each component opened up, one at a time | Complete |
 | **3 — Advanced runtime** | 21–32 | Making it survive crashes, contention, hostile input, and many machines | Complete |
 | **4 — Production engineering** | 33–41 | Operating it, paying for it, promising things about it, changing it safely | Complete |
-| **5 — Self-evolving systems** | 42–49 | A second agent that rewrites the first one's harness | **Not written** |
+| **5 — Self-evolving systems** | 42–49 | A second agent that rewrites the first one's harness | Complete |
 
 ---
 
@@ -219,31 +219,55 @@ incidents in one week, none of which raised an error, read through the instrumen
 
 ---
 
-## Level 5 — Self-Evolving Systems *(Ch 42–49)* — not yet written
+## [Level 5 — Self-Evolving Systems](levels/level-5-self-evolving.md) *(Ch 42–49)*
 
-A second agent that reads the first one's traces and rewrites its harness. Scoped in the
-[completion plan](blueprints/phase-3-completion-plan.md) §6.5.
+A second agent that reads the first one's traces and rewrites its harness.
 
-| Ch | Title | What it will cover |
-|---|---|---|
-| 42 | The Case for Harness Evolution | Why manual tuning cannot keep pace with model releases |
-| 43 | Component Observability | Making the harness legible as separate, editable pieces |
-| 44 | Experience Observability | Turning millions of tokens of traces into usable evidence |
-| 45 | Decision Observability | Every edit as a falsifiable prediction, recorded |
-| 46 | The Evolve Agent | The loop itself, and what it is forbidden to touch |
-| 47 | Attribution, Verdicts, and Rollback | Deciding whether an edit helped, and undoing it if not |
-| 48 | Limits | Why three edits that each helped do not add up |
-| 49 | Continuous Improvement and Governance | Running it in production, with humans above it |
+**42. The Case for Harness Evolution** — Why hand this job to a machine at all. Eighteen months and
+a hundred and forty-three harness edits netted 1.3 points, because almost none of the tuning
+survives a model change. **Read this before deciding whether the rest of Level 5 is for you.**
+
+**43. Component Observability** — Making the harness into something an edit can land on. Three weeks
+of correct edits measured zero, because a middleware hook nobody remembered was quietly doing the
+job of the file being edited.
+
+**44. Experience Observability** — Turning ten million tokens of traces into ten thousand a reader
+can hold. Thirty-four failures were reported as a discipline problem; the model had never been shown
+the file it was supposed to check.
+
+**45. Decision Observability** — Every edit as a claim that can be wrong. A loop reported 89%
+accuracy at predicting its own fixes; the real figure was 31%, and the gap was the width of the
+claims rather than dishonesty anywhere.
+
+**46. The Evolve Agent** — The loop itself, and the eleven things it may not touch. An engineer
+correctly diagnosed that the loop was fixing at the wrong level, moved the right level inside the
+boundary, and broke three production limits the benchmark could not see.
+
+**47. Attribution, Verdicts, and Rollback** — Deciding whether an edit helped, and undoing it if not.
+Six edits shipped together, one measurement came back, and the credit went to whichever entry
+happened to name the tasks that moved.
+
+**48. Limits** — What the loop cannot do. Three edits that each helped delivered a third less
+together, and ten iterations of rising scores hid a ten-point regression on the hardest slice.
+**Read this before deciding what to promise anyone.**
+
+**49. Continuous Improvement and Governance** — Running it in production, with humans above it. A
+weekly review that was never skipped watched four healthy numbers for five months while four
+unhealthy ones sat in the same database.
 
 ---
 
 ## Reference material
 
+- **[Front matter F.1-F.4](front-matter/f1-how-to-read-this-handbook.md)** — the four tracks, the
+  notation card, the reference system, and what the book is not.
 - **[Appendix A — Glossary](appendices/a-glossary.md)** — every term the book defines, with the
   chapter that introduced it. Generated from the chapters, so it cannot drift.
+- **[Appendix F — Invariant Checklist](appendices/f-invariant-checklist.md)** — the 35 properties
+  that must hold, each with a test recipe. The page to review against.
 - **[CONVENTIONS.md](CONVENTIONS.md)** — how the chapters are written: structure, diagram rules,
   vocabulary. Read only if you intend to write one.
-- **[Completion plan](blueprints/phase-3-completion-plan.md)** — what remains and in what order.
+- **[Completion plan](blueprints/phase-3-completion-plan.md)** — how the book was built, batch by batch.
 
 ## Notation you will meet
 

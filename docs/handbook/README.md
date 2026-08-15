@@ -4,6 +4,15 @@ The handbook teaches the architecture in dependency order. It uses a running ref
 
 Every chapter is written to be followable by an engineer new to both AI systems and distributed systems: each opens with a plain-language summary and a concrete analogy with its breaking point stated, derives its subject from first principles, and closes with a glossary of the terms it introduced. The rules are in [CONVENTIONS.md](CONVENTIONS.md) and are enforced by `tools/check_handbook.py`.
 
+## Front matter
+
+| # | Page | What it is |
+| --- | --- | --- |
+| F.1 | [How to Read This Handbook](front-matter/f1-how-to-read-this-handbook.md) | The four tracks, how a chapter is built, and what to skip |
+| F.2 | [Notation, Tags, and Diagram Legend](front-matter/f2-notation-tags-and-diagram-legend.md) | The reference card |
+| F.3 | [The Running System: ARK and Atlas](front-matter/f3-the-running-system.md) | The reference runtime and product, and Atlas's recurring numbers |
+| F.4 | [What This Handbook Is Not](front-matter/f4-what-this-handbook-is-not.md) | Scope limits, stated plainly |
+
 ## Levels
 
 | Level | Opener | Chapters |
@@ -13,6 +22,7 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 2 — Core Runtime Components | [Level 2](levels/level-2-core-components.md) | 10-20 |
 | 3 — Advanced Runtime Architecture | [Level 3](levels/level-3-advanced-runtime.md) | 21-32 |
 | 4 — Production Engineering | [Level 4](levels/level-4-production.md) | 33-41 |
+| 5 — Self-Evolving Systems | [Level 5](levels/level-5-self-evolving.md) | 42-49 |
 
 ## Available chapters
 
@@ -60,6 +70,14 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | [39. GitOps and CI/CD for Agent Systems](chapters/39-gitops-and-cicd-for-agent-systems.md) | Production engineering | The harness as code, two gates, and why review is not the control |
 | [40. Testing a Non-Deterministic System](chapters/40-testing-a-non-deterministic-system.md) | Production engineering | Three tiers around the model port, replay from real traces, and the retry prohibition |
 | [41. Evaluation Infrastructure](chapters/41-evaluation-infrastructure.md) | Production engineering | The noise floor, rollouts per task, and the gate into Level 5 |
+| [42. The Case for Harness Evolution](chapters/42-the-case-for-harness-evolution.md) | Self-evolving systems | Harness fit as a rate rather than a stock, and the reading bottleneck that decides what to automate |
+| [43. Component Observability](chapters/43-component-observability.md) | Self-evolving systems | Orthogonality as an attribution property, and a seed deliberately left unfitted |
+| [44. Experience Observability](chapters/44-experience-observability.md) | Self-evolving systems | Distillation as a routing decision, and why a summary of behaviour can only blame the model |
+| [45. Decision Observability](chapters/45-decision-observability.md) | Self-evolving systems | The change manifest as a bet with the odds written down, and why precision without claim width measures the test |
+| [46. The Evolve Agent](chapters/46-the-evolve-agent.md) | Self-evolving systems | Eleven things the loop may not edit, collected, and the displacement a boundary costs |
+| [47. Attribution, Verdicts, and Rollback](chapters/47-attribution-verdicts-and-rollback.md) | Self-evolving systems | Six edits and one measurement, the four states an intersection cannot separate, and a verdict that abstains |
+| [48. Limits](chapters/48-limits.md) | Self-evolving systems | Gains that do not stack, an aggregate hiding a trade, and the one limit that is fixable this week |
+| [49. Continuous Improvement and Governance](chapters/49-continuous-improvement-and-governance.md) | Self-evolving systems | A review is its agenda: eleven numbers, three gates, and the one everybody adds that should be deleted |
 
 ## Completion status
 
@@ -70,16 +88,30 @@ Every chapter is written to be followable by an engineer new to both AI systems 
 | 2 — Core Runtime Components | 10-20 | 11 of 11 | Complete |
 | 3 — Advanced Runtime Architecture | 21-32 | 12 of 12 | Complete |
 | 4 — Production Engineering | 33-41 | 9 of 9 | Complete |
-| 5 — Self-Evolving Systems | 42-49 | 0 of 8 | Not started |
+| 5 — Self-Evolving Systems | 42-49 | 8 of 8 | Complete |
 
-Levels 0-4 are complete (Chapters 0-41, both interludes, five level openers). Level 5 is scoped and not started; Chapter 42, *The Case for Harness Evolution*, is next in sequence. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5.
+Levels 0-4 are complete (Chapters 0-41, both interludes, five level openers). **All 50 chapters are written**, along with both interludes and six level openers. What remains is Batch 6 — front matter, Appendices B through J, a full cross-reference pass, and the recompiled DOCX reading edition — scoped in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5. The batch schedule is in the [Phase 3 completion plan](blueprints/phase-3-completion-plan.md) §5, and the per-chapter briefs are in its §6.5.
 
 ## Reference material
 
 - [READING-MAP.md](READING-MAP.md) — a plain-language summary of every chapter and suggested starting points. **Start here if you are deciding what to read.**
 
 - [CONVENTIONS.md](CONVENTIONS.md) — the authoring card: chapter skeleton, the four on-ramp blocks, diagram vocabulary, provenance rules, naming, prohibited words, and the definition of done.
-- [Appendix A — Glossary](appendices/a-glossary.md) — every term the handbook defines, generated from the chapters.
+- **Appendices** — all ten written. A, D, E, G, H, I, and J are generated from the chapters and
+  regenerate with them; B, C, and F are hand-written.
+
+  | # | Appendix | State |
+  | --- | --- | --- |
+  | A | [Glossary](appendices/a-glossary.md) | Generated — 489 terms |
+  | B | [Naming Conventions](appendices/b-naming-conventions.md) | Hand-written |
+  | C | [Diagram Conventions and Legend](appendices/c-diagram-conventions.md) | Hand-written |
+  | D | [Reference Schema](appendices/d-reference-schema.md) | Generated from every §9 |
+  | E | [Port Signatures](appendices/e-port-signatures.md) | Generated from every §8 — 109 ports |
+  | F | [Invariant Checklist](appendices/f-invariant-checklist.md) | Hand-written — 35 invariants with a test recipe each |
+  | G | [Failure Mode Catalogue](appendices/g-failure-mode-catalogue.md) | Generated from every §11 — 478 entries |
+  | H | [Anti-Pattern Index](appendices/h-anti-pattern-index.md) | Semi-generated |
+  | I | [Bibliography and Source Map](appendices/i-bibliography-and-source-map.md) | Generated — 68 citations, reverse-indexed |
+  | J | [Chapter Prerequisites and Unlocks](appendices/j-chapter-prerequisites-and-unlocks.md) | Generated from the header blocks |
 - [Interlude I — Assembling a Minimal Runtime](interludes/interlude-1-assembling-a-minimal-runtime.md) — a narrative build of stages 0-2, after Chapter 20.
 
 ## Blueprints
@@ -94,11 +126,14 @@ Run from the repository root:
 
 ```bash
 python3 tools/check_handbook.py     # convention linter; must exit zero
-python3 tools/build_glossary.py     # regenerate Appendix A from the chapters
+python3 tools/check_xrefs.py        # every `Ch NN §M` resolves to a real section
+python3 tools/build_glossary.py     # regenerate Appendix A
+python3 tools/build_appendices.py   # regenerate Appendices D, E, G, H, I, J
+python3 tools/compile_handbook.py   # rebuild the DOCX reading edition
 ```
 
-The linter checks figure counts against the declared tier, diagram width and ASCII purity, section structure, on-ramp blocks, header and dependency-spine consistency, prohibited words, provenance tags, cross-reference validity, and the chapter hand-off.
+The linter checks figure counts against the declared tier, diagram width and ASCII purity, section structure, on-ramp blocks, header and dependency-spine consistency, prohibited words, provenance tags, cross-reference validity, and the chapter hand-off. It works one chapter at a time, so it can tell that a referenced chapter exists but not that the section it names does; `check_xrefs.py` builds the section index for the whole corpus and resolves every reference against it. Both builders accept `--check`, which verifies the generated files are current without writing.
 
 ## Compiled edition
 
-The [compiled Word handbook](compiled/next-generation-autonomous-ai-agent-architecture-handbook.docx) is a version 0.8 reading edition containing the Phase 1 and Phase 2 blueprints plus Chapters 0-7. For editable content and reviewable diffs, treat the Markdown files as canonical.
+The [compiled Word handbook](compiled/next-generation-autonomous-ai-agent-architecture-handbook.docx) is the **version 1.0 reading edition**: front matter, all fifty chapters in reading order with their level openers, both interludes at their designated positions, and all ten appendices. Rebuild it with `python3 tools/compile_handbook.py`. For editable content and reviewable diffs, treat the Markdown files as canonical.

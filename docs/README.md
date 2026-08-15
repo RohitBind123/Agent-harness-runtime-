@@ -18,16 +18,17 @@ Read the [Agentic Harness Engineering paper](research/agentic-harness-engineerin
 
 ### Read the compiled edition
 
-Use the [compiled handbook draft](handbook/compiled/next-generation-autonomous-ai-agent-architecture-handbook.docx) for a single Word document containing both blueprints and all currently written chapters.
+Use the [compiled handbook](handbook/compiled/next-generation-autonomous-ai-agent-architecture-handbook.docx) for a single Word document — the v1.0 reading edition, containing the front matter, all fifty chapters in reading order, both interludes, and all ten appendices.
 
 ## Artifact map
 
 | Area | Purpose | Current state |
 | --- | --- | --- |
-| [Handbook chapters](handbook/chapters/) | Progressive explanation and production guidance | Chapters 0-41 available; Levels 0-4 complete |
+| [Handbook chapters](handbook/chapters/) | Progressive explanation and production guidance | All 50 chapters (0-49) available; Levels 0-5 complete |
 | [Authoring conventions](handbook/CONVENTIONS.md) | Chapter skeleton, on-ramp blocks, diagram and naming rules, definition of done | Current; enforced by the linter |
-| [Appendix A — Glossary](handbook/appendices/a-glossary.md) | Every defined term with provenance and defining chapter | Generated from the chapters |
-| [Level openers](handbook/levels/) | What each level teaches, what it assumes, and its exit condition | Levels 0-2 available |
+| [Front matter](handbook/front-matter/) | The four reading tracks, the notation card, the reference system, and the scope limits | F.1-F.4 complete |
+| [Appendices](handbook/appendices/) | Glossary, naming, diagrams, schema, ports, invariants, failure modes, anti-patterns, sources, and the dependency spine | All ten written; A, D, E, G, H, I, J generated from the chapters |
+| [Level openers](handbook/levels/) | What each level teaches, what it assumes, and its exit condition | Levels 0-5 available |
 | [Handbook blueprints](handbook/blueprints/) | Planned 50-chapter structure, dependency graph, conventions, roadmaps, and the completion plan | Phase 3 is the execution plan |
 | [Architecture specification](architecture/universal-runtime-v1.0-architecture-specification.md) | Detailed runtime system design and contracts | v1.0 specification |
 | [Research paper](research/agentic-harness-engineering-paper.pdf) | Evidence and method for observability-driven harness evolution | arXiv v4, 18 May 2026 |

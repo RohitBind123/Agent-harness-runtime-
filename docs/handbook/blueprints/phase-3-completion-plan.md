@@ -551,19 +551,22 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 
 ## 9a. Where this stands, and how to resume
 
-**Delivered: batches 0, 1, and 2 in full, plus the first three chapters of batch 3.** The handbook is at 24 of
-50 chapters, Levels 0 and 1 are complete, and the linter reports zero errors across all of them.
+**Delivered: all seven batches. The plan is complete.** Fifty chapters, six levels, two interludes,
+six level openers, front matter F.1-F.4, ten appendices, and a v1.0 compiled edition. The linter
+reports zero errors and every cross-reference resolves.
 
 | | State |
 |---|---|
-| Chapters | 0–23 written; Levels 0-2 complete, Level 3 at 3 of 12 |
-| Tooling | `check_handbook.py` (13 checks), `build_glossary.py` (Appendix A, 110 terms) |
-| Conventions | `CONVENTIONS.md` is the single authoring card; four revisions recorded in its §7 |
-| Level openers | L0, L1, L2 written; L3-L5 outstanding |
-| SVGs | 6 of the planned 9 |
+| Chapters | 0–49, all written; Levels 0-5 complete |
+| Tooling | `check_handbook.py` (14 checks), `check_xrefs.py`, `build_glossary.py`, `build_appendices.py`, `compile_handbook.py` |
+| Conventions | `CONVENTIONS.md` is the single authoring card; five revisions recorded in its §7 |
+| Level openers | L0–L5 written |
+| Front matter | F.1–F.4 written |
+| Appendices | A–J written; A, D, E, G, H, I, J generated |
+| SVGs | 9 of the planned 9 |
 | Commits | one per batch, on `main` |
 
-**To resume, start at Chapter 42 (The Case for Harness Evolution), the first chapter of Level 5.** The procedure for any remaining chapter:
+**Nothing remains.** The procedure below applied to each of the fifty chapters and is recorded for anyone extending the book:
 
 1. Read the chapter's brief in §6 of this document, and its `Requires`/`Unlocks` in the Phase 2 §4
    spine.
@@ -625,20 +628,20 @@ reader checks and the easiest thing to leave stale; treat a mismatch as a batch 
 - [x] L4 opener + `level-4-production-surfaces.svg`
 - [x] READMEs updated · [x] linter green · [x] commit
 
-### Batch 5 — Level 5
-- [ ] C42 · [ ] C43 · [ ] C44 · [ ] C45 · [ ] C46 · [ ] C47 · [ ] C48 · [ ] C49
-- [ ] L5 opener
-- [ ] §14 variant applied throughout
-- [ ] READMEs updated · [ ] linter green · [ ] commit
+### Batch 5 — Level 5 — **complete**
+- [x] C42 · [x] C43 · [x] C44 · [x] C45 · [x] C46 · [x] C47 · [x] C48 · [x] C49
+- [x] L5 opener
+- [x] §14 variant applied throughout *(C42-C49, all Relation to the Base Runtime)*
+- [x] READMEs updated · [x] linter green · [ ] commit
 
-### Batch 6 — Close
-- [ ] F.1 · [ ] F.2 · [ ] F.3 · [ ] F.4
-- [ ] Appendix A · [ ] B · [ ] C · [ ] D · [ ] E · [ ] F · [ ] G · [ ] H · [ ] I · [ ] J
-- [ ] Full cross-reference resolution pass
-- [ ] Compiled DOCX v1.0
-- [ ] All three READMEs report complete
-- [ ] Final linter pass across all 50 chapters
+### Batch 6 — Close — **complete**
+- [x] F.1 · [x] F.2 · [x] F.3 · [x] F.4
+- [x] Appendix A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [x] H · [x] I · [x] J
+- [x] Full cross-reference resolution pass *(mechanised as `tools/check_xrefs.py`; 3 genuine breaks found and fixed)*
+- [x] Compiled DOCX v1.0 *(`tools/compile_handbook.py`; front matter, 50 chapters in reading order, both interludes, A-J)*
+- [x] All three READMEs report complete
+- [x] Final linter pass across all 50 chapters
 
 ---
 
-*End of Phase 3 plan. Batch 0 begins on approval.*
+*End of Phase 3 plan. All seven batches delivered.*
