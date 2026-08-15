@@ -166,7 +166,7 @@ problem disappears, and that observation costs a table.
 | If nobody handles it | an error | fine; nobody was listening |
 | Carries | intent | fact |
 
-`[INF]` The naming convention (Chapter 3 §7.3) exists to keep these visible in logs and traces, and
+`[INF]` The naming convention (Appendix B) exists to keep these visible in logs and traces, and
 the test for whether you have them right is the refusal row: if your "event" can be rejected by its
 recipient, it is a command that was named wrongly, and something upstream is about to depend on a
 response that events do not have.
@@ -427,7 +427,7 @@ twice is harmless, so the most common consumer needs no dedup machinery at all.
 `[DAR §7.1]` Commands are the downward half of Chapter 4's waist, and they differ from events in the
 ways §2.3 tabulated. Three properties:
 
-**They carry an idempotency key.** `<command>:<scope>:<digest>` (Chapter 3 §7.3). The domain dedups
+**They carry an idempotency key.** `<command>:<scope>:<digest>` (Appendix B). The domain dedups
 on it, which is what makes at-least-once delivery safe for something that changes the world.
 
 **They may be refused.** A domain that rejects a command emits a rejection event, and the run learns

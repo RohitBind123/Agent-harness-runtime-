@@ -149,7 +149,7 @@ CREATE TABLE activities (
 ```
 
 The primary key is the identity from Chapter 10 §5.1 — `hash(run_id, plan_id, step_id, tool_id,
-input_digest)` — computed when the step is planned, before anything runs. Chapter 14 §4.2 explained
+input_digest)` — computed when the step is planned, before anything runs. Chapter 14 §4.1 explained
 why that timing is not negotiable: an identity computed at dispatch cannot prevent the duplicate
 dispatch that computes the same identity at the same instant.
 
