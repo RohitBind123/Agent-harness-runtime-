@@ -17,6 +17,15 @@ The per-chapter briefs and the batch history are in
 
 ---
 
+## Other workstreams
+
+- **StaQuest B2B vendor business** —
+  [`staquest_product_onboarding/todo.md`](../staquest_product_onboarding/todo.md).
+  Strategy memo, PRD review and inbound reply drafts live in the same folder. Phase 0 is
+  sales, not engineering.
+
+---
+
 ## Standing tasks
 
 Maintenance obligations, not outstanding work. Run them after any chapter edit.
