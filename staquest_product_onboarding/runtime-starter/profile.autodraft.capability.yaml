@@ -1,0 +1,95 @@
+# capabilities/staquest/descriptors/profile_autodraft.capability.yaml
+#
+# Replaces the PRD's 4-step wizard. Vendor pastes a URL; ~30 seconds later they are
+# correcting a filled-in profile instead of filling in 27 empty fields.
+#
+# The interesting part of this file is `outputs.guarantees`. That block is where the
+# strategy memo's field-level provenance requirement and rules/common/data-quality.md
+# stop being conventions a reviewer has to catch, and become declared guarantees with
+# deterministic checks in CI.
+#
+# Schema: spec §9.3
+
+apiVersion: capabilities.universal/v1
+kind: CapabilityDescriptor
+
+id: profile.autodraft
+display_name: Draft a vendor profile from a website
+description: >
+  Given a product URL, fetch the homepage, pricing page and docs in parallel, then
+  extract a structured StaQuest profile draft. Every extracted field carries its
+  source and a confidence score. The draft is never published — it is returned to
+  the vendor for correction and explicit approval in the app plane.
+
+inputs:
+  schema: schemas/profile_autodraft.input.json
+  required: [website_url, tenant_id]
+  optional: [pricing_page_url, docs_url, existing_tool_id, category_hint]
+
+outputs:
+  schema: schemas/profile_autodraft.output.json
+  guarantees:
+    # --- provenance (strategy memo §9.3) ---
+    - every emitted field carries claim_source, claim_confidence and source_url
+    - claim_source is one of [crawled, llm_extracted] — never staquest_verified
+    - no field is emitted with confidence above 0.9 without a direct source_url
+
+    # --- data quality (rules/common/data-quality.md §1) ---
+    - an absent price is emitted as null, never as 0
+    - has_free_tier is only true when free-tier terms were actually observed
+    - a page that failed to fetch is reported, never silently dropped
+
+    # --- neutrality (strategy memo §5) ---
+    - no dimension score is emitted under any circumstances
+    - no ranking position is emitted under any circumstances
+    - competitor names are extracted as claims by the vendor, never as verdicts
+
+required_tools:
+  any_of:
+    - [tool.web.fetch_page, tool.web.fetch_pricing_page]
+
+permissions:
+  - network.read
+  - package.knowledge.read
+
+execution_mode: PARALLEL_SAFE
+idempotent: true
+side_effects: none          # the draft is returned, not written. The app plane
+                            # writes only after the vendor approves it.
+
+cost_estimate:
+  model_calls: { typical: 2, maximum: 6 }
+  tokens:      { typical: 28000, maximum: 90000 }
+  currency:    { typical: 0.09, maximum: 0.31 }
+  # ~$0.09 to onboard a vendor. Against a $199/mo tier this is free.
+  # The maximum is what budget/reservation_writer.py debits at dispatch.
+
+latency_estimate:
+  p50_seconds: 14
+  p95_seconds: 38
+  timeout_seconds: 120
+  # p95 of 38s is above the "feels instant" threshold, so the app plane must stream
+  # progress rather than block. Until the Experience layer exists (milestone D), a
+  # simple polling endpoint is fine.
+
+failure_modes:
+  - id: site_unreachable
+    retryable: true
+    backoff: exponential
+  - id: javascript_only_site
+    retryable: false
+    action: request_clarification      # fall back to the manual form for this vendor
+  - id: pricing_not_public
+    retryable: false
+    action: emit_partial               # emit the profile with pricing null +
+                                       # "Contact sales", which is the honest answer
+  - id: ambiguous_product_identity
+    retryable: false
+    action: request_clarification      # multi-product companies; ask which one
+
+observability:
+  deterministic_checks:
+    - every_field_has_provenance
+    - no_null_coerced_to_zero
+    - no_score_or_ranking_in_output    # structural guard on the neutrality promise
+    - unreachable_reported_not_dropped

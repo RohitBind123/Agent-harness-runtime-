@@ -1,0 +1,152 @@
+# capabilities/staquest/descriptors/visibility_audit.capability.yaml
+#
+# REV 2 — corrected after reading Ch 41 (Evaluation Infrastructure) and Ch 48 (Limits).
+# Rev 1 specified 100 queries x 5 engines x k=1 and reported a single aggregate citation
+# rate. Both were wrong, and in a way that would have shipped a dishonest product.
+#
+# WHAT CHANGED AND WHY
+#
+#  1. k=5 rollouts, not k=1.  An answer engine is non-deterministic. Ask the same question
+#     twice and the citation set differs. Ch 41's cold open: two runs of an UNCHANGED
+#     harness scored 71 and 76, and three months of ship/revert decisions had been driven
+#     by effects smaller than that spread. Ch 41 5.2: spending a fixed budget on more
+#     rollouts of fewer queries narrows the floor MORE than more queries at k=1.
+#     So: 20 queries x 5 engines x k=5, not 100 x 5 x 1. Same call count, far more signal.
+#
+#  2. Paired against a named competitor, always.  Ch 41 5.1 lists pairing as "usually the
+#     cheapest large win" because query difficulty cancels. The happy accident is that the
+#     paired metric ("share of voice vs Intercom") is also the one that sells. The honest
+#     metric and the commercial metric are the same metric.
+#
+#  3. Per-slice output, never one aggregate.  Ch 48's cold open: ten iterations raised the
+#     aggregate 69.7 -> 77.0 while the hard slice went 51.7 -> 53.3, beaten by ten points
+#     by one of its own components. Of Ch 48's four limits, this is the ONE that is fixable,
+#     and the fix is to gate per slice. A vendor gaining on generic category queries while
+#     losing on high-intent comparison queries must never see one number that hides it.
+#
+#  4. noise_floor_pp is a required output field.  Invariant E20: an effect size is never
+#     reported without its floor -- enforced by making SliceEffect unconstructable without
+#     it. E15: an inside-floor result is UNDETERMINED, never a win.
+#
+# Schema: DAR spec 9.3. Invariants: handbook Appendix F.
+
+apiVersion: capabilities.universal/v1
+kind: CapabilityDescriptor
+
+id: visibility.audit
+display_name: Measure a brand's presence across answer engines, per slice, against a floor
+description: >
+  For a product and its category's real buying queries, probe each answer engine k times,
+  parse citations, and report per-slice share of voice paired against named competitors —
+  each slice carrying its own measured noise floor. The query set comes from observed
+  StaQuest buyer behaviour rather than guesswork, which is the advantage a standalone AEO
+  tool structurally cannot copy.
+
+inputs:
+  schema: schemas/visibility_audit.input.json
+  required:
+    - tool_id
+    - tenant_id
+    - query_set_id          # slices are declared in the query set, not inferred
+    - engines
+    - competitor_ids        # REQUIRED. An unpaired audit is a worse measurement (Ch 41 5.1)
+    - rollouts_k            # REQUIRED. No default — k=1 must be a deliberate, logged choice
+  optional:
+    - baseline_audit_id
+    - engine_model_triples  # for the invalidation register (Ch 38, E24)
+
+outputs:
+  schema: schemas/visibility_audit.output.json
+  guarantees:
+    # --- measurement honesty (E20, E15, E24) ---
+    - every reported effect size carries the noise floor of its own slice
+    - a delta smaller than its slice floor is reported as UNDETERMINED, never as a gain
+    - results are emitted per slice; no single aggregate citation rate is ever emitted
+    - the audit refuses to report a delta when the baseline's engine model triple differs
+      from the current one, and reports "baseline invalidated — remeasure" instead
+
+    # --- observation honesty ---
+    - every "mentioned" verdict cites the engine response it was observed in
+    - an engine that failed to respond is reported unavailable, never as "not mentioned"
+    - share of voice is computed only over engines that actually returned a response
+    - a query returning zero citations is reported, never dropped from the denominator
+
+    # --- neutrality (strategy memo section 5) ---
+    - competitor comparisons report observed mentions only, never a ranking or a score
+
+required_tools:
+  any_of:
+    - [tool.answer_engine.query, tool.parse.citation_extractor]
+
+permissions:
+  - network.read
+  - package.knowledge.read
+  - tenant.data.read          # R22: scoping asserted on every read path, all nine stores
+
+execution_mode: PARALLEL_SAFE
+idempotent: true              # R8 / spec I9: identity computed at plan time. A retried
+                              # audit replays rather than re-spending. At 500+ calls a run
+                              # this is real money, and it is also why the audit must never
+                              # be billed per attempt.
+side_effects: none
+
+cost_estimate:
+  # Per PROBE. One probe = one query, one engine, one rollout.
+  model_calls: { typical: 1, maximum: 2 }
+  tokens:      { typical: 3500, maximum: 9000 }
+  currency:    { typical: 0.012, maximum: 0.04 }
+  #
+  # Full audit at 20 queries x 5 engines x k=5 = 500 probes:
+  #   typical ~$6.00   maximum ~$20.00
+  # Rev 1 quoted these same totals for k=1, which understated the cost of a
+  # DETECTABLE audit by 5x. The floor measurement below is an additional 500 probes
+  # the first time and on every engine model change.
+  #
+  # budget_policy.yaml caps a single audit at $35. Breaching the cap PARKS the graph for
+  # review rather than truncating the query set: a truncated audit that still reports a
+  # number is worse than one that admits it stopped. R14 — the reservation is settled or
+  # swept.
+  #
+  # The metric that actually matters is not this one. Ch 35: track cost per audit that
+  # produced an actionable finding, not cost per call. Ch 41 1.4: "score alone rewards
+  # spending more" — the Amplify headline is citation lift per dollar.
+
+latency_estimate:
+  p50_seconds: 6
+  p95_seconds: 22
+  timeout_seconds: 60
+  # Per probe. A full audit is tens of minutes and must run as a parked, resumable graph
+  # with progress streamed — never a request a vendor waits on (Ch 8: two clocks).
+
+failure_modes:
+  - id: engine_rate_limited
+    retryable: true
+    backoff: exponential
+  - id: engine_unavailable
+    retryable: true
+    backoff: exponential
+  - id: engine_refused_query
+    retryable: false
+    action: report_unavailable      # NOT "not mentioned". The distinction between
+                                    # "we could not measure" and "you were absent" is the
+                                    # difference between honest data and a lie.
+  - id: engine_model_changed_mid_audit
+    retryable: false
+    action: invalidate_and_park     # Ch 38: the engine's model is a version axis we neither
+                                    # control nor can roll back. Mixing pre- and post-change
+                                    # probes in one number is the Ch 38 cold open with a
+                                    # customer attached.
+  - id: citation_unparseable
+    retryable: false
+    action: report_partial
+
+observability:
+  deterministic_checks:
+    - effect_size_has_slice_floor          # E20
+    - inside_floor_reported_undetermined   # E15
+    - floor_current_for_engine_model       # E24
+    - no_aggregate_only_output             # Ch 48 5.3
+    - every_mention_cites_a_response
+    - unavailable_engines_excluded_from_denominator
+    - no_ranking_in_output
+    - tenant_scope_respected               # R22

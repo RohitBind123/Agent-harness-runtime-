@@ -1,0 +1,109 @@
+# packages/staquest_vendor/package.manifest.yaml
+#
+# The StaQuest B2B domain package. Per spec §8.17 this is the ONLY surface
+# evolution/ is ever permitted to write to, and it must contain nothing true of
+# one customer rather than of the system.
+#
+# Schema: universal-runtime-v1.0-architecture-specification.md §9.2
+
+apiVersion: packages.universal/v1
+kind: PackageManifest
+
+id: staquest_vendor
+version: 0.1.0
+display_name: StaQuest Vendor
+description: >
+  Catalogue verification, vendor profile extraction, answer-engine visibility
+  auditing, and approved content publication for the StaQuest B2B product.
+maintainers: [rohit]
+
+compatibility:
+  supported_runtime: ">=1.0.0,<2.0.0"
+  package_api: "1.0"
+  model_affinity:
+    tuned_for:
+      provider: anthropic
+      model_id: claude-sonnet-5
+      reasoning_effort: medium
+    verified_on: []          # populate from evaluation/rubrics.yaml runs
+    untested_warning: true
+
+prompts:
+  system: prompts/system_prompt.md
+  modules:
+    # Order matters — assembled in sequence by runtime/prompt/.
+    - prompts/extraction_discipline.module.md    # NULL is never 0; no invented prices
+    - prompts/provenance_discipline.module.md    # every field carries a source_url
+    - prompts/neutrality_discipline.module.md    # never rank, never suppress, never score on request
+
+capabilities:
+  enabled:
+    - catalogue.reverify          # build first — internal only, no customer exposure
+    - profile.autodraft
+    - profile.factcheck
+    - visibility.audit
+    - intelligence.narrate
+    - content.draft
+    - content.publish             # EFFECTFUL — requires a resolved APPROVAL node (I14)
+  disabled_inherited: []
+
+tools:
+  # A package may narrow, never widen, the tool surface.
+  allowed:
+    - tool.web.fetch_page
+    - tool.web.fetch_pricing_page
+    - tool.answer_engine.query          # ChatGPT / Perplexity / Claude / Gemini / AI Overviews
+    - tool.parse.citation_extractor
+    - tool.staquest.read_catalogue
+    - tool.staquest.write_verification  # EFFECTFUL, internal, never vendor-triggered
+    - tool.cms.publish_draft            # EFFECTFUL
+    - tool.notify.send_email            # EFFECTFUL
+  denied:
+    - tool.terminal.run_command
+    - tool.staquest.write_dimension_score   # NEVER. Scores are not machine-writable
+                                            # and not vendor-writable. See integrity_policy.
+    - tool.staquest.write_ranking           # NEVER. The ranking is not for sale and not
+                                            # reachable from any capability in this package.
+
+workflows:
+  - workflows/monthly_visibility_report.workflow.yaml
+  - workflows/catalogue_freshness_sweep.workflow.yaml
+
+policies:
+  - policies/integrity_policy.yaml      # "sell everything except the ranking", made executable
+  - policies/budget_policy.yaml
+  - policies/tenancy_policy.yaml
+
+skills:
+  - skills/pricing_extraction/SKILL.md
+  - skills/citation_attribution/SKILL.md
+
+knowledge:
+  static: knowledge/category_taxonomy.yaml
+
+memory:
+  config: memory/memory_config.yaml
+  scope: per_tenant          # NOT NEGOTIABLE. Vendor A must never see Vendor B's
+                             # comparison or intent data through a shared store or a
+                             # shared context window. See spec Ch. 37 and §9.2.2.
+  abstraction_required: true
+
+evaluation:
+  rubrics: evaluation/rubrics.yaml
+  benchmark_task_set: staquest_extraction_v1     # the 50-tool hand-built golden set
+  minimum_pass_at_1: 0.90                        # deliberately high: a wrong extracted
+                                                 # price corrupts the asset the whole
+                                                 # business rests on
+
+templates:
+  - templates/visibility_report.md
+  - templates/weekly_digest.md
+  - templates/publish_approval_request.md
+
+evolution:
+  evolvable_components:
+    - prompts
+    - skills
+    - memory
+  # policies are deliberately NOT evolvable. The integrity policy is the one thing an
+  # automated loop must never be able to relax.

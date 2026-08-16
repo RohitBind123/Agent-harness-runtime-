@@ -1,0 +1,78 @@
+# capabilities/staquest/descriptors/catalogue_reverify.capability.yaml
+#
+# BUILD THIS ONE FIRST.
+#
+# Read-only, idempotent, internal, no customer exposure. It exercises fan-out,
+# budget reservation, cost drift and observation aggregation — everything that
+# must work before an expensive capability runs on a paying customer's money.
+# If it breaks, nobody churns.
+#
+# It also directly produces the "freshness" that Layer 1 sells.
+#
+# Schema: spec §9.3
+
+apiVersion: capabilities.universal/v1
+kind: CapabilityDescriptor
+
+id: catalogue.reverify
+display_name: Re-verify a catalogue entry against its live source
+description: >
+  Given a tool in the StaQuest catalogue, re-fetch its pricing page and homepage,
+  diff the observed pricing tiers and free-tier terms against what is stored, and
+  report drift. Never writes the catalogue directly — emits a verification record
+  for the app plane to apply.
+
+inputs:
+  schema: schemas/catalogue_reverify.input.json
+  required: [tool_id, website_url]
+  optional: [pricing_page_url, last_verified_at]
+
+outputs:
+  schema: schemas/catalogue_reverify.output.json
+  guarantees:
+    - every reported tier carries the source_url it was observed on
+    - a page that failed to fetch is reported as unreachable, never as "no pricing"
+    - absence of an observed price is emitted as null, never as 0
+    - a tier is only reported as changed when both the stored and observed values are non-null
+
+required_tools:
+  any_of:
+    - [tool.web.fetch_pricing_page, tool.web.fetch_page]
+
+permissions:
+  - network.read
+  - package.knowledge.read
+
+execution_mode: PARALLEL_SAFE
+idempotent: true
+side_effects: none
+
+cost_estimate:
+  model_calls: { typical: 1, maximum: 3 }
+  tokens:      { typical: 12000, maximum: 45000 }
+  currency:    { typical: 0.04, maximum: 0.15 }
+  # At 3,415 tools a full sweep is ~$137 typical / ~$512 worst case.
+  # budget_policy.yaml caps a sweep at $250; the sweep is chunked and resumable,
+  # so hitting the cap defers the tail rather than failing the run.
+
+latency_estimate:
+  p50_seconds: 7
+  p95_seconds: 25
+  timeout_seconds: 90
+
+failure_modes:
+  - id: page_unreachable
+    retryable: true
+    backoff: exponential
+  - id: pricing_page_not_found
+    retryable: false
+    action: report_unverifiable        # NOT "assume unchanged" and NOT "assume free"
+  - id: paywalled_or_gated
+    retryable: false
+    action: report_unverifiable
+
+observability:
+  deterministic_checks:
+    - every_tier_has_source_url
+    - no_null_coerced_to_zero          # enforces rules/common/data-quality.md §1 in CI
+    - unreachable_reported_not_dropped
