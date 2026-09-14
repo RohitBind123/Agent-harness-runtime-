@@ -156,6 +156,46 @@ message has not been recorded.
 
 ---
 
+## 2026-09-14 — Learning-derived vocabulary retired *(entered retrospectively)*
+
+**This entry was owed at commit `c011eb3` and was not written.** The vocabulary
+pass edited this file only to apply renames inside existing entries; it added no
+entry of its own and no handoff. `README.md` ("A decision is made → add an ADR
+**and** a change-log entry") and `05-development-workflow.md` both require one,
+and no exemption for vocabulary-only changes is written anywhere. Recorded here
+rather than left absent, because a change that only appears in a commit message
+has not been recorded.
+
+| Field | |
+|---|---|
+| **Change** | Names inherited from learning-notes research material are retired in favour of standard industry terminology, with the handbook as the source of truth wherever it already names a concept. 45 files |
+| **Previous design** | `docs/project/` used "the Organizational Brain" / "the Brain" / "Business Brain" for one referent, "the authority ladder" for a concept the handbook already names twice with other meanings, and 7-8 undefined bracket tags for epistemic status |
+| **New design** | **the knowledge system** · **the source-precedence policy** · **predicate schema registry** (mechanism) versus **predicate vocabulary** (content) · always **PARTIALLY IMPLEMENTED**, never the short form. Admission control, load floor, replay test, autonomy ladder and projection/read model are credited to the handbook chapters that already define them. Epistemic tags close to seven labels, defined once in `PROJECT_BOOTSTRAP.md` §0 |
+| **Reason** | Project owner: the terminology read as ambiguous and domain-specific where industry-standard terms exist. The learning material is a source of **learning**, not of vocabulary |
+| **Evidence** | Project owner decision. **FACT:** "Brain" and "Principal" as an actor-noun appear **zero times** in the handbook — they were docs/project coinages, not handbook leaks |
+| **Impact** | No ADR's Status or Decision changed. Three defects were introduced and are fixed in the entry below. `docs/project/handoffs/` was deliberately left untouched, per "never edit a previous session's handoff" |
+| **Decision owner** | Project owner |
+| **Status** | ACCEPTED |
+| **Records** | [`15-vocabulary.md`](15-vocabulary.md); commit `c011eb3` |
+
+---
+
+## 2026-09-14 — Canonical identity is a general-purpose agent Brain + Runtime
+
+| Field | |
+|---|---|
+| **Change** | The long-term system is stated as a **general-purpose agent Brain + Runtime**, with the **Organizational Brain as its first substrate and proving ground** rather than the product's definition |
+| **Previous design** | `00-north-star.md` §1 scoped the system as *"a system that lets an agent act inside an organization"*, and §1's own §6 listed *"a general agent platform"* among the things explicitly **not** the product. `PROJECT_BOOTSTRAP.md` §2 carried the short form |
+| **New design** | Two registers, neither substituting for the other: **Brain + Runtime** names the product; **the knowledge system / the runtime / Principal Agent** name the subsystems. The §6 platform row is **narrowed, not retired** — it now scopes to the product sold and built *now*, and its "pitching a hope" warning is kept deliberately as the guard against premature generality |
+| **Reason** | Project owner's direction. The corpus stated an identity the owner says is wrong, and future sessions read those documents first |
+| **Evidence** | **[REQUIREMENT]** Owner's direction; not derived from evidence in this repository and not presented as such. The corpus already carried the broader reading in three hedged places, which establishes only that it was visible and discounted — **not that it is right.** `00-north-star.md` §4's counter-argument is not retired |
+| **Impact** | Two new documents (16, 17) and two new ADRs. `PROJECT_BOOTSTRAP.md` §2, `00-north-star.md` §1 and §6, `PRD.md` §1, `08-build-order.md` §3.1, `09-do-not-assume.md` §1, `15-vocabulary.md` §7 updated. **No build-order stage, no ADR decision and no requirement changed.** Q8 and Q20 gain a proposed artefact; Q7 widens to a third schema; Q22 is new. Two contradictions registered in `01-architecture-map.md` §4.5-§4.6. Seven defects fixed, four of them introduced by the entry above |
+| **Decision owner** | Project owner |
+| **Status** | ACCEPTED |
+| **Records** | [ADR-0027](decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md), [ADR-0028](decisions/ADR-0028-the-knowledge-core-is-domain-agnostic.md); [`16-high-level-implementation-architecture.md`](16-high-level-implementation-architecture.md); [`17-target-repository-structure.md`](17-target-repository-structure.md) |
+
+---
+
 ## Prior history, reconstructed from git
 
 Recorded for continuity. These predate this log and were not written as change

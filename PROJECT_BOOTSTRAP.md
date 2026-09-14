@@ -104,6 +104,25 @@ estimates start from zero. See
 
 ## 2. What are we building, and why?
 
+### The canonical identity
+
+**We are building a general-purpose agent Brain + Runtime.** The
+**Organizational Brain is the first major substrate and proving ground** — not
+the final product definition. See
+[ADR-0027](docs/project/decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md).
+
+*"We are building an organizational knowledge product"* is an **incorrect**
+summary of this project, and it is the summary a reader will reconstruct if
+nobody says otherwise. The knowledge system is built **first** because a system
+cannot be trusted to act until it is reliable about what is true, when it was
+true, and on what basis. Execution, the Principal Agent, environment adapters
+and controlled autonomy come after that, each on its own trigger.
+
+Two registers, and neither substitutes for the other: **"Brain + Runtime"**
+names the product; **"the knowledge system"**, **"the runtime"** and
+**"Principal Agent"** name the subsystems in every engineering document. See
+`docs/project/15-vocabulary.md` §7.
+
 ### The current strategic hypothesis
 
 ```
@@ -155,7 +174,12 @@ See `docs/project/00-north-star.md` §4 for the full list with reasoning. The
 short version:
 
 - Not a RAG system or a search box over company documents.
-- Not a general-purpose agent platform.
+- Not a general agent **platform** — *as a product to sell or build now.*
+  General-purpose is the **architecture's** target ([ADR-0027](docs/project/decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md));
+  the Organizational Brain is the product being validated. The original
+  warning stands and is the reason the distinction is drawn: *"'Platform'
+  requires a third and fourth environment and an abstraction that survives
+  contact with them. Anyone pitching it as a platform now is pitching a hope."*
 - Not a knowledge graph product.
 - Not an MCP server (MCP is a *projection* of a capability layer that does not exist yet).
 - Not the macOS/iOS runtime-control exploration in `prd.md` — that is a
@@ -407,6 +431,9 @@ Chat history is not.
 | `docs/project/12-session-handoff-protocol.md` | The format every session ends with |
 | `docs/project/13-audit-2026-09-14.md` | The full audit this baseline rests on |
 | `docs/project/14-outside-in-review-2026-09-14.md` | The 10 highest-leverage assumptions that could make this wrong, and the cheapest experiment for each |
+| `docs/project/15-vocabulary.md` | Every term retired, renamed, or aligned to the handbook, and why. **Check before coining a new name** |
+| `docs/project/16-high-level-implementation-architecture.md` | System boundaries, the knowledge pipeline, what is required now versus later, the single-writer invariant profile, and which capabilities become real in which phase |
+| `docs/project/17-target-repository-structure.md` | The target repository shape for the implementation repo, by phase, and the register of deferred runtime capabilities with a trigger for each |
 | `docs/project/PRD.md` | **The live Product Requirements Document** — thesis, scope (V0/V1), functional and non-functional requirements, trust model, safety, roadmap, traceability. Covers the knowledge system direction, not `prd.md` |
 
 Existing material, unchanged by this baseline:
@@ -417,5 +444,5 @@ Existing material, unchanged by this baseline:
 | `docs/handbook/` | 51 chapters, six levels, two interludes, ten appendices |
 | `docs/architecture/` | Universal Runtime v1.0 specification, revision 5 |
 | `docs/product/`, `prd.md` | Product research and a PRD exploring how the agent runtime could control iOS/macOS. **Exploratory — does not compete with the live direction.** See [ADR-0026](docs/project/decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) |
-| `learning-notes/` | Eleven DOCX architecture and learning documents |
+| `learning-notes/` | Nine DOCX architecture and learning documents, plus two Markdown chapter drafts |
 | `tools/` | Documentation build and lint scripts — the only working code here |

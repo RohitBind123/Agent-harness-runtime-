@@ -5,13 +5,16 @@ A documentation-first reference for understanding and designing production-grade
 > **New here, or starting a fresh session?** Read
 > **[`PROJECT_BOOTSTRAP.md`](PROJECT_BOOTSTRAP.md)** first. It is the durable
 > project context — what is being built, what exists, what does not, what has
-> been decided, and what remains open. The full knowledge system is in
+> been decided, and what remains open. The full project context is in
 > [`docs/project/`](docs/project/).
 >
 > **Note on scope:** this README describes the *handbook and specification*,
 > which is what the repository contains. It does not describe the project's
-> current product direction — which is contested and recorded in
-> [`docs/project/decisions/ADR-0021-product-direction-is-contested.md`](docs/project/decisions/ADR-0021-product-direction-is-contested.md).
+> current product direction — that is
+> [`docs/project/00-north-star.md`](docs/project/00-north-star.md), resolved in
+> [`ADR-0026`](docs/project/decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md)
+> and scoped in
+> [`ADR-0027`](docs/project/decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md).
 
 > **Project status:** architecture and handbook work in progress. This repository contains all 50 handbook chapters, a detailed runtime specification, a compiled handbook draft, source diagrams, and the Agentic Harness Engineering research paper. It is a knowledge base, not an executable runtime implementation.
 >

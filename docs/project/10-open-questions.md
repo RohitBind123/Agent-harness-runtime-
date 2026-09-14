@@ -112,7 +112,7 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 
 | | |
 |---|---|
-| **Why it matters** | Two documents specify **incompatible Phase 1 schemas** and neither acknowledges the other. Building either without reconciling means discovering it at integration |
+| **Why it matters** | Two documents specify **incompatible Phase 1 schemas** and neither acknowledges the other. Building either without reconciling means discovering it at integration. **Widened 2026-09-14: there is a third shape.** The runtime specification's own `knowledge/` tier (§8.15) ships `entity_store.py`, `entity_resolver.py`, `fact_store.py` and `relationship_graph.py` — same nouns, third time, for the runtime's internal world state rather than for organizational knowledge. See `01-architecture-map.md` §4.5 |
 | **Hypotheses** | **(A)** Different scopes — Memory covers a runtime memory subsystem where entities arrive already identified; knowledge system covers an organizational store where identity must be established. Both right about their own subject. **(B)** One supersedes the other. **(C)** A merged schema |
 | **Evidence available** | Both documents, side by side in `02-domain-model.md` §5. **Hypothesis A is an inference from each document's scope, not a stated claim in either.** The observation that they use identical words — `claims`, `evidence`, "Phase 1" — for different things is itself the strongest support for A |
 | **Decision required** | Which schema is built, for which subsystem, and whether they are one store or two |
@@ -127,10 +127,10 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 |---|---|
 | **Why it matters** | Roughly half the specified kernel exists to arbitrate contention that does not exist in a single-writer deployment. **Porting it wholesale produces complexity that buys nothing; deleting the wrong half loses the correctness properties that are the entire point** |
 | **Hypotheses** | Leases, version-CAS, relay claims, sweepers, worker pools, per-tenant admission and budget ledgers are candidates to drop. Activity identity, the effect ledger, effect tags, the outbox, checkpointing, the provenance lattice, verification-before-knowledge and the ExecutionGraph are named as keep-regardless |
-| **Evidence available** | A keep/drop list exists in `docs/product/06-mvp-and-implementation-strategy.md` §8.3, written for the macOS product. **The general artefact does not exist** |
-| **Decision required** | A written single-writer invariant profile |
+| **Evidence available** | A keep/drop list exists in `docs/product/06-mvp-and-implementation-strategy.md` §8.3, written for the macOS product. **The general artefact now exists and is unratified** — `16-high-level-implementation-architecture.md` §8.5, written 2026-09-14, status PROPOSED |
+| **Decision required** | Ratification of that profile by the project owner. **Writing it was the experiment; accepting it is the decision** |
 | **Blocking?** | **YES** before line one of runtime code |
-| **Next experiment** | Walk all 39 and mark each: applies / does not apply with one writer / applies in a weakened form. Roughly half a day |
+| **Next experiment** | Done. The walk marks **36 applies, 3 weakened, 0 drops** — a narrower result than this question's own hypotheses expected. The reason: the hypotheses name **components** (relay claims, sweepers, worker pools, budget ledgers) and the 39 are mostly **properties** (crash recovery, determinism, authority). Defer the machinery, keep the shape |
 
 ---
 
@@ -287,7 +287,7 @@ all five are cheap to answer.
 | **Why it matters** | The runtime is the largest existing asset and is in the strategic chain. **The knowledge system architecture says the knowledge system does not need it** and names four primitives with individual triggers. No document reconciles the two |
 | **Status** | Open, and the contradiction is in the corpus already |
 | **Blocking?** | For scope. It may remove most of the planned work |
-| **Next experiment** | Walk the 39 invariants; mark each needed / not needed / needed-later-with-a-trigger. This is **Q8** and it answers both. Half a day |
+| **Next experiment** | Walk the 39 invariants; mark each needed / not needed / needed-later-with-a-trigger. This is **Q8** and it answers both. Half a day. **Done 2026-09-14** — `16-high-level-implementation-architecture.md` §8.5, unratified. Its answer to *this* question specifically: the runtime is **not** on Phase 1-5's critical path at all, and the four primitives that matter earlier each have an individual trigger already recorded in `08-build-order.md` §4 |
 
 ### Q21 — Can this team convert design into shipped code?
 
@@ -297,6 +297,21 @@ all five are cheap to answer.
 | **Status** | Open. Uncomfortable and worth asking |
 | **Blocking?** | No, but it is the **highest-prior failure mode**: a correct architecture, more of it, indefinitely |
 | **Next experiment** | Timebox one week: ship identity-keyed extraction (~30 lines plus a test that a redelivered observation does not produce a second claim). Failing to ship it is information about the team, not the task |
+
+---
+
+## 2c. Raised by the architecture realignment (2026-09-14)
+
+### Q22 — Should an existing agent-memory engine be adopted instead of building the claim store?
+
+| | |
+|---|---|
+| **Why it matters** | The claim store is the largest single build in Phase 1. If a published product already does it, building it is the most expensive possible way to learn that |
+| **Hypotheses** | **(A)** Build — no available product carries authority-by-kind, which is the structural idea the whole design rests on. **(B)** Adopt the substrate and build only the kind/authority layer above it. **(C)** Adopt wholesale and accept the missing properties |
+| **Evidence available** | **[EVIDENCE]** SurrealDB Agent Memory's published documentation, surveyed 2026-09-14 — see `16-high-level-implementation-architecture.md` §10.2 and `docs/product/07-organizational-knowledge-landscape.md` §2. It independently reaches six of this design's positions, which is **evidence the category is buildable**. It also has no in-process mode, fixes embeddings deployment-wide to one vendor's model, publishes no retrieval-quality result, does not merge entities, and has **no concept of a kind whose type determines what it has authority over** |
+| **Decision required** | Whether to re-evaluate before Phase 1's claim-store work begins |
+| **Blocking?** | **No.** The current fit assessment is (A). But it is cheap to be wrong here and expensive to be wrong late |
+| **Next experiment** | Re-check at Phase 1 kickoff, and again if any of three triggers fires: the product reaches GA with a self-hostable licence · the embedding constraint is lifted · a published retrieval-quality result appears. **A day of reading, not a spike** |
 
 ---
 

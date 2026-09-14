@@ -83,3 +83,38 @@ This is a different axis from the six DESIGNED/IMPLEMENTED/…/UNKNOWN status
 labels (does a thing exist) and from the handbook's `[AHE]`/`[DAR]`/`[INF]`/
 `[BP]`/`[FUT]` (where a claim came from). All three axes are in use and none
 substitutes for another.
+
+## 7. "Brain" and "the knowledge system" — two registers, not a contradiction
+
+Added 2026-09-14, after
+[ADR-0027](decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md)
+made the canonical product identity a **general-purpose agent Brain + Runtime**.
+Read carelessly that looks like a reversal of §1's rename. It is not, and this
+section exists so nobody re-litigates it.
+
+| Register | Term | Where it is used |
+|---|---|---|
+| **Product identity** | **general-purpose agent Brain + Runtime** | `PROJECT_BOOTSTRAP.md` §2, `00-north-star.md` §1, ADR-0027. The sentence a person says about what this is |
+| **Current substrate** | **Organizational Brain** | Named as the *first* substrate and proving ground — never as the system's definition |
+| **Engineering subsystem** | **the knowledge system** · **the runtime** · **Principal Agent** · **environment adapters** · **capability layer** | Every ADR, the architecture map, the domain model, docs 16-17 |
+
+**Nothing from §1 is reverted.** "The Organizational Brain" is still not the
+subsystem's name; "the knowledge system" still is. What changed is that the
+project acquired a product-level name it did not previously have, and the two
+live at different distances from the code.
+
+**A collision this pass introduced, and has now fixed.** §1's rename left
+"knowledge system" naming three things: the product, the subsystem, and
+*this documentation set* (`docs/project/README.md` was titled "Project Knowledge
+System"). The documentation set was the intruder and has been retitled **Durable
+Project Context**.
+
+**Identifier surfaces still carry the retired name.** `brain.claim.written`,
+`brain.contradiction.detected`, `brain.claim.superseded`, and the field names
+`brain_scope` / `brain_query` appear in `01-architecture-map.md` and
+`07-brain-observability.md`. They are **not** renamed, because renaming an event
+taxonomy is a design change and not a vocabulary fix. **Rename them when the
+event taxonomy is first written — nothing consumes them today.** The same
+applies to filenames that carry the old slug (`07-brain-observability.md`, three
+ADR filenames): a file rename breaks every existing cross-reference for no
+gain while the corpus is the only consumer.

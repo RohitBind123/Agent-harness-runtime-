@@ -74,6 +74,8 @@ Record the new ADR in the index below **and** add an entry to
 | [0024](ADR-0024-no-autonomous-knowledge-curation.md) | No autonomous knowledge curation | ACCEPTED | Governance |
 | [0025](ADR-0025-no-external-codebase-is-evidence.md) | No external codebase is evidence for this project | ACCEPTED | Project |
 | [0026](ADR-0026-product-direction-resolved-prd-is-exploratory.md) | Product direction resolved: `prd.md` is exploratory, not competing | ACCEPTED | Product |
+| [0027](ADR-0027-general-purpose-brain-and-runtime-organizational-first.md) | General-purpose agent Brain + Runtime; the Organizational Brain is its first substrate | ACCEPTED | Product |
+| [0028](ADR-0028-the-knowledge-core-is-domain-agnostic.md) | The knowledge core is domain-agnostic; organizational logic sits behind a boundary | ACCEPTED | Boundary |
 
 ## Decisions imported by reference
 

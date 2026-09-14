@@ -14,9 +14,24 @@ described here.
 
 ## 1. What company/system are we building?
 
-A system that lets an agent act inside an organization with **organizational
-knowledge that is reconciled, time-aware, and carries its basis** — and a
-runtime that lets that agent's actions be verified, attributed, and reversed.
+**A general-purpose agent Brain + Runtime** — a knowledge plane that makes an
+agent reliable about what is true, when it was true and on what basis, and an
+execution plane that makes its actions verifiable, attributable and reversible.
+
+**The Organizational Brain is the first major substrate and proving ground**,
+not the final product definition. The current substrate is a system that lets an
+agent act inside an organization with **organizational knowledge that is
+reconciled, time-aware, and carries its basis.** That is what is being built and
+validated now; it is not what the system is. See
+[ADR-0027](decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md),
+and `16-high-level-implementation-architecture.md` for the structure.
+
+**Why this order.** The knowledge plane is built first because the execution
+plane's guarantees are worth nothing over an unreliable world model. Evidence,
+memory, world state, temporal reasoning, authority, contradiction, provenance
+and verification have to become reliable before autonomous execution can be
+trusted — the same rule as §7's *"legal and measurable before good"*, one level
+up.
 
 Decomposed, in the order the strategy assembles them:
 
@@ -63,7 +78,7 @@ document here:
 
     This is not a retrieval-quality failure. PERFECT RETRIEVAL PRODUCES IT TOO.
 
-  WHAT THE BRAIN MUST DO
+  WHAT THE KNOWLEDGE SYSTEM MUST DO
     Recognise that these are three different KINDS of thing:
 
       Product statement -> a DECISION or INTENT.
@@ -98,8 +113,8 @@ exactly what makes the contradiction disappear. See
 
 The current strategic direction names an internal validation environment — the
 InOrbitX engineering workflow — but an internal validation environment is not a
-customer. No document in this repository identifies a buyer for the Business
-knowledge system direction. This is not blocked on a product-direction decision (that is
+customer. No document in this repository identifies a buyer for the knowledge
+system direction. This is not blocked on a product-direction decision (that is
 resolved — see [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md));
 it is a real, separate gap.
 
@@ -196,7 +211,7 @@ Each with the reason, because "not yet" without a reason becomes "next sprint."
 | A RAG system / search box over company documents | Perfect retrieval still produces the §2 failure. Different problem. |
 | A knowledge graph product | A relationship is a claim. A graph engine is a *second store* with its own consistency story, and the claim, its version, its evidence and its event must commit together. [ADR-0009](decisions/ADR-0009-no-graph-database.md) |
 | An MCP server, today | MCP is a projection of a capability layer that does not exist yet. Built first, it becomes the thing that constrains the capability layer. [ADR-0013](decisions/ADR-0013-mcp-is-a-projection-of-the-capability-layer.md) |
-| A general agent platform | "Platform" requires a third and fourth environment and an abstraction that survives contact with them. That is a 2028 question. Anyone pitching it as a platform now is pitching a hope. |
+| A general agent **platform**, *as a product to sell or build now* | **Narrowed 2026-09-14, not retired** — [ADR-0027](decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md) makes general-purpose the *architecture's* target while the Organizational Brain stays the product being validated. The original reason is unchanged by that and is why the distinction is worth drawing: "Platform" requires a third and fourth environment and an abstraction that survives contact with them. That is a 2028 question. **Anyone pitching it as a platform now is pitching a hope.** |
 | An autonomous knowledge curator | A loop that decides which claims to keep, merge or delete is optimising a store against a signal that cannot see what it is destroying. [ADR-0024](decisions/ADR-0024-no-autonomous-knowledge-curation.md) |
 | A summarisation/consolidation layer | A summary is not evidence for what it summarises. A claim whose only support is a summary has an evidence chain that does not terminate in an observation. |
 | A system that infers authority | Authority inferred from recency, seniority, or confident phrasing is wrong precisely in the cases that matter, and wrong invisibly. [ADR-0006](decisions/ADR-0006-authority-is-authored-configuration-never-inferred.md) |

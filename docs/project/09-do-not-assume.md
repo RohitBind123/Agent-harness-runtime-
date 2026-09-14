@@ -22,6 +22,8 @@ the 2026-09-14 audit and are not generic advice.
 | **MCP ≠ product** | MCP is a transport projection of a capability layer that does not exist yet |
 | **Current architecture ≠ immutable architecture** | It is expected to change when evidence contradicts it. That is why the change log exists |
 | **Prototype behaviour ≠ committed contract** | Nothing here has shipped, so nothing here is a contract |
+| **General-purpose ≠ build it now** | [ADR-0027](decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md) makes general-purpose the **architecture's** target. It is not permission to build the Runtime, the Principal Agent, distribution or a second substrate ahead of their triggers. **This is the specific way this project is most likely to fail** — a correct architecture, more of it, indefinitely |
+| **Organizational Brain ≠ the product definition** | It is the **first substrate and proving ground.** A future session that summarises this project as "an organizational knowledge product" has read it wrong. ADR-0027 |
 
 ---
 

@@ -71,7 +71,7 @@ Everything in §7 onward describes something that must be built from nothing.
 
 ### What the product is
 
-An **knowledge system**: a store of kind-typed claims, built over an
+A **knowledge system**: a store of kind-typed claims, built over an
 append-only observation log, that answers questions whose answers are **not
 present in any single source** — and that says so when it cannot.
 
@@ -118,6 +118,16 @@ Second source → temporal and verification → external agents through MCP →
 broader organizational participation → Principal Agent → controlled autonomy.
 **Each stage gated on evidence from the one before it**, and several of them
 are currently gated on organizational acts rather than on engineering (§18).
+
+**Scope note, added 2026-09-14.** This PRD describes **current product and
+problem validation** — the Organizational Brain, which is the **first substrate
+and proving ground** for a general-purpose agent Brain + Runtime
+([ADR-0027](decisions/ADR-0027-general-purpose-brain-and-runtime-organizational-first.md)).
+It is deliberately not an architecture document: system boundaries, the
+knowledge pipeline, the required-now/required-later split and the phase-by-phase
+capability map live in
+[`16-high-level-implementation-architecture.md`](16-high-level-implementation-architecture.md).
+**No requirement in this PRD changed.**
 
 ### The honest summary
 

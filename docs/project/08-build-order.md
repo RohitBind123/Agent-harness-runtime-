@@ -205,6 +205,28 @@ Each stage exits on a **measurement or a decision**, never on "it's built."
 
 ---
 
+### 3.1 What becomes architecturally real in each stage
+
+Added 2026-09-14. **The table above is unchanged** — this says what each stage
+*earns*, not what it contains. The full version, with the boundaries and the
+required-now/required-later split, is
+`16-high-level-implementation-architecture.md` §9.
+
+| Stage | Architectural capability that becomes real |
+|---|---|
+| **0** | No architecture, and no code. But the **import boundary and its lint rule** are established here, before there is anything to violate them — plus the two artefacts this stage owes: the single-writer invariant profile (Q8) and the Q7 reconciliation |
+| **1** | **The minimum real knowledge substrate**, and the only stage in which the eight irreversible properties can still be got right: extraction identity · the four ingest-time observation fields · evidence as a joinable table · the rebuild invariant · claim+evidence in one transaction · tenant in the key · bitemporal columns · a tested deletion route. Each is cheap now and a rewrite later |
+| **2** | **Cross-source reconciliation.** Entity resolution stops being free, and the source-precedence policy stops being theoretical. First real pressure on the domain/core split of [ADR-0028](decisions/ADR-0028-the-knowledge-core-is-domain-agnostic.md) |
+| **3** | **Temporal and verification machinery.** The bitemporal columns written in Stage 1 start paying |
+| **4** | **The stable capability surface for agents.** MCP as a strict projection — which is only a projection rather than a refactor because CL1 made the Principal explicit in Stage 1 |
+| **5** | Admission tuned against harder sources; the participation ladder's first measured rung |
+| **6** | **The Runtime becomes a first-class executable substrate — and not before.** The 39 invariants acquire something to be enforced against |
+| **7** | Organizational structures. Gated on an organizational act, not on engineering |
+| **8** | Runtime capabilities activate progressively — policy, budgets, the effect ledger, the autonomy ladder rung by rung |
+| **9** | Distribution, learning and evolution belong here or later, and only on a trigger |
+
+---
+
 ## 4. Stages that deliberately do not exist
 
 | No stage for | Because |

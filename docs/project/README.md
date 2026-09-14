@@ -1,7 +1,11 @@
-# Project Knowledge System
+# Durable Project Context
 
-**Durable project context. The repository is the source of truth; chat history
-is not.**
+**The repository is the source of truth; chat history is not.**
+
+*This directory is the project's context, not the product.* "Knowledge system"
+elsewhere in these documents names the **subsystem being designed** — the claim
+store and everything around it. It does not name this documentation set. See
+[`15-vocabulary.md`](15-vocabulary.md).
 
 **Start at [`../../PROJECT_BOOTSTRAP.md`](../../PROJECT_BOOTSTRAP.md).** It is
 the session-startup document and it links everything here.
@@ -15,7 +19,7 @@ the session-startup document and it links everything here.
 | — | [`PROJECT_BOOTSTRAP.md`](../../PROJECT_BOOTSTRAP.md) | Everything, briefly. **Read first** |
 | 00 | [North Star](00-north-star.md) | What system, what problem, who for, what wedge, what is *not* the product, what would falsify it |
 | 01 | [Architecture Map](01-architecture-map.md) | Every component: purpose, owns, does not own, inputs, outputs, dependencies, invariants, status. Plus where the architecture contradicts itself |
-| — | [Decisions](decisions/) | 26 architectural decision records |
+| — | [Decisions](decisions/) | 28 architectural decision records |
 | 02 | [Domain Model](02-domain-model.md) | The canonical objects, their fields, lifecycles, owners, invariants — and the objects rejected, with reasons |
 | 03 | [Lifecycles and State Machines](03-lifecycles-and-state-machines.md) | Every transition: trigger, preconditions, evidence, reversibility, persistence |
 | 04 | [Implementation Map](04-implementation-map.md) | Component → files → status → tests → limitations. **The honest one** |
@@ -30,6 +34,8 @@ the session-startup document and it links everything here.
 | 13 | [Audit — 2026-09-14](13-audit-2026-09-14.md) | The full audit this baseline rests on |
 | 14 | [Outside-In Review — 2026-09-14](14-outside-in-review-2026-09-14.md) | The 10 highest-leverage assumptions that could make this wrong, each with a cheap experiment |
 | 15 | [Vocabulary](15-vocabulary.md) | Every term retired, renamed, or aligned to the handbook, and why — check here before coining a new name |
+| 16 | [High-Level Implementation Architecture](16-high-level-implementation-architecture.md) | System boundaries, the knowledge pipeline, required-now versus required-later, the single-writer invariant profile, and what becomes real in each phase |
+| 17 | [Target Repository Structure](17-target-repository-structure.md) | The target shape for the implementation repo, by phase, plus the register of deferred runtime capabilities with a trigger for each |
 | — | [`handoffs/`](handoffs/) | One file per session |
 
 ---

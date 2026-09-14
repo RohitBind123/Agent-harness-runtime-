@@ -16,7 +16,7 @@ Read `PROJECT_BOOTSTRAP.md` §0 for the meaning of the status labels.
         | MCP calls                          | context, cited
         v                                    |
   +===========================================================+
-  |  BRAIN MCP SERVER          PROPOSED, deferred             |
+  |  KNOWLEDGE SYSTEM MCP      PROPOSED, deferred             |
   |  a thin projection. no logic of its own.                  |
   +===========================================================+
         |
@@ -36,7 +36,7 @@ Read `PROJECT_BOOTSTRAP.md` §0 for the meaning of the status labels.
         |
         v
   +===========================================================+
-  |                  ORGANIZATIONAL BRAIN                     |
+  |                  THE KNOWLEDGE SYSTEM                     |
   |                                                            |
   |  SOURCE ADAPTERS -> OBSERVATION LOG (system of record)     |
   |                            |                               |
@@ -63,7 +63,7 @@ Read `PROJECT_BOOTSTRAP.md` §0 for the meaning of the status labels.
   |    It writes OBSERVATIONS, so it re-enters at the top.      |
   +===========================================================+
         |
-        v  brain tools, curried with the Principal
+        v  knowledge-system tools, curried with the Principal
   +===========================================================+
   |  PRINCIPAL AGENT                                           |
   |  OBSERVE -> ASSESS -> DECIDE -> [AUTHORITY] -> COMMIT       |
@@ -247,7 +247,7 @@ in a busy scope below the load floor, and looks healthy throughout.
 | **Outputs** | Evidence handles returned with every claim. |
 | **Dependencies** | Observation log, claim store. |
 | **Invariants** | *EV1.* Evidence is a **table of references**, never an integer count — a count cannot be joined on, and three needs require joining: a reviewer needs a run to open, corroboration must count DISTINCT runs, and the deletion route must find claims citing a departing tenant's runs. *EV2.* Handles are **server-minted**; a caller-supplied id is the whole attack. *EV3.* Evidence must **outlive the run** — a claim's basis must be inspectable months later. |
-| **Status** | **DESIGNED.** EV3 is a named conflict with an existing design intent in the referenced (unverified) codebase, where evidence is deliberately run-scoped and ephemeral. The resolution is to split the two lifetimes rather than change the existing one. |
+| **Status** | **DESIGNED.** EV3 sits in tension with the runtime's own evidence-handle mechanism, which is deliberately run-scoped and ephemeral — see §3, *"What must stay runtime-generic."* The resolution is to split the two lifetimes: the knowledge system adds a **durable** store with the same discipline, and does not modify the run-scoped one. *(Corrected 2026-09-14 — this row previously cited an external artefact nobody here can read, which [ADR-0025](decisions/ADR-0025-no-external-codebase-is-evidence.md) forbids. It escaped the provenance purge because its wording did not match the guard's pattern.)* |
 
 Provenance is **not a layer** — it is a property. Drawing it as a layer invites
 an implementation in which a claim can exist without it, which is the one state
@@ -536,24 +536,24 @@ erasing whatever the winning writer decided.
 The clearest way to state a boundary is what crosses it and what must not.
 
 ```
-  RUNTIME -> BRAIN                 (down, and always via a tool)
+  RUNTIME -> KNOWLEDGE SYSTEM      (down, and always via a tool)
      Principal                     who is asking. Never optional.
      run.as_of                     the temporal anchor
      run_id                        for evidence and for the trace
      a QUESTION or a SCOPE         what context is needed
      budget_tokens                 the declared share
 
-  BRAIN -> RUNTIME                 (up, as a tool result)
+  KNOWLEDGE SYSTEM -> RUNTIME      (up, as a tool result)
      a bounded, ranked, cited claim set
      open contradictions           NEVER omitted
      validity intervals
      an evidence handle per claim
      what was NOT found, and what could not be resolved
 
-  BRAIN -> RUNTIME                 (asynchronously, as events)
-     brain.claim.written
-     brain.contradiction.detected
-     brain.claim.superseded
+  KNOWLEDGE SYSTEM -> RUNTIME      (asynchronously, as events)
+     brain.claim.written              <- identifiers still carry the
+     brain.contradiction.detected        retired name; see 15-vocabulary
+     brain.claim.superseded              S5. Nothing consumes them yet
      -> onto the EXISTING event spine. No second event system.
 
   WHAT NEVER CROSSES
@@ -636,6 +636,44 @@ entire point. Recorded as Finding C in `docs/product/01-architecture-understandi
 **The artefact that would resolve it does not exist:** a written-down profile
 saying which of the 39 invariants apply when there is one writer, one process,
 and no contention.
+
+**Updated 2026-09-14 — an artefact now exists and is unratified.**
+`16-high-level-implementation-architecture.md` §8.5 walks all 39 and marks each
+applies / weakened / does not apply. Its finding sharpens this contradiction
+rather than dissolving it: **36 apply unchanged, 3 weaken, none drops.** The
+reason is that this section's claim is about **components** and the 39 are
+mostly **properties** — roughly half the specified *kernel* can be deferred, and
+roughly none of the specified *properties* can. Status **PROPOSED**; Q8 and Q20
+stay open until the owner ratifies it.
+
+### 4.5 A third `entity_store` / `fact_store` shape, previously unnamed
+
+**Registered 2026-09-14.** §4.1 records two incompatible Phase 1 schemas. There
+is a **third**: the runtime specification's own `knowledge/` tier (§8.15) ships
+`entity_store.py`, `entity_resolver.py`, `fact_store.py` and
+`relationship_graph.py` — the same nouns again, for the runtime's internal
+world-state and memory rather than for organizational knowledge.
+
+It is a different subsystem and probably a different schema, and **that is
+exactly why it matters**: nothing in the corpus says so, and the shared
+vocabulary invites a future session to treat the two as one thing.
+[ADR-0012](decisions/ADR-0012-the-agent-reaches-the-brain-only-through-tools.md)
+is the only document that separates them, in a consequence line — *"The
+knowledge system is placed as a **peer package**, not inside the agent or the
+knowledge layer."* Folded into Q7.
+
+### 4.6 The specification's dependency rules disagree with themselves
+
+**Registered 2026-09-14.** The specification §13's LAYERS block places `tools`
+in a layer **below** `runtime` — and *"a layer may import only from layers below
+it"*, which permits `runtime → tools`. Its FORBIDDEN EDGES list, four lines
+later, bans `runtime ──X──> tools`. Design rule 4 (§3) sides with the ban:
+*"`runtime/` may not import `packages/`, `capabilities/` or `tools/` — only
+their registries via ports."*
+
+Two of three statements agree, so the resolution is not in doubt. It is recorded
+because **the layer-stack diagram is the most quotable of the three and is the
+one that is wrong.** Cite rule 4 and the edge list.
 
 ### 4.4 MCP is specified but classified as future
 
