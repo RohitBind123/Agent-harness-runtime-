@@ -20,9 +20,9 @@ it.
 ## 1. The proposal
 
 Use the real engineering workflow — the one described in
-`05-development-workflow.md` — as the first live environment the Brain observes.
+`05-development-workflow.md` — as the first live environment the knowledge system observes.
 
-**The Brain observes. It does not control.** See
+**The knowledge system observes. It does not control.** See
 [ADR-0020](decisions/ADR-0020-the-brain-observes-the-workflow-before-it-controls-it.md).
 
 ### Why this environment
@@ -42,7 +42,7 @@ Use the real engineering workflow — the one described in
    has a sample of one team with unusual tolerance for its failures. **This
    environment proves the mechanism, not the market.**
 2. **This workflow is unusual.** It currently has no pull requests, no CI, and
-   no issue tracker — see `05-development-workflow.md` §3. A Brain tuned to it
+   no issue tracker — see `05-development-workflow.md` §3. A knowledge system tuned to it
    would be tuned to an unrepresentative case.
 3. **One team is not an organization.** Overlapping permissions, conflicting
    authority, and cross-team contradiction — the problems the design exists for
@@ -80,14 +80,14 @@ than drifted into.
 
 ---
 
-## 3. What the Brain must reconstruct to have succeeded
+## 3. What the knowledge system must reconstruct to have succeeded
 
 The test is not "did it ingest." It is whether it can produce an answer a
 document search structurally cannot.
 
-**The exit test, from the Brain architecture:**
+**The exit test, from the knowledge system architecture:**
 
-> Take five real questions from our own history. For each, the Brain must
+> Take five real questions from our own history. For each, the knowledge system must
 > return: the **implementation fact** with its verification date; the
 > **decision** with its author, date and rationale; whether they agree; and if
 > they do not, **that gap stated plainly.**
@@ -108,7 +108,7 @@ Concrete questions this project can already ask of itself:
 5. *"Why is verification before scale in the build order?"* — a *why* question
    whose answer is in a chapter and a specification section, not in either alone.
 
-**Question 2 is the milestone.** If the Brain can detect that `prd.md` and the
+**Question 2 is the milestone.** If the knowledge system can detect that `prd.md` and the
 current strategic direction describe different products — from observations
 alone, without being told — then the thesis is demonstrated on real data.
 
@@ -122,8 +122,8 @@ the product only works for us.
 | Must stay general | Must stay local |
 |---|---|
 | The observation shape | Which sources are enrolled |
-| The predicate registry **mechanism** | The specific twenty predicates |
-| The source-class ladder **mechanism** | Our ladder's contents and its owner |
+| The predicate schema registry **mechanism** | The specific twenty predicates |
+| The source-precedence policy **mechanism** | Our policy's contents and its owner |
 | The kind model (six kinds) | Our claim contents |
 | Admission **stages** | Our admission rules and thresholds |
 | Entity **identity** mechanism | Our entities and aliases |
@@ -137,7 +137,7 @@ architecture.
 
 **Two concrete traps for this specific environment:**
 
-- **Git-shaped assumptions.** A predicate registry that assumes commits, or an
+- **Git-shaped assumptions.** A predicate schema registry that assumes commits, or an
   entity model that assumes repositories, will not transfer to an organization
   whose decisions live in a wiki and a chat tool.
 - **Single-tenant assumptions.** One team means one permission domain, which is
@@ -152,7 +152,7 @@ architecture.
 | Question | Status |
 |---|---|
 | **What is InOrbitX?** | **PARTIALLY ESTABLISHED (2026-09-14):** a **broker insurance portal**, held **locally on the owner's desktop**. Stated by the project owner. Tech stack, team, tooling and workflow remain unknown. Q3 |
-| **Can the Brain reach it?** | **NO, not from a hosted session.** It is local-only. **The architecture has not addressed where the Brain runs relative to the sources it observes** — see §7 |
+| **Can the knowledge system reach it?** | **NO, not from a hosted session.** It is local-only. **The architecture has not addressed where the knowledge system runs relative to the sources it observes** — see §7 |
 | Which systems does this organization actually use? | **UNKNOWN.** Git is evident from *this* repository. Whether the portal uses a Git host, an issue tracker, chat or CI is unestablished |
 | Are Claude Code interactions capturable as observations? | **UNKNOWN.** Transcripts exist per session; whether they are retrievable, and under what permission, is unestablished |
 | How many engineers? Which teams? | **UNKNOWN** |
@@ -175,7 +175,7 @@ always exits.
 | **V0** | Answer Q3. Write down what InOrbitX is: systems, teams, tools, where decisions live | A document another engineer can read and know what they are instrumenting |
 | **V1** | Collect **real questions**. Twenty to fifty that people actually asked and had to dig for | A list, from real history, not invented |
 | **V2** | Derive the predicate vocabulary from V1. Roughly twenty predicates | Each predicate traces to a question in V1 |
-| **V3** | Hold the ladder meeting (Q2). Rank source classes on intent and on reality, with an owner | A reviewed file with a named owner — **or** the disagreement written down as an open question |
+| **V3** | Hold the precedence meeting (Q2). Rank source classes on intent and on reality, with an owner | A reviewed file with a named owner — **or** the disagreement written down as an open question |
 | **V4** | Fix the observation shape and enrol **one** source | Observations flowing, discard rate real rather than hypothetical. **No extraction yet** |
 | **V5** | Extraction, claim store, contradiction detection — the full Phase 1 pipeline | The §3 exit test: five real questions answered with fact, decision, author, date, and the gap |
 | **V6** | A second source | **One** contradiction detected across sources that a human confirms was worth raising. That single instance is the whole thesis demonstrated |
@@ -189,7 +189,7 @@ likely to be skipped because it does not feel like progress.
 ## 7. The deployment constraint this surfaces
 
 **[NEW — 2026-09-14]** InOrbitX being local-only exposes a question the
-architecture has never asked: **where does the Brain run, relative to the
+architecture has never asked: **where does the knowledge system run, relative to the
 sources it observes?**
 
 Every document here assumes observations arrive from network-reachable sources —
@@ -201,9 +201,9 @@ Three shapes, and they are materially different systems:
 
 | Shape | What it means | Consequence |
 |---|---|---|
-| **Local Brain** | The Brain runs on the same machine as the source | The single-writer profile (Q8) becomes the *primary* deployment, not a special case. Most of the contention machinery is dead weight. Multi-tenancy is irrelevant. **This is closest to what the local-only constraint implies** |
-| **Hosted Brain, local collector** | A thin local agent emits observations to a hosted Brain | Adds an egress boundary, a trust boundary, and a permission question about what leaves the machine. **In a regulated domain this is a governance decision, not a deployment detail** |
-| **Hosted Brain, hosted sources** | What every document assumes | Requires the sources to be hosted, which the portal is not |
+| **Local knowledge system** | The knowledge system runs on the same machine as the source | The single-writer profile (Q8) becomes the *primary* deployment, not a special case. Most of the contention machinery is dead weight. Multi-tenancy is irrelevant. **This is closest to what the local-only constraint implies** |
+| **Hosted knowledge system, local collector** | A thin local agent emits observations to a hosted knowledge system | Adds an egress boundary, a trust boundary, and a permission question about what leaves the machine. **In a regulated domain this is a governance decision, not a deployment detail** |
+| **Hosted knowledge system, hosted sources** | What every document assumes | Requires the sources to be hosted, which the portal is not |
 
 **This is not decided anywhere**, and it changes which invariants apply, whether
 multi-tenancy exists at all, and whether customer data ever leaves a developer's

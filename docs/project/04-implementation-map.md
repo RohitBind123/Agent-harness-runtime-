@@ -43,7 +43,7 @@ Verified by file inventory at the audited commit:
 | Admission | — | **DESIGNED** | None | Discard-rate metric not defined numerically |
 | Entity resolution | — | **DESIGNED** | None | **Disputed between two documents** — see `02-domain-model.md` §5 |
 | Extraction | — | **DESIGNED** | None | No predicate vocabulary authored |
-| Classify + reconcile | — | **DESIGNED** | None | Depends on the unauthored source-class ladder |
+| Classify + reconcile | — | **DESIGNED** | None | Depends on the unauthored source-precedence policy |
 | Claim store | — | **DESIGNED** | None | **Two incompatible Phase 1 schemas specified** |
 | Evidence / provenance | — | **DESIGNED** | None | Evidence must outlive the run (EV3); no conflicting position exists in this corpus |
 | Contradiction register | — | **DESIGNED** | None | **Disputed**; severity assignment rules unspecified |
@@ -53,7 +53,7 @@ Verified by file inventory at the audited commit:
 | Context assembly | — | **DESIGNED** | None | Budget arithmetic unspecified numerically |
 | Verification loop (probes) | — | **DESIGNED** | None | No probe registered; `verifiable_by` vocabulary empty |
 | Capability layer | — | **DESIGNED** | None | Seven capabilities named; none has a typed signature written |
-| Brain MCP server | — | **PROPOSED** | None | Deliberately not built. Caller-identity question unresolved |
+| knowledge system MCP server | — | **PROPOSED** | None | Deliberately not built. Caller-identity question unresolved |
 | Principal Agent | — | **DESIGNED** | None | Four of its objects are **BLOCKED**, not deferred |
 | Agent Runtime | — | **DESIGNED** | None | **None of the 39 invariants is enforced** — there is nothing to enforce them against |
 | Environment adapters | — | **DESIGNED** | None | Port signatures specified in Appendix E; no implementation |
@@ -96,8 +96,8 @@ name the Evolve Agent or the agent debugger.
 | Runtime specification | `docs/architecture/universal-runtime-v1.0-...md` | Revision 5; 39 invariants; build order 0–12 |
 | Product research | `docs/product/01..06` | Complete as of 2026-09-06. **Exploratory** — see [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) |
 | PRD (runtime-controls-OS exploration) | `prd.md` | Complete. **Exploratory**, does not compete with the live direction |
-| **PRD (Organizational Brain — the live direction)** | `docs/project/PRD.md` | **Complete.** The project's actual PRD |
-| Architecture — Organizational Brain | `docs/architecture/organizational-brain-architecture.md` | Complete |
+| **PRD (knowledge system — the live direction)** | `docs/project/PRD.md` | **Complete.** The project's actual PRD |
+| Architecture — knowledge system | `docs/architecture/organizational-brain-architecture.md` | Complete |
 | Learning documents | `learning-notes/*.docx` (9) | Complete as deliverables |
 | Diagrams | `docs/assets/diagrams/*.svg` (9) | Complete |
 | Research paper | `docs/research/*.pdf` | External source |
@@ -110,7 +110,7 @@ Ordered by how much they block.
 
 | # | Gap | Blocks | Notes |
 |---|---|---|---|
-| 1 | **The source-class ladder does not exist** | Everything in the Brain | Not an engineering task. Needs a named human. Q2 |
+| 1 | **The source-precedence policy does not exist** | Everything in the knowledge system | Not an engineering task. Needs a named human. Q2 |
 | 2 | ~~The product direction is undecided~~ **RESOLVED 2026-09-14** | — | [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) — `prd.md` was exploratory; no contest existed |
 | 3 | **Two incompatible Phase 1 schemas** | The claim store | `02-domain-model.md` §5, Q7 |
 | 4 | **No predicate vocabulary** | Extraction, identity, contradiction | Q5 — roughly twenty predicates from real questions |
@@ -139,7 +139,7 @@ and they are *specified* rather than *invented later*.
 | Idempotent-reconcile test | Two consecutive passes over an unchanged graph produce an unchanged graph |
 | Kill-mid-step test | `kill -9` mid-step; relaunch completes correctly |
 | Judgement-cannot-upgrade test | A model judgement may lower a verdict and never raise it |
-| Import-boundary tests | The agent package must not import the Brain store; the kernel must not import upward |
+| Import-boundary tests | The agent package must not import the knowledge system store; the kernel must not import upward |
 | Clock-discipline test | Wall-clock calls banned outside an allowlist; **widen the allowlist per module with a comment, never by relaxing the test** |
 | The reviewed extraction sample | A few hundred observations, extracted, reviewed once, committed — then run as a regression test against a measured noise floor |
 

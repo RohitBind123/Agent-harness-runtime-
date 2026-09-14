@@ -50,27 +50,27 @@ Record the new ADR in the index below **and** add an entry to
 |---|---|---|---|
 | [0001](ADR-0001-repository-is-knowledge-base-not-implementation.md) | This repository is the justification layer, not the implementation | ACCEPTED | Project |
 | [0002](ADR-0002-specification-vocabulary-is-canonical-for-code.md) | Specification vocabulary canonical for code; handbook for principles | **PROPOSED** | Project |
-| [0003](ADR-0003-the-brains-core-object-is-a-kind-typed-claim.md) | The Brain's core object is a kind-typed claim | ACCEPTED | Brain |
-| [0004](ADR-0004-observation-log-is-the-system-of-record.md) | The observation log is the system of record | ACCEPTED | Brain |
-| [0005](ADR-0005-the-world-model-is-a-projection-not-a-store.md) | The world model is a projection, not a store | ACCEPTED | Brain |
-| [0006](ADR-0006-authority-is-authored-configuration-never-inferred.md) | Authority is authored configuration, never inferred | ACCEPTED — UNEXECUTED | Brain |
+| [0003](ADR-0003-the-brains-core-object-is-a-kind-typed-claim.md) | The knowledge system's core object is a kind-typed claim | ACCEPTED | knowledge system |
+| [0004](ADR-0004-observation-log-is-the-system-of-record.md) | The observation log is the system of record | ACCEPTED | knowledge system |
+| [0005](ADR-0005-the-world-model-is-a-projection-not-a-store.md) | The world model is a projection, not a store | ACCEPTED | knowledge system |
+| [0006](ADR-0006-authority-is-authored-configuration-never-inferred.md) | Authority is authored configuration, never inferred | ACCEPTED — UNEXECUTED | knowledge system |
 | [0007](ADR-0007-memory-is-a-mechanism-not-a-state-category.md) | Memory is a mechanism, not a state category | ACCEPTED | Memory |
-| [0008](ADR-0008-no-embeddings-in-phase-1.md) | No embeddings in Phase 1 | ACCEPTED | Memory / Brain |
-| [0009](ADR-0009-no-graph-database.md) | No graph database | ACCEPTED | Memory / Brain |
+| [0008](ADR-0008-no-embeddings-in-phase-1.md) | No embeddings in Phase 1 | ACCEPTED | Memory / knowledge system |
+| [0009](ADR-0009-no-graph-database.md) | No graph database | ACCEPTED | Memory / knowledge system |
 | [0010](ADR-0010-the-model-proposes-and-never-writes.md) | The model proposes and never writes | ACCEPTED | Memory |
 | [0011](ADR-0011-standing-is-earned-by-independent-corroboration.md) | Standing is earned by independent corroboration | ACCEPTED | Memory |
-| [0012](ADR-0012-the-agent-reaches-the-brain-only-through-tools.md) | The agent reaches the Brain only through tools | ACCEPTED | Boundary |
+| [0012](ADR-0012-the-agent-reaches-the-brain-only-through-tools.md) | The agent reaches the knowledge system only through tools | ACCEPTED | Boundary |
 | [0013](ADR-0013-mcp-is-a-projection-of-the-capability-layer.md) | MCP is a projection of the capability layer | ACCEPTED | Boundary |
 | [0014](ADR-0014-the-principal-agent-is-a-run-not-a-layer.md) | The Principal Agent is a Run, not a layer | ACCEPTED | Principal Agent |
 | [0015](ADR-0015-verification-before-knowledge.md) | Verification before knowledge | ACCEPTED | Runtime |
 | [0016](ADR-0016-tenant-in-the-key-and-cross-tenant-reads-raise.md) | Tenant in the key; cross-tenant reads raise | ACCEPTED | Security |
 | [0017](ADR-0017-deletion-route-before-retirement.md) | Deletion route before retirement | ACCEPTED | Governance |
-| [0018](ADR-0018-identity-keyed-extraction-first.md) | Identity-keyed extraction, built first | ACCEPTED | Brain |
+| [0018](ADR-0018-identity-keyed-extraction-first.md) | Identity-keyed extraction, built first | ACCEPTED | knowledge system |
 | [0019](ADR-0019-one-source-end-to-end-before-breadth.md) | One source end to end before breadth | ACCEPTED | Build order |
-| [0020](ADR-0020-the-brain-observes-the-workflow-before-it-controls-it.md) | The Brain observes the workflow before it controls it | ACCEPTED | Validation |
+| [0020](ADR-0020-the-brain-observes-the-workflow-before-it-controls-it.md) | The knowledge system observes the workflow before it controls it | ACCEPTED | Validation |
 | [0021](ADR-0021-product-direction-is-contested.md) | The product direction is contested | **SUPERSEDED by 0026** | Product |
-| [0022](ADR-0022-predicate-vocabulary-is-closed-and-reviewed.md) | The predicate vocabulary is closed and reviewed | ACCEPTED | Brain |
-| [0023](ADR-0023-bitemporal-validity-on-claims.md) | Bitemporal validity on claims | ACCEPTED | Memory / Brain |
+| [0022](ADR-0022-predicate-vocabulary-is-closed-and-reviewed.md) | The predicate vocabulary is closed and reviewed | ACCEPTED | knowledge system |
+| [0023](ADR-0023-bitemporal-validity-on-claims.md) | Bitemporal validity on claims | ACCEPTED | Memory / knowledge system |
 | [0024](ADR-0024-no-autonomous-knowledge-curation.md) | No autonomous knowledge curation | ACCEPTED | Governance |
 | [0025](ADR-0025-no-external-codebase-is-evidence.md) | No external codebase is evidence for this project | ACCEPTED | Project |
 | [0026](ADR-0026-product-direction-resolved-prd-is-exploratory.md) | Product direction resolved: `prd.md` is exploratory, not competing | ACCEPTED | Product |

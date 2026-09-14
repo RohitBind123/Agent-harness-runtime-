@@ -71,7 +71,7 @@ Everything in §7 onward describes something that must be built from nothing.
 
 ### What the product is
 
-An **Organizational Brain**: a store of kind-typed claims, built over an
+An **knowledge system**: a store of kind-typed claims, built over an
 append-only observation log, that answers questions whose answers are **not
 present in any single source** — and that says so when it cannot.
 
@@ -156,7 +156,7 @@ that V0 exists at all**, and that nothing in V1 is built until V0 reports.
 >    registered **before** counting (Q17);
 > 2. hand-written perfect organizational context measurably improves blind-graded
 >    agent output on real tasks (Q19);
-> 3. the Brain detects **one** cross-source contradiction that a human who owns
+> 3. the knowledge system detects **one** cross-source contradiction that a human who owns
 >    the subject confirms was worth raising (build order Stage 2 exit).
 >
 > **We will know it is false when** the question mix is dominated by lookups, or
@@ -169,7 +169,7 @@ that V0 exists at all**, and that nothing in V1 is built until V0 reports.
 |---|---|---|---|---|
 | T1 | Reconciliation questions occur at a useful rate | **HYPOTHESIS** | 50-question study, 1 day | Q17 / A1 |
 | T2 | LLM extraction of typed claims from messy organizational text is precise enough (~85%) for corroboration to mean anything | **HYPOTHESIS** | 200 reviewed observations, 3 days | Q11 / A3 |
-| T3 | A named human will author and maintain a two-axis source-class authority ladder | **HYPOTHESIS** | Run the meeting; time it; ask afterwards, 2 hours | Q2, Q18 / A2 |
+| T3 | A named human will author and maintain a two-axis source-precedence policy | **HYPOTHESIS** | Run the meeting; time it; ask afterwards, 2 hours | Q2, Q18 / A2 |
 | T4 | Organizational context measurably improves coding-agent output | **HYPOTHESIS** | Wizard-of-Oz A/B, 20 tasks, 3 days | Q19 / A4 |
 | T5 | ~20 closed predicates cover enough organizational language | **HYPOTHESIS** | OOV rejection curve, rides free on T2 | Q12 / A7 |
 | T6 | Reconciliation-with-provenance is a product, not a feature an incumbent adds | **EVIDENCE — explicitly the weakest in the corpus** | Fetched competitive scan + 5 discovery interviews, 1 week | A5 |
@@ -183,7 +183,7 @@ each.**
 These are not beliefs awaiting a test. They are facts nobody has established.
 
 - Who the customer is (§4).
-- Where the Brain runs relative to the sources it observes (Q3 §7 — local,
+- Where the knowledge system runs relative to the sources it observes (Q3 §7 — local,
   hosted-with-collector, or fully hosted). **These are materially different
   products**, not deployment details.
 - Which single source is ingested first (Q6), because nobody has established
@@ -200,7 +200,7 @@ recorded incident from a real organization. It is a good illustration; it is
 talks itself into a year of building.
 
 **The differentiation argument rests on the corpus's own weakest claim.** The
-Brain review states that nobody appears to combine authority, kind-typed claims,
+knowledge system review states that nobody appears to combine authority, kind-typed claims,
 bitemporal validity and contradiction-as-an-object — *and immediately adds that
 this is "an argument from absence in public material and it is the weakest claim
 in §3."*
@@ -279,7 +279,7 @@ Three failures, each with its evidence class.
 | Agent "memory" (conversation or vector recall) | Recalls what was said | Establish whether it is still true, or who had authority to say it |
 | A wiki | Holds what someone wrote down once | Notice that the code now disagrees with it |
 | A knowledge graph | Holds typed relationships | Carry validity intervals, evidence chains, and the authority of the asserter — and a second store engine breaks same-transaction commit of claim + evidence + event |
-| A coding agent reading the repository | Reads the **highest-authority source for implementation facts** | See intent, history, or the reasoning behind a decision — none of which is in the code. **This is also why the marginal value of a Brain to a coding agent may be narrow (A4)** |
+| A coding agent reading the repository | Reads the **highest-authority source for implementation facts** | See intent, history, or the reasoning behind a decision — none of which is in the code. **This is also why the marginal value of a knowledge system to a coding agent may be narrow (A4)** |
 
 ### 3.5 The consequence of wrong, stale, or contextless information
 
@@ -336,10 +336,10 @@ rules out the developer/power-user segment**, reasoning that it is *"the one
 segment where Anthropic already ships a better product to an installed base,
 and where you have no advantage whatsoever"* (`docs/product/04-product-thesis-and-decision.md`).
 
-That segment exclusion was never a decision against the Organizational Brain
+That segment exclusion was never a decision against the knowledge system
 direction — `prd.md` was not proposing this direction as an alternative (see
 [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md)).
-It is still a **market observation worth weighing**, since the Business Brain
+It is still a **market observation worth weighing**, since the knowledge system
 direction points at approximately the segment that research described as
 crowded and unwinnable on a different axis. That is a data point for D2 below,
 not an unresolved argument this PRD owes an answer to.
@@ -351,7 +351,7 @@ not an unresolved argument this PRD owes an answer to.
 | User | Job | Status |
 |---|---|---|
 | **The claim owner** | Confirms whether a raised contradiction was real and worth raising. **This person is the only high-quality correctness instrument that is not a probe** | Required from V1 |
-| **The ladder owner** | Authors and maintains the source-class authority ladder. A named human, not a role the system fills | **Blocking prerequisite, does not exist** (Q2) |
+| **The policy owner** | Authors and maintains the source-precedence policy. A named human, not a role the system fills | **Blocking prerequisite, does not exist** (Q2) |
 | **The coding agent** | A **consumer**, not a user. It does not have goals, cannot be dissatisfied, and cannot churn | Later, gated on Q19 |
 
 ### 4.4 Eventual users
@@ -417,7 +417,7 @@ this product is a worse search box carrying a correctness tax.**
 domains and other consumers, so the asset survives one product being wrong.
 
 **The discount, recorded because it is load-bearing elsewhere:** the project's
-own architecture review states that **the Brain does not need the fifty-chapter
+own architecture review states that **the knowledge system does not need the fifty-chapter
 runtime to exist**, and the product research assesses the runtime as *"copyable
 infrastructure, today. It becomes platform-shaped only if it reaches a third and
 fourth environment and the environment abstraction survives contact"*
@@ -443,9 +443,9 @@ does not make.
 | # | Deliverable | Days | Falsifies | Register |
 |---|---|---|---|---|
 | **V0.1** | **Question-shape study.** 50 real questions from the last 90 days, classified lookup / why / temporal / contradiction. **Threshold registered before counting** | 1 | T1 — the premise | Q17 |
-| **V0.2** | **Wizard-of-Oz context A/B.** 20 real completed tasks; for 10, hand-write the context a perfect Brain would supply; run all 20 blind; grade blind | 3 | T4 — the ceiling of the whole chain | Q19 |
+| **V0.2** | **Wizard-of-Oz context A/B.** 20 real completed tasks; for 10, hand-write the context a perfect knowledge system would supply; run all 20 blind; grade blind | 3 | T4 — the ceiling of the whole chain | Q19 |
 | **V0.3** | **Extraction sample.** 200 real observations, one prompt, a draft 20-predicate vocabulary, **every output reviewed by a human who knows the project.** Measure precision, recall and kind-assignment agreement **separately** | 3 | T2, T5; yields the noise floor and the vocabulary | Q11, Q12 |
-| **V0.4** | **The ladder meeting, timed.** Two or three people rank source classes on two axes. Record whether they converged, what they disagreed about, how long it took. Then ask each, separately: *"would you have done this before seeing any output?"* | 0.5 | T3 — the onboarding tax | Q2, Q18 |
+| **V0.4** | **The precedence meeting, timed.** Two or three people rank source classes on two axes. Record whether they converged, what they disagreed about, how long it took. Then ask each, separately: *"would you have done this before seeing any output?"* | 0.5 | T3 — the onboarding tax | Q2, Q18 |
 | **V0.5** | **Identity-keyed extraction.** ~30 lines plus a test that a redelivered observation does not produce a second claim | 5 | T7 — and it is required under every scenario | Q21 |
 
 **V0 exit criterion — a decision, not an artefact:**
@@ -497,12 +497,12 @@ perform.
 | Second source | One source must be proven end to end first | V1 exit met |
 | Temporal probes / verification loop | The probe loop is the only **proactive** mechanism, and it needs a claim store with real claims to probe | V1 exit met |
 | MCP server | It is a **projection of a capability layer that does not exist yet.** Built first, it becomes the thing that constrains the layer it should project | Stable capability layer **and** Q9 decided |
-| Principal Agent | Four of its objects are **BLOCKED** on organizational structures (goals with measures and baselines, grants, authority) that do not exist. **No Brain work brings them closer** | A human writes goal records |
-| Most of the agent runtime | The project's own review says the Brain does not need it; four primitives each have their own trigger | Per-primitive triggers (§18) |
+| Principal Agent | Four of its objects are **BLOCKED** on organizational structures (goals with measures and baselines, grants, authority) that do not exist. **No knowledge system work brings them closer** | A human writes goal records |
+| Most of the agent runtime | The project's own review says the knowledge system does not need it; four primitives each have their own trigger | Per-primitive triggers (§18) |
 | Embeddings | The trigger is a measured OOV rate, and the measurement does not exist | Vocabulary misses above a pre-registered threshold for two consecutive weeks |
 | Graph database | A relationship is a claim; a second store engine breaks same-transaction commit | Measured 3+ hop need that CTEs demonstrably lose |
 | Summarisation / curation | **A summary is not evidence for what it summarises** | Nothing in any planned stage |
-| A Brain UI | Before knowing whether the Brain is *right*, a UI measures nothing | After V1 exit |
+| A knowledge system UI | Before knowing whether the knowledge system is *right*, a UI measures nothing | After V1 exit |
 | Multi-tenancy machinery | One team is one permission domain. **Keep `tenant_id` in the key** (a column, cheap, unrecoverable later); **drop the contention machinery** | A second tenant |
 
 **The rule this section enforces:** *nothing enters V1 because it exists in a
@@ -519,7 +519,7 @@ candidates for cutting. Each is examined rather than defended.
 |---|---|---|---|
 | **Admission** — accept every observation | One less stage; the store fills faster; discard rules can be added later | Cost rises linearly with headcount while retrieval precision falls, and **the discard rate is the signal that tells you which**. A rate measured after the fact has no baseline to compare against | **Keep, in its deterministic form only.** No model stage in V1 |
 | **Entity anchoring** — key claims on raw source identifiers | Entity resolution is *"the component most likely to be underestimated"*, so deferring it removes the largest unknown from V1 | *"Joining them afterwards is strictly harder than never splitting them."* With **one** source the risk is genuinely low — a single source usually supplies consistent identifiers | **Keep the anchoring; defer the resolution.** Anchor on system identifiers, curate no aliases, accept unresolved mentions. **This is the one place this PRD narrows the build order** |
-| **The contradiction register as a table** | The Memory architecture argues a contradiction is *"fully represented by a version row on each claim plus an event"* — so the table may be redundant | The Brain architecture requires a register with **severity that gates actions**, and severity has nowhere to live on a version row | **Undecided — this is Q7/D4 in miniature.** Do not cut it and do not build it until D4 is ratified |
+| **The contradiction register as a table** | The Memory architecture argues a contradiction is *"fully represented by a version row on each claim plus an event"* — so the table may be redundant | The knowledge system architecture requires a register with **severity that gates actions**, and severity has nowhere to live on a version row | **Undecided — this is Q7/D4 in miniature.** Do not cut it and do not build it until D4 is ratified |
 
 **What stays regardless, and why arguing about it wastes time:** the six
 temporal fields, the permission label, the evidence table, identity-keyed
@@ -545,7 +545,7 @@ Concrete, end to end. Each names what exists today and what does not.
        |              "GO WITH MAJOR CHANGES" on a macOS paperwork agent,
        |               and "cut the developer-tools environment entirely")
        |              the strategic direction, recorded 2026-09-14
-       |              (a DECISION: Business Brain -> MCP -> coding agents)
+       |              (a DECISION: knowledge system -> MCP -> coding agents)
        v
   EXTRACTION          two claims at the SAME IDENTITY
        |              (subject=product_direction, predicate=current_direction)
@@ -557,11 +557,11 @@ Concrete, end to end. Each names what exists today and what does not.
   ANSWER              "Two decisions disagree. On 2026-09-06 a decision
                        recorded a macOS paperwork agent and explicitly cut
                        the developer-tools direction. On 2026-09-14 a
-                       decision recorded a Business Brain serving coding
+                       decision recorded a knowledge system serving coding
                        agents. Neither supersedes the other. UNRESOLVED."
 ```
 
-**If the Brain surfaces this from the documents alone, without being told, the
+**If the knowledge system surfaces this from the documents alone, without being told, the
 thesis is demonstrated on real data and on the project's own most important open
 question.** **FACT:** the observations for this walk exist in the repository
 today. Nothing else in it does.
@@ -572,7 +572,7 @@ today. Nothing else in it does.
   ENGINEER asks a coding agent to change the cancellation flow
        |
        v
-  AGENT calls a Brain capability, curried with the engineer's Principal
+  AGENT calls a knowledge system capability, curried with the engineer's Principal
        |
        v
   BRAIN returns: the implementation fact (with its verification date),
@@ -702,14 +702,14 @@ on something that is not an engineering task.
 
 | ID | Requirement | User value | Pri | Acceptance criteria | Validation |
 |---|---|---|---|---|---|
-| **FR-A1** | An agent reaches the Brain **only through tools curried with its Principal** — never an import, a shared repository object, or context injected at graph build | Every access-control argument rests on this | **V1** | Import-boundary test: the agent package must not import the Brain store | Automated test |
+| **FR-A1** | An agent reaches the knowledge system **only through tools curried with its Principal** — never an import, a shared repository object, or context injected at graph build | Every access-control argument rests on this | **V1** | Import-boundary test: the agent package must not import the knowledge system store | Automated test |
 | **FR-A2** | Content returned by an external agent is **data, never instruction** | Prompt-injection containment | **V1** | Fetched content never reaches an instruction position | Test |
 | **FR-A3** | An MCP surface exposes **strictly fewer** capabilities than the internal one: read-only, no `propose_claim`, no unbounded result set, and the **client never asserts an identity** | Structural containment is lost over MCP; enforcement falls back to runtime checks | **Later** | Capability diff is asserted in a test | Test |
 | **FR-A4** | A measured improvement in agent output, **sliced for why / temporal / contradiction questions** | An aggregate score is dominated by lookups and **will not show the difference** — and will be believed | **Later, and it is the stage exit** | Paired, per-slice, against a **pinned** store snapshot, with a measured noise floor and cost in the denominator | Evaluation harness |
 
 ### 9.8 Runtime and execution
 
-**Challenged.** The project's own architecture review states that **the Brain
+**Challenged.** The project's own architecture review states that **the knowledge system
 does not need the fifty-chapter runtime to exist**, and names four primitives
 worth adopting, each with its own trigger. This PRD adopts that position for
 V1.
@@ -717,7 +717,7 @@ V1.
 | ID | Requirement | User value | Pri | Acceptance criteria | Validation |
 |---|---|---|---|---|---|
 | **FR-X1** | Identity-keyed action/extraction reuse | Redelivery safety | **V0.5** | See FR-K2 | Test |
-| **FR-X2** | A transactional outbox, so a claim write and its notification are not two writes with a gap | Prevents a consumer missing an event that was committed | **Later** — trigger: the first consumer that reacts to a Brain event | At-least-once delivery under kill-mid-write | Test |
+| **FR-X2** | A transactional outbox, so a claim write and its notification are not two writes with a gap | Prevents a consumer missing an event that was committed | **Later** — trigger: the first consumer that reacts to a knowledge system event | At-least-once delivery under kill-mid-write | Test |
 | **FR-X3** | Leases and version-CAS | Two workers on one observation | **Later** — trigger: ingestion runs more than one worker. **Before that it is theatre** | Two workers racing one observation produce one claim, not two | Concurrency test |
 | **FR-X4** | Park — a run awaiting human confirmation holds **no process, no connection, no in-memory timer** | Human confirmation in the claim lifecycle | **Later** — trigger: human confirmation enters the write path | Survives a restart while parked | Test |
 | **FR-X5** | Concurrency is **re-classify on conflict**, not retry on conflict | Retrying re-applies a classification computed against a stale claim and silently erases the winner's decision | **V1** (it is a rule, not machinery) | Conflict path re-runs classification | Test |
@@ -731,7 +731,7 @@ V1.
 | **FR-O2** | Admission records **which rule** decided, not just the verdict | The discard rate is meaningless without it | **V1** | Verdict + rule id stored per observation | Test |
 | **FR-O3** | Rejection **rate by reason** is recorded per proposal | Tells you which stage is rejecting and whether that changed | **V1** | Reasons enumerated, rate plotted | Metric |
 | **FR-O4** | Per-source observation volume is alerted on **absence** | *A source that goes quiet looks identical to a quiet team* | **V1** | Alert fires below a per-source floor | Test |
-| **FR-O5** | Brain events go on the **existing** event spine — no second event system, no second transport | Otherwise every consumer inherits two replay contracts | **V1** | One event stream | Review |
+| **FR-O5** | knowledge system events go on the **existing** event spine — no second event system, no second transport | Otherwise every consumer inherits two replay contracts | **V1** | One event stream | Review |
 | **FR-O6** | Scope misses and vocabulary misses are **two separate counters** | They have different remedies, and conflating them makes the trigger unreadable | **V1** | Two counters | Metric |
 
 ### 9.10 Recovery
@@ -739,9 +739,9 @@ V1.
 | ID | Requirement | User value | Pri | Acceptance criteria | Validation |
 |---|---|---|---|---|---|
 | **FR-N1** | **The rebuild invariant:** drop the claim store, index, world model and contradiction register; replay the log; arrive at the same state | If you cannot, something downstream holds information that was never observed | **V1** | Rebuild test in CI on a seeded log | Automated test |
-| **FR-N2** | Reprocessing history with a better extractor is the **normal** way the Brain improves, not a disaster-recovery event | Makes improvement cheap forever | **V1** | Reprocess runs end to end on the seeded log | Test |
-| **FR-N3** | The read path **never fails a step**; the write path **never fails a run** | Brain unavailability must not take down its consumer | **V1** | Injected Brain failure does not fail the caller | Fault-injection test |
-| **FR-N4** | Behaviour when the Brain has **no** context is specified **per capability** — proceed with less, or abstain | **UNSPECIFIED in every current document.** *"The read path never fails a step"* does not say what the step then does | **V1 — requires a decision first** | Each capability documents its no-context behaviour | Review |
+| **FR-N2** | Reprocessing history with a better extractor is the **normal** way the knowledge system improves, not a disaster-recovery event | Makes improvement cheap forever | **V1** | Reprocess runs end to end on the seeded log | Test |
+| **FR-N3** | The read path **never fails a step**; the write path **never fails a run** | knowledge system unavailability must not take down its consumer | **V1** | Injected knowledge system failure does not fail the caller | Fault-injection test |
+| **FR-N4** | Behaviour when the knowledge system has **no** context is specified **per capability** — proceed with less, or abstain | **UNSPECIFIED in every current document.** *"The read path never fails a step"* does not say what the step then does | **V1 — requires a decision first** | Each capability documents its no-context behaviour | Review |
 
 ---
 
@@ -758,7 +758,7 @@ else is TBD, and TBD is an honest answer.**
 | **Determinism** | Clock and randomness are **ports**; wall-clock calls are banned outside an allowlist. **Widen the allowlist per module with a comment; never relax the test** | Binary, CI-enforced | I8 |
 | **Provenance** | Every claim traces to an observation. Evidence handles are **server-minted** — *a caller-supplied id is the whole attack* | Binary | EV2 |
 | **Provenance** | Taint is monotonic under the provenance lattice — **nothing clears taint** | Binary, **pending Q14** | Q14 is a security judgement, not an architectural one |
-| **Security** | The agent reaches the Brain only through curried tools; enforced by an import-boundary test | Binary | ADR-0012 |
+| **Security** | The agent reaches the knowledge system only through curried tools; enforced by an import-boundary test | Binary | ADR-0012 |
 | **Permission isolation** | A cross-tenant read **raises**. A denied read raises | Binary | ADR-0016 |
 | **Permission isolation** | Overlapping, non-partitioned audiences | **NOT DESIGNED.** Blocking before any non-public source | Q10 |
 | **Durability** | Claim + version + evidence + outbox event commit in **one transaction** | Binary. **This is the decisive argument against a second store engine** | PS1 |
@@ -780,7 +780,7 @@ documents is not evidence that two things are the same thing.
 
 | | **Owns** | **Does NOT own** |
 |---|---|---|
-| **Brain** | Observations, claims, versions, evidence, entities, contradictions, the predicate registry, the authority ladder as *configuration it reads*, the capability layer | **Execution.** It never calls a tool the agent owns, never applies an effect, never writes a goal. It does not own the authority ladder's *contents* — a human does |
+| **knowledge system** | Observations, claims, versions, evidence, entities, contradictions, the predicate schema registry, the source-precedence policy as *configuration it reads*, the capability layer | **Execution.** It never calls a tool the agent owns, never applies an effect, never writes a goal. It does not own the source-precedence policy's *contents* — a human does |
 | **Runtime** | Run / Episode / Step / Activity / Park, the ExecutionGraph, leases, checkpoints, the effect ledger, the outbox | **Any judgement** — every judgement lives behind a port. **It never writes a claim directly** |
 | **Principal Agent** | Goals it was **given**, decisions with sealed predictions, commitments, delegation grants, outcome records | **Four prohibitions:** it may not set its own goals, execute work itself, grade its own outcomes, or hold organizational knowledge in harness state. **It is a Run — a client of the runtime, not a layer inside it** |
 | **Environment adapters** | Filesystem, VCS, HTTP, inference, clock, scope adapters — applying effects and observing the world | **Effect policy.** A tool *declares* an effect tag; it does not decide whether it may run |
@@ -802,9 +802,9 @@ documents is not evidence that two things are the same thing.
 
   WHAT NEVER CROSSES
      the runtime never writes a claim directly
-     the Brain never calls a tool the agent owns
-     the Brain never sees a client-supplied role or account
-     the Brain never returns a claim the Principal may not see
+     the knowledge system never calls a tool the agent owns
+     the knowledge system never sees a client-supplied role or account
+     the knowledge system never returns a claim the Principal may not see
         -- and a denied read RAISES rather than returning empty
 ```
 
@@ -813,7 +813,7 @@ documents is not evidence that two things are the same thing.
 **FACT: two documents in this repository specify incompatible Phase 1 schemas
 and neither acknowledges the other.**
 
-| | Memory Management Architecture (2026-09-02) | Organizational Brain (2026-09-05) |
+| | Memory Management Architecture (2026-09-02) | knowledge system (2026-09-05) |
 |---|---|---|
 | Entities table | **Rejected for Phase 1** | **Required in Phase 1** |
 | Entity resolution | **Deferred** | **Phase 1**, and *"the component most likely to be underestimated"* |
@@ -821,7 +821,7 @@ and neither acknowledges the other.**
 | Relationships | **Deferred to Phase 3** | Present in the Phase 1 figure |
 
 **A plausible reconciliation exists** — that Memory scopes a *runtime memory
-subsystem* over already-identified entities while the Brain scopes an
+subsystem* over already-identified entities while the knowledge system scopes an
 *organizational store* where identity must be established — **and it is an
 inference, not a decision. Nobody has written it down.**
 
@@ -836,7 +836,7 @@ the source material:
 1. It projects a capability layer that **does not exist yet**. Built first, it
    becomes the thing that constrains the layer it should project.
 2. **Identity becomes a three-party problem** — the IDE, the agent and the
-   Brain — and the token must carry an identity the Brain can verify **without
+   knowledge system — and the token must carry an identity the knowledge system can verify **without
    trusting the middle one.** Undecided (Q9).
 3. **Structural containment is lost.** Internally, tool projection makes an
    unauthorised query *absent from the schema*. An MCP client sees the same
@@ -844,7 +844,7 @@ the source material:
 
 **Recorded prediction, because it is likely to happen anyway:** MCP is one of
 the two things most likely to be built early, because *"it exposes MCP"* sounds
-like progress and can be demonstrated without the Brain being good at anything.
+like progress and can be demonstrated without the knowledge system being good at anything.
 **If it is built early regardless, make it a strict projection with no logic of
 its own, so it can be deleted without losing anything.**
 
@@ -926,7 +926,7 @@ was trained to prefer.
 | **A claim is still true** | `unverified` is the default, and it is honest |
 | **An empty result means no data** | It may mean *denied* — which is why a denied read raises |
 | **A summary is evidence for what it summarises** | Its evidence chain does not terminate in an observation |
-| **Its own confidence is independent** | Every input to the Brain's confidence is its own output: corroboration *it* counted, from observations *it* admitted, extracted by a prompt *it* ran |
+| **Its own confidence is independent** | Every input to the knowledge system's confidence is its own output: corroboration *it* counted, from observations *it* admitted, extracted by a prompt *it* ran |
 
 ---
 
@@ -941,22 +941,22 @@ Almost none produces an error — that is the point of the ranking.
 | 2 | **Wrong entity / entity fragmentation** | Claims about one thing scatter across four identities and never join. **Every component works; the system feels useless** | Anchor on system identifiers; curate aliases; **accept unresolved rather than forcing a match** | Claims-per-entity distribution; unresolved-mention rate | Merge — **and the merge/split lifecycle does not exist (Q16)** |
 | 3 | **A contradiction erased** | A confident answer while the system holds evidence against it. **The exact failure the product exists to prevent** | Contradictions are **never dropped for budget** | Assembly test under a minimal budget | Re-assemble; investigate why it was droppable |
 | 4 | **Permission leak through a claim** | A private fact served outside its audience. **No error, no log line** | Label at ingest; propagate to every derived claim; **never reconstruct** | **Only a test** | Retire affected claims; re-derive. **The leak itself is not undoable** |
-| 5 | **Incorrect authority** | The system trusts a confident junior statement over a verified probe | The ladder is **authored configuration with a named owner**; never inferred from tone or seniority | Ladder is versioned and reviewed | Correct the ladder; **reprocess history** |
+| 5 | **Incorrect authority** | The system trusts a confident junior statement over a verified probe | The policy is **authored configuration with a named owner**; never inferred from tone or seniority | The policy is versioned and reviewed | Correct the policy; **reprocess history** |
 | 6 | **False confidence** | Numbers that look calibrated and are not | No threshold before a measured noise floor | The reviewed sample as a regression test | Re-measure; re-tune |
 | 7 | **Missing evidence** | A claim nobody can check | Claim + evidence in one transaction; a claim without evidence is unreachable | Schema constraint | Unreachable by construction |
 | 8 | **Contradiction fatigue** | Low precision → the detector is muted → **the capability is gone permanently regardless of later quality** | Conservative severity; advisory-only first | Raised-vs-confirmed ratio | **Hard. Prevention is the only real answer** |
 | 9 | **Admission skipped** | The store fills with restatements; cost rises with headcount, precision falls | Discard rate as a headline metric **before the first source is enrolled** | Discard-rate distribution | Re-admit from the log; reprocess |
 | 10 | **Duplicate extraction from redelivery** | Two claims from one text with **different content**, not recognisable as duplicates | Identity-keyed extraction, claimed **before** the model call | Claims whose evidence cites the same observation twice | Reprocess |
 | 11 | **Extraction prompt regression** | A prompt change quietly halves precision; every downstream number degrades slightly | Gate prompt changes on the reviewed sample | The sample as a regression test against a measured floor | Revert; reprocess only after the new extractor beats the old |
-| 12 | **Incorrect execution on Brain context** | An agent acts on a wrong claim | Blocking contradictions refuse action minting; verification before knowledge | The effect ledger and the outcome probe | Reverse the effect; the outcome re-enters as an observation |
+| 12 | **Incorrect execution on knowledge system context** | An agent acts on a wrong claim | Blocking contradictions refuse action minting; verification before knowledge | The effect ledger and the outcome probe | Reverse the effect; the outcome re-enters as an observation |
 | 13 | **Recovery failure — reprocessing produces a different world** | Replay yields a different store than the incremental path did | The rebuild invariant, decided on day one | **The rebuild test, in CI on a seeded log** | Investigate: something downstream holds information never observed |
 | 14 | **Self-confirmation through a human** | The agent asserts something; a human internalises it; later states it as their own belief — **a genuine observation from a genuine actor, indistinguishable from independent corroboration** | Partial: origin tracking | Partial | **UNSOLVED. Recorded, not fixed** |
 | 15 | **Aggregate leakage** | *"Three teams are blocked on X"* discloses a private fact | *An aggregate that cannot be cited is not produced* — **a mitigation, too strict in some cases and too loose in others** | None general | **UNSOLVED** |
-| 16 | **A wrong ladder, authored once and never revisited** | Every precedence decision downstream is wrong, **consistently and invisibly** | A named owner; versioned; reviewed | **None designed.** A product risk this PRD raises and does not solve | — |
+| 16 | **A wrong policy, authored once and never revisited** | Every precedence decision downstream is wrong, **consistently and invisibly** | A named owner; versioned; reviewed | **None designed.** A product risk this PRD raises and does not solve | — |
 
 **Failure 16 is not in any source document.** It follows from A2: if authoring
-the ladder is an onboarding tax, the path of least resistance is to author it
-once, badly, and never look again — and **nothing in the design detects a ladder
+the policy is an onboarding tax, the path of least resistance is to author it
+once, badly, and never look again — and **nothing in the design detects a policy
 that is wrong.**
 
 ---
@@ -965,7 +965,7 @@ that is wrong.**
 
 **The governing rule:**
 
-> **The Brain must not be allowed to declare itself correct.**
+> **The knowledge system must not be allowed to declare itself correct.**
 
 ### 14.1 The four instruments that can establish correctness
 
@@ -1026,7 +1026,7 @@ separate counters**; unresolved-mention rate.
 Every link in the chain except one falls out of records that already exist for
 other reasons. The exception is the **retrieval record**.
 
-**Without it, "the Brain gave a bad answer" cannot be separated into *the claim
+**Without it, "the knowledge system gave a bad answer" cannot be separated into *the claim
 was wrong*, *the right claim was not retrieved*, or *the right claim was
 retrieved and dropped for budget*. Those three have completely different
 fixes and are indistinguishable afterwards.** It is written on the read path,
@@ -1046,7 +1046,7 @@ the build order and validation strategy or derived from a requirement in §9.**
 | **AC-0.1** | 50 real questions collected from the last 90 days and classified | The classification exists, the threshold was registered **before** counting, and the result is recorded whichever way it lands |
 | **AC-0.2** | 20 real tasks run blind; 10 with hand-written context; graded by someone who did not know the arm | A per-arm score with its spread. **A null result is a pass for the experiment and a fail for the thesis** |
 | **AC-0.3** | 200 real observations extracted and **every** output reviewed | Precision, recall and kind-assignment agreement reported **separately** |
-| **AC-0.4** | The ladder meeting held and timed | Either a reviewed ladder file with a **named owner**, **or** the disagreement written down as an open question. **Both are valid outcomes; silence is not** |
+| **AC-0.4** | The precedence meeting held and timed | Either a reviewed policy file with a **named owner**, **or** the disagreement written down as an open question. **Both are valid outcomes; silence is not** |
 | **AC-0.5** | Identity-keyed extraction shipped | A redelivered observation produces no second claim and no second model call, proven by a test, **within one week** |
 
 ### 15.2 V1 acceptance
@@ -1061,7 +1061,7 @@ the build order and validation strategy or derived from a requirement in §9.**
 | **AC-1.6** | The tenant-isolation test | A cross-tenant read **raises** — not returns empty |
 | **AC-1.7** | The deletion-route test | Every store enumerates; a store with no route **fails loudly** |
 | **AC-1.8** | The judgement-cannot-upgrade test | A model judgement lowers a verdict and **cannot** raise one |
-| **AC-1.9** | The import-boundary test | The agent package does not import the Brain store |
+| **AC-1.9** | The import-boundary test | The agent package does not import the knowledge system store |
 | **AC-1.10** | The context-assembly budget test | Under a minimal budget, contradictions, provenance pointers and temporal qualifiers **all survive** |
 | **AC-1.11** | The three day-one signals | All three exist and have values **before the first source is fully enrolled** |
 | **AC-1.12** | Clock discipline | Wall-clock calls banned outside an allowlist, enforced in CI |
@@ -1070,7 +1070,7 @@ the build order and validation strategy or derived from a requirement in §9.**
 
 **AC-1.1 is the milestone, and question 2 of the five is the best available
 test:** *"Which product are we building?"* **has a known and uncomfortable
-answer — two decisions in this repository disagree.** If the Brain surfaces that
+answer — two decisions in this repository disagree.** If the knowledge system surfaces that
 contradiction from observations alone, without being told, the thesis is
 demonstrated on real data.
 
@@ -1120,8 +1120,8 @@ internal tool gets mistaken for a business.**
 
 ### 17.1 Dogfooding — proves the mechanism, proves nothing about the market
 
-Use the real engineering workflow as the first environment the Brain observes.
-**The Brain observes. It does not control.**
+Use the real engineering workflow as the first environment the knowledge system observes.
+**The knowledge system observes. It does not control.**
 
 **Why this environment:** already instrumented; high claim density; real
 messiness that synthetic data does not produce; the consumer is present;
@@ -1187,8 +1187,8 @@ the only evidence that speaks to D2 (who the customer is).
 
 | # | Stage | Objective | Capability delivered | Evidence required | Exit criterion | Decision it unlocks |
 |---|---|---|---|---|---|---|
-| **0** | **Decide and measure** | Establish whether the premise holds, and clear the blockers a human must clear | **No software except V0.5** | V0.1–V0.4 | The ladder exists as a reviewed file with a **named owner** — or the disagreement is recorded; the question mix measured against a pre-registered threshold. (Q1 is already resolved — see [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md)) | Whether to build V1 at all |
-| **1** | **One source, end to end** | Make the Brain's value visible on one source | §7.2 | Real observations from a real source | **AC-1.1** (five questions) **and AC-1.2** (measured precision) | Whether the mechanism works |
+| **0** | **Decide and measure** | Establish whether the premise holds, and clear the blockers a human must clear | **No software except V0.5** | V0.1–V0.4 | The policy exists as a reviewed file with a **named owner** — or the disagreement is recorded; the question mix measured against a pre-registered threshold. (Q1 is already resolved — see [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md)) | Whether to build V1 at all |
+| **1** | **One source, end to end** | Make the knowledge system's value visible on one source | §7.2 | Real observations from a real source | **AC-1.1** (five questions) **and AC-1.2** (measured precision) | Whether the mechanism works |
 | **2** | **The second source** | Test what was accidentally source-specific — **and it is the first point at which a cross-source contradiction is possible at all** | A second adapter; entity resolution stops being free | Two sources, one of which contradicts the other | **One contradiction detected across sources that a human confirms was worth raising.** One instance is the milestone | Whether the thesis is demonstrated |
 | **3** | **Temporal and verification in anger** | Answer history, and notice staleness without being told | `as_of`, supersession chains, the probe loop | A held-out set from **real** history | *"What did we believe in June?"* answered correctly, **and probe-disagrees fires on a real stale claim before a human notices it** | Whether time is handled or merely stored |
 | **4** | **External agents** | Test the consumer bet | Hardened capability layer; MCP as a **strict read-only projection** with **fewer** capabilities | Q9 decided **first** | **A measured improvement, sliced for why / temporal / contradiction** — paired, per-slice, against a pinned snapshot, with a noise floor and cost in the denominator | Whether agents are the consumer |
@@ -1207,17 +1207,17 @@ the only evidence that speaks to D2 (who the customer is).
 | **A second-source stage is inserted** | **It is where the thesis is actually demonstrated.** Neither source alone can produce a cross-source contradiction |
 | **MCP and agent integration are one stage, not two** | MCP is a projection of a layer that exists by Stage 1. *The server is a later afternoon.* Making it its own stage invites building it before anything consumes it |
 | **Stage 0 is decisions, not documentation** | Q2 **cannot be unblocked by building.** A Stage 0 that exits on documentation alone hands Stage 1 a blocker it cannot clear. (Q1 was the same kind of blocker and is now resolved, not built past) |
-| **The runtime is not a stage at all.** Four primitives, each with its own trigger | The project's own review: *"The Brain does not need the fifty-chapter runtime to exist"* — and adopting the primitives as a block *"would be a rewrite justified by architecture rather than by a problem"* |
+| **The runtime is not a stage at all.** Four primitives, each with its own trigger | The project's own review: *"The knowledge system does not need the fifty-chapter runtime to exist"* — and adopting the primitives as a block *"would be a rewrite justified by architecture rather than by a problem"* |
 | **V0 is added in front of everything** | Four load-bearing assumptions can be falsified for a few days' work each, and **none has ever been tested** |
 
 ### 18.2 Stages that deliberately do not exist
 
 **No ingestion framework** — *adapters are written one at a time against a fixed
 observation shape; the framework is that shape.* **No knowledge graph** —
-relationships are claims from Stage 1. **No Brain UI before Stage 3** — before
-knowing whether the Brain is right, a UI measures nothing. **No
+relationships are claims from Stage 1. **No knowledge system UI before Stage 3** — before
+knowing whether the knowledge system is right, a UI measures nothing. **No
 migration/consolidation stage** — reprocessing from the log is the normal way
-the Brain improves.
+the knowledge system improves.
 
 ---
 
@@ -1237,7 +1237,7 @@ the Brain improves.
 | A multi-agent framework | **REJECTED** | **No second agent has a job** | A second agent has a job |
 | A knowledge-authoring UI writing directly | **REJECTED** | Creates claims with no observation behind them and **breaks the rebuild invariant** | Route through `propose_claim` with `source_class=human_authored` instead |
 | Multi-tenant contention machinery | **NOT YET** | Arbitrates contention that does not exist with one writer. **Keep `tenant_id` in the key** | A second tenant, plus the Q8 profile |
-| The Principal Agent's outcome half | **BLOCKED** | Depends on goal records with measures and baselines that do not exist. **No Brain work brings it closer** | A human writes goals |
+| The Principal Agent's outcome half | **BLOCKED** | Depends on goal records with measures and baselines that do not exist. **No knowledge system work brings it closer** | A human writes goals |
 | More architecture documents | **STOP** | **FACT: 47 commits, all documentation, zero product source files.** This is the failure mode with the highest prior | A document that unblocks a named decision |
 
 ---
@@ -1256,9 +1256,9 @@ live plan. Removed from the blocking list below.
 
 | # | Question | Why it blocks the product |
 |---|---|---|
-| **Q2** | **Who authors the source-class authority ladder, and who may change it?** | Every downstream mechanism — precedence, contradiction, retrieval ranking — is **meaningless** without it, and it **cannot be inferred by design** |
-| **Q3** | **What is InOrbitX, and where does the Brain run relative to it?** | Established: a broker insurance portal, local to a desktop. **Unknown: everything that determines what can be observed.** And *local Brain / hosted Brain with local collector / fully hosted* are **materially different products** |
-| **Q7** | **How do the Memory and Brain schemas reconcile?** | **No schema may be built until this is decided** |
+| **Q2** | **Who authors the source-precedence policy, and who may change it?** | Every downstream mechanism — precedence, contradiction, retrieval ranking — is **meaningless** without it, and it **cannot be inferred by design** |
+| **Q3** | **What is InOrbitX, and where does the knowledge system run relative to it?** | Established: a broker insurance portal, local to a desktop. **Unknown: everything that determines what can be observed.** And *local knowledge system / hosted knowledge system with local collector / fully hosted* are **materially different products** |
+| **Q7** | **How do the Memory and knowledge system schemas reconcile?** | **No schema may be built until this is decided** |
 | **Q17** | **Do the valuable questions occur at a useful rate?** | **The premise.** Not mechanically blocking, which makes it urgent rather than blocking |
 
 ### 20.2 Important
@@ -1268,7 +1268,7 @@ live plan. Removed from the blocking list below.
 | **Q5** | What is the initial predicate vocabulary? | It must be **derived from real questions** — which have never been collected |
 | **Q6** | Which single source is ingested first? | *A fact about the organization, not about the architecture.* Falls out of Q3 |
 | **Q10** | How are overlapping (non-partitioned) permissions modelled? | **Blocking before any non-public source**, and a regulated domain makes that immediate. **One wrong join leaks, and the leak has no error** |
-| **Q18** | Will customers author and maintain an authority ladder? | **An unpriced onboarding tax.** Gates time-to-first-value behind an internal political argument. **Blocking for a business model** |
+| **Q18** | Will customers author and maintain a source-precedence policy? | **An unpriced onboarding tax.** Gates time-to-first-value behind an internal political argument. **Blocking for a business model** |
 | **Q19** | Does organizational context measurably improve agent output? | Measures the **ceiling** of the strategic chain |
 | **Q20 / Q8** | How much of the runtime is on the critical path? | **May remove most of the planned work.** Half a day of reading |
 | **Q11** | Confidence floor, retire floor, decay half-life | Tuning before the noise floor is measured is **fitting to noise** |
@@ -1303,13 +1303,13 @@ box for the majority of questions.**
 
 | | |
 |---|---|
-| **Original question** | Was `prd.md` (macOS paperwork agent) a competing direction against the Organizational Brain, requiring a choice, a sequence, or a split? |
-| **Resolution** | **No contest existed.** The project owner stated directly that `prd.md` was written to explore a different, curiosity-driven question — using the agent runtime to control iOS/macOS — never as a competing product decision. The Organizational Brain direction, and this PRD, are confirmed as the live plan |
+| **Original question** | Was `prd.md` (macOS paperwork agent) a competing direction against the knowledge system, requiring a choice, a sequence, or a split? |
+| **Resolution** | **No contest existed.** The project owner stated directly that `prd.md` was written to explore a different, curiosity-driven question — using the agent runtime to control iOS/macOS — never as a competing product decision. The knowledge system direction, and this PRD, are confirmed as the live plan |
 | **Decision record** | [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md), superseding [ADR-0021](decisions/ADR-0021-product-direction-is-contested.md) |
 | **Consequences** | `prd.md` is retained as a record of real research into a different question — corrected in framing, not marked superseded or deleted. This PRD proceeds as the confirmed plan, not a provisional one |
 | **Blocks?** | **No longer blocks anything.** V1 can proceed on this PRD without a pending product-direction decision |
 
-### D2 — Who is the customer for the Organizational Brain?
+### D2 — Who is the customer for the knowledge system?
 
 | | |
 |---|---|
@@ -1318,12 +1318,12 @@ box for the majority of questions.**
 | **Consequences** | A: honest, and forecloses nothing, but produces no market evidence. B: costs a week and produces the first real customer evidence this direction has ever had |
 | **Blocks?** | **Blocking for a business model. Not blocking for V0 or V1** |
 
-### D3 — Where does the Brain run?
+### D3 — Where does the knowledge system run?
 
 | | |
 |---|---|
-| **Question** | Local Brain / hosted Brain with a local collector / fully hosted |
-| **Recommendation** | **Local Brain for V1.** Evidence: **FACT** — the named validation environment is local to a desktop, so a hosted Brain cannot reach it. **Consequence: the single-writer profile becomes the primary deployment, not a special case, and most contention machinery is dead weight.** A hosted Brain with a local collector adds an egress and a trust boundary that, **in a regulated domain, is a governance decision rather than a deployment detail** |
+| **Question** | Local knowledge system / hosted knowledge system with a local collector / fully hosted |
+| **Recommendation** | **Local knowledge system for V1.** Evidence: **FACT** — the named validation environment is local to a desktop, so a hosted knowledge system cannot reach it. **Consequence: the single-writer profile becomes the primary deployment, not a special case, and most contention machinery is dead weight.** A hosted knowledge system with a local collector adds an egress and a trust boundary that, **in a regulated domain, is a governance decision rather than a deployment detail** |
 | **Consequences** | Local: massive scope reduction; multi-tenancy becomes irrelevant for V1. Hosted-with-collector: someone must decide what leaves the machine. Fully hosted: **requires sources that are hosted, which the portal is not** |
 | **Blocks?** | **YES.** It constrains Q8, and Q8 constrains the build |
 
@@ -1335,16 +1335,16 @@ box for the majority of questions.**
 | **Recommendation** | **(A) is the plausible reading and it is an INFERENCE, not a decision.** It needs ratifying or refuting in one page. **Do not build a schema before it is ratified** |
 | **Blocks?** | **YES for any schema work** |
 
-### D5 — Who owns the authority ladder?
+### D5 — Who owns the source-precedence policy?
 
 | | |
 |---|---|
 | **Question** | A named human who ranks source classes on two axes and keeps it current |
 | **Recommendation** | **Hold the meeting as V0.4 and time it.** *Expect it to surface genuine disagreement about how the organization works — that disagreement is the finding*, and it is better found in a meeting than in production. **If it cannot be resolved, write the disagreement down rather than defaulting it** |
-| **Consequences** | Unowned: every precedence decision downstream is arbitrary. Owned badly: failure 16 in §13 — **and nothing detects a ladder that is wrong** |
+| **Consequences** | Unowned: every precedence decision downstream is arbitrary. Owned badly: failure 16 in §13 — **and nothing detects a policy that is wrong** |
 | **Blocks?** | **YES for V1** |
 
-### D6 — Does the workflow change to produce the sources the Brain needs?
+### D6 — Does the workflow change to produce the sources the knowledge system needs?
 
 | | |
 |---|---|
@@ -1368,7 +1368,7 @@ box for the majority of questions.**
 |---|---|
 | **Question** | Which of the 39 runtime invariants apply when there is one writer, one process, and no contention |
 | **Recommendation** | **Write the profile before line one of runtime code.** Half a day of reading. **Expect the answer to be well under ten.** **Do not delete the other half by default — deleting the wrong half loses the correctness properties that are the entire point** |
-| **Blocks?** | **YES before any runtime code.** Not before V1's Brain work |
+| **Blocks?** | **YES before any runtime code.** Not before V1's knowledge system work |
 
 ---
 
@@ -1390,13 +1390,13 @@ exist yet, and §22.2 lists those.
 | J3, FR-N1 | Improve extraction and apply it to history | **An append-only observation log as the system of record, with the rebuild invariant** |
 | J4 — warn before acting | Refuse to act on disagreement | **Contradiction as a first-class record with severity** — a warning string cannot gate anything |
 | J5 — *"tell me when you don't know"* | Distinguish absent from denied from unauthorized | **A denied read raises; results state what was not found and what could not be resolved** |
-| J6 — agent context | Reach the Brain without importing it | **Tool projection curried with an explicit Principal.** Every access-control argument rests on it |
+| J6 — agent context | Reach the knowledge system without importing it | **Tool projection curried with an explicit Principal.** Every access-control argument rests on it |
 | J7 — *"why did it say that?"* | Separate *wrong claim* / *not retrieved* / *dropped for budget* | **A sampled retrieval record** — the only genuinely new durable record in the whole design |
 | FR-P1 — audience safety | Know who could see a fact | **The permission label captured at ingest and propagated.** Knowable at ingest; **unknowable afterwards** |
 | FR-K5, FR-O5 | One consistent write | **Claim + version + evidence + outbox event in one transaction** — and therefore **one store engine**, which is the decisive argument against a graph database |
 | FR-R2 | Enforce permissions without collapsing recall | **The ACL predicate as a pre-filter inside the store.** ANN indexes post-filter, and under a high-selectivity predicate — which tenant always is — recall collapses |
 | FR-V2 | Use model judgement safely | **A judgement may lower a verdict and never raise one**, enforced in code, not by prompting |
-| FR-K9, Q5 | Make claim identity computable without embeddings | **A closed predicate registry** with `single_valued`, `kinds_allowed`, `object_schema`, `decay_profile`, `verifiable_by` |
+| FR-K9, Q5 | Make claim identity computable without embeddings | **A closed predicate schema registry** with `single_valued`, `kinds_allowed`, `object_schema`, `decay_profile`, `verifiable_by` |
 | AC-1.2, §14.3 | Report a number that carries its error term | **A pinned store snapshot, paired comparison, per-slice gating, and a measured noise floor** |
 
 ### 22.2 Architecture with no V1 product requirement
@@ -1412,7 +1412,7 @@ exist yet, and §22.2 lists those.
 | The Principal Agent | **None**, and four of its objects are blocked on organizational acts | **Blocked** |
 | Leases, relay claims, sweepers, worker pools, per-tenant admission, budget ledgers | **None with one writer** | **Blocked on D8** — write the profile; do not delete by default |
 | The evaluation harness | **Its instruments, yes** (noise floor, reviewed sample). The full harness, no | **Split: instruments in V1, harness later** |
-| The effect ledger / undo | **None in V1** — the Brain observes and does not act | **Defer.** Required the moment anything acts on Brain context |
+| The effect ledger / undo | **None in V1** — the knowledge system observes and does not act | **Defer.** Required the moment anything acts on knowledge system context |
 | Multi-tenancy machinery | **None.** One team is one permission domain | **Defer — but keep `tenant_id` in the key** |
 | Embeddings, graph store, summarisation, curation | **None** | **Rejected with triggers** (§19) |
 
@@ -1466,11 +1466,11 @@ blocked (§21 D8).
 
 - Zero product code. 47 commits, all documentation.
 - Two documents specify incompatible Phase 1 schemas; neither acknowledges the other.
-- The authority ladder does not exist, **four months after being identified as the blocking prerequisite.**
+- The source-precedence policy does not exist, **four months after being identified as the blocking prerequisite.**
 - No real question set has ever been collected.
 - The observed workflow produces none of the three highest-value sources.
 - The validation environment is local-only and cannot be read from a hosted session.
-- Two codebases the Brain architecture is designed against are **not present and were not verified**.
+- Two codebases the knowledge system architecture is designed against are **not present and were not verified**.
 
 ### 24.2 Hypotheses (believed, untested)
 
@@ -1489,10 +1489,10 @@ assignment · the entity merge/split lifecycle · InOrbitX's tools, team and dat
 | 1 | **A correct architecture, more of it, indefinitely** | **The highest-prior failure mode**, and the project's own PRD names it: *"building phase 1 beautifully, for four months, because it is the part that is fully specified and therefore the most comfortable to build"* | V0 has a one-week code timebox that is itself the measurement (Q21) |
 | 2 | **The premise is wrong** — most questions are lookups | Terminal for the thesis. **Recorded as genuinely open in the project's own source material** | V0.1, one day, pre-registered threshold |
 | 3 | **Extraction precision is too low** | A pincer with no escape: a high floor empties the store; a low floor makes the product a **confident liar**. **Systematic extraction errors correlate, so they corroborate each other** | V0.3, three days, pre-registered floor |
-| 4 | **The authority ladder is an unpriced onboarding tax** | Gates time-to-first-value behind an internal political argument. **Discussed in every document as a design virtue and in none as a commercial risk** | V0.4, two hours, plus the post-hoc question |
+| 4 | **The source-precedence policy is an unpriced onboarding tax** | Gates time-to-first-value behind an internal political argument. **Discussed in every document as a design virtue and in none as a commercial risk** | V0.4, two hours, plus the post-hoc question |
 | 5 | **The closed vocabulary does not scale** | **The only assumption whose failure has no designed escape** — the fallback is embeddings, and the corpus argues embeddings break under the selective permission predicate this workload always carries | Track the OOV curve from day one; it rides free on V0.3 |
 | 6 | **A permission leak** | **No error, no log line.** In a regulated domain it is a governance incident, not a bug | Label at ingest; tenant in key; the isolation test is the only detector |
-| 7 | **The consumer bet is empty** — agents do not benefit | The chain Brain → MCP → agents has no consumer; the Brain might still be valuable to humans, which is a different product with a different buyer | V0.2 measures the **ceiling** in three days, with no Brain |
+| 7 | **The consumer bet is empty** — agents do not benefit | The chain knowledge system → MCP → agents has no consumer; the knowledge system might still be valuable to humans, which is a different product with a different buyer | V0.2 measures the **ceiling** in three days, with no knowledge system |
 | 8 | **Building for the wrong deployment shape** | Port it wholesale → complexity that buys nothing. Delete the wrong half → lose the correctness properties that are the point | D3 + D8, half a day each |
 | 9 | **An incumbent ships "shows you when your sources disagree"** | They do not need the full correctness apparatus to capture the perceived value | Fetched competitive scan + five discovery interviews, one week |
 
@@ -1505,7 +1505,7 @@ unblocked by building.**
 
 ## 25. Final Product Definition
 
-> **We are building an Organizational Brain** — a store of kind-typed claims,
+> **We are building a knowledge system** — a store of kind-typed claims,
 > built over an append-only observation log, with evidence, authority and
 > bitemporal validity on every claim, reachable only through a Principal-scoped
 > capability layer —
@@ -1523,7 +1523,7 @@ unblocked by building.**
 permission captured at ingest; identity-keyed extraction against a closed
 twenty-predicate vocabulary; a claim store with versions, joinable evidence and
 bitemporal validity; deterministic classification and reconciliation against an
-authored authority ladder; a contradiction register; scope-first retrieval
+authored source-precedence policy; a contradiction register; scope-first retrieval
 behind an explicit Principal; context assembly that never drops contradictions,
 provenance or temporal qualifiers; a tested deletion route; three signals; and
 three capabilities — **`why`, `entity`, `conflicts`.**
@@ -1549,20 +1549,20 @@ evidence to make. Each names what evidence would settle it.**
 
 | # | Question | What would settle it | Why guessing is worse than leaving it open |
 |---|---|---|---|
-| 1 | **Who is the customer for the Organizational Brain?** | Five discovery interviews; or a named segment with a stated reason | A fabricated persona propagates into scope, pricing, and every prioritisation decision downstream — and it is unfalsifiable because it came from nowhere |
+| 1 | **Who is the customer for the knowledge system?** | Five discovery interviews; or a named segment with a stated reason | A fabricated persona propagates into scope, pricing, and every prioritisation decision downstream — and it is unfalsifiable because it came from nowhere |
 | 2 | ~~Is Direction A or Direction B the product?~~ **RESOLVED 2026-09-14** | [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) | There was no contest to pick a side of — `prd.md` was exploratory |
 | 3 | **What share of real questions are why / temporal / contradiction?** | 50 real questions, classified, threshold pre-registered | **Any number I wrote here would be invented**, and it is the number the entire thesis turns on |
 | 4 | **What extraction precision is achievable on real organizational text?** | 200 reviewed observations | The corroboration floor, the confidence model and the product's economics all depend on it. A guess sets a threshold that fits noise |
 | 5 | **What are the twenty predicates?** | The real questions from item 3 | A vocabulary derived from a taxonomy rather than from questions is the failure the design explicitly warns against |
 | 6 | **Which source is ingested first?** | An inventory of InOrbitX's actual tools (Q3) | **It is a fact about the organization, not about the architecture.** Guessing picks a source that may not exist |
-| 7 | **Where does the Brain run — local, hybrid, or hosted?** | A decision, informed by what InOrbitX actually is | These are materially different systems. Guessing builds half of the wrong one |
-| 8 | **Who owns the authority ladder, and what is in it?** | A meeting with named people | **It cannot be inferred by design.** An inferred ladder is wrong precisely where it matters, and wrong invisibly |
+| 7 | **Where does the knowledge system run — local, hybrid, or hosted?** | A decision, informed by what InOrbitX actually is | These are materially different systems. Guessing builds half of the wrong one |
+| 8 | **Who owns the source-precedence policy, and what is in it?** | A meeting with named people | **It cannot be inferred by design.** An inferred policy is wrong precisely where it matters, and wrong invisibly |
 | 9 | **How are overlapping, non-partitioned audiences modelled?** | Enumerate the real audiences in the target environment, then design against those | Designing in the abstract produces a model that fits no real organization — **and the failure it guards against produces no error** |
 | 10 | **What makes a contradiction blocking rather than advisory?** | Run advisory-only; measure which contradictions a human says *should* have blocked | Too liberal blocks everything in a busy scope; too conservative never fires. **No principle picks between them without data** |
 | 11 | **What are the confidence floor, retire floor and decay half-life?** | The measured noise floor | **No consulted source gives a starting value.** A number written now is fitting to noise |
 | 12 | **Is the pain acute enough to fund a company?** | Five discovery interviews, unprompted incidents | This is the only question on this list that no amount of engineering can answer |
-| 13 | **What does a step do when the Brain returns nothing?** | A per-capability decision | *"The read path never fails a step"* does not say what the step then does, and the right answer differs per capability |
-| 14 | ~~Does `prd.md`'s Change 3 argument apply to a Business Brain?~~ **MOOT 2026-09-14** | [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) | Change 3 was never a decision against this direction — it was never proposed as competing with it |
+| 13 | **What does a step do when the knowledge system returns nothing?** | A per-capability decision | *"The read path never fails a step"* does not say what the step then does, and the right answer differs per capability |
+| 14 | ~~Does `prd.md`'s Change 3 argument apply to a knowledge system?~~ **MOOT 2026-09-14** | [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) | Change 3 was never a decision against this direction — it was never proposed as competing with it |
 
 ---
 
@@ -1597,11 +1597,11 @@ being set differently before the experiment runs.** Every other target is TBD.
 
 | # | Disagreement | This PRD's position |
 |---|---|---|
-| 1 | The strategic chain places the **Agent Runtime** on the critical path; the Brain architecture says *"The Brain does not need the fifty-chapter runtime to exist."* **No document reconciles them** | §9.8 and §22.2 adopt the Brain architecture's position for V1: four primitives, each with its own trigger. **D8 must be written before any runtime code** |
+| 1 | The strategic chain places the **Agent Runtime** on the critical path; the knowledge system architecture says *"The knowledge system does not need the fifty-chapter runtime to exist."* **No document reconciles them** | §9.8 and §22.2 adopt the knowledge system architecture's position for V1: four primitives, each with its own trigger. **D8 must be written before any runtime code** |
 | 2 | The strategic chain names **agents** as the consumer; V1's exit test is a **human** test | §21 D7 recommends humans first, agents as a Stage 4 bet gated on Q19 — **and does not resolve it** |
 | 3 | The cancellation example is treated across several documents as the problem statement | §3.2 labels it **ILLUSTRATIVE** — an example written by an architect, **not a collected incident.** It is a good illustration and it is not evidence |
 | 4 | `06-validation-strategy.md` proposes the engineering workflow as the first environment | §17.1 keeps it **and** adds D6, because **FACT:** that workflow produces none of the three sources the design values most, so adopting it implies a workflow change that should be decided rather than drifted into |
-| 5 | No document treats the authority ladder as a commercial risk | §13 failure 16 and §24.4 risk 4 treat it as one. **The design virtue and the onboarding tax are the same property seen from two sides** |
+| 5 | No document treats the source-precedence policy as a commercial risk | §13 failure 16 and §24.4 risk 4 treat it as one. **The design virtue and the onboarding tax are the same property seen from two sides** |
 | 6 | The build order's Stage 0 exits on documentation | §18 keeps the build order's own Change 2 — Stage 0 exits on **decisions**, and adds V0's four measurements in front of everything |
 
 ---

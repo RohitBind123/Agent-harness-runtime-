@@ -1,9 +1,9 @@
-# The Organizational Brain — Architecture
+# The knowledge system — Architecture
 
 **Status:** **DESIGNED.** Nothing described here has been built or run.
 
 **What this document is.** The architectural reasoning behind the
-Organizational Brain: what organizational knowledge is actually like, what this
+knowledge system: what organizational knowledge is actually like, what this
 design therefore requires, the principles that decide later arguments, and an
 honest ledger of what is and is not established.
 
@@ -40,7 +40,7 @@ different in kind, and the difference decides which one can be built on.
 |---|---|---|
 | **The handbook** | The constitution. It says what must be true | **A specification. Not implemented.** It is not something to build *on*, because there is nothing there to build on |
 | **The specification** | The execution model, named and numbered | **Designed.** Same condition |
-| **This project** | The Organizational Brain | **0 lines of product code** |
+| **This project** | The knowledge system | **0 lines of product code** |
 
 That the handbook and the specification describe overlapping concepts under
 different names, with no stated relationship between them, is the origin of
@@ -63,7 +63,7 @@ would otherwise be reasonable. Together they are most of the design work.
 | 2 | **No general organization publishes its own precedence rule** | Reading authority out of the corpus. There is no sentence anywhere in a company saying a signed agreement beats an SOP beats a product guide beats a deprecated policy. **This is the hardest problem here — see §3** |
 | 3 | **Extraction must be verified, not trusted** | Hand-reviewing everything once. Review does not scale past a small curated set, but the principle has to survive in another form |
 | 4 | **Conflict is between a decision, an implementation and an observation** — three different kinds of thing | A two-sided conflict model. Typing everything identically makes the disagreement disappear |
-| 5 | **A live Brain has a moving *now*** | One global frozen `as_of`. A run must still see a stable world, so stability moves to per-run |
+| 5 | **A live knowledge system has a moving *now*** | One global frozen `as_of`. A run must still see a stable world, so stability moves to per-run |
 | 6 | **Evidence must outlive the run** | Run-scoped ephemeral evidence. A claim's basis must be inspectable months later |
 | 7 | **Organizational knowledge is not partitioned** — it is overlapping, per-source, and often per-channel | A single tenant predicate as the whole access model. Private channels, restricted repositories and HR data do not nest |
 | 8 | **An unaddressed agent should usually stay silent** | Volunteering by default. This constraint should be kept far longer than will feel comfortable |
@@ -95,12 +95,12 @@ cases that matter, and wrong invisibly**. Case (1) does not generalise.
 Therefore (2).
 
 **The design consequence, which shapes everything downstream:** the
-source-class ladder is **configuration** — authored by a human, versioned,
-reviewed, and outside anything the agent may edit. **The Brain enforces a
-ladder. It does not learn one.** See
+source-precedence policy is **configuration** — authored by a human, versioned,
+reviewed, and outside anything the agent may edit. **The knowledge system enforces a
+policy. It does not learn one.** See
 [ADR-0006](../project/decisions/ADR-0006-authority-is-authored-configuration-never-inferred.md).
 
-**It does not exist.** No ladder has been authored, and nothing downstream —
+**It does not exist.** No policy has been authored, and nothing downstream —
 precedence, contradiction, retrieval ranking — means anything without one.
 This is **Q2**, and it needs a meeting, not a sprint.
 
@@ -113,11 +113,11 @@ Nine primitives. Every one has to be built.
 | Primitive | Why it is required | Where it is specified |
 |---|---|---|
 | **Durable, cross-run evidence** | A claim must cite its basis months later, not just within the answer that produced it | §8.4 — the handle discipline, with a lifetime that outlives the run |
-| **A source-class ladder as authored configuration** | §3 above | A human, once, then versioned |
+| **A source-precedence policy as authored configuration** | §3 above | A human, once, then versioned |
 | **Continuous observation ingestion with admission control** | Observations arrive forever and most are worthless. **Admission is the stage everyone omits** | `01-architecture-map.md` §2.3 |
 | **Entity resolution** | "Carrier X", "the QIC flow" and a service name in a repository must resolve to one identity across chat, tickets, code and meetings | **The component most likely to be underestimated.** `01-architecture-map.md` §2.4 |
 | **Relationship traversal** | *"Why does QIC approval behave differently for carrier X"* is multi-hop | Where a graph store would be argued for — and refused, see [ADR-0009](../project/decisions/ADR-0009-no-graph-database.md) |
-| **A moving *now*, with per-run stability** | A live Brain cannot freeze time globally; a run must still see a stable world | [ADR-0023](../project/decisions/ADR-0023-bitemporal-validity-on-claims.md) |
+| **A moving *now*, with per-run stability** | A live knowledge system cannot freeze time globally; a run must still see a stable world | [ADR-0023](../project/decisions/ADR-0023-bitemporal-validity-on-claims.md) |
 | **Non-partitioned permissions** | Property 7 of §2. **The leak produces no error and no log line** | **Not designed. Q10** |
 | **A participation policy** | Nothing decides when an unaddressed agent should speak | `08-build-order.md` stage 5 |
 | **Decision, Implementation and Outcome as distinct kinds** | This is what makes *"product says X, code does Y"* expressible at all | [ADR-0003](../project/decisions/ADR-0003-the-brains-core-object-is-a-kind-typed-claim.md) |
@@ -141,7 +141,7 @@ principle that protects nothing is a preference.
 | 8 | **Permissions live in the store, not at the call site** | The ACL predicate is a pre-filter inside the store implementation | Handbook Ch 37 §5.2 · Memory Management Architecture §16.4 · [ADR-0016](../project/decisions/ADR-0016-tenant-in-the-key-and-cross-tenant-reads-raise.md) |
 | 9 | **There is no "now" — there are two clocks and a per-run as-of** | Valid time and transaction time are separate; the clock is a port | [ADR-0023](../project/decisions/ADR-0023-bitemporal-validity-on-claims.md) · Memory Management Architecture |
 | 10 | **Admission before extraction** | Most observations are discarded, and the discard rate is a headline metric | `01-architecture-map.md` §2.3 · `[DESIGN DECISION]` |
-| 11 | **The Brain proposes; it does not write to the world** | It can assert, flag a contradiction, and draft an action. Executing goes through a separate gate | [ADR-0010](../project/decisions/ADR-0010-the-model-proposes-and-never-writes.md) · `[DESIGN DECISION]` |
+| 11 | **The knowledge system proposes; it does not write to the world** | It can assert, flag a contradiction, and draft an action. Executing goes through a separate gate | [ADR-0010](../project/decisions/ADR-0010-the-model-proposes-and-never-writes.md) · `[DESIGN DECISION]` |
 | 12 | **Silence is the default, and speaking is earned per rung** | Observing, retrieving, answering-when-asked, volunteering and acting are five permissions with five gates | `08-build-order.md` stage 5 · `[DESIGN DECISION]` |
 
 ### 5.1 The two most likely to be abandoned under pressure
@@ -194,7 +194,7 @@ Each is a reasonable design that is **wrong here**, for a stated reason.
 | Anti-pattern | Why it is wrong here |
 |---|---|
 | **Build-time-only indexing** | Observations arrive forever. An index built once describes a moment that has already passed |
-| **A single global frozen `as_of`** | A live Brain has a moving now. Freezing globally makes every concurrent run share one stale world |
+| **A single global frozen `as_of`** | A live knowledge system has a moving now. Freezing globally makes every concurrent run share one stale world |
 | **Run-scoped, ephemeral evidence** | A claim's basis must be inspectable months later. Evidence that dies with the run makes every old claim unauditable |
 | **A single account identifier as the whole ACL universe** | Organizational audiences overlap and do not nest. One predicate cannot express a private channel, a restricted repository and an HR document |
 
@@ -265,7 +265,7 @@ Stated so nobody spends a sprint rediscovering them. **These are not tasks.**
 | Every component: purpose, owns, does not own, invariants, status | `docs/project/01-architecture-map.md` |
 | Every object and field | `docs/project/02-domain-model.md` |
 | State machines and transitions | `docs/project/03-lifecycles-and-state-machines.md` |
-| How correctness is established without asking the Brain | `docs/project/07-brain-observability.md` |
+| How correctness is established without asking the knowledge system | `docs/project/07-brain-observability.md` |
 | The staged build order and its exit measurements | `docs/project/08-build-order.md` |
 | Open questions, blocking status, next experiment | `docs/project/10-open-questions.md` |
 | The product requirements | `docs/project/PRD.md` |

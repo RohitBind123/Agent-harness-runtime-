@@ -1,7 +1,7 @@
 # ADR-0004 — The observation log is the system of record
 
 **Status:** ACCEPTED
-**Date / context:** 2026-09-05, Brain architecture review §5.3–5.4.
+**Date / context:** 2026-09-05, knowledge system architecture review §5.3–5.4.
 
 ## Context
 
@@ -32,10 +32,13 @@ The log carries, per observation: raw payload, source, actor, `occurred_at`,
 store, the index, the world model and the contradiction register, replay the
 observation log, and you arrive at the same state.* If you cannot, something
 downstream holds information that was never observed — which is either a bug or
-a place a human edited the Brain directly, and both need to be visible.
+a place a human edited the knowledge system directly, and both need to be visible.
+This is the same check the handbook calls the **Replay test** (Ch9: "delete
+every read model/progress/cached context; if state can't be rebuilt, an axis
+leaked"), applied here to the whole derived layer rather than to one store.
 
 Reprocessing is therefore **not a disaster-recovery story. It is the normal way
-the Brain improves** — better extraction, a new predicate, a corrected
+the knowledge system improves** — better extraction, a new predicate, a corrected
 authority ordering, all applied to history rather than only to the future.
 
 ## Consequences

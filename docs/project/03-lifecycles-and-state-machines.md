@@ -17,7 +17,7 @@ Where a transition's rules are not established by any source document, it says
 
 Three properties hold across every lifecycle here and are stated once:
 
-1. **The write path never fails a run.** Memory and Brain writes are off the
+1. **The write path never fails a run.** Memory and knowledge system writes are off the
    critical path. A failure to record a claim degrades future runs; it does not
    fail the current one.
 2. **The read path never fails a step.** A retrieval failure yields less
@@ -101,6 +101,10 @@ corroborated observation.
 ---
 
 ## 4. Claim
+
+**The load floor** used below is the handbook's own term (Ch12: "confidence
+below which an entry stays in the file but is never loaded"), applied here to
+claim promotion rather than memory-entry loading.
 
 ```
                     proposal APPLIED

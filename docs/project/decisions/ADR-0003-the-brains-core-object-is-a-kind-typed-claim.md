@@ -1,7 +1,7 @@
-# ADR-0003 — The Brain's core object is a kind-typed claim
+# ADR-0003 — The knowledge system's core object is a kind-typed claim
 
 **Status:** ACCEPTED
-**Date / context:** 2026-09-05, Organizational Brain architecture review §6.1.
+**Date / context:** 2026-09-05, knowledge system architecture review §6.1.
 
 ## Context
 
@@ -46,7 +46,7 @@ the answer.*
 
 ## Consequences
 
-- The predicate registry must carry `kinds_allowed`, so that a *decision* may
+- The predicate schema registry must carry `kinds_allowed`, so that a *decision* may
   assert `intended_behaviour` but not `current_behaviour`. That one column is
   what enforces this ADR at write time.
 - Claim identity is `(subject, predicate)` within a scope, with the **object
@@ -61,7 +61,7 @@ the answer.*
 Measured evidence that the kind classification is unreliable at extraction time
 — specifically, that human reviewers disagree with the extractor's kind
 assignment often enough that downstream authority resolution is noise. The
-reviewed sample (the Brain architecture) is the instrument that would show this.
+reviewed sample (the knowledge system architecture) is the instrument that would show this.
 
 ## Source
 

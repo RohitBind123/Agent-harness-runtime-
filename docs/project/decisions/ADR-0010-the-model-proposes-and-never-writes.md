@@ -25,7 +25,7 @@ write method** — the absence is enforced by the type, not by a convention.
 
 ## Evidence and reasoning
 
-**[CONFIRMED]** Each of the four words in "unreviewed, unabstracted,
+**[FACT]** Each of the four words in "unreviewed, unabstracted,
 unclassified, from inside the run" names a distinct failure. *From inside the
 run* is the subtlest: the model is least able to judge what generalises at
 exactly the moment it is most convinced it has learned something.

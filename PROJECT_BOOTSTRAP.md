@@ -43,6 +43,36 @@ The handbook uses a second, older set of tags for *claim provenance* —
 from. The six labels above describe whether a thing exists. They are different
 axes and both are in use. See `docs/project/09-do-not-assume.md` §2.
 
+**A third axis — epistemic status, how confident this particular sentence is —
+is used throughout the ADRs, the PRD and the outside-in review, and was never
+formally enumerated until now.** It had drifted into 7–8 undefined variants.
+The closed set, used from here on:
+
+| Label | Meaning |
+|---|---|
+| **FACT** | Verifiable right now, in this repository. |
+| **EVIDENCE** | External, published research or data cited to support a claim — not independently verified by this project. |
+| **INFERENCE** | A reasoned conclusion drawn from a stated premise, with **no** claimed falsification test. |
+| **DESIGN DECISION** | A choice justified by its own self-contained argument, not by evidence. |
+| **HYPOTHESIS** | An unproven belief that **does** carry a stated falsification test. |
+| **REQUIREMENT** | A stated need a design must satisfy. |
+| **RECOMMENDATION** | A suggested action, not yet a decision. |
+
+**INFERENCE and HYPOTHESIS are the pair most often confused with each other —
+the difference is entirely whether a falsifier is stated.** An ADR's
+`[INFERENCE]` that later gains a stated test for being wrong should be
+relabelled `[HYPOTHESIS]`, not the reverse.
+
+Three axes, three different questions, none of which answers the others:
+*does it exist* (the six labels above) · *where did the claim come from* (the
+handbook's `[AHE]`/`[DAR]`/`[INF]`/`[BP]`/`[FUT]`) · *how confident is this
+sentence* (this section's seven labels).
+
+**A fourth thing that is not an axis at all, but is easy to confuse for one:**
+which *word* names a concept. `docs/project/15-vocabulary.md` is the record of
+every term retired, renamed, or aligned to the handbook on 2026-09-14, and why
+— check it before coining a new name for something that already has one.
+
 ---
 
 ## 1. What is this project?
@@ -58,7 +88,7 @@ This repository contains, at the audited commit:
 - 1 research PDF
 - **5 Python files, all of which build and lint the documentation. None is product code.**
 
-There is no runtime, no Brain, no memory subsystem, no API, no database
+There is no runtime, no knowledge system, no memory subsystem, no API, no database
 migration, no product test suite. **Zero lines of product code exist in this
 repository.** This is the single most important fact for a new session to hold,
 because most of the documents here are written in the present tense about
@@ -77,9 +107,9 @@ estimates start from zero. See
 ### The current strategic hypothesis
 
 ```
-        Business Brain
+        knowledge system
               |
-          Brain MCP
+          knowledge system MCP
               |
    External agents (Claude / Codex)
               |
@@ -140,17 +170,17 @@ short version:
 | 51-chapter agent-runtime handbook | **IMPLEMENTED** (as documentation) | `docs/handbook/` |
 | Universal Runtime v1.0 specification, revision 5, 39 invariants | **DESIGNED** | `docs/architecture/` |
 | Memory Management Architecture (19 ADRs, 4-table schema) | **DESIGNED** | `learning-notes/Memory Management Architecture.docx` |
-| Organizational Brain architecture | **DESIGNED** | `docs/architecture/organizational-brain-architecture.md` |
+| knowledge system architecture | **DESIGNED** | `docs/architecture/organizational-brain-architecture.md` |
 | Principal Agent Architecture | **DESIGNED** | `learning-notes/Principal Agent - Organizational Intelligence Architecture.docx` |
 | Agent Evaluation & Measurement Architecture | **DESIGNED** | `learning-notes/Agent Evaluation & Measurement Architecture.docx` |
 | Product research + PRD (macOS/iOS runtime-control exploration) | **DESIGNED** — exploratory, does not compete with the live direction. See [ADR-0026](docs/project/decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) | `docs/product/`, `prd.md` |
-| **Product Requirements Document (Organizational Brain — the live direction)** | **DESIGNED** | `docs/project/PRD.md` |
+| **Product Requirements Document (knowledge system — the live direction)** | **DESIGNED** | `docs/project/PRD.md` |
 | Documentation build + lint tooling | **IMPLEMENTED**, passing | `tools/` |
-| **The Brain** | **DESIGNED** — no code | — |
+| **The knowledge system** | **DESIGNED** — no code | — |
 | **The Runtime** | **DESIGNED** — no code | — |
 | **The Memory subsystem** | **DESIGNED** — no code | — |
 | **The Principal Agent** | **DESIGNED** — no code | — |
-| **Brain MCP server** | **PROPOSED**, and deliberately deferred | — |
+| **knowledge system MCP server** | **PROPOSED**, and deliberately deferred | — |
 | **Observation ingestion (any source)** | **DESIGNED** — no code | — |
 | **Any product test suite** | **Does not exist** | — |
 
@@ -175,7 +205,7 @@ sentence anywhere else.
 - The observation log, admission stage, entity table, claim store, and
   contradiction register are all designs.
 - No source adapter (Jira, Git, Slack, meetings) has been written.
-- The source-class authority ladder — which the Brain architecture names as
+- The source-precedence policy — which the knowledge system architecture names as
   the single blocking prerequisite — **has not been authored.** It requires a
   named human, not an engineering task. See `docs/project/10-open-questions.md` **Q2**.
 
@@ -184,7 +214,7 @@ sentence anywhere else.
 ## 5. What we cannot see from here
 
 **InOrbitX** — named in the current strategic direction as the engineering
-workflow that will be the Brain's first validation environment — is a **broker
+workflow that will be the knowledge system's first validation environment — is a **broker
 insurance portal, held locally on the owner's desktop** (stated by the project
 owner, 2026-09-14). It appears nowhere in this repository, and **this session
 cannot read it.**
@@ -207,16 +237,16 @@ in `docs/project/decisions/`. The load-bearing ones, compressed:
 |---|---|---|
 | [ADR-0001](docs/project/decisions/ADR-0001-repository-is-knowledge-base-not-implementation.md) | This repository is the justification layer. Implementation happens elsewhere. | **ACCEPTED** |
 | [ADR-0002](docs/project/decisions/ADR-0002-specification-vocabulary-is-canonical-for-code.md) | The specification's vocabulary is canonical for code; the handbook is canonical for principles. | **PROPOSED — not ratified.** Two documents assume it; nobody has decided it. |
-| [ADR-0003](docs/project/decisions/ADR-0003-the-brains-core-object-is-a-kind-typed-claim.md) | The Brain's core object is a claim with a *kind*; the kind determines what it has authority over. | **ACCEPTED** |
+| [ADR-0003](docs/project/decisions/ADR-0003-the-brains-core-object-is-a-kind-typed-claim.md) | The knowledge system's core object is a claim with a *kind*; the kind determines what it has authority over. | **ACCEPTED** |
 | [ADR-0004](docs/project/decisions/ADR-0004-observation-log-is-the-system-of-record.md) | The append-only observation log is the system of record. Everything downstream is derived and rebuildable. | **ACCEPTED** |
 | [ADR-0005](docs/project/decisions/ADR-0005-the-world-model-is-a-projection-not-a-store.md) | The world model is a materialised view over claims, not an independently authored store. | **ACCEPTED** |
-| [ADR-0006](docs/project/decisions/ADR-0006-authority-is-authored-configuration-never-inferred.md) | The source-class authority ladder is human-authored configuration, versioned, outside anything the agent may edit. Never inferred. | **ACCEPTED — and unexecuted.** The ladder does not exist. |
+| [ADR-0006](docs/project/decisions/ADR-0006-authority-is-authored-configuration-never-inferred.md) | The source-precedence policy is human-authored configuration, versioned, outside anything the agent may edit. Never inferred. | **ACCEPTED — and unexecuted.** The policy does not exist. |
 | [ADR-0007](docs/project/decisions/ADR-0007-memory-is-a-mechanism-not-a-state-category.md) | Memory is a mechanism operating over several state categories, not a state category and not a store. | **ACCEPTED** |
 | [ADR-0008](docs/project/decisions/ADR-0008-no-embeddings-in-phase-1.md) | No embeddings in Phase 1. Retrieval is scope-first and structural. | **ACCEPTED**, with a pre-registered trigger to revisit. |
 | [ADR-0009](docs/project/decisions/ADR-0009-no-graph-database.md) | No graph database. A relationship is a claim; multi-hop is a recursive CTE. | **ACCEPTED**, with a measured trigger. |
 | [ADR-0010](docs/project/decisions/ADR-0010-the-model-proposes-and-never-writes.md) | The model proposes claims; it never writes them. There is no `remember()` tool. | **ACCEPTED** |
 | [ADR-0011](docs/project/decisions/ADR-0011-standing-is-earned-by-independent-corroboration.md) | Standing is earned by corroboration from distinct runs. The gate is on the load, not the write. | **ACCEPTED** |
-| [ADR-0012](docs/project/decisions/ADR-0012-the-agent-reaches-the-brain-only-through-tools.md) | The agent reaches the Brain only through Principal-curried tools. Never an import. | **ACCEPTED** |
+| [ADR-0012](docs/project/decisions/ADR-0012-the-agent-reaches-the-brain-only-through-tools.md) | The agent reaches the knowledge system only through Principal-curried tools. Never an import. | **ACCEPTED** |
 | [ADR-0013](docs/project/decisions/ADR-0013-mcp-is-a-projection-of-the-capability-layer.md) | MCP is a thin projection of a capability layer, not a second API. Do not build the server yet. | **ACCEPTED** |
 | [ADR-0014](docs/project/decisions/ADR-0014-the-principal-agent-is-a-run-not-a-layer.md) | The Principal Agent is a *client* of the runtime, implemented as a Run — not a layer inside it. | **ACCEPTED** |
 | [ADR-0015](docs/project/decisions/ADR-0015-verification-before-knowledge.md) | Only verified observations update knowledge. A model judgement may lower a verdict, never raise it. | **ACCEPTED** |
@@ -224,7 +254,7 @@ in `docs/project/decisions/`. The load-bearing ones, compressed:
 | [ADR-0017](docs/project/decisions/ADR-0017-deletion-route-before-retirement.md) | A store ships with a tested deletion route before it ships retirement. | **ACCEPTED** |
 | [ADR-0018](docs/project/decisions/ADR-0018-identity-keyed-extraction-first.md) | Extraction is identity-keyed, and the row is claimed *before* the model call. Build it first. | **ACCEPTED** |
 | [ADR-0019](docs/project/decisions/ADR-0019-one-source-end-to-end-before-breadth.md) | One source, end to end, including the skippable-feeling stages — before a second source. | **ACCEPTED** |
-| [ADR-0020](docs/project/decisions/ADR-0020-the-brain-observes-the-workflow-before-it-controls-it.md) | The Brain observes the engineering workflow. It does not control it. | **ACCEPTED** |
+| [ADR-0020](docs/project/decisions/ADR-0020-the-brain-observes-the-workflow-before-it-controls-it.md) | The knowledge system observes the engineering workflow. It does not control it. | **ACCEPTED** |
 | [ADR-0021](docs/project/decisions/ADR-0021-product-direction-is-contested.md) | The product direction is contested: `prd.md` and the current hypothesis describe different products. | **SUPERSEDED by ADR-0026.** |
 | [ADR-0022](docs/project/decisions/ADR-0022-predicate-vocabulary-is-closed-and-reviewed.md) | The predicate vocabulary is closed. Out-of-vocabulary extractions are rejected, and the rejection *rate* is the signal. | **ACCEPTED** |
 | [ADR-0023](docs/project/decisions/ADR-0023-bitemporal-validity-on-claims.md) | Valid time and transaction time are separated on every claim. | **ACCEPTED** |
@@ -241,11 +271,11 @@ evidence, and the next experiment — is `docs/project/10-open-questions.md`.
 
 **Q1 (which product) is RESOLVED, 2026-09-14** — see
 [ADR-0026](docs/project/decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md).
-`prd.md` was exploratory; the Business Brain direction is the live plan.
+`prd.md` was exploratory; the knowledge system direction is the live plan.
 
 **Blocking (nothing meaningful proceeds until these are decided):**
 
-- **Q2 — Who authors the source-class authority ladder, and who may change
+- **Q2 — Who authors the source-precedence policy, and who may change
   it?** Not an engineering question. Needs a named human and a meeting.
 - **Q3 — What is InOrbitX?** No definition exists in this repository.
 - **Q4 — Is the handbook or the specification normative for new code?** Two
@@ -307,9 +337,9 @@ reading and it is short. The most dangerous items:
 5. **Confidence ≠ correctness.** No confidence number in this project has been
    calibrated against a measured noise floor, because no noise floor has been
    measured.
-6. **Brain ≠ Memory.** They are separate designs with *overlapping and
+6. **knowledge system ≠ Memory.** They are separate designs with *overlapping and
    currently incompatible* Phase 1 schemas. See `docs/project/09-do-not-assume.md` §4.
-7. **Brain ≠ Runtime. Runtime ≠ Principal Agent.**
+7. **knowledge system ≠ Runtime. Runtime ≠ Principal Agent.**
 8. **MCP ≠ product.**
 9. **Current architecture ≠ immutable architecture.** It is explicitly
    expected to change when evidence contradicts it — which is why the change
@@ -319,7 +349,7 @@ reading and it is short. The most dangerous items:
     because something like it worked before.
     [ADR-0025](docs/project/decisions/ADR-0025-no-external-codebase-is-evidence.md).
 11. **The two architecture documents do not agree with each other.** The
-    Memory architecture rejects an entities table in Phase 1; the Brain
+    Memory architecture rejects an entities table in Phase 1; the knowledge system
     architecture requires one in Phase 1. Nobody has reconciled them.
 
 ---
@@ -341,7 +371,7 @@ reading and it is short. The most dangerous items:
 
 **The recommended next build step**, with the reasoning, is in
 `docs/project/13-audit-2026-09-14.md` §J–K, updated by the later resolution of
-Q1. In one line: *hold the ladder meeting for Q2, and then build one source
+Q1. In one line: *hold the precedence meeting for Q2, and then build one source
 end-to-end — not the ingestion framework.*
 
 **Before that, read `docs/project/14-outside-in-review-2026-09-14.md`.** It is an
@@ -369,7 +399,7 @@ Chat history is not.
 | `docs/project/04-implementation-map.md` | Architectural component → actual files → status → test coverage → known limitations |
 | `docs/project/05-development-workflow.md` | How features actually get built here today |
 | `docs/project/06-validation-strategy.md` | Using the real engineering workflow as the first live validation environment |
-| `docs/project/07-brain-observability.md` | The flight recorder: what the Brain saw, extracted, proposed, retrieved, answered, and whether it was right |
+| `docs/project/07-brain-observability.md` | The flight recorder: what the knowledge system saw, extracted, proposed, retrieved, answered, and whether it was right |
 | `docs/project/08-build-order.md` | The staged roadmap, with proposed changes to it and the reasons |
 | `docs/project/09-do-not-assume.md` | The dangerous assumptions register |
 | `docs/project/10-open-questions.md` | Unresolved questions, blocking status, next experiment |
@@ -377,7 +407,7 @@ Chat history is not.
 | `docs/project/12-session-handoff-protocol.md` | The format every session ends with |
 | `docs/project/13-audit-2026-09-14.md` | The full audit this baseline rests on |
 | `docs/project/14-outside-in-review-2026-09-14.md` | The 10 highest-leverage assumptions that could make this wrong, and the cheapest experiment for each |
-| `docs/project/PRD.md` | **The live Product Requirements Document** — thesis, scope (V0/V1), functional and non-functional requirements, trust model, safety, roadmap, traceability. Covers the Organizational Brain direction, not `prd.md` |
+| `docs/project/PRD.md` | **The live Product Requirements Document** — thesis, scope (V0/V1), functional and non-functional requirements, trust model, safety, roadmap, traceability. Covers the knowledge system direction, not `prd.md` |
 
 Existing material, unchanged by this baseline:
 

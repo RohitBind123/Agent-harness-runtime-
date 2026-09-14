@@ -17,23 +17,23 @@ Two rules govern this document:
 
 | Object | Layer | Status | Required by |
 |---|---|---|---|
-| [Observation](#21-observation) | Brain | DESIGNED | The system of record |
-| [Proposal](#22-proposal) | Brain / Memory | DESIGNED | Model-proposes-never-writes |
-| [Claim](#23-claim) | Brain / Memory | DESIGNED | The core object |
-| [ClaimVersion](#24-claimversion) | Brain / Memory | DESIGNED | History, supersession, as-of |
-| [Evidence](#25-evidence) | Brain / Memory | DESIGNED | Provenance, corroboration, deletion |
-| [Entity](#26-entity) | Brain | DESIGNED — **disputed** | Identity across sources |
-| [Relationship](#27-relationship) | Brain | DESIGNED — as a claim | Multi-hop questions |
-| [Contradiction](#28-contradiction) | Brain | DESIGNED — **disputed** | Gating action on disagreement |
-| [Predicate](#29-predicate) | Brain | DESIGNED | Claim identity; kind enforcement |
-| [SourceClass](#210-sourceclass) | Brain | DESIGNED — **unauthored** | Deterministic precedence |
+| [Observation](#21-observation) | knowledge system | DESIGNED | The system of record |
+| [Proposal](#22-proposal) | knowledge system / Memory | DESIGNED | Model-proposes-never-writes |
+| [Claim](#23-claim) | knowledge system / Memory | DESIGNED | The core object |
+| [ClaimVersion](#24-claimversion) | knowledge system / Memory | DESIGNED | History, supersession, as-of |
+| [Evidence](#25-evidence) | knowledge system / Memory | DESIGNED | Provenance, corroboration, deletion |
+| [Entity](#26-entity) | knowledge system | DESIGNED — **disputed** | Identity across sources |
+| [Relationship](#27-relationship) | knowledge system | DESIGNED — as a claim | Multi-hop questions |
+| [Contradiction](#28-contradiction) | knowledge system | DESIGNED — **disputed** | Gating action on disagreement |
+| [Predicate](#29-predicate) | knowledge system | DESIGNED | Claim identity; kind enforcement |
+| [SourceClass](#210-sourceclass) | knowledge system | DESIGNED — **unauthored** | Deterministic precedence |
 | [MemoryView](#211-memoryview) | Memory | **PROPOSED — not adopted** | See §4 |
 | [Decision](#212-decision) | Principal Agent | DESIGNED — **blocked** | "Why did we decide X" |
 | [Goal / Objective](#213-goal-and-objective) | Principal Agent | DESIGNED — **blocked** | The gap that drives the loop |
 | [Commitment](#214-commitment) | Principal Agent | DESIGNED — **blocked** | Obligations outliving a run |
 | [Outcome](#215-outcome) | Principal Agent | DESIGNED — **blocked** | Judged on outcomes |
 | [Grant](#216-grant) | Principal Agent | DESIGNED | Authority, narrowed by delegation |
-| [WorldState](#217-worldstate) | Brain | DESIGNED — **a projection** | Fast reads |
+| [World Model](#217-world-model) | knowledge system | DESIGNED — **a projection** | Fast reads |
 | [Run / Episode / Step / Activity / Park](#218-the-five-runtime-nouns) | Runtime | DESIGNED | Durable execution |
 | [ExecutionGraph / Node](#219-executiongraph-and-node) | Runtime | DESIGNED | The only in-flight representation |
 | [Effect / EffectLedgerEntry](#220-effect-and-effect-ledger-entry) | Runtime | DESIGNED | Undo, recovery, verification |
@@ -44,7 +44,7 @@ Two rules govern this document:
 
 **"Blocked" is not "deferred."** Four Principal Agent objects depend on
 organizational structures — goal records with measures and baselines, grants,
-authority — that do not exist. **No amount of memory or Brain work brings them
+authority — that do not exist. **No amount of memory or knowledge system work brings them
 closer.**
 
 ---
@@ -130,9 +130,9 @@ kind, a scope, an authority, a validity interval, and evidence.
 | `subject` | A resolved entity reference where possible |
 | `predicate` | From the closed registry |
 | `object` | **Deliberately NOT part of identity** |
-| `kind` | observation-backed / decision / implementation-fact / outcome / constraint / term |
+| `kind` | observation-backed / decision / implementation-fact / outcome / constraint / term — the schema spelling of [ADR-0003](decisions/ADR-0003-the-brains-core-object-is-a-kind-typed-claim.md)'s six kinds (`constraint` = "Constraint / policy", `term` = "Term / definition"; the ADR's table is the canonical description of each, this is its enum value) |
 | `scope` | Tenant-relative materialised path; "narrower than" is a prefix test |
-| `source_class` | Position on the authored ladder |
+| `source_class` | Position on the authored source-precedence policy |
 | `confidence` | Derived from corroboration. **Not asserted by the model** |
 | `status` | PROVISIONAL / ACTIVE / SUPERSEDED / RETIRED |
 | `verification_status` | **`unverified` is the default, and it is honest** |
@@ -233,7 +233,7 @@ asserted about an entity is a claim.**
 | `aliases[]` | **Curated**, not inferred |
 | `source_ids[]` | Anchors: repo id, Jira key, user id |
 
-**Status: DISPUTED.** The Brain architecture requires this table in Phase 1 and
+**Status: DISPUTED.** The knowledge system architecture requires this table in Phase 1 and
 calls entity resolution "the component most likely to be underestimated." The
 Memory architecture **explicitly rejects an entities table for Phase 1** and
 defers entity resolution. See §5.
@@ -275,11 +275,17 @@ warning string in a log.
 | `severity` | **blocking** / advisory |
 | `detected_at`, `owner`, `resolution` | |
 
-**Status: DISPUTED.** The Brain architecture requires a contradiction register
+**Status: DISPUTED.** The knowledge system architecture requires a contradiction register
 in Phase 1. The Memory architecture rejects a conflicts table — *"a
 contradiction is fully represented by a version row on each claim plus an event,
 and a separate table would be a second place to look with its own consistency
 problem."* See §5.
+
+**Naming is deliberately not settled here either** — it sits on top of this
+same unresolved disagreement, not beside it. Once Q7/D4 is decided, the
+surviving mechanism should be named **"conflict register"** or **"conflict
+log"** (whichever this document's mechanism turns out to be) rather than
+inheriting either source's word for it.
 
 **Invariants.** *A blocking contradiction prevents an action being minted
 against the affected claims.* *Contradictions are never dropped from assembled
@@ -366,7 +372,7 @@ contradicted — **superseded** by a later decision, and the old one stays.
 **A decision has no confidence.** We did not *maybe* decide.
 
 **Status: BLOCKED, not deferred.** It depends on goal records with measures and
-baselines, grants, and authority. No memory or Brain work brings it closer.
+baselines, grants, and authority. No memory or knowledge system work brings it closer.
 
 ---
 
@@ -440,14 +446,18 @@ mid-flight.*
 
 ---
 
-### 2.17 WorldState
+### 2.17 World Model
 
-**Definition.** A queryable projection of current organizational state.
+**Definition.** A queryable projection of current organizational state — the
+same **Projection** / **Read model** pattern the handbook names in general
+(Ch6, Ch7, Ch9), applied here to organizational knowledge specifically. This
+entry was previously headed "WorldState" elsewhere in the corpus; that name
+is retired in favor of the one used everywhere else this object is discussed.
 
 **It owns nothing.** See
 [ADR-0005](decisions/ADR-0005-the-world-model-is-a-projection-not-a-store.md).
-Apply the delete test: delete it; if information is lost, it was not a
-projection.
+Apply the same check the handbook calls the **Replay test** (Ch9): delete it;
+if information is lost, it was not a projection.
 
 ---
 
@@ -538,13 +548,20 @@ expires the run rather than proceeding.*
 **Definition.** A durable fact that something happened, written through the
 transactional outbox in the same transaction as the state change it describes.
 
-**Invariants.** *One event spine. The Brain emits onto it and does not create a
+**Invariants.** *One event spine. The knowledge system emits onto it and does not create a
 second.* *Progress is **never** written to the event log — it is derived from
 trace events.* *Exactly-once delivery via claim-based relay.*
 
 ---
 
 ### 2.24 Principal
+
+**Not to be confused with the Principal Agent (§2.11–2.16).** This is the
+handbook's term for session identity — *who is asking*, resolved once per
+call. A Principal Agent is a different, higher-order thing: a standing Run
+that itself holds a Principal, makes commitments across many runs, and is
+judged on outcomes. The two sit one layer apart and share half a name; a
+Principal Agent's own actions still carry a Principal like any other client.
 
 **Definition.** Who is asking: user, role, account, and a frozen scope set,
 **resolved server-side from a signed session token and never client-supplied.**
@@ -556,7 +573,7 @@ never ambiently — an ambient Principal cannot be exposed over MCP later withou
 a refactor.*
 
 **The Principal must stay runtime-generic.** The moment it gains a `brain_scope`
-field, the Brain has leaked into the identity model and every other consumer
+field, the knowledge system has leaked into the identity model and every other consumer
 inherits it.
 
 ---
@@ -595,9 +612,9 @@ inherits it.
 Neither acknowledges the other. Do not build either schema until it is
 reconciled.**
 
-| | Memory Management Architecture (2026-09-02) | Organizational Brain (2026-09-05) |
+| | Memory Management Architecture (2026-09-02) | knowledge system (2026-09-05) |
 |---|---|---|
-| Phase 1 tables | `claims`, `claim_versions`, `evidence`, `proposals`, + predicate registry | claims, versions, evidence, **entities**, **relations**, **contradiction register** |
+| Phase 1 tables | `claims`, `claim_versions`, `evidence`, `proposals`, + predicate schema registry | claims, versions, evidence, **entities**, **relations**, **contradiction register** |
 | Entities | **Rejected for Phase 1** (its ADR 6) | **Required in Phase 1** (its §17.3) |
 | Entity resolution | **Deferred** (its ADR 19). Trigger: a claim must be joined across scopes | **Phase 1**, and the component most likely to be underestimated (its §6.4) |
 | Contradictions | **Rejected as a table** — version rows plus an event suffice | **Required** as a register with severity that gates actions |
@@ -610,14 +627,14 @@ The two documents may be scoping different systems:
 - The **Memory** architecture scopes a **runtime memory subsystem** over work
   where entities are assumed to arrive already identified. Within a single
   scope, entity resolution genuinely is not the first problem.
-  **[UNEVIDENCED]** — this reading of the Memory architecture's scope is an
+  **[INFERENCE]** — this reading of the Memory architecture's scope is an
   inference from what it defers, not a statement it makes about itself.
-- The **Brain** architecture scopes an **organizational knowledge store** over
+- The **knowledge system** architecture scopes an **organizational knowledge store** over
   messy multi-source input where identity must be *established* before anything
   can be joined.
 
 Under that reading both are right about their own subject, and the answer is
-that the Brain's Phase 1 is not the Memory subsystem's Phase 1.
+that the knowledge system's Phase 1 is not the Memory subsystem's Phase 1.
 
 **This is an inference, not a decision.** Nobody has written it down. The two
 documents use identical words — `claims`, `evidence`, "Phase 1" — for different

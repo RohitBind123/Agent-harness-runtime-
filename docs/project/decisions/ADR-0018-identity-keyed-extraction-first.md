@@ -1,7 +1,7 @@
 # ADR-0018 — Identity-keyed extraction, and build it first
 
 **Status:** ACCEPTED
-**Date / context:** Runtime specification **I9**; the Brain architecture, which
+**Date / context:** Runtime specification **I9**; the knowledge system architecture, which
 nominates it as "the one to adopt first"; Memory §15.3.
 
 ## Context
@@ -28,12 +28,12 @@ Build it first, before the rest of the pipeline.
 
 ## Evidence and reasoning
 
-**[CONFIRMED]** *"Retry is not replay."* A redelivered observation whose
+**[FACT]** *"Retry is not replay."* A redelivered observation whose
 extraction runs again costs a second model call **and produces a different
 claim.** The store then knows two things weakly instead of one thing strongly —
 and neither crosses the corroboration floor.
 
-**[CONFIRMED]** The specification nominates I9 as one of two invariants that
+**[FACT]** The specification nominates I9 as one of two invariants that
 cannot be retrofitted: *"Every other invariant can be added later at a cost
 proportional to the work already done. This one cannot. Without it, every
 stored result is of unknown reusability, and the migration is a rewrite rather

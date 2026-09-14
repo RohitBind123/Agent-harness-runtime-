@@ -1,13 +1,13 @@
 # ADR-0009 — No graph database
 
 **Status:** ACCEPTED, with a measured trigger
-**Date / context:** 2026-09-02 (Memory ADR 13) and 2026-09-05 (the Brain architecture).
+**Date / context:** 2026-09-02 (Memory ADR 13) and 2026-09-05 (the knowledge system architecture).
 
 ## Context
 
 Organizational knowledge is full of relationships, and multi-hop questions
 ("why does QIC approval behave differently for carrier X") are exactly the kind
-the Brain is supposed to be good at. A graph database is the obvious fit and
+the knowledge system is supposed to be good at. A graph database is the obvious fit and
 the legible choice.
 
 ## Decision
@@ -39,10 +39,10 @@ Secondary: every additional store is a ninth thing to enumerate for a tenant
 deletion route, and a store that cannot be enumerated cannot ship
 ([ADR-0017](ADR-0017-deletion-route-before-retirement.md)).
 
-**[INFERENCE]** The Brain review predicts a graph database is one of the two
+**[INFERENCE]** The knowledge system review predicts a graph database is one of the two
 things most likely to be built early despite this argument, because *"we have a
 knowledge graph" is a sentence that sounds like progress and can be
-demonstrated without the Brain being good at anything.* If it is built anyway,
+demonstrated without the knowledge system being good at anything.* If it is built anyway,
 the mitigation is to make it a strict projection with no logic of its own, so
 it can be deleted without losing anything.
 

@@ -7,7 +7,7 @@ both are shown.
 
 This document matters for two reasons. It tells a fresh session how work
 actually gets done here. And it is the **specification of the first thing the
-Brain will observe** — see `06-validation-strategy.md`.
+knowledge system will observe** — see `06-validation-strategy.md`.
 
 ---
 
@@ -56,7 +56,7 @@ the history legible as an observation stream.
 
 | Practice | Evidence |
 |---|---|
-| **Read before changing** | Every architecture document opens with an explicit account of what was read, and the Brain review's central finding came *from* that reading rather than from the brief |
+| **Read before changing** | Every architecture document opens with an explicit account of what was read, and the knowledge system review's central finding came *from* that reading rather than from the brief |
 | **Tooling enforces conventions** | `check_handbook.py` and `check_xrefs.py` are run and kept at zero errors; `tools/todo.md` lists them as standing obligations |
 | **Claims are classified by provenance** | `[AHE]`, `[DAR]`, `[INF]`, `[BP]`, `[FUT]` markers, preserved across edits by an explicit contributing rule |
 | **Findings are recorded, not resolved silently** | Findings A, B and C in the product research are carried forward across documents rather than quietly fixed |
@@ -84,20 +84,20 @@ commit message, and not only in a deliverable.
 
 ## 3. What the workflow does NOT currently have
 
-Recorded honestly, because the Brain is supposed to observe this workflow and
+Recorded honestly, because the knowledge system is supposed to observe this workflow and
 cannot observe what does not happen.
 
 | Missing | Consequence |
 |---|---|
-| **Pull requests** | Work goes directly to a branch. There is no review artefact, no diff discussion, no approval record. **An entire class of observation the Brain design assumes — PR review comments — does not exist in this workflow today** |
+| **Pull requests** | Work goes directly to a branch. There is no review artefact, no diff discussion, no approval record. **An entire class of observation the knowledge system design assumes — PR review comments — does not exist in this workflow today** |
 | **CI** | No automated run of the linters on push. They are run manually and by convention |
-| **An issue tracker** | `tasks/todo.md` is the only backlog, and it covers the handbook only. Nothing tracks product or Brain work |
+| **An issue tracker** | `tasks/todo.md` is the only backlog, and it covers the handbook only. Nothing tracks product or knowledge system work |
 | **Tests for product code** | There is no product code |
 | **A changelog** | Until now |
 | **A CLAUDE.md** | No session-startup instructions existed. `PROJECT_BOOTSTRAP.md` is that file's role |
 
 **The PR gap is the most consequential**, and it bears directly on
-`06-validation-strategy.md`: the Brain's strongest first source is Git/PRs,
+`06-validation-strategy.md`: the knowledge system's strongest first source is Git/PRs,
 because a merge is an implementation fact and a review is a decision with an
 author. If the workflow does not produce PRs, that source is thin.
 
@@ -109,7 +109,7 @@ The sequence a session should follow, derived from what has worked:
 
 1. **Read first.** The repository, then the specific documents the work touches.
    Do not assume the written architecture and any code agree.
-2. **Classify what you find.** DESIGNED / IMPLEMENTED / PARTIAL / EXPERIMENTAL /
+2. **Classify what you find.** DESIGNED / IMPLEMENTED / PARTIALLY IMPLEMENTED / EXPERIMENTAL /
    PROPOSED / UNKNOWN. Never silently promote one to another.
 3. **Surface contradictions rather than resolving them.** If two documents
    disagree, record both positions and open a question. Picking one silently is

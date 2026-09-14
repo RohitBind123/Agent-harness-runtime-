@@ -1,10 +1,10 @@
-# Brain Observability — the Flight Recorder
+# Knowledge System Observability — the Flight Recorder
 
 **Status:** **DESIGNED / PROPOSED.** Nothing here is implemented.
 
 **The governing rule, and the reason this document exists:**
 
-> **The Brain must not be allowed to declare itself correct.**
+> **The knowledge system must not be allowed to declare itself correct.**
 
 A knowledge system's failures are almost all silent. Nothing raises an
 exception when a claim is confidently wrong, when two entities never join, when
@@ -17,7 +17,7 @@ see rather than by how much damage they do.
 
 ## 1. The traceable chain
 
-Every question the Brain answers must be reconstructable end to end, from the
+Every question the knowledge system answers must be reconstructable end to end, from the
 raw observation to the consequence.
 
 ```
@@ -64,7 +64,7 @@ raw observation to the consequence.
   CAME OUT             each atomic assertion mapped to
         |
         v
-  WAS IT RIGHT         -- NOT judged by the Brain. See sec 3.
+  WAS IT RIGHT         -- NOT judged by the knowledge system. See sec 3.
         |
         v
   WHAT HAPPENED        the decision taken, the effect applied,
@@ -100,24 +100,24 @@ things a person may have to answer for.
 | Correctness judgement | **Separate, human or probe** | Yes | §3 |
 | Downstream outcome | Outcome ledger | Yes | Probe-measured, later |
 
-**Brain events go onto the existing event spine.** `brain.claim.written`,
+**knowledge system events go onto the existing event spine.** `brain.claim.written`,
 `brain.contradiction.detected`, `brain.claim.superseded` — no second event
 system, no second transport, no change to the replay contract.
 
 ---
 
-## 3. How correctness is established — without asking the Brain
+## 3. How correctness is established — without asking the knowledge system
 
 This is the section the whole document exists for.
 
-### Why the Brain cannot judge itself
+### Why the knowledge system cannot judge itself
 
 A model asked to evaluate its own system's output shares a training
 distribution, and therefore a set of blind spots, with the model that produced
 it. **It leans toward yes, which is the answer you already had.** The same
 argument that forbids model self-grading in the runtime forbids it here.
 
-And the specific version for a knowledge system: the Brain's confidence in a
+And the specific version for a knowledge system: the knowledge system's confidence in a
 claim is a function of corroboration *it* counted, from observations *it*
 admitted, extracted by a prompt *it* ran. Every input to its own confidence is
 its own output.
@@ -161,7 +161,7 @@ which claims were returned, which were dropped for budget, and under which
 
 | | |
 |---|---|
-| **Why it is needed** | Without it, "the Brain gave a bad answer" cannot be separated into *the claim was wrong*, *the right claim was not retrieved*, or *the right claim was retrieved and dropped for budget*. **Those three have completely different fixes** and are indistinguishable afterwards |
+| **Why it is needed** | Without it, "the knowledge system gave a bad answer" cannot be separated into *the claim was wrong*, *the right claim was not retrieved*, or *the right claim was retrieved and dropped for budget*. **Those three have completely different fixes** and are indistinguishable afterwards |
 | **Why it is expensive** | It is written on the read path, which runs on every model call, and it is proportional to retrieval size rather than to claim count |
 | **The resolution** | **Sample it.** A fixed fraction, plus 100% for any question whose answer was later disputed. Sampling is enough for rates and distributions, which is what this is for |
 
@@ -255,5 +255,5 @@ than one that does not.
 | **A claim that is wrong with no contradicting observation and no probe** | Every mechanism except the probe loop is reactive. The runtime cannot feel doubt, so doubt must be manufactured — and manufacturing it for a social fact is unsolved |
 | **Self-confirmation mediated through a human** | A person who genuinely believes something the agent told them is a genuine actor making a genuine observation |
 | **Causation from organizational outcomes** | A sealed prediction and a measured outcome give the cleanest evidence available at n=1 and **give no causation.** The mechanism check is the only instrument, and only because it was written down first |
-| **What the organization does not know** | The Brain can say "I have no claims about X", which **conflates three different answers**: nobody has said anything; this does not exist; I cannot see it. The third is a permission fact the asker may not be allowed to learn |
+| **What the organization does not know** | The knowledge system can say "I have no claims about X", which **conflates three different answers**: nobody has said anything; this does not exist; I cannot see it. The third is a permission fact the asker may not be allowed to learn |
 | **Aggregate leakage** | "Three teams are blocked on X" may disclose a private fact. No general solution exists |

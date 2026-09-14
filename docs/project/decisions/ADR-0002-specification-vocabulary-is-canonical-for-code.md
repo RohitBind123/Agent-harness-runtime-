@@ -2,7 +2,7 @@
 
 **Status:** **PROPOSED — NOT RATIFIED.** Two later documents assume it. Nobody
 has decided it.
-**Date / context:** Assumed 2026-09-05 (Brain review) and 2026-09-06 (product
+**Date / context:** Assumed 2026-09-05 (knowledge system review) and 2026-09-06 (product
 research). Never confirmed by a decision.
 
 ## Context
@@ -36,7 +36,7 @@ so.
 
 ## Evidence and reasoning
 
-**[INFERENCE]** The cost of leaving it open is stated plainly in the Brain
+**[INFERENCE]** The cost of leaving it open is stated plainly in the knowledge system
 review §1.7: *"Two constitutions with no stated relationship"* — which means
 *"every architectural argument can be won by citing the other one."*
 

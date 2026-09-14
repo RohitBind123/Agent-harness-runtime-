@@ -1,11 +1,11 @@
 # ADR-0013 — MCP is a projection of the capability layer, not a second API
 
 **Status:** ACCEPTED. The server is **deliberately not built**.
-**Date / context:** 2026-09-05, Brain architecture review §14.
+**Date / context:** 2026-09-05, knowledge system architecture review §14.
 
 ## Context
 
-The strategic direction names "Brain MCP" as the interface through which
+The strategic direction names "knowledge system MCP" as the interface through which
 external coding agents consume organizational knowledge. MCP is legible,
 demonstrable, and easy to build early.
 
@@ -38,8 +38,8 @@ afternoon and prevents the tools from becoming the definition.
 **Two hard problems MCP creates, neither solved by the transport:**
 
 1. **Identity.** A coding agent connecting on behalf of an engineer means the
-   IDE, the agent and the Brain are three parties, and the token must carry an
-   identity the Brain can verify **without trusting the middle one.** Either the
+   IDE, the agent and the knowledge system are three parties, and the token must carry an
+   identity the knowledge system can verify **without trusting the middle one.** Either the
    server mints its own Principal from a per-user credential, or it accepts a
    delegated token. Either can work; **letting the client assert an identity is
    the failure.** This must be decided before a server exists, not during. See

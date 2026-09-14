@@ -16,8 +16,8 @@ the 2026-09-14 audit and are not generic advice.
 | **Memory = truth** | A stored claim is a claim. It has a source, a confidence, a validity interval and possibly a contradiction |
 | **Model output = evidence** | A model **proposes**. Standing comes from independent corroboration across distinct runs |
 | **Confidence = correctness** | No confidence number here has been calibrated, because no noise floor has been measured |
-| **Brain ≠ Memory** | Different designs, different scopes, and **currently incompatible Phase 1 schemas.** §3 |
-| **Brain ≠ Runtime** | The Brain is a consumer of runtime primitives, never a modifier of them |
+| **knowledge system ≠ Memory** | Different designs, different scopes, and **currently incompatible Phase 1 schemas.** §3 |
+| **knowledge system ≠ Runtime** | The knowledge system is a consumer of runtime primitives, never a modifier of them |
 | **Runtime ≠ Principal Agent** | The Principal Agent is a *client* of the runtime, implemented as a Run — not a layer inside it |
 | **MCP ≠ product** | MCP is a transport projection of a capability layer that does not exist yet |
 | **Current architecture ≠ immutable architecture** | It is expected to change when evidence contradicts it. That is why the change log exists |
@@ -43,7 +43,7 @@ When you read a present-tense claim in this repository, check
 ### Two status vocabularies are in use and they are different axes
 
 - **`[AHE]` `[DAR]` `[INF]` `[BP]` `[FUT]`** — where a *claim* came from.
-- **DESIGNED / IMPLEMENTED / PARTIAL / EXPERIMENTAL / PROPOSED / UNKNOWN** —
+- **DESIGNED / IMPLEMENTED / PARTIALLY IMPLEMENTED / EXPERIMENTAL / PROPOSED / UNKNOWN** —
   whether a *thing* exists.
 
 A claim can be `[DAR]` (supported by the specification) and the thing it
@@ -53,14 +53,14 @@ describes still be DESIGNED. Do not read the first set as implying the second.
 
 ## 3. [PROJECT-SPECIFIC] The two architecture documents disagree
 
-The Memory Management Architecture (2026-09-02) and the Organizational Brain
+The Memory Management Architecture (2026-09-02) and the knowledge system
 Architecture (2026-09-05) specify **overlapping and incompatible Phase 1
 schemas**, and **neither acknowledges the other**:
 
-- Memory **rejects** an entities table in Phase 1; Brain **requires** one.
-- Memory **defers** entity resolution; Brain calls it Phase 1 and the component
+- Memory **rejects** an entities table in Phase 1; knowledge system **requires** one.
+- Memory **defers** entity resolution; knowledge system calls it Phase 1 and the component
   most likely to be underestimated.
-- Memory **rejects** a conflicts table; Brain **requires** a contradiction
+- Memory **rejects** a conflicts table; knowledge system **requires** a contradiction
   register with severity.
 
 They use the same words — `claims`, `evidence`, "Phase 1" — for different
@@ -75,7 +75,7 @@ decision.**
 ## 4. [PROJECT-SPECIFIC] `prd.md` is exploratory, not a rejected or contested alternative — corrected 2026-09-14
 
 `prd.md` (2026-09-06) documents a GO decision on a macOS personal-paperwork
-agent. This was previously read as competing with the Organizational Brain
+agent. This was previously read as competing with the knowledge system
 direction, which points at approximately the segment `prd.md`'s Change 3 ruled
 out.
 
@@ -97,7 +97,7 @@ team, a tool inventory, or a workflow description, and **this session cannot
 read it.**
 
 Do not infer the rest from the domain name. In particular, do not assume it has
-pull requests, CI, an issue tracker, or a chat history the Brain could ingest —
+pull requests, CI, an issue tracker, or a chat history the knowledge system could ingest —
 the workflow that *this* repository shows has none of those, and that is the
 only workflow anyone here has observed.
 
@@ -127,7 +127,7 @@ Four Principal Agent objects — Decision records, Goal records, Commitments,
 Outcome probes — depend on organizational structures that do not exist: goal
 records with measures and baselines, grants, and authority.
 
-**No amount of memory or Brain work brings them closer.** Do not put them in a
+**No amount of memory or knowledge system work brings them closer.** Do not put them in a
 plan as if they were the next thing after the current thing.
 
 ---
@@ -136,7 +136,7 @@ plan as if they were the next thing after the current thing.
 
 `tasks/todo.md` says the handbook is complete, and it is — 51 chapters, zero
 lint errors, zero unresolved cross-references. **That is a documentation status,
-not a project status.** The same file contains no product or Brain work at all,
+not a project status.** The same file contains no product or knowledge system work at all,
 because it predates both.
 
 ---
@@ -165,7 +165,7 @@ record why not.
 
 | Build it this way | What breaks otherwise |
 |---|---|
-| Tool projection as the Brain boundary | Every access-control argument at once |
+| Tool projection as the knowledge system boundary | Every access-control argument at once |
 | Clock discipline, with a CI test | Temporal correctness. Once it exists, widen the allowlist per module with a comment rather than relaxing the test |
 | Server-minted evidence handles | A caller-chosen id **is the whole attack** |
 | The ACL predicate living **inside** the store | Pre-filter becomes post-filter; recall collapses under a selective predicate, and leaks stop producing signals |
@@ -180,14 +180,14 @@ record why not.
 
 ## 11. If you are about to do any of these, stop
 
-- Begin implementation before Q2 (authority ladder) is resolved. (Q1, product
+- Begin implementation before Q2 (source-precedence policy) is resolved. (Q1, product
   direction, is resolved — see ADR-0026.)
-- Build a schema before the Memory/Brain schema conflict is reconciled.
+- Build a schema before the Memory/knowledge system schema conflict is reconciled.
 - Build an MCP server before the capability layer is stable and the caller-
   identity question is decided.
 - Add a graph database, embeddings, or a summarisation layer without the
   measured trigger that each ADR names.
-- Infer the authority ladder from data.
+- Infer the source-precedence policy from data.
 - Write a confidence threshold or a decay half-life without a measured noise
   floor.
 - Promote a status label — DESIGNED → IMPLEMENTED especially — without pointing

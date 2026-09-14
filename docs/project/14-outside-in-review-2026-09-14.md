@@ -44,9 +44,9 @@ compelling and the failure it describes is real: perfect retrieval still hides a
 disagreement between a decision, an observation, and a test. The architecture
 follows correctly *from that example*.
 
-**EVIDENCE.** **Weak, and the project already says so.** The Brain architecture
+**EVIDENCE.** **Weak, and the project already says so.** The knowledge system architecture
 §19.3 lists this as **GENUINELY OPEN** in its own words: *"most questions people
-ask are lookups where retrieval quality is the whole game. The Brain's advantage
+ask are lookups where retrieval quality is the whole game. The knowledge system's advantage
 appears on WHY questions, TEMPORAL questions and CONTRADICTIONS — which are the
 valuable minority."*
 
@@ -75,7 +75,7 @@ in trouble and the architecture is over-built for the job.**
 
 ---
 
-### A2 — Customers will author and maintain an authority ladder
+### A2 — Customers will author and maintain a source-precedence policy
 
 > **The safety property that is also the go-to-market barrier.**
 
@@ -92,13 +92,13 @@ is sound: authority inferred from recency, seniority or confident phrasing is
 or anywhere this project can observe. The assumption that they will is
 untested in every particular.
 
-**FACT.** The ladder has not been authored even *here*, by the team that
+**FACT.** The policy has not been authored even *here*, by the team that
 designed the requirement, four months after it was identified as the blocking
 prerequisite.
 
 **WHAT COULD MAKE IT FALSE.** Organizations will not convene a meeting to rank
 their own sources of truth before getting any value. It surfaces political
-disagreement — the Brain review says so approvingly: *"expect the meeting to
+disagreement — the knowledge system review says so approvingly: *"expect the meeting to
 surface genuine disagreement about how the organization works."* That is
 epistemically excellent and commercially brutal. Time-to-first-value is gated
 behind an argument.
@@ -112,14 +112,14 @@ virtue.
 
 **CHEAPEST EXPERIMENT.** **Two hours, and it is the highest information-per-minute
 test available.**
-Run the ladder meeting for InOrbitX with two or three people. **Time it.** Record:
+Run the precedence meeting for InOrbitX with two or three people. **Time it.** Record:
 did they converge? What did they disagree about? How long? Then ask each
 participant, separately: *"would you have done this before seeing any output from
 the product?"*
 
 If it takes three people two hours and ends unresolved for our own small team,
 **assume it is a non-starter for an enterprise buyer** and design a bootstrapping
-path — a default ladder per vertical, or a ladder inferred and then *confirmed*
+path — a default policy per vertical, or a policy inferred and then *confirmed*
 rather than authored from nothing.
 
 ---
@@ -133,7 +133,7 @@ and authority resolution meaningful.
 **WHY WE BELIEVE IT.** **HYPOTHESIS.** Unstated. No document argues for it; every
 document assumes it.
 
-**EVIDENCE.** **FACT.** The Brain architecture lists it under **"NOT
+**EVIDENCE.** **FACT.** The knowledge system architecture lists it under **"NOT
 ESTABLISHED"** and adds: *"the one I would most want tested early... Everything
 downstream assumes it."*
 
@@ -184,29 +184,29 @@ set. **FACT.**
 
 **WHAT COULD MAKE IT FALSE.** Three independent ways:
 1. Coding agents already read the codebase, which is the **highest-authority
-   source for implementation facts** — the Brain's own kind model says so. The
+   source for implementation facts** — the knowledge system's own kind model says so. The
    marginal value may sit only in *intent* and *history*, which is narrow.
 2. Context is not free. Injected claims consume budget that would otherwise hold
    code. A wrong or stale claim is actively harmful — worse than absent.
 3. The vendors are moving. Agent memory, project context and organizational
    integrations are being built by the model providers themselves.
 
-**CONSEQUENCE IF FALSE.** The chain **Business Brain → Brain MCP → external
-agents** has no consumer. The Brain might still be valuable to humans, but that
+**CONSEQUENCE IF FALSE.** The chain **knowledge system → knowledge system MCP → external
+agents** has no consumer. The knowledge system might still be valuable to humans, but that
 is a different product with a different buyer, and the current strategy names
 agents as the consumer.
 
-**CHEAPEST EXPERIMENT.** **Two to three days, and it needs no Brain at all.**
+**CHEAPEST EXPERIMENT.** **Two to three days, and it needs no knowledge system at all.**
 A Wizard-of-Oz test:
 1. Take **20 real completed tasks** from InOrbitX history where the outcome is known.
-2. For 10, **hand-write** the organizational context a perfect Brain would have
+2. For 10, **hand-write** the organizational context a perfect knowledge system would have
    supplied — the decision, the intent, the contradiction, dated and cited.
 3. Run all 20 through Claude Code, blind.
 4. Have someone who knows the project grade the outputs **without knowing which
    arm they came from.**
 
 **This is the most important experiment in this document.** If hand-written
-*perfect* context does not measurably improve output, no amount of Brain
+*perfect* context does not measurably improve output, no amount of knowledge system
 engineering will — because the ceiling has been measured and it is zero.
 
 ---
@@ -217,7 +217,7 @@ engineering will — because the ceiling has been measured and it is zero.
 something Glean, Atlassian, GitHub, Notion or a model vendor adds in two quarters.
 
 **WHY WE BELIEVE IT.** **EVIDENCE — explicitly the weakest claim in the corpus.**
-The Brain architecture states that nobody appears to combine authority, kind-typed
+The knowledge system architecture states that nobody appears to combine authority, kind-typed
 claims, bitemporal validity and contradiction-as-an-object — and immediately
 adds that this is *"an argument from absence in public material and it is the
 weakest claim in §3."*
@@ -257,8 +257,8 @@ specification, 39 invariants — is on the critical path.
 **WHY WE BELIEVE IT.** **FACT.** It is in the strategic chain, and it is the
 largest existing asset. **HYPOTHESIS:** it is there partly because it exists.
 
-**EVIDENCE — and it contradicts the strategy.** **FACT.** The Brain architecture
-§13.5 states plainly: ***"The Brain does not need the fifty-chapter runtime to
+**EVIDENCE — and it contradicts the strategy.** **FACT.** The knowledge system architecture
+§13.5 states plainly: ***"The knowledge system does not need the fifty-chapter runtime to
 exist."*** It then names exactly four primitives worth adopting, each with its
 own trigger, and warns that adopting them as a block *"would be a rewrite
 justified by architecture rather than by a problem."*
@@ -274,12 +274,12 @@ much of the runtime is needed, and the answer from the project's own analysis is
 **CONSEQUENCE IF FALSE.** Enormous scope reduction — which is good news
 misfiled as bad. But also: **the "the runtime is the asset that survives the
 product being wrong" argument weakens**, and that argument is load-bearing in the
-PRD's GO decision. If the runtime is not needed for the Brain and is *"copyable
+PRD's GO decision. If the runtime is not needed for the knowledge system and is *"copyable
 infrastructure, weak moat"* by the PRD's own assessment, then the fallback asset
 is weaker than the GO decision assumed.
 
 **CHEAPEST EXPERIMENT.** **Half a day, and it is a reading task.**
-Walk the 39 invariants and mark each: *needed for a Brain over one source with
+Walk the 39 invariants and mark each: *needed for a knowledge system over one source with
 one writer* / *not needed* / *needed later, with a trigger*. This is **Q8** and it
 is already recorded as blocking. Expect the answer to be well under ten.
 
@@ -295,7 +295,7 @@ assumed to be tractable because the alternative is assumed to be worse — not
 because anyone has run one at organizational scale.
 
 **EVIDENCE.** **FACT.** [ADR-0022](decisions/ADR-0022-predicate-vocabulary-is-closed-and-reviewed.md) itself nominates this as one of the three
-decisions most likely to be wrong, and both the Memory and Brain documents record
+decisions most likely to be wrong, and both the Memory and knowledge system documents record
 the growth limit as **unanswered by any consulted source**.
 
 **WHAT COULD MAKE IT FALSE.** Real organizational language is open-ended. The
@@ -344,7 +344,7 @@ lose the correctness properties that are the entire point. **The artefact that
 would prevent both does not exist.**
 
 **CHEAPEST EXPERIMENT.** **Not an experiment — a decision, half a day.** Pick one
-of the three shapes in `06-validation-strategy.md` §7 (local Brain / hosted Brain
+of the three shapes in `06-validation-strategy.md` §7 (local knowledge system / hosted knowledge system
 with local collector / fully hosted) and write down why. It constrains Q8, and
 Q8 constrains the build.
 
@@ -396,11 +396,11 @@ hand-written perfect organizational context, blind-graded.
 **Why this one.** It measures the **ceiling** of the entire strategic chain
 without building any of it. Every other product experiment tests a link; this
 tests whether the chain carries load at all. If hand-written perfect context does
-not improve agent output, the Brain cannot — and that is knowable in three days
+not improve agent output, the knowledge system cannot — and that is knowable in three days
 instead of a year.
 
 Run **A1 (question shape)** alongside it; it is one day and it tells you whether
-the questions the Brain is built for even occur.
+the questions the knowledge system is built for even occur.
 
 ### 2. The single most important TECHNICAL experiment
 
@@ -430,7 +430,7 @@ with real data.
 
 ### 4. The single most dangerous PRODUCT assumption
 
-**A2 — that customers will author and maintain an authority ladder.**
+**A2 — that customers will author and maintain a source-precedence policy.**
 
 **Why this rather than the question-shape assumption.** A1 is more likely to be
 fatal, but it is *known* to be open — the project has recorded it. A2 is
@@ -450,9 +450,9 @@ internal political argument. **An unexamined risk beats a known one for danger.*
 | **A graph database** | Second store engine breaks same-transaction commit. Measure hop depth with CTEs first |
 | **Embeddings** | Trigger not met, and the measurement that would set it does not exist |
 | **The Principal Agent** | Four of its objects are BLOCKED on organizational structures that do not exist |
-| **Most of the runtime** | The project's own review says the Brain does not need it (A6) |
+| **Most of the runtime** | The project's own review says the knowledge system does not need it (A6) |
 | **Any summarisation or curation layer** | A summary is not evidence for what it summarises |
-| **A Brain UI** | Before knowing whether the Brain is *right*, a UI measures nothing |
+| **A knowledge system UI** | Before knowing whether the knowledge system is *right*, a UI measures nothing |
 | **More architecture documents** | See A9. This is the failure mode with the highest prior |
 
 ### 6. What we should build immediately
@@ -464,7 +464,7 @@ internal political argument. **An unexamined risk beats a known one for danger.*
 | 1 | **The Wizard-of-Oz context pack** — 20 tasks, 10 with hand-written context, blind grading | 3 | A4 — the ceiling of the whole chain |
 | 2 | **The question-shape study** — 50 real questions, pre-registered threshold | 1 | A1 — whether the premise holds |
 | 3 | **The extraction sample** — 200 observations, one prompt, full human review | 3 | A3, A7, the noise floor, the vocabulary |
-| 4 | **The ladder meeting, timed** — with the post-hoc "would you have done this first?" question | 0.5 | A2 — the onboarding tax |
+| 4 | **The precedence meeting, timed** — with the post-hoc "would you have done this first?" question | 0.5 | A2 — the onboarding tax |
 
 **If code must be written**, it is exactly one thing: **identity-keyed extraction**
 — roughly 30 lines plus a test that a redelivered observation does not produce a
@@ -501,7 +501,7 @@ case on its own weakest-evidenced claim.**
 | New question | Where |
 |---|---|
 | **Q17** — Do the valuable questions occur at a useful rate? | A1 |
-| **Q18** — Will customers author an authority ladder? | A2 |
+| **Q18** — Will customers author a source-precedence policy? | A2 |
 | **Q19** — Does organizational context measurably improve agent output? | A4 |
 | **Q20** — How much of the runtime is on the critical path? | A6 |
 | **Q21** — Can this team convert design into shipped code? | A9 |

@@ -12,7 +12,7 @@ ADR-0021 recorded what it read as two serious, competing product directions:
   paperwork agent, verdict GO WITH MAJOR CHANGES, with a named buyer and a
   non-negotiable Change 3 ("cut the terminal / Git / developer-tools
   environment from the roadmap entirely").
-- **Direction B** — the Organizational Brain direction (2026-09-14), targeting
+- **Direction B** — the knowledge system direction (2026-09-14), targeting
   approximately the segment Change 3 ruled out, with no buyer identified.
 
 ADR-0021 marked this **OPEN — BLOCKING**, and every downstream document —
@@ -31,10 +31,10 @@ iOS or macOS — and was never intended as a competing product decision.**
 Consequently:
 
 - **There is no product-direction contest.** `prd.md` and the Organizational
-  Brain direction were never actually competing for the same "which product do
+  knowledge system direction were never actually competing for the same "which product do
   we build" decision; one is an exploratory research artefact, the other is
   the live direction.
-- **The Organizational Brain direction, as documented in
+- **The knowledge system direction, as documented in
   `docs/project/00-north-star.md` and `docs/project/PRD.md`, is the live
   product direction.** `docs/project/PRD.md` is the project's actual PRD, not
   one of two contended options.
@@ -79,7 +79,7 @@ Q1 stated was required: *"a named human picks A, B, C or D."*
   corrected to reflect the resolution.
 - **`08-build-order.md`'s Stage 0 exit criterion** ("Q1 is decided and
   recorded") is now partially satisfied — the product-direction half of Stage
-  0's decision requirement is met. Q2 (the authority ladder) remains open.
+  0's decision requirement is met. Q2 (the source-precedence policy) remains open.
 
 ## What would cause us to reconsider
 

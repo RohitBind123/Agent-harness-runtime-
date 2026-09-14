@@ -97,7 +97,7 @@ watch for.
 
 1. **The narrow waist.** Commands go down, events come up, and no two layers
    share a table. The kernel is domain-agnostic and imports nothing upward.
-2. **The agent reaches the Brain only through tools.** Not an import, not a
+2. **The agent reaches the knowledge system only through tools.** Not an import, not a
    shared repository object, not a context injected at graph build.
    [ADR-0012](decisions/ADR-0012-the-agent-reaches-the-brain-only-through-tools.md)
 3. **Every surface resolves a Principal first and then calls the same
@@ -144,7 +144,7 @@ established from the documents, it says **UNKNOWN** rather than guessing.
 O5 is the most valuable property in the architecture and it is cheap only if
 decided on day one. It is what makes reprocessing — better extraction, a new
 predicate, a corrected authority ordering, applied to *history* — the normal
-way the Brain improves rather than a disaster-recovery story.
+way the knowledge system improves rather than a disaster-recovery story.
 
 ---
 
@@ -160,6 +160,10 @@ way the Brain improves rather than a disaster-recovery story.
 | **Dependencies** | Observation log. |
 | **Invariants** | *AD1.* Deterministic rules run first; a cheap model runs second, and only if the deterministic stage is inconclusive. *AD2.* The discard rate is a headline metric before the first source is enrolled. |
 | **Status** | **DESIGNED.** Named as "the stage everyone omits." A week of one team's messages contains perhaps a dozen durable claims; ingesting everything makes cost rise linearly with headcount while retrieval precision falls. |
+
+This is the handbook's own **Admission control** (Ch2, Ch23), specialized to
+organizational observations rather than run submissions — not a fresh
+coinage.
 
 ---
 
@@ -207,7 +211,7 @@ recognisable as one afterwards.
 | **Does not own** | The authority ordering, which is configuration it reads. |
 | **Inputs** | A proposed claim; the current claim at that `(subject, predicate, scope)` identity. |
 | **Outputs** | A claim version; possibly a contradiction record; an outbox event. |
-| **Dependencies** | Claim store, predicate registry, source-class ladder. |
+| **Dependencies** | Claim store, predicate schema registry, source-precedence policy. |
 | **Invariants** | *C1.* Deterministic. The first tests use no model. *C2.* Runs as part of **writing**, not as a later pass — otherwise there is a window in which the store holds unreconciled contradictions and serves them. *C3.* Supersession versus contradiction is decided by the predicate's declared `single_valued` property, which cannot be read from two sentences. *C4.* Nothing here raises a claim's standing; only independent evidence does. |
 | **Status** | **DESIGNED.** |
 
@@ -222,7 +226,7 @@ in a busy scope below the load floor, and looks healthy throughout.
 | Field | |
 |---|---|
 | **Purpose** | Hold current claims and their full version history with evidence. |
-| **Owns** | `claims`, `claim_versions`, `evidence`, and (per the Brain design) `entities` and `relations`. |
+| **Owns** | `claims`, `claim_versions`, `evidence`, and (per the knowledge system design) `entities` and `relations`. |
 | **Does not own** | The observation log, which is upstream and authoritative for history; the retrieval index, which is downstream and authoritative for nothing. |
 | **Inputs** | Classified claims, in one transaction with their evidence and their outbox event. |
 | **Outputs** | Claims to retrieval, projections, and the contradiction register. |
@@ -360,7 +364,7 @@ the shape ANN search handles worst.
 
 | Field | |
 |---|---|
-| **Purpose** | The single definition of what the Brain can do. Every surface — agent tools, HTTP, MCP, CLI — resolves a Principal and calls these. |
+| **Purpose** | The single definition of what the knowledge system can do. Every surface — agent tools, HTTP, MCP, CLI — resolves a Principal and calls these. |
 | **Owns** | `context_for`, `entity`, `history`, `why`, `conflicts`, `as_of`, `propose_claim`. |
 | **Does not own** | Transport, session handling, or any surface-specific concern. |
 | **Inputs** | An **explicit** Principal (never ambient), a question or scope, `as_of`, a budget, a result limit. |
@@ -371,7 +375,7 @@ the shape ANN search handles worst.
 
 ---
 
-### 2.15 Brain MCP Server
+### 2.15 knowledge system MCP Server
 
 | Field | |
 |---|---|
@@ -386,7 +390,7 @@ the shape ANN search handles worst.
 
 MCP creates two problems the internal surface does not have. **Identity:** a
 coding agent connecting on behalf of an engineer means the IDE, the agent and
-the Brain are three parties, and the token must carry an identity the Brain can
+the knowledge system are three parties, and the token must carry an identity the knowledge system can
 verify without trusting the middle one. **Structural containment is lost:**
 internally, tool projection makes an unauthorised query *absent from the
 schema*; an MCP client sees the same tool list as everyone, so enforcement
@@ -401,9 +405,9 @@ falls back to runtime checks in the capability layer.
 | **Purpose** | Hold authority in its own name, make commitments that outlive a run, and be judged on outcomes rather than delivery. |
 | **Owns** | Goals it was given, objectives, decisions with sealed predictions, commitments, delegation grants, outcome records. |
 | **Does not own** | **Four things it must never do:** set its own goals; execute work itself; grade its own outcomes; hold organizational knowledge in harness state. |
-| **Inputs** | Organizational state changes as durable events; Brain context via tools. |
+| **Inputs** | Organizational state changes as durable events; knowledge system context via tools. |
 | **Outputs** | Goals submitted to the runtime through the Edge; commitments; decisions; outcome measurements. |
-| **Dependencies** | Agent Runtime, Brain capability layer, authority/grant model. |
+| **Dependencies** | Agent Runtime, knowledge system capability layer, authority/grant model. |
 | **Invariants** | *P1.* It is a **Run**, not a layer — a client of the runtime, subject to every constraint a run is subject to. *P2.* Its tool set contains **no tool that touches the world directly**. *P3.* It may *propose* a goal and never *write* one. *P4.* An outcome verdict has a deterministic floor from a probe; the Principal Agent may only **lower** it. *P5.* Delegation narrows authority and never widens it. |
 | **Status** | **DESIGNED.** [ADR-0014](decisions/ADR-0014-the-principal-agent-is-a-run-not-a-layer.md) |
 
@@ -516,12 +520,12 @@ erasing whatever the winning writer decided.
 
 | Field | |
 |---|---|
-| **Purpose** | Third-party coding agents (Claude, Codex) that consume Brain context. |
+| **Purpose** | Third-party coding agents (Claude, Codex) that consume knowledge system context. |
 | **Owns** | Nothing of ours. |
-| **Does not own** | Any write path into the Brain, except `propose_claim`, which proposes and never writes. |
-| **Inputs** | Brain MCP capability results. |
+| **Does not own** | Any write path into the knowledge system, except `propose_claim`, which proposes and never writes. |
+| **Inputs** | knowledge system MCP capability results. |
 | **Outputs** | Their own work; observable traces if the workflow captures them. |
-| **Dependencies** | Brain MCP server (PROPOSED). |
+| **Dependencies** | knowledge system MCP server (PROPOSED). |
 | **Invariants** | *XA1.* Treated as an **opaque, untrusted client**. *XA2.* Content returned from them is data, never instruction. *XA3.* They receive a **strictly smaller** capability set than internal surfaces. |
 | **Status** | **PROPOSED.** No integration exists. |
 
@@ -554,27 +558,27 @@ The clearest way to state a boundary is what crosses it and what must not.
 
   WHAT NEVER CROSSES
      the runtime never writes a claim directly
-     the Brain never calls a tool the agent owns
-     the Brain never sees a client-supplied role or account
-     the Brain never returns a claim the Principal may not see
+     the knowledge system never calls a tool the agent owns
+     the knowledge system never sees a client-supplied role or account
+     the knowledge system never returns a claim the Principal may not see
         -- and a denied read RAISES rather than returning empty
 ```
 
 ### What must stay runtime-generic
 
-The Brain is a **consumer** of these, never a modifier. The moment any of them
-becomes Brain-aware, the Brain has leaked into a shared model and every other
+The knowledge system is a **consumer** of these, never a modifier. The moment any of them
+becomes aware of the knowledge system, it has leaked into a shared model and every other
 consumer inherits it.
 
 | Stays generic | Why |
 |---|---|
-| Principal, session tokens, scopes | A `brain_scope` field on the Principal leaks the Brain into the identity model |
+| Principal, session tokens, scopes | A `brain_scope` field on the Principal leaks the knowledge system into the identity model |
 | Tool projection | Every containment argument rests on it |
-| The clock (`as_of` vs `wall_now`) | The Brain has strong opinions about time and none of them belong in the clock |
-| The event spine and replay contract | The Brain emits onto it; it does not extend the transport or add a second stream |
-| The evidence-handle mechanism | The Brain adds a durable store with the same discipline; it does not modify the run-scoped one |
+| The clock (`as_of` vs `wall_now`) | The knowledge system has strong opinions about time and none of them belong in the clock |
+| The event spine and replay contract | The knowledge system emits onto it; it does not extend the transport or add a second stream |
+| The evidence-handle mechanism | The knowledge system adds a durable store with the same discipline; it does not modify the run-scoped one |
 | The grounding gate | Claims become citable things the gate can check; the gate needs no knowledge of what a claim is |
-| The vector-store protocol | If the Brain needs a capability it lacks, extend the protocol *generically* — not with a `brain_query` method |
+| The vector-store protocol | If the knowledge system needs a capability it lacks, extend the protocol *generically* — not with a `brain_query` method |
 
 ---
 
@@ -584,12 +588,12 @@ Recorded rather than resolved, per the discipline in
 `PROJECT_BOOTSTRAP.md` §0. Each is also an entry in
 `docs/project/10-open-questions.md`.
 
-### 4.1 The Memory and Brain architectures specify incompatible Phase 1 schemas
+### 4.1 The Memory and knowledge system architectures specify incompatible Phase 1 schemas
 
 **This is a real contradiction between two documents in this repository, and
 neither acknowledges it.**
 
-| | Memory Management Architecture (2026-09-02) | Organizational Brain Architecture (2026-09-05) |
+| | Memory Management Architecture (2026-09-02) | Knowledge System Architecture (2026-09-05) |
 |---|---|---|
 | Phase 1 tables | `claims`, `claim_versions`, `evidence`, `proposals` + a predicate reference table | claim store `claims / claim_versions / evidence / entities / relations`, plus an **entity identity table** and a **contradiction register** |
 | Entities table | **Explicitly rejected for Phase 1** (ADR 6) | **Required in Phase 1** (§17.3 build list) |
@@ -598,7 +602,7 @@ neither acknowledges it.**
 | Relationships table | **Deferred** to Phase 3 | Present in the claim store figure (§5.3) |
 
 **A plausible reconciliation** — that the Memory architecture scopes a *runtime
-memory subsystem* over curated, already-identified entities, while the Brain
+memory subsystem* over curated, already-identified entities, while the knowledge system
 scopes an *organizational* store over messy multi-source input where identity
 must be established — **is an inference, not a decision.** Nobody has written
 it down, and the two documents use the same words (`claims`, `evidence`,
@@ -612,7 +616,7 @@ The handbook (Run/Episode/Step/Activity/Park; Surface/Edge/Substrate/Kernel/
 Ports/Domain) and the specification (sessions, controller, ExecutionGraph,
 capabilities, 39 invariants) describe overlapping concepts with different
 names. `docs/product/01-architecture-understanding.md` records this as its
-Finding A. The Brain review records it as a MEDIUM-severity finding and notes:
+Finding A. The knowledge system review records it as a MEDIUM-severity finding and notes:
 *"Two constitutions with no stated relationship means every architectural
 argument can be won by citing the other one."*
 
@@ -637,7 +641,7 @@ and no contention.
 
 Specification revision 5 added §9.9 (MCP Bridge Protocol) and invariants
 I33–I39, while `docs/product/06-mvp-and-implementation-strategy.md` lists MCP
-as excluded from the MVP and the Brain review defers the server entirely.
+as excluded from the MVP and the knowledge system review defers the server entirely.
 Recorded as Finding B. These are consistent if read as "specified so it can be
 built correctly later, not scheduled" — but the specification's build order
 lists it as stage 9c, which reads as scheduled.

@@ -4,6 +4,12 @@
 **Date / context:** 2026-08-30, Principal Agent architecture §2.4, correcting
 the layered diagram in the originating brief.
 
+**Not to be confused with** the handbook's **Principal** (session identity —
+who is asking, resolved per call). A Principal Agent is a standing Run one
+layer above that: it holds a Principal like any other client, but is itself
+judged on outcomes across many runs rather than resolved once per call. See
+`02-domain-model.md` §2.24.
+
 ## Context
 
 The natural way to draw a Principal Agent is as a layer between the Surface and
@@ -33,7 +39,7 @@ parks, budgets, and crash recovery.
 
 ## Evidence and reasoning
 
-**[NEW DESIGN]** Four reasons, in the order they carry weight:
+**[DESIGN DECISION]** Four reasons, in the order they carry weight:
 
 1. **It preserves the narrow waist.** The kernel still knows nothing about
    goals, organisations, or commitments. Those live in a domain reached through

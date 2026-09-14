@@ -22,9 +22,9 @@ Decomposed, in the order the strategy assembles them:
 
 | Layer | What it is | Status |
 |---|---|---|
-| **Business Brain** | A store of kind-typed claims with authority, bitemporal validity, provenance, and contradictions as first-class objects, built over an append-only observation log | DESIGNED |
-| **Brain MCP** | A thin projection of the Brain's capability layer, exposed to external agents | PROPOSED, deliberately deferred |
-| **External agents** | Claude, Codex, and similar coding agents, consuming Brain context | Exists as third-party products; no integration built |
+| **knowledge system** | A store of kind-typed claims with authority, bitemporal validity, provenance, and contradictions as first-class objects, built over an append-only observation log | DESIGNED |
+| **knowledge system MCP** | A thin projection of the knowledge system's capability layer, exposed to external agents | PROPOSED, deliberately deferred |
+| **External agents** | Claude, Codex, and similar coding agents, consuming knowledge system context | Exists as third-party products; no integration built |
 | **Principal Agent** | The layer that holds authority, makes commitments that outlive a run, and is judged on outcomes rather than delivery | DESIGNED |
 | **Agent Runtime** | Durable, verifiable, reversible execution — the 51-chapter handbook and the v1.0 specification | DESIGNED |
 | **Controlled autonomous execution** | The end state: work delegated under a carved grant, verified by code, reversible | Not designed in detail |
@@ -99,7 +99,7 @@ exactly what makes the contradiction disappear. See
 The current strategic direction names an internal validation environment — the
 InOrbitX engineering workflow — but an internal validation environment is not a
 customer. No document in this repository identifies a buyer for the Business
-Brain direction. This is not blocked on a product-direction decision (that is
+knowledge system direction. This is not blocked on a product-direction decision (that is
 resolved — see [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md));
 it is a real, separate gap.
 
@@ -110,7 +110,7 @@ professional with document obligations and no assistant" — and explicitly
 rules out the developer/power-user segment as *"the one segment where
 Anthropic already ships a better product to an installed base, and where you
 have no advantage whatsoever."* That market observation may still be relevant
-if the Business Brain's audience turns out to overlap with developer tooling —
+if the knowledge system's audience turns out to overlap with developer tooling —
 but it is a data point to weigh, not an argument this document owes an answer
 to, since `prd.md` was never proposing this direction as an alternative.
 
@@ -132,7 +132,7 @@ still true, what contradicts it, and what happened after the agent acted.
 
 Two supporting arguments, with their evidence class:
 
-- **[EXTERNAL EVIDENCE]** Microsoft Research analysed 290 public reports across
+- **[EVIDENCE]** Microsoft Research analysed 290 public reports across
   13 frameworks of agents corrupting data, deleting files and leaking secrets,
   and concluded agents "have limited information about their filesystem effects
   and insufficient control over them." Their remedy — stage every mutation,
@@ -169,7 +169,7 @@ The argument for this wedge:
    authors. Entity anchoring is nearly free.
 2. The consumer already exists. Claude and Codex are already in the loop, and
    already suffer from missing organizational context.
-3. It is measurable. "Did the Brain improve the agent's output" is answerable
+3. It is measurable. "Did the knowledge system improve the agent's output" is answerable
    with a paired comparison, which is more than most knowledge products can say.
 4. It is our own workflow, so the feedback loop is hours rather than a sales cycle.
 
@@ -180,10 +180,10 @@ The arguments against, recorded rather than suppressed:
    market observation worth weighing. See §3.
 2. **Dogfooding is not product validation.** A system that helps its own authors
    has a sample size of one team with unusual tolerance for its failures.
-3. **Most questions are lookups.** The Brain's advantage appears on *why*
+3. **Most questions are lookups.** The knowledge system's advantage appears on *why*
    questions, *temporal* questions, and *contradictions* — the valuable
    minority. An aggregate quality score will be dominated by lookups and will
-   not show the difference. *Source: the Brain architecture, which lists this as genuinely open.*
+   not show the difference. *Source: the knowledge system architecture, which lists this as genuinely open.*
 
 ---
 
@@ -210,7 +210,7 @@ Each with the reason, because "not yet" without a reason becomes "next sprint."
 
 ### The ordering principle
 
-> Build the thing that makes the Brain's value **visible on one source** before
+> Build the thing that makes the knowledge system's value **visible on one source** before
 > building the thing that makes it **general across ten.**
 
 And, from the memory architecture, the complementary rule:
@@ -246,10 +246,10 @@ worse, because the hard problems only appear with real messy input.
 
 ### The prediction, recorded so it can be checked
 
-The Brain architecture predicts that the two things most likely to be built
+The knowledge system architecture predicts that the two things most likely to be built
 early despite the argument against them are **the graph database** and **the
 MCP server** — because both are legible, both sound like progress, and neither
-requires the authority ladder, entity resolution, or admission to work. If
+requires the source-precedence policy, entity resolution, or admission to work. If
 either gets built early anyway, the mitigation is the same: make it a strict
 projection with no logic of its own, so it can be deleted without losing
 anything.
@@ -260,13 +260,13 @@ anything.
 
 | Toward a different product | |
 |---|---|
-| Most real questions turn out to be lookups where a good search box wins | the Brain architecture records this as genuinely open |
+| Most real questions turn out to be lookups where a good search box wins | the knowledge system architecture records this as genuinely open |
 | Extraction precision on a reviewed sample is too low for the store to be worth trusting | Named as the thing most worth testing early |
 | The predicate vocabulary grows without limit | Would flip [ADR-0008](decisions/ADR-0008-no-embeddings-in-phase-1.md) earlier than planned |
 | The project owner decides to actually pursue the `prd.md` runtime-control exploration as a real product | Then this document is superseded, and the change log records it — see [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) for what would cause reconsideration |
 
 | Toward confidence | |
 |---|---|
-| Five real questions from our own history answered with implementation fact, decision, author, date, and the intent/reality gap stated plainly | the Brain architecture's test |
-| One contradiction detected between a meeting statement and the code, confirmed by a human as worth raising | the Brain architecture — "one confirmed instance is the milestone; it is the whole thesis demonstrated" |
-| "What did we believe in June?" answered correctly on a held-out set built from real history | the Brain architecture |
+| Five real questions from our own history answered with implementation fact, decision, author, date, and the intent/reality gap stated plainly | the knowledge system architecture's test |
+| One contradiction detected between a meeting statement and the code, confirmed by a human as worth raising | the knowledge system architecture — "one confirmed instance is the milestone; it is the whole thesis demonstrated" |
+| "What did we believe in June?" answered correctly on a held-out set built from real history | the knowledge system architecture |

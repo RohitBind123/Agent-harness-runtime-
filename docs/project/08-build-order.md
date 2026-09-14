@@ -14,19 +14,19 @@ evidence supports real changes to it.
 | Stage | |
 |---|---|
 | 0 | Architecture + institutional documentation |
-| 1 | Observation + organizational Brain |
+| 1 | Observation + organizational knowledge system |
 | 2 | Evidence / provenance / temporal / trust |
-| 3 | Brain evaluation |
-| 4 | Brain MCP |
+| 3 | knowledge system evaluation |
+| 4 | knowledge system MCP |
 | 5 | Integration with existing agents (Claude / Codex) |
-| 6 | Measure whether the Brain improves agent performance |
+| 6 | Measure whether the knowledge system improves agent performance |
 | 7 | Principal Agent |
 | 8 | Runtime hardening / deeper orchestration |
 | 9 | Controlled autonomy |
 | 10 | Autonomous organizational workflows |
 
 **What is right about it**, and worth keeping: knowledge before autonomy;
-Brain before Principal Agent; measurement before scaling; MCP after the Brain
+knowledge system before Principal Agent; measurement before scaling; MCP after the knowledge system
 rather than as the entry point. The overall direction of travel is sound and the
 changes below are structural rather than directional.
 
@@ -63,11 +63,11 @@ honest size, not scope creep.
 ### Change 2 — Stage 0 is not documentation. It is a decision a human must make.
 
 **The proposal:** Stage 0's exit is not "the documentation exists." It is
-**Q2 (the authority ladder) resolved.** (Q1, which product, was resolved
+**Q2 (the source-precedence policy) resolved.** (Q1, which product, was resolved
 2026-09-14 — see [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md) —
 so Stage 0's decision requirement is now half-cleared, not fully open.)
 
-**Why:** the ladder is *"not an engineering problem and it cannot be solved by
+**Why:** the policy is *"not an engineering problem and it cannot be solved by
 an LLM. It is a GOVERNANCE act."* And **every downstream mechanism —
 resolution, contradiction, retrieval ranking — is meaningless without it.**
 
@@ -115,12 +115,12 @@ demonstrates it.
 - It is the first point at which a **cross-source contradiction** is possible: a
   decision stated in a meeting, checked against what the code actually does.
   **Neither source alone can produce that.**
-- Its exit criterion is a single event: *one contradiction the Brain detected
+- Its exit criterion is a single event: *one contradiction the knowledge system detected
   and a human confirmed was worth raising.* **One confirmed instance is the
   milestone; it is the whole thesis demonstrated.**
 
 Without this stage, the plan goes from one source straight to MCP — exposing a
-Brain that has never been tested against disagreement.
+knowledge system that has never been tested against disagreement.
 
 ---
 
@@ -141,7 +141,7 @@ server exists, not during."*
 
 **And the recorded prediction:** MCP is one of the two things most likely to be
 built early anyway, because *"it exposes MCP" is a sentence that sounds like
-progress and can be demonstrated without the Brain being good at anything.* If
+progress and can be demonstrated without the knowledge system being good at anything.* If
 it is built early regardless, make it a strict projection with no logic of its
 own, so it can be deleted without losing anything.
 
@@ -149,7 +149,7 @@ own, so it can be deleted without losing anything.
 
 ### Change 6 — Stage 6 is not a stage. Measurement is every stage's exit.
 
-**The proposal:** delete *"measure whether the Brain improves agent
+**The proposal:** delete *"measure whether the knowledge system improves agent
 performance"* as a stage and make it the **exit criterion** of the
 external-agent stage.
 
@@ -160,7 +160,7 @@ gating, and cost in the denominator.
 
 **One thing this measurement must not do:** report an aggregate. *"An aggregate
 quality score will be dominated by the lookups and will not show the
-difference."* The Brain's advantage is on **why** questions, **temporal**
+difference."* The knowledge system's advantage is on **why** questions, **temporal**
 questions, and **contradictions** — the valuable minority. **Slice for those
 explicitly, or the measurement will show nothing and will be believed.**
 
@@ -178,7 +178,7 @@ deferred. No memory work brings this closer."**
 
 **What can be built** without them: the Principal Agent *as a Run* (it inherits
 durable execution, parking, crash recovery and the audit trail); the
-delegation/grant mechanism; the assess-decide loop over Brain context.
+delegation/grant mechanism; the assess-decide loop over knowledge system context.
 
 **What cannot:** anything judged on organizational outcomes. That needs an
 organizational act — someone writing down goals with measures and baselines —
@@ -192,13 +192,13 @@ Each stage exits on a **measurement or a decision**, never on "it's built."
 
 | # | Stage | Contains | Exit criterion |
 |---|---|---|---|
-| **0** | **Decide** | ~~Q1 product direction~~ **resolved.** Q2 the ladder meeting. Observation shape fixed. ~20 predicates from real questions. Import boundary + lint rule. Single-writer invariant profile (Q8). Memory/Brain schema reconciled (Q7). Institutional documentation | The ladder exists as a reviewed file with a **named owner**, and two people who disagreed now agree — **or the disagreement is written down as an open question.** |
+| **0** | **Decide** | ~~Q1 product direction~~ **resolved.** Q2 the precedence meeting. Observation shape fixed. ~20 predicates from real questions. Import boundary + lint rule. Single-writer invariant profile (Q8). Memory/knowledge system schema reconciled (Q7). Institutional documentation | The policy exists as a reviewed file with a **named owner**, and two people who disagreed now agree — **or the disagreement is written down as an open question.** |
 | **1** | **One source, end to end** | Observation log (bitemporal, permission-labelled, content-hashed). One adapter — Jira or Git. Admission, deterministic stage only. Entity anchoring. **Identity-keyed extraction.** Claim store with versions + evidence + the six temporal fields + source_class. Authority resolution. Contradictions. Structural retrieval. Context assembly. **The capability layer, with explicit Principal, provenance, bounded results.** Three tools: `entity`, `why`, `conflicts`. **The deletion route, tested.** The trust rule as a CHECK constraint. The reviewed sample. Three signals | **Five real questions** from our own history, each answered with the implementation fact, the decision, the author, the date, and **the gap between intent and reality stated plainly.** Plus a **measured extraction precision** on the reviewed sample |
 | **2** | **The second source** | Meetings, or whichever source contradicts the first. Entity resolution stops being free here | **One contradiction detected across sources that a human confirms was worth raising.** One instance is the milestone |
 | **3** | **Temporal and verification in anger** | As-of queries. Supersession chains. History answers. The probe loop for verifiable predicates. Verification-status distribution | *"What did we believe in June?"* answered correctly on a held-out set built from **real** history. And **probe-disagrees fires on a real stale claim before a human notices it** |
 | **4** | **External agents** | Capability layer hardened. MCP as a strict read-only projection with fewer capabilities than the internal surface. Q9 decided first. Integration with the agents already in the workflow | **A measured improvement in agent output, sliced for *why* / temporal / contradiction questions** — against a pinned store snapshot, with a noise floor, paired, per-slice, cost in the denominator |
 | **5** | **Breadth and participation** | Slack, with admission tuned against the easier sources. Participation rung 3 in **one** channel | **Volunteer precision above a threshold registered in advance**, and a **mute rate of zero** in the pilot channel. **Automatic demotion if not** |
-| **6** | **Principal Agent — the unblocked half** | A Principal Agent as a Run. Grants and delegation. The assess–decide loop over Brain context. **No outcome judgement yet** | It deliberates, parks for a human, resumes, and founds a delegated run — surviving a restart |
+| **6** | **Principal Agent — the unblocked half** | A Principal Agent as a Run. Grants and delegation. The assess–decide loop over knowledge system context. **No outcome judgement yet** | It deliberates, parks for a human, resumes, and founds a delegated run — surviving a restart |
 | **7** | **Organizational structures** *(gated on an organizational act, not engineering)* | Goal records with measures and baselines. Decision records with sealed predictions. Commitments. The outcome ledger and read-only probes | Goals exist, written by a human, with measures and baselines. **Until then this stage cannot start** |
 | **8** | **Controlled autonomy** | The autonomy ladder, rung by rung, each with a pre-registered threshold and automatic demotion | Each rung's threshold met, measured at the rung below where being wrong is cheap |
 | **9** | **Autonomous organizational workflows** | — | **Not designed. Do not plan against it in detail** |
@@ -211,16 +211,16 @@ Each stage exits on a **measurement or a decision**, never on "it's built."
 |---|---|
 | **The ingestion framework** | Adapters are written one at a time against a fixed observation shape. **The framework is that shape.** Six adapters is six times the surface area and one times the demonstrated value |
 | **The knowledge graph** | Relationships are claims from Stage 1. Nothing to build separately |
-| **A Brain UI** | Brain events go on the existing event spine. A separate UI before Stage 3 is a distraction from whether the Brain is *right* |
+| **A knowledge system UI** | knowledge system events go on the existing event spine. A separate UI before Stage 3 is a distraction from whether the knowledge system is *right* |
 | **"Integrate the 50-chapter runtime"** | Four of its primitives each remove a real weakness and **each has its own trigger.** Adopting them as a block would be a rewrite justified by architecture rather than by a problem |
-| **A migration/consolidation stage** | Reprocessing from the observation log is the normal way the Brain improves, not an event |
+| **A migration/consolidation stage** | Reprocessing from the observation log is the normal way the knowledge system improves, not an event |
 
 ### The four runtime primitives, with the trigger for each
 
 | Primitive | Weakness it removes | Adopt when |
 |---|---|---|
 | **Identity-keyed extraction** | A redelivery re-extracts and produces a *different* claim, unrecognisable as a duplicate | **Stage 1. This is the first one to need** |
-| Transactional outbox | A claim write and its notification are two writes with a gap | When the first consumer reacts to a Brain event — the participation check is exactly that consumer |
+| Transactional outbox | A claim write and its notification are two writes with a gap | When the first consumer reacts to a knowledge system event — the participation check is exactly that consumer |
 | Leases and version-CAS | Two workers on one observation rely on database default behaviour | When ingestion runs more than one worker. **Before that it is theatre** |
 | Park | A claim awaiting human confirmation has nowhere to wait that holds no resources | When human confirmation enters the claim lifecycle |
 

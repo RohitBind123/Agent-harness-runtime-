@@ -36,12 +36,12 @@ A **macOS-first personal paperwork agent.** From `prd.md` and
 
 ### Direction B — the current strategic hypothesis, 2026-09-14
 
-A **Business Brain** serving organizational knowledge to external coding agents
+A **knowledge system** serving organizational knowledge to external coding agents
 through MCP, validated first on an internal engineering workflow.
 
 - Buyer: **not identified in any document**
 - Wedge: organizational knowledge for agents working in an engineering workflow
-- Chain: Business Brain → Brain MCP → external agents → Principal Agent →
+- Chain: knowledge system → knowledge system MCP → external agents → Principal Agent →
   Agent Runtime → controlled autonomous execution
 
 ## The contradiction, stated precisely
@@ -51,7 +51,7 @@ the reasoning Direction A gave for ruling it out has not been retired,
 addressed, or shown to be inapplicable.
 
 That reasoning may well *be* inapplicable — Direction A's Change 3 argued
-against a *file-organising developer tool*, and a Business Brain is a
+against a *file-organising developer tool*, and a knowledge system is a
 materially different proposition. **But nobody has written that down.** An
 argument is not retired by being ignored.
 
@@ -67,7 +67,7 @@ documentation — only implementation.
 
 A named human must decide one of:
 
-1. **Direction A stands.** Then the Brain architecture is infrastructure for a
+1. **Direction A stands.** Then the knowledge system architecture is infrastructure for a
    later phase, and `prd.md` is the live plan.
 2. **Direction B supersedes it.** Then `prd.md` and `docs/product/` are marked
    SUPERSEDED with a dated reason, and Change 3's argument is explicitly

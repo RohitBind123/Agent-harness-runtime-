@@ -1,23 +1,25 @@
-# ADR-0020 — The Brain observes the engineering workflow before it controls it
+# ADR-0020 — The knowledge system observes the engineering workflow before it controls it
 
 **Status:** ACCEPTED
 **Date / context:** 2026-09-14, stated in the current strategic direction.
-Consistent with the Brain review's participation model (§12).
+Consistent with the knowledge system review's participation model (§12).
 
 ## Context
 
 The engineering workflow that builds this system is itself an organization
 producing decisions, implementations, bugs, fixes, tests, verifications and
 human corrections. It is available, instrumented, and ours. It is the obvious
-first validation environment — and the obvious temptation is to let the Brain
+first validation environment — and the obvious temptation is to let the knowledge system
 act in it.
 
 ## Decision
 
-**The Brain OBSERVES the workflow. It does not control it.**
+**The knowledge system OBSERVES the workflow. It does not control it.**
 
 Participation is a ladder, and the rungs are climbed in order with a
-measurement at each:
+measurement at each — the same staged, measured, automatically-demoted
+pattern the handbook calls an **Autonomy ladder** (Ch49), applied here to
+speaking rather than acting:
 
 | Rung | What it may do | Gate to reach it |
 |---|---|---|
@@ -30,7 +32,7 @@ measurement at each:
 
 | Alternative | Why rejected |
 |---|---|
-| Let the Brain act in the workflow from the start | A few bad unprompted interventions and the agent is **muted permanently** — the capability is then gone regardless of later quality. |
+| Let the knowledge system act in the workflow from the start | A few bad unprompted interventions and the agent is **muted permanently** — the capability is then gone regardless of later quality. |
 | Skip observation, go straight to answering | Answering requires a store worth answering from. |
 | A separate synthetic validation environment | The hard problems only appear with real messy input. |
 
@@ -52,7 +54,7 @@ demotion must be **automatic** if the threshold is not met.
     architecture.** Organization-specific assumptions must not be hard-coded
     into the general design.
   - **Observation** versus **control.**
-- The workflow must be instrumented for observation before the Brain can learn
+- The workflow must be instrumented for observation before the knowledge system can learn
   from it — see `docs/project/06-validation-strategy.md`.
 - **Dogfooding is not product validation.** A system that helps its own authors
   has a sample of one team with unusual tolerance for its failures. This

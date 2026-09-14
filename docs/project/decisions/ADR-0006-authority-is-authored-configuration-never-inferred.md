@@ -1,6 +1,6 @@
 # ADR-0006 — Authority is authored configuration, never inferred
 
-**Status:** **ACCEPTED — UNEXECUTED.** The decision is settled. The ladder does
+**Status:** **ACCEPTED — UNEXECUTED.** The decision is settled. The policy does
 not exist.
 **Date / context:** 2026-09-05. Recorded as the hardest and the blocking
 design question in this architecture.
@@ -23,9 +23,9 @@ Case 3 is rejected in the alternatives below. Therefore case 2.
 
 ## Decision
 
-**The source-class ladder is CONFIGURATION: authored by a named human,
-versioned, reviewed, and outside anything the agent may edit.** The Brain
-*enforces* a ladder. It does not *learn* one.
+**The source-precedence policy is CONFIGURATION: authored by a named human,
+versioned, reviewed, and outside anything the agent may edit.** The knowledge system
+*enforces* a policy. It does not *learn* one.
 
 Authority resolution is two-dimensional — a source class has a position on
 **intent** and a separate position on **reality**. A decision outranks an
@@ -56,18 +56,18 @@ where a human would have hesitated.
   human, a meeting, and a versioned file. Expect the meeting to surface genuine
   disagreement about how the organization works — *that disagreement is the
   finding*, and it is better discovered in a meeting than in production.
-- The ladder lives outside the evolvable workspace. Nothing the agent runs may
+- The policy lives outside the evolvable workspace. Nothing the agent runs may
   edit it.
 - Confidence modifiers derive from claims, never from a model's judgement of
   tone or seniority.
-- **Until the ladder exists, every downstream mechanism — resolution,
+- **Until the policy exists, every downstream mechanism — resolution,
   contradiction, retrieval ranking — is meaningless.** This is why it is Q2 and
   why it blocks Phase 1.
 
 ## What would cause us to reconsider
 
 Nothing about the *authored* property. The *shape* (how many classes, which
-axes) should change freely as the ladder is used — that is a configuration
+axes) should change freely as the policy is used — that is a configuration
 change, and the change log records it.
 
 ## Source

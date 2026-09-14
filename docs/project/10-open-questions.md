@@ -13,7 +13,7 @@ what decision is required, whether it blocks, and the next experiment.
 
 ## 1. Blocking — nothing meaningful proceeds until these are decided
 
-### Q2 — Who authors the source-class authority ladder, and who may change it?
+### Q2 — Who authors the source-precedence policy, and who may change it?
 
 | | |
 |---|---|
@@ -33,8 +33,8 @@ what decision is required, whether it blocks, and the next experiment.
 | **Why it matters** | It is named as the first live validation environment. The validation strategy depends on knowing what it is, which systems it uses, and what observations it emits |
 | **What IS now established** | **InOrbitX is a broker insurance portal.** It is a project held **locally on the owner's desktop.** Stated by the project owner, 2026-09-14 |
 | **What is STILL unknown** | Tech stack. Team size and composition. Which tools produce observations — Git host, issue tracker, chat, CI. Whether it uses pull requests. Where decisions are actually recorded. Whether it has users in production or is pre-launch. What data it holds |
-| **The accessibility constraint** | **It is on a local desktop, so this session cannot read it** — reported, not verifiable from here. Any first source the Brain ingests must be something reachable from wherever the Brain runs — a local-only repository is reachable by a local agent and not by a hosted one. **This is a deployment constraint the architecture has not addressed** |
-| **Decision required** | Write down: which systems, which teams, where decisions live, what emits observations, and where the Brain would run relative to them |
+| **The accessibility constraint** | **It is on a local desktop, so this session cannot read it** — reported, not verifiable from here. Any first source the knowledge system ingests must be something reachable from wherever the knowledge system runs — a local-only repository is reachable by a local agent and not by a hosted one. **This is a deployment constraint the architecture has not addressed** |
+| **Decision required** | Write down: which systems, which teams, where decisions live, what emits observations, and where the knowledge system would run relative to them |
 | **Blocking?** | **Still YES** for the validation strategy. The domain is now known; the observable surface is not |
 | **Next experiment** | Step V0 in `06-validation-strategy.md` §6 — now a narrower writing task: inventory the tools around an existing project rather than define an unknown environment |
 
@@ -45,9 +45,9 @@ in the architecture's favour and one against:
   wording, endorsements, broker notes, underwriting guidance and regulatory
   guidance have real, documented authority relationships. That is closer to the
   case where a corpus contained its own precedence rule than to a generic
-  organization, and it may make Q2's ladder meeting substantially easier for
-  *domain* claims. It does **not** supply a ladder for *engineering* claims,
-  which is what the Brain's first source would produce.
+  organization, and it may make Q2's precedence meeting substantially easier for
+  *domain* claims. It does **not** supply a precedence policy for *engineering* claims,
+  which is what the knowledge system's first source would produce.
 - **Also in favour:** it gives the "reconciliation across sources that disagree"
   thesis a natural high-value case — intent versus implementation matters more
   when a mismatch has regulatory consequences.
@@ -84,7 +84,7 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 
 | | |
 |---|---|
-| **Why it matters** | The predicate registry is the hinge: claim identity is `(subject, predicate)` in a scope. **Too broad is as bad as too narrow** — two hundred predicates means nothing ever collides, so nothing ever contradicts |
+| **Why it matters** | The predicate schema registry is the hinge: claim identity is `(subject, predicate)` in a scope. **Too broad is as bad as too narrow** — two hundred predicates means nothing ever collides, so nothing ever contradicts |
 | **Hypotheses** | Roughly **twenty**, drawn from real questions people actually ask — not from a taxonomy. Candidate starting set: ownership, dependency, current_behaviour, intended_behaviour, process, term, constraint |
 | **Evidence available** | The recommended size and derivation method. **The real questions have not been collected** |
 | **Decision required** | Twenty predicates, each with `single_valued`, `kinds_allowed`, `object_schema`, `decay_profile`, `verifiable_by` |
@@ -98,8 +98,8 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 | | |
 |---|---|
 | **Why it matters** | Starting with the wrong source means hitting entity resolution, admission and vocabulary growth simultaneously |
-| **Hypotheses** | **Jira or Git.** Both have real identifiers, timestamps, authors, and high claim density. Meetings second. **Slack last.** Documentation is a trap — staleness is worst there, so a Brain built on docs first learns a stale world confidently and has nothing to contradict it with |
-| **Evidence available** | A ranked table in the Brain architecture |
+| **Hypotheses** | **Jira or Git.** Both have real identifiers, timestamps, authors, and high claim density. Meetings second. **Slack last.** Documentation is a trap — staleness is worst there, so a knowledge system built on docs first learns a stale world confidently and has nothing to contradict it with |
+| **Evidence available** | A ranked table in the knowledge system architecture |
 | **Decision required** | Pick one. **It depends on where this organization's decisions actually live** — which is a fact about the organization, not about the architecture |
 | **Blocking?** | **YES** for Phase 1 |
 | **Next experiment** | Answer Q3 first; the answer probably falls out of it |
@@ -108,16 +108,16 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 
 ## 2. Hard — decide before Phase 2
 
-### Q7 — How do the Memory and Brain schemas reconcile?
+### Q7 — How do the Memory and knowledge system schemas reconcile?
 
 | | |
 |---|---|
 | **Why it matters** | Two documents specify **incompatible Phase 1 schemas** and neither acknowledges the other. Building either without reconciling means discovering it at integration |
-| **Hypotheses** | **(A)** Different scopes — Memory covers a runtime memory subsystem where entities arrive already identified; Brain covers an organizational store where identity must be established. Both right about their own subject. **(B)** One supersedes the other. **(C)** A merged schema |
+| **Hypotheses** | **(A)** Different scopes — Memory covers a runtime memory subsystem where entities arrive already identified; knowledge system covers an organizational store where identity must be established. Both right about their own subject. **(B)** One supersedes the other. **(C)** A merged schema |
 | **Evidence available** | Both documents, side by side in `02-domain-model.md` §5. **Hypothesis A is an inference from each document's scope, not a stated claim in either.** The observation that they use identical words — `claims`, `evidence`, "Phase 1" — for different things is itself the strongest support for A |
 | **Decision required** | Which schema is built, for which subsystem, and whether they are one store or two |
 | **Blocking?** | **YES** for any schema work. Not for the decisions above it |
-| **Next experiment** | Read both §37 (Memory ADRs) and §17.3 (Brain build list) together and write one page reconciling them. **A is an inference; it needs ratifying or refuting** |
+| **Next experiment** | Read both §37 (Memory ADRs) and §17.3 (knowledge system build list) together and write one page reconciling them. **A is an inference; it needs ratifying or refuting** |
 
 ---
 
@@ -138,7 +138,7 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 
 | | |
 |---|---|
-| **Why it matters** | A coding agent connecting on behalf of an engineer means the IDE, the agent and the Brain are three parties. The token must carry an identity the Brain can verify **without trusting the middle one** |
+| **Why it matters** | A coding agent connecting on behalf of an engineer means the IDE, the agent and the knowledge system are three parties. The token must carry an identity the knowledge system can verify **without trusting the middle one** |
 | **Hypotheses** | **(A)** The MCP server mints its own Principal from a per-user credential. **(B)** It accepts a delegated token. **Either can work. Letting the client assert an identity is the failure** |
 | **Evidence available** | The internal model — server-resolved Principal, never client-supplied — is the property being preserved one layer up |
 | **Decision required** | A or B |
@@ -159,7 +159,7 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 | **Next experiment** | Enumerate the real audiences in the target environment (needs Q3), then design against those rather than in the abstract |
 
 **Sub-question, open with no general solution:** does an **aggregate** leak? Can
-the Brain state "three teams are blocked on X" without disclosing a private
+the knowledge system state "three teams are blocked on X" without disclosing a private
 fact? The practical rule — an aggregate that cannot be cited should not be
 produced — is a mitigation, not an answer, and it will be too strict in some
 cases and too loose in others.
@@ -255,12 +255,12 @@ all five are cheap to answer.
 | | |
 |---|---|
 | **Why it matters** | The premise. If real questions are dominated by lookups, the kind model, two-axis authority, bitemporal validity and the contradiction register are machinery for a rare case |
-| **Status** | **Open, and already recorded as genuinely open** in the Brain architecture |
+| **Status** | **Open, and already recorded as genuinely open** in the knowledge system architecture |
 | **Evidence available** | **None.** No question set has ever been collected |
 | **Blocking?** | Not mechanically. **It is the cheapest way to falsify the whole thesis**, which makes it urgent rather than blocking |
 | **Next experiment** | 50 real questions from the last 90 days, classified lookup / why / temporal / contradiction, with the threshold **pre-registered before counting.** One day |
 
-### Q18 — Will customers author and maintain an authority ladder?
+### Q18 — Will customers author and maintain a source-precedence policy?
 
 | | |
 |---|---|
@@ -268,7 +268,7 @@ all five are cheap to answer.
 | **Status** | Open. Never examined as a go-to-market question |
 | **Evidence available** | **None.** The risk is a hypothesis about customer behaviour and has never been tested against any organization |
 | **Blocking?** | Not for Phase 1. **Blocking for a business model** |
-| **Next experiment** | Run the Q2 ladder meeting, **time it**, and ask each participant afterwards whether they would have done it before seeing any output. Two hours |
+| **Next experiment** | Run the Q2 precedence meeting, **time it**, and ask each participant afterwards whether they would have done it before seeing any output. Two hours |
 
 ### Q19 — Does organizational context measurably improve agent output?
 
@@ -278,13 +278,13 @@ all five are cheap to answer.
 | **Status** | Open. **Asserted by the strategy, derived nowhere, measured never** |
 | **Evidence available** | None |
 | **Blocking?** | Not mechanically. It measures the **ceiling** of the whole chain |
-| **Next experiment** | Wizard-of-Oz: 20 real tasks, 10 with hand-written perfect context, blind-graded. **Needs no Brain.** Three days |
+| **Next experiment** | Wizard-of-Oz: 20 real tasks, 10 with hand-written perfect context, blind-graded. **Needs no knowledge system.** Three days |
 
 ### Q20 — How much of the runtime is actually on the critical path?
 
 | | |
 |---|---|
-| **Why it matters** | The runtime is the largest existing asset and is in the strategic chain. **The Brain architecture says the Brain does not need it** and names four primitives with individual triggers. No document reconciles the two |
+| **Why it matters** | The runtime is the largest existing asset and is in the strategic chain. **The knowledge system architecture says the knowledge system does not need it** and names four primitives with individual triggers. No document reconciles the two |
 | **Status** | Open, and the contradiction is in the corpus already |
 | **Blocking?** | For scope. It may remove most of the planned work |
 | **Next experiment** | Walk the 39 invariants; mark each needed / not needed / needed-later-with-a-trigger. This is **Q8** and it answers both. Half a day |
@@ -323,8 +323,8 @@ tasks.** Each is a limit stated by the design that has it.
 
 | | |
 |---|---|
-| **Original framing** | Two directions appeared to compete: **(A)** `prd.md`'s macOS personal-paperwork agent, GO WITH MAJOR CHANGES, 2026-09-06; **(B)** the Business Brain direction, 2026-09-14. Neither document acknowledged the other, and A's Change 3 (cut the developer-tools direction entirely) appeared unanswered against B |
-| **Resolution** | The project owner stated directly, 2026-09-14, that `prd.md` was written to explore a curiosity question — how the agent runtime could be used to control iOS or macOS — and was **never a competing product decision.** There was no actual contest. The Organizational Brain direction is the live product direction; `docs/project/PRD.md` is the project's actual PRD, not one of two contended options |
+| **Original framing** | Two directions appeared to compete: **(A)** `prd.md`'s macOS personal-paperwork agent, GO WITH MAJOR CHANGES, 2026-09-06; **(B)** the knowledge system direction, 2026-09-14. Neither document acknowledged the other, and A's Change 3 (cut the developer-tools direction entirely) appeared unanswered against B |
+| **Resolution** | The project owner stated directly, 2026-09-14, that `prd.md` was written to explore a curiosity question — how the agent runtime could be used to control iOS or macOS — and was **never a competing product decision.** There was no actual contest. The knowledge system direction is the live product direction; `docs/project/PRD.md` is the project's actual PRD, not one of two contended options |
 | **Decision record** | [ADR-0026](decisions/ADR-0026-product-direction-resolved-prd-is-exploratory.md), superseding [ADR-0021](decisions/ADR-0021-product-direction-is-contested.md) |
-| **What this does NOT resolve** | Q2 (the authority ladder) is still open and still blocking. `prd.md` itself is retained as a record of real research, corrected only in its framing relative to the live direction — see its banner |
+| **What this does NOT resolve** | Q2 (the source-precedence policy) is still open and still blocking. `prd.md` itself is retained as a record of real research, corrected only in its framing relative to the live direction — see its banner |
 | **Change log** | `11-architecture-change-log.md`, 2026-09-14 |

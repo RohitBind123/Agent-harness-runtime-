@@ -2,7 +2,7 @@
 
 **Status:** ACCEPTED
 **Date / context:** Memory ADR 9 and §12, 2026-09-02. Independently required by
-the Brain architecture
+the knowledge system architecture
 
 ## Context
 
@@ -35,7 +35,7 @@ June" and — worse — it misclassifies a late-learned old fact.
 
 ## Evidence and reasoning
 
-**[DESIGN DECISION + EXTERNAL RESEARCH]** The separation of valid time from
+**[DESIGN DECISION]** The separation of valid time from
 transaction time is long-established relational theory, imported rather than
 invented.
 
@@ -49,7 +49,7 @@ which is why the tier is not a nice-to-have.
 - `as_of` queries become possible: "what did we believe in June" is answerable,
   and that is the cheapest high-value evaluation set available — built once from
   real history.
-- A run sees a **stable** world via a per-run `as_of` anchor, while the Brain's
+- A run sees a **stable** world via a per-run `as_of` anchor, while the knowledge system's
   `now` moves. A global frozen clock does not transfer to a continuously
   ingesting system.
 - **Nominated as one of the three decisions most likely to be wrong.** A model

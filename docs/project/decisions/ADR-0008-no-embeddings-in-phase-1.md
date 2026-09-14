@@ -2,7 +2,7 @@
 
 **Status:** ACCEPTED, with a pre-registered trigger to revisit
 **Date / context:** 2026-09-02, Memory Management Architecture ADR 12 and
-Finding 4. Independently reached in the Brain architecture
+Finding 4. Independently reached in the knowledge system architecture
 
 ## Context
 
@@ -36,7 +36,7 @@ Two independent arguments. **The design only needs one of them to hold.**
 query, rather than inferred from it."* Embedding the current goal is excluded
 from the read path on cost grounds, and the read path runs on every model call.
 
-**[EXTERNAL RESEARCH]** Approximate-nearest-neighbour indexes apply metadata
+**[EVIDENCE]** Approximate-nearest-neighbour indexes apply metadata
 filters **after** walking the graph; there is no pre-filtering. Under a
 high-selectivity filter the candidates returned by the walk can all fail the
 filter, and **recall collapses.** The single query shape a tenant-scoped store

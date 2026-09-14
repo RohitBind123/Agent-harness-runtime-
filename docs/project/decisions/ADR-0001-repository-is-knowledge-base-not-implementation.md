@@ -2,7 +2,7 @@
 
 **Status:** ACCEPTED
 **Date / context:** 2026-09-06, in the product research pass. Restated in the
-Organizational Brain review, 2026-09-05, as its Finding 0.
+knowledge system review, 2026-09-05, as its Finding 0.
 
 ## Context
 
@@ -29,7 +29,7 @@ from 2026-09-14 — the institutional memory.
 
 ## Evidence and reasoning
 
-**[CONFIRMED — verified by this audit at commit `169142e`]** The repository
+**[FACT — verified by this audit at commit `169142e`]** The repository
 contains 94 Markdown files, 11 DOCX, 9 SVG, 1 PDF, and 5 Python files. All five
 Python files build or lint documentation. No product source file exists.
 
@@ -44,7 +44,7 @@ to extend, refactor or replace."*
   obligation, not editorial taste.
 - **The repository can drift from the implementation without anything failing.**
   Nothing here is executed against code. This is the exact failure mode the
-  Brain is designed to detect, and this repository is subject to it.
+  knowledge system is designed to detect, and this repository is subject to it.
 - Two pieces of work are owed regardless of where code lands: reconcile the two
   vocabularies ([ADR-0002](ADR-0002-specification-vocabulary-is-canonical-for-code.md)), and write down the single-writer profile of the 39
   invariants (see `docs/project/10-open-questions.md` Q8).

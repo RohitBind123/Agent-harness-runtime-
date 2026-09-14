@@ -27,7 +27,7 @@ Both enforcement layers are required and they do **different jobs**.
 
 ## Evidence and reasoning
 
-**[CONFIRMED]** The two layers do different jobs: the explicit assertion
+**[FACT]** The two layers do different jobs: the explicit assertion
 **raises** and therefore generates a signal; RLS **filters** and therefore
 contains the blast radius if the assertion is missing. Neither alone is
 sufficient.

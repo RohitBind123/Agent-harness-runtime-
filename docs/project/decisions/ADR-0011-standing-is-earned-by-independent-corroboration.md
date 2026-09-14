@@ -25,7 +25,7 @@ it influences nothing until corroborated.
 
 ## Evidence and reasoning
 
-**[CONFIRMED + INFERENCE]** A write gate needs an approver per run — either a
+**[DESIGN DECISION]** A write gate needs an approver per run — either a
 human bottleneck, or a model judging its own system's proposal. A **load floor**
 needs nobody, costs one comparison, and **cannot be socially pressured.**
 

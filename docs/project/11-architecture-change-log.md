@@ -32,7 +32,7 @@ message has not been recorded.
 
 | Field | |
 |---|---|
-| **Change** | Created `PROJECT_BOOTSTRAP.md` and `docs/project/` as the durable project memory: North Star, architecture map, 24 ADRs, domain model, lifecycles, implementation map, workflow, validation strategy, Brain observability, build order, do-not-assume register, open-questions register, this log, the handoff protocol, and a full audit |
+| **Change** | Created `PROJECT_BOOTSTRAP.md` and `docs/project/` as the durable project memory: North Star, architecture map, 24 ADRs, domain model, lifecycles, implementation map, workflow, validation strategy, knowledge system observability, build order, do-not-assume register, open-questions register, this log, the handoff protocol, and a full audit |
 | **Previous design** | No durable project context existed. Architectural rationale lived inside individual deliverables or in conversations. `tasks/todo.md` covered handbook maintenance only. There was no session-startup document |
 | **New design** | The repository is the source of truth for project context. A fresh session reads `PROJECT_BOOTSTRAP.md` and can reconstruct the project without conversation history |
 | **Reason** | Work had accumulated across many sessions with no way for a new session to recover why anything was decided. Several decisions existed only as assumptions inside documents that did not state them as decisions |
@@ -51,7 +51,7 @@ message has not been recorded.
 | **Change** | The project's product direction is recorded as **contested and unresolved**, rather than as either of the two directions that exist |
 | **Previous design** | `prd.md` (2026-09-06): **GO WITH MAJOR CHANGES** on a macOS-first personal-paperwork agent, with Change 3 stating that the terminal / Git / developer-tools environment is cut from the roadmap entirely |
 | **New design** | **No new direction adopted.** Both directions are recorded, the contradiction is stated, and a decision is required from a named human |
-| **Reason** | The current strategic direction (Business Brain → MCP → coding agents) targets approximately the segment `prd.md` ruled out, and **the reasoning `prd.md` gave has not been retired, addressed, or shown to be inapplicable** |
+| **Reason** | The current strategic direction (knowledge system → MCP → coding agents) targets approximately the segment `prd.md` ruled out, and **the reasoning `prd.md` gave has not been retired, addressed, or shown to be inapplicable** |
 | **Evidence** | `prd.md`; `docs/product/04-product-thesis-and-decision.md` §5.2, Part 10, §11.1; current strategic direction 2026-09-14 |
 | **Impact** | **Implementation is blocked** until this is decided. Documentation and architecture work are not — the architecture is largely common to both directions |
 | **Decision owner** | *Required — not yet assigned* |
@@ -60,15 +60,15 @@ message has not been recorded.
 
 ---
 
-## 2026-09-14 — Memory/Brain schema conflict recorded
+## 2026-09-14 — Memory/knowledge system schema conflict recorded
 
 | Field | |
 |---|---|
-| **Change** | Recorded that the Memory Management Architecture and the Organizational Brain Architecture specify **incompatible Phase 1 schemas** |
+| **Change** | Recorded that the Memory Management Architecture and the knowledge system Architecture specify **incompatible Phase 1 schemas** |
 | **Previous design** | Both documents presented as compatible parts of one architecture |
 | **New design** | Both positions recorded side by side. **Neither adopted.** A plausible reconciliation is offered and explicitly marked as an inference rather than a decision |
-| **Reason** | Memory rejects an entities table and a conflicts table in Phase 1 and defers entity resolution; the Brain requires all three in Phase 1. **Neither document acknowledges the other.** They use the same words for different things |
-| **Evidence** | Memory architecture §37.2 (ADR 6), §37.4 (ADR 19); the Brain architecture, §6.4, §17.3 |
+| **Reason** | Memory rejects an entities table and a conflicts table in Phase 1 and defers entity resolution; the knowledge system requires all three in Phase 1. **Neither document acknowledges the other.** They use the same words for different things |
+| **Evidence** | Memory architecture §37.2 (ADR 6), §37.4 (ADR 19); the knowledge system architecture, §6.4, §17.3 |
 | **Impact** | **No schema may be built until reconciled** |
 | **Decision owner** | *Required* |
 | **Status** | **OPEN** |
@@ -85,7 +85,7 @@ message has not been recorded.
 | **New design** | Domain and shape recorded. Tech stack, team, tooling, workflow and observable surface remain unknown. **No architectural change made** |
 | **Reason** | Stated by the project owner |
 | **Evidence** | The owner's statement. **Not verifiable from this session** — the project is local and unreachable from here |
-| **Impact** | Three things. (1) Q3 narrows from "define an unknown environment" to "inventory the tooling around a known project." (2) A **regulated domain** makes the tenancy, redaction, deletion-route and overlapping-permission work a precondition rather than premature — **Q10 moves up**. (3) **A new question surfaced that no document had asked: where does the Brain run relative to the sources it observes?** A local-only source is reachable by a local agent and not a hosted one. Recorded in `06-validation-strategy.md` §7 and coupled to Q8 |
+| **Impact** | Three things. (1) Q3 narrows from "define an unknown environment" to "inventory the tooling around a known project." (2) A **regulated domain** makes the tenancy, redaction, deletion-route and overlapping-permission work a precondition rather than premature — **Q10 moves up**. (3) **A new question surfaced that no document had asked: where does the knowledge system run relative to the sources it observes?** A local-only source is reachable by a local agent and not a hosted one. Recorded in `06-validation-strategy.md` §7 and coupled to Q8 |
 | **Decision owner** | *Required for the deployment shape* |
 | **Status** | ACCEPTED as a fact; the deployment question is **OPEN** |
 | **Records** | Q3 updated; Q10 severity raised; `06-validation-strategy.md` §7 added |
@@ -97,10 +97,10 @@ message has not been recorded.
 | Field | |
 |---|---|
 | **Change** | Added an adversarial outside-in review identifying the ten highest-leverage assumptions that could make the project technically or commercially wrong, each with an experiment. **No decision was changed** |
-| **Previous design** | The corpus argued *for* its own architecture. No document attacked the premises from outside, and three load-bearing assumptions were unexamined: that customers will author an authority ladder, that organizational context improves agent output, and that the runtime is on the critical path |
+| **Previous design** | The corpus argued *for* its own architecture. No document attacked the premises from outside, and three load-bearing assumptions were unexamined: that customers will author a source-precedence policy, that organizational context improves agent output, and that the runtime is on the critical path |
 | **New design** | Unchanged. The review raises questions and recommends experiments only |
 | **Reason** | Requested as an independent architect review. The audit established *what exists*; this establishes *what could be wrong* |
-| **Evidence** | The review's own labelling separates FACT / EVIDENCE / HYPOTHESIS / RECOMMENDATION throughout. Two findings are worth surfacing here: **(1)** the commercial differentiation rests on what the Brain architecture itself calls *"the weakest claim in §3"* — an argument from absence in public material; **(2)** the Brain architecture states the Brain does not need the fifty-chapter runtime, which contradicts the strategic chain and is reconciled nowhere |
+| **Evidence** | The review's own labelling separates FACT / EVIDENCE / HYPOTHESIS / RECOMMENDATION throughout. Two findings are worth surfacing here: **(1)** the commercial differentiation rests on what the knowledge system architecture itself calls *"the weakest claim in §3"* — an argument from absence in public material; **(2)** the knowledge system architecture states the knowledge system does not need the fifty-chapter runtime, which contradicts the strategic chain and is reconciled nowhere |
 | **Impact** | Five new open questions (Q17–Q21). A recommended two-week experiment programme that contains almost no code. **No architecture changed** |
 | **Decision owner** | *Required — the experiments need a go/no-go* |
 | **Status** | ACCEPTED as a review; its recommendations are **PROPOSED** |
@@ -113,11 +113,11 @@ message has not been recorded.
 | Field | |
 |---|---|
 | **Change** | A class of external-codebase references, previously treated as the substrate this architecture reused from, is removed. No external codebase is evidence for this project |
-| **Previous design** | The 2026-09-14 audit and baseline (`PROJECT_BOOTSTRAP.md` §5, `09-do-not-assume.md` §3, `04-implementation-map.md` §4, `14-outside-in-review-2026-09-14.md` A9) inherited the Organizational Brain Architecture document's own framing of these repositories as real, relevant, and merely "not accessible to the audit" — with instructions to ask for them to be attached |
+| **Previous design** | The 2026-09-14 audit and baseline (`PROJECT_BOOTSTRAP.md` §5, `09-do-not-assume.md` §3, `04-implementation-map.md` §4, `14-outside-in-review-2026-09-14.md` A9) inherited the knowledge system Architecture document's own framing of these repositories as real, relevant, and merely "not accessible to the audit" — with instructions to ask for them to be attached |
 | **New design** | The repositories are stale and were never claimed by the project owner to be connected to the current build. Do not cite them as evidence for a reuse decision or a scope estimate; do not ask for them to be attached on the assumption they inform this project |
 | **Reason** | The prior framing was carried forward from source material without confirming it was still live project context. It was not |
 | **Evidence** | Direct statement from the project owner, this conversation, 2026-09-14 |
-| **Impact** | `PROJECT_BOOTSTRAP.md`, `09-do-not-assume.md`, `04-implementation-map.md`, and `14-outside-in-review-2026-09-14.md` corrected to point to the new ADR rather than describe an open verification gap. Any future Brain-scope estimate starts from zero, not from the Brain architecture's eleven-reuse / five-generalise / four-do-not-reuse breakdown |
+| **Impact** | `PROJECT_BOOTSTRAP.md`, `09-do-not-assume.md`, `04-implementation-map.md`, and `14-outside-in-review-2026-09-14.md` corrected to point to the new ADR rather than describe an open verification gap. Any future scope estimate for the knowledge system starts from zero, not from the knowledge system architecture's eleven-reuse / five-generalise / four-do-not-reuse breakdown |
 | **Decision owner** | Project owner |
 | **Status** | ACCEPTED |
 | **Records** | [ADR-0025](decisions/ADR-0025-no-external-codebase-is-evidence.md) |
@@ -130,7 +130,7 @@ message has not been recorded.
 |---|---|
 | **Change** | ADR-0021's "contested, blocking" framing is superseded. `prd.md` (the macOS/iOS paperwork agent) was written to explore a curiosity question — how the agent runtime could be used to control iOS or macOS — and was never a competing product decision. Q1 is resolved |
 | **Previous design** | ADR-0021 recorded two apparently competing directions and marked deciding between them **OPEN — BLOCKING**, propagated into `PROJECT_BOOTSTRAP.md`, `00-north-star.md`, `10-open-questions.md` Q1, `04-implementation-map.md`, `08-build-order.md`, and `docs/project/PRD.md` (§0.1, §4.2, §20, §21 D1) |
-| **New design** | The Organizational Brain direction (`00-north-star.md`, `docs/project/PRD.md`) is the live, uncontested product direction. `prd.md` is retained as a record of real research into a different question and is no longer described as competing with it. Change 3's argument does not need to be "answered" — it was never blocking a decision that existed |
+| **New design** | The knowledge system direction (`00-north-star.md`, `docs/project/PRD.md`) is the live, uncontested product direction. `prd.md` is retained as a record of real research into a different question and is no longer described as competing with it. Change 3's argument does not need to be "answered" — it was never blocking a decision that existed |
 | **Reason** | The project owner stated the intent behind `prd.md` directly, which is stronger evidence than anything inferable from the documents alone |
 | **Evidence** | Direct statement from the project owner, this conversation, 2026-09-14 — the exact evidence class Q1 required: *"a named human picks A, B, C or D"* |
 | **Impact** | Q1 moved to Resolved in `10-open-questions.md`. `prd.md`'s banner corrected. `docs/project/PRD.md` no longer hedges on Q1. `08-build-order.md`'s Stage 0 exit criterion is now partially satisfied |
@@ -170,7 +170,7 @@ content, and are marked where the rationale is not established.
 | 2026-08-30 | **Principal Agent architecture.** Key decision: a Principal Agent is a **Run**, not a layer — correcting the originating brief | ACCEPTED | Preserves the narrow waist; inherits durable execution; makes containment mechanical |
 | 2026-08-31 | Agent Evaluation & Measurement architecture | ACCEPTED | Rationale not yet established |
 | 2026-09-02 | **Memory Management architecture.** 19 ADRs. Key: memory is a mechanism over several state categories, not a state category | ACCEPTED | The equation "memory = harness state" is already false against the handbook's own table, and believing it puts a customer fact in git |
-| 2026-09-05 | **Organizational Brain architecture.** Key: the core object is a kind-typed claim; the observation log is the system of record; the world model is a projection | ACCEPTED | The cancellation example: perfect retrieval still hides the disagreement |
+| 2026-09-05 | **knowledge system architecture.** Key: the core object is a kind-typed claim; the observation log is the system of record; the world model is a projection | ACCEPTED | The cancellation example: perfect retrieval still hides the disagreement |
 | 2026-09-06 | Product research and PRD. **GO WITH MAJOR CHANGES** on a macOS paperwork agent | **EXPLORATORY, resolved 2026-09-14** | See the 2026-09-14 entry — written to explore runtime-controls-OS, not a competing product decision |
 | 2026-09-06 | Chapter 50 added (third-party tool supply and MCP); specification revision 5 adds §9.9 and invariants I33–I39 | IMPLEMENTED | Acting on Finding B — and correcting it: the original claim that the specification was silent on MCP was wrong |
 | 2026-09-07 | Systems Foundations learning document; Apple platform claims verified against primary sources, two corrected | IMPLEMENTED | Two claims were found wrong on verification |
@@ -186,4 +186,4 @@ tracked as open questions.
 | **Finding A** — two unreconciled vocabularies | 2026-09-06 | Q4, [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code.md) |
 | **Finding B** — MCP specified but classified future | 2026-09-06 | `01-architecture-map.md` §4.4 |
 | **Finding C** — the architecture is server-shaped; the targets are not servers | 2026-09-06 | Q8 |
-| **The authority problem** — the ladder cannot be inferred and does not exist | 2026-09-05 | Q2, [ADR-0006](decisions/ADR-0006-authority-is-authored-configuration-never-inferred.md) |
+| **The authority problem** — the policy cannot be inferred and does not exist | 2026-09-05 | Q2, [ADR-0006](decisions/ADR-0006-authority-is-authored-configuration-never-inferred.md) |

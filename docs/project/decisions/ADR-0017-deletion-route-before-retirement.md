@@ -27,7 +27,7 @@ retrieval quality, and before anything that makes the store good.
 
 ## Evidence and reasoning
 
-**[CONFIRMED]** A store with no declared deletion route *"fails the enumeration
+**[FACT]** A store with no declared deletion route *"fails the enumeration
 LOUDLY rather than being skipped silently."* That makes the ordering
 non-negotiable: **retrieval quality is an optimisation over a store that must
 first be allowed to exist.**

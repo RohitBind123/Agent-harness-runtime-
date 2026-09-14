@@ -15,13 +15,13 @@ the session-startup document and it links everything here.
 | — | [`PROJECT_BOOTSTRAP.md`](../../PROJECT_BOOTSTRAP.md) | Everything, briefly. **Read first** |
 | 00 | [North Star](00-north-star.md) | What system, what problem, who for, what wedge, what is *not* the product, what would falsify it |
 | 01 | [Architecture Map](01-architecture-map.md) | Every component: purpose, owns, does not own, inputs, outputs, dependencies, invariants, status. Plus where the architecture contradicts itself |
-| — | [Decisions](decisions/) | 24 architectural decision records |
+| — | [Decisions](decisions/) | 26 architectural decision records |
 | 02 | [Domain Model](02-domain-model.md) | The canonical objects, their fields, lifecycles, owners, invariants — and the objects rejected, with reasons |
 | 03 | [Lifecycles and State Machines](03-lifecycles-and-state-machines.md) | Every transition: trigger, preconditions, evidence, reversibility, persistence |
 | 04 | [Implementation Map](04-implementation-map.md) | Component → files → status → tests → limitations. **The honest one** |
 | 05 | [Development Workflow](05-development-workflow.md) | How work actually gets done here |
 | 06 | [Validation Strategy](06-validation-strategy.md) | Using the real engineering workflow as the first live environment, without contaminating the general architecture |
-| 07 | [Brain Observability](07-brain-observability.md) | The flight recorder, and how correctness is established without asking the Brain |
+| 07 | [Knowledge System Observability](07-brain-observability.md) | The flight recorder, and how correctness is established without asking the knowledge system |
 | 08 | [Build Order](08-build-order.md) | The staged roadmap, with seven proposed changes and the reason for each |
 | 09 | [DO NOT ASSUME](09-do-not-assume.md) | The dangerous assumptions register. **Mandatory, and short** |
 | 10 | [Open Questions](10-open-questions.md) | 16 questions with blocking status and next experiment, plus 7 that are unsolved |
@@ -29,6 +29,7 @@ the session-startup document and it links everything here.
 | 12 | [Session Handoff Protocol](12-session-handoff-protocol.md) | The format every session ends with |
 | 13 | [Audit — 2026-09-14](13-audit-2026-09-14.md) | The full audit this baseline rests on |
 | 14 | [Outside-In Review — 2026-09-14](14-outside-in-review-2026-09-14.md) | The 10 highest-leverage assumptions that could make this wrong, each with a cheap experiment |
+| 15 | [Vocabulary](15-vocabulary.md) | Every term retired, renamed, or aligned to the handbook, and why — check here before coining a new name |
 | — | [`handoffs/`](handoffs/) | One file per session |
 
 ---

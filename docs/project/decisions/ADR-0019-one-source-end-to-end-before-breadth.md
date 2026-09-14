@@ -1,7 +1,7 @@
 # ADR-0019 — One source end to end, before breadth
 
 **Status:** ACCEPTED
-**Date / context:** 2026-09-05, Brain architecture review §17, §20.2.
+**Date / context:** 2026-09-05, knowledge system architecture review §17, §20.2.
 
 ## Context
 
@@ -25,7 +25,7 @@ against a fixed observation shape. **The "framework" is that shape.**
 | Build the ingestion framework first | An ingestion framework with nothing downstream produces a pile of observations and no evidence that any of this works. **Six adapters is six times the surface area and one times the demonstrated value.** |
 | Build the reasoning first, fake the data | Worse. The hard problems — entity fragmentation, admission, authority, vocabulary growth — **only appear with real messy input.** |
 | Start with Slack, because that is where people talk | Lowest claim density, worst structure, and it surfaces admission, entity resolution and vocabulary problems **simultaneously.** |
-| Start with documentation | A trap: docs are where staleness is worst, so a Brain built on docs first learns a stale world confidently and has nothing to contradict it with. |
+| Start with documentation | A trap: docs are where staleness is worst, so a knowledge system built on docs first learns a stale world confidently and has nothing to contradict it with. |
 
 ## Evidence and reasoning
 

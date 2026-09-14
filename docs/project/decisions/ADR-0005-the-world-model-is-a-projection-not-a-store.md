@@ -1,14 +1,14 @@
 # ADR-0005 — The world model is a projection, not a store
 
 **Status:** ACCEPTED
-**Date / context:** 2026-09-05, Brain architecture review §5.2. Described there
+**Date / context:** 2026-09-05, knowledge system architecture review §5.2. Described there
 as "the correction that saves the most work."
 
 ## Context
 
 The instinct when building organizational knowledge is to build an
 entity-relationship store — organization, people, teams, projects, systems,
-decisions — and treat it as the core. The proposed Brain layer stack listed
+decisions — and treat it as the core. The proposed knowledge system layer stack listed
 "world model" as a layer alongside claims.
 
 ## Decision
@@ -30,7 +30,10 @@ asserted about them stays a claim.**
 **[DESIGN DECISION]** The test, applicable to any structure you are tempted to
 add: **delete it.** If deleting it loses information, it was not a projection
 and you now have two sources of truth. If deleting it costs only the time to
-rebuild, it is a cache and can be rebuilt whenever the claims change.
+rebuild, it is a cache and can be rebuilt whenever the claims change. This is
+the handbook's **Replay test** (Ch9), applied to one structure at a time
+rather than to the whole derived layer at once — see
+[ADR-0004](ADR-0004-observation-log-is-the-system-of-record.md).
 
 ## Consequences
 

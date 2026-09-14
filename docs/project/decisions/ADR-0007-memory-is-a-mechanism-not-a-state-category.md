@@ -36,7 +36,7 @@ SYSTEM. It is **domain** state, tenant-scoped, if it is true of a CUSTOMER.
 harness-state rule — *"harness state must be true of the system, never of a
 customer"* — as a **routing** question rather than a compliance rule.
 
-**[CONFIRMED]** The consequence is governed by a hard constraint: **git history
+**[FACT]** The consequence is governed by a hard constraint: **git history
 cannot be redacted.** A tenant fact committed to a git-tracked memory file is
 an unrecoverable governance breach with no deletion route.
 

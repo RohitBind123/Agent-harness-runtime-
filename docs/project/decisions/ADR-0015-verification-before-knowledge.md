@@ -29,7 +29,7 @@ evaluated against the world, with **no model involved**.
 
 ## Evidence and reasoning
 
-**[CONFIRMED]** *"A model asked to evaluate its own work shares a training
+**[FACT]** *"A model asked to evaluate its own work shares a training
 distribution, and therefore a set of blind spots, with the model that produced
 it. It will approve fluent, well-structured, wrong output because that is what
 it was trained to prefer."*
