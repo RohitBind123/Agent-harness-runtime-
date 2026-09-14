@@ -277,12 +277,18 @@ documents (see `docs/project/11-architecture-change-log.md` for the dated
 sequence). The most recent was *Systems Foundations for Agent Runtime
 Engineering*, committed 2026-09-07.
 
-**Operational note:** at the audited commit there were 18 commits on
-`claude/repo-access-653473` that had not been pushed to the remote, blocked by
-a GitHub App authorization gap at the organization level rather than by
-anything in the code. If `git log origin/claude/repo-access-653473..HEAD` is
-non-empty and a push returns 403, that is this, and it is not fixed by
-retrying.
+**Operational note:** pushes from the session environment to
+`claude/repo-access-653473` return 403, blocked by a GitHub App authorization
+gap at the organization level rather than by anything in the code. Fetch still
+works; only write is refused. If a push returns 403, that is this, and it is
+not fixed by retrying.
+
+**Trap this note previously fell into.** `origin/…` is a *cached* ref. A
+session that has never fetched will read a remote-tracking ref from clone time
+and conclude the remote is behind when it is not. **Run `git fetch origin
+<branch>` before making any claim about what is published** — a decision to
+rewrite history rests on that answer, and getting it wrong turns a contained
+rewrite into a divergence from a branch other people may already hold.
 
 ---
 

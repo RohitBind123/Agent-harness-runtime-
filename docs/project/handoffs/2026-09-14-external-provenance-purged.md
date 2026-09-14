@@ -153,9 +153,11 @@ under-designed area.
   narrative, and it is the only such place. This is an irreducible tension, not
   an oversight.
 - **"As if they never existed" is achievable for the working tree and for
-  history, but not for anyone's memory of the old commits.** The claim this
-  repository can honestly make is: *the material appears in no document
-  describing what this project is or plans, and a test enforces it.*
+  local history, but not for the published branch, and not for anyone's memory
+  of the old commits.** See the correction in §12. The claim this repository
+  can honestly make today is: *the material appears in no document describing
+  what this project is or plans, a test enforces it, and the branch carrying
+  the old state has not yet been replaced on the remote.*
 
 ## 12. History rewrite — done in this session
 
@@ -167,9 +169,34 @@ The old objects were then unreferenced and collected
 `git gc --prune=now`). The resulting tree was verified byte-identical to the
 pre-rewrite tree.
 
-This was safe only because nothing had been pushed. **Every SHA changed**, so
-any clone or bundle taken before this point is stale and must be replaced
-rather than merged.
+**Every SHA changed**, so any clone or bundle taken before this point is stale
+and must be replaced rather than merged.
+
+### Correction — the rewrite was not as contained as planned
+
+The plan asserted that all 23 contaminated commits were unpushed. **That was
+wrong.** It rested on a remote-tracking ref this session had never fetched,
+which still read `e849c8d` from clone time. A later `git fetch` showed
+`origin/claude/repo-access-653473` at `c2689c6`: **all 23 commits are
+published**, including the retired binary and twelve contaminated markdown
+files.
+
+Consequences, stated plainly:
+
+- The local branch and the published branch have **no common history above
+  `e849c8d`**. Reconciling them needs a force-push, which this environment
+  cannot perform — the same 403 applies.
+- The material is therefore **purged from the working tree and from local
+  history, and still live on the remote.** Until someone with write access
+  force-pushes, the honest claim is narrower than §11 previously implied.
+- Even after a force-push, a rewritten commit stays reachable by SHA on GitHub
+  until its garbage collection runs, and cached views can outlive the ref. If
+  the material must be unreachable rather than merely unreferenced, that is a
+  request to GitHub Support, not a git operation.
+
+**The general lesson is the one worth keeping:** a claim about remote state is
+a claim about a cache unless it was fetched in the same session that acts on
+it.
 
 ## 13. Recommended next action
 
