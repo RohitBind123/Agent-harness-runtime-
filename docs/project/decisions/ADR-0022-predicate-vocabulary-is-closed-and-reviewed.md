@@ -1,7 +1,7 @@
 # ADR-0022 — The predicate vocabulary is closed, and adding to it is a reviewed migration
 
 **Status:** ACCEPTED
-**Date / context:** the Brain architecture ("the hinge"); Memory ADR 7 and §10.2,
+**Date / context:** The Brain architecture ("the hinge"); Memory ADR 7 and §10.2,
 2026-09-02.
 
 ## Context

@@ -133,7 +133,7 @@ and authority resolution meaningful.
 **WHY WE BELIEVE IT.** **HYPOTHESIS.** Unstated. No document argues for it; every
 document assumes it.
 
-**EVIDENCE.** **FACT.** The the Brain architecture lists it under **"NOT
+**EVIDENCE.** **FACT.** The Brain architecture lists it under **"NOT
 ESTABLISHED"** and adds: *"the one I would most want tested early... Everything
 downstream assumes it."*
 
@@ -217,7 +217,7 @@ engineering will — because the ceiling has been measured and it is zero.
 something Glean, Atlassian, GitHub, Notion or a model vendor adds in two quarters.
 
 **WHY WE BELIEVE IT.** **EVIDENCE — explicitly the weakest claim in the corpus.**
-The the Brain architecture states that nobody appears to combine authority, kind-typed
+The Brain architecture states that nobody appears to combine authority, kind-typed
 claims, bitemporal validity and contradiction-as-an-object — and immediately
 adds that this is *"an argument from absence in public material and it is the
 weakest claim in §3."*

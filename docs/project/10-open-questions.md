@@ -284,7 +284,7 @@ all five are cheap to answer.
 
 | | |
 |---|---|
-| **Why it matters** | The runtime is the largest existing asset and is in the strategic chain. **The the Brain architecture says the Brain does not need it** and names four primitives with individual triggers. No document reconciles the two |
+| **Why it matters** | The runtime is the largest existing asset and is in the strategic chain. **The Brain architecture says the Brain does not need it** and names four primitives with individual triggers. No document reconciles the two |
 | **Status** | Open, and the contradiction is in the corpus already |
 | **Blocking?** | For scope. It may remove most of the planned work |
 | **Next experiment** | Walk the 39 invariants; mark each needed / not needed / needed-later-with-a-trigger. This is **Q8** and it answers both. Half a day |

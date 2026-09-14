@@ -1,7 +1,7 @@
 # ADR-0024 — No autonomous knowledge curation
 
 **Status:** ACCEPTED
-**Date / context:** the Brain architecture; Memory ADR 19 and §29, 2026-09-02.
+**Date / context:** The Brain architecture; Memory ADR 19 and §29, 2026-09-02.
 
 ## Context
 
