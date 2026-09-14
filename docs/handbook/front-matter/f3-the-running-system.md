@@ -76,7 +76,7 @@ Three roles recur, so that "a human decides" always has a face.
 
 ## Atlas's numbers
 
-The reference system carries consistent figures across fifty chapters, so a claim in one chapter can
+The reference system carries consistent figures across fifty-one chapters, so a claim in one chapter can
 be checked against a measurement in another. The recurring ones:
 
 | Quantity | Value | First established |

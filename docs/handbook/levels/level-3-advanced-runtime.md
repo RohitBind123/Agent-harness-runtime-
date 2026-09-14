@@ -1,6 +1,6 @@
 # Level 3 — Advanced Runtime Architecture
 
-*Chapters 21–32*
+*Chapters 21–32, and Chapter 50*
 
 ![Twelve Level 3 failures, none of which raises an error, and the three shapes that recur across them](../../assets/diagrams/level-3-advanced-runtime.svg)
 

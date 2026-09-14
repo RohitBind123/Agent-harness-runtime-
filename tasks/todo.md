@@ -1,5 +1,16 @@
 # TODO
 
+> **SCOPE — 2026-09-14: this file covers the HANDBOOK ONLY.**
+> "The handbook is complete" below is a documentation status, not a project
+> status. It predates all product, Brain, memory and Principal Agent work and
+> tracks none of it. Outstanding project work lives in
+> [`docs/project/10-open-questions.md`](../docs/project/10-open-questions.md)
+> (what is undecided) and
+> [`docs/project/08-build-order.md`](../docs/project/08-build-order.md)
+> (what would be built). Start at
+> [`PROJECT_BOOTSTRAP.md`](../PROJECT_BOOTSTRAP.md).
+
+
 **The handbook is complete.** Fifty chapters (0–49) across six levels, two interludes, six level
 openers each paired with its SVG, front matter F.1–F.4, all ten appendices, and a v1.0 compiled
 reading edition.
@@ -25,6 +36,10 @@ Maintenance obligations, not outstanding work. Run them after any chapter edit.
       uses that legitimately name the Evolve Agent or the agent debugger — Ch 42–49 add none, because
       Ch 44 says "the distiller" and Ch 46 says "the Evolve Agent" in full for this reason.
 - [ ] Keep `tools/check_xrefs.py` at zero unresolved references.
+- [ ] Keep `tools/check_provenance.py` at zero findings. **Unlike the two above,
+      this one runs after *any* edit, not just a chapter edit** — it covers the
+      whole repository, including `.docx`, because the material it guards
+      against sits outside `docs/handbook/`.
 - [ ] Regenerate Appendix A (`python3 tools/build_glossary.py`) and D, E, G, H, I, J
       (`python3 tools/build_appendices.py`). Both take `--check` for CI.
 - [ ] Rebuild the compiled edition (`python3 tools/compile_handbook.py`) before shipping a release.

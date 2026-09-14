@@ -7,7 +7,7 @@
 
 The dependency spine as a flat table, taken from the header block of every chapter. `Requires` names chapters that must precede; `Unlocks` names chapters that build on this one. The linter enforces the direction of both, so a cycle is not expressible.
 
-50 chapters across 6 levels.
+51 chapters across 6 levels.
 
 ---
 
@@ -65,6 +65,7 @@ The dependency spine as a flat table, taken from the header block of every chapt
 | [Ch 47](../chapters/47-attribution-verdicts-and-rollback.md) | Attribution, Verdicts, and Rollback | 5 | Core | C27 Failure, Recovery, and Rollback, C40 Testing, C41 Evaluation Infrastructure, C45 Decision Observability, C46 The Evolve Agent | C48 Limits, C49 Continuous Improvement and Governance |
 | [Ch 48](../chapters/48-limits.md) | Limits | 5 | Core | C31 Safety and Sandboxing, C41 Evaluation Infrastructure, C46 The Evolve Agent, C47 Attribution, Verdicts, and Rollback | C49 Continuous Improvement and Governance |
 | [Ch 49](../chapters/49-continuous-improvement-and-governance.md) | Continuous Improvement and Governance | 5 | Core | C30 Human Authority, C37 Tenancy, Secrets, and Data Governance, C46 The Evolve Agent, C48 Limits | -- the book ends here |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Third-Party Tool Supply and the Model Context Protocol | 3 | Core | C14 The Tool Execution Engine, C15 ACI Design, C22 The Event Spine, C31 Safety, Sandboxing, and Untrusted Content | -- an addition to the first edition; nothing depends on it |
 
 ---
 
@@ -74,7 +75,7 @@ Ranked by how many later chapters declare them a prerequisite. These are the cha
 
 | Chapter | Title | Required by | Which |
 |---|---|---:|---|
-| Ch 14 | The Tool Execution Engine | 11 | Ch 15, Ch 16, Ch 18, Ch 19, Ch 20, Ch 21, Ch 25, Ch 27, Ch 30, Ch 31, Ch 43 |
+| Ch 14 | The Tool Execution Engine | 12 | Ch 15, Ch 16, Ch 18, Ch 19, Ch 20, Ch 21, Ch 25, Ch 27, Ch 30, Ch 31, Ch 43, Ch 50 |
 | Ch 11 | The Context System | 10 | Ch 12, Ch 13, Ch 14, Ch 16, Ch 19, Ch 25, Ch 29, Ch 35, Ch 38, Ch 44 |
 | Ch 21 | Durable Execution | 8 | Ch 22, Ch 23, Ch 24, Ch 27, Ch 29, Ch 32, Ch 34, Ch 40 |
 | Ch 17 | The State Manager | 8 | Ch 18, Ch 21, Ch 22, Ch 23, Ch 24, Ch 27, Ch 30, Ch 32 |

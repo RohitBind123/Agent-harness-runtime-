@@ -7,7 +7,7 @@
 
 Every entry from the *Failure Modes* section of every chapter, in one table. The handbook treats the failure table as a design artefact rather than a postscript (Chapter 27 §14), so this is the closest thing the book has to a single specification of what can go wrong.
 
-478 failure modes across 50 chapters. **34 of them have no detector** — the recurring shape of Levels 3 through 5, where the failure produces no error and often no signal at all.
+486 failure modes across 51 chapters. **34 of them have no detector** — the recurring shape of Levels 3 through 5, where the failure produces no error and often no signal at all.
 
 ---
 
@@ -491,3 +491,11 @@ Every entry from the *Failure Modes* section of every chapter, in one table. The
 | [Ch 49](../chapters/49-continuous-improvement-and-governance.md) | Autonomy promoted on judgment | — | It is never descended | Measured conditions, automatic demotion (§7.1) |
 | [Ch 49](../chapters/49-continuous-improvement-and-governance.md) | Autonomy retained across a model change | — | The evidence was measured on a different model | The deployment event resets the conditions (§7.2) |
 | [Ch 49](../chapters/49-continuous-improvement-and-governance.md) | Corpus or weighting chosen for what it shows | — | Nothing; every number is correct | Gate them, with a recorded rationale (§5.5) |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Server changes an implementation, descriptor unchanged | — | Effects appear that the tag did not predict | — |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Server changes a descriptor mid-plan | — | Digest mismatch at invocation | — |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Server unreachable | — | Calls time out | — |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Server slow | — | Activity budget exhausted | — |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Description rewritten to mislead the model | — | Model selects a tool for the wrong task | — |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Two servers advertise the same tool name | — | Ambiguous resolution | — |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Server returns an enormous result | — | Context amplification | — |
+| [Ch 50](../chapters/50-third-party-tool-supply-and-mcp.md) | Credential over-issued at connect time | — | A quarantined tool still holds access | — |

@@ -2,9 +2,21 @@
 
 A documentation-first reference for understanding and designing production-grade autonomous agent runtimes and self-evolving agent harnesses.
 
+> **New here, or starting a fresh session?** Read
+> **[`PROJECT_BOOTSTRAP.md`](PROJECT_BOOTSTRAP.md)** first. It is the durable
+> project context — what is being built, what exists, what does not, what has
+> been decided, and what remains open. The full knowledge system is in
+> [`docs/project/`](docs/project/).
+>
+> **Note on scope:** this README describes the *handbook and specification*,
+> which is what the repository contains. It does not describe the project's
+> current product direction — which is contested and recorded in
+> [`docs/project/decisions/ADR-0021-product-direction-is-contested.md`](docs/project/decisions/ADR-0021-product-direction-is-contested.md).
+
 > **Project status:** architecture and handbook work in progress. This repository contains all 50 handbook chapters, a detailed runtime specification, a compiled handbook draft, source diagrams, and the Agentic Harness Engineering research paper. It is a knowledge base, not an executable runtime implementation.
 >
-> **The handbook is complete.** Fifty chapters across six levels, both interludes, six level openers, front matter F.1-F.4, all ten appendices, and a v1.0 compiled reading edition. Every `Ch NN §M` reference in the book resolves to a section that exists, checked mechanically.
+> **The handbook is complete.** Fifty-one chapters across six levels — the original fifty, plus
+> Chapter 50 on third-party tool supply, added after the first edition — both interludes, six level openers, front matter F.1-F.4, all ten appendices, and a v1.0 compiled reading edition. Every `Ch NN §M` reference in the book resolves to a section that exists, checked mechanically.
 >
 > New readers should start with [F.1 — How to Read This Handbook](docs/handbook/front-matter/f1-how-to-read-this-handbook.md) for the four tracks, or the [Reading Map](docs/handbook/READING-MAP.md) for a plain-language summary of every chapter.
 

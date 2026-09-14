@@ -9,7 +9,7 @@ The two primary sources, reverse-indexed: for each cited section, which chapters
 
 Claims tagged `[INF]`, `[BP]`, and `[FUT]` are not indexed here. They are the handbook's own inference, established practice, and speculation respectively, and none of them resolves to a source section.
 
-68 distinct citations, 375 chapter-citations in total.
+68 distinct citations, 377 chapter-citations in total.
 
 ---
 
@@ -42,7 +42,7 @@ Claims tagged `[INF]`, `[BP]`, and `[FUT]` are not indexed here. They are the ha
 | `[AHE]` | Alg. 1 | 2 | Ch 3, Ch 49 |
 | `[AHE]` | sec 3.2 | 1 | Ch 44 |
 | `[AHE]` | section 3.3 | 1 | Ch 20 |
-| `[AHE]` | (untargeted) | 50 | Ch 0, Ch 1, Ch 2, Ch 3, Ch 4, Ch 5, Ch 6, Ch 7, Ch 8, Ch 9, Ch 10, Ch 11, Ch 12, Ch 13, Ch 14, Ch 15, Ch 16, Ch 17, Ch 18, Ch 19, Ch 20, Ch 21, Ch 22, Ch 23, Ch 24, Ch 25, Ch 26, Ch 27, Ch 28, Ch 29, Ch 30, Ch 31, Ch 32, Ch 33, Ch 34, Ch 35, Ch 36, Ch 37, Ch 38, Ch 39, Ch 40, Ch 41, Ch 42, Ch 43, Ch 44, Ch 45, Ch 46, Ch 47, Ch 48, Ch 49 |
+| `[AHE]` | (untargeted) | 51 | Ch 0, Ch 1, Ch 2, Ch 3, Ch 4, Ch 5, Ch 6, Ch 7, Ch 8, Ch 9, Ch 10, Ch 11, Ch 12, Ch 13, Ch 14, Ch 15, Ch 16, Ch 17, Ch 18, Ch 19, Ch 20, Ch 21, Ch 22, Ch 23, Ch 24, Ch 25, Ch 26, Ch 27, Ch 28, Ch 29, Ch 30, Ch 31, Ch 32, Ch 33, Ch 34, Ch 35, Ch 36, Ch 37, Ch 38, Ch 39, Ch 40, Ch 41, Ch 42, Ch 43, Ch 44, Ch 45, Ch 46, Ch 47, Ch 48, Ch 49, Ch 50 |
 | `[AHE]` | Limitations | 10 | Ch 1, Ch 5, Ch 8, Ch 13, Ch 18, Ch 20, Ch 29, Ch 42, Ch 48, Ch 49 |
 | `[DAR]` | §2.1 | 2 | Ch 0, Ch 2 |
 | `[DAR]` | §2.2 | 4 | Ch 4, Ch 20, Ch 42, Ch 43 |
@@ -84,7 +84,7 @@ Claims tagged `[INF]`, `[BP]`, and `[FUT]` are not indexed here. They are the ha
 | `[DAR]` | §15 | 4 | Ch 3, Ch 5, Ch 10, Ch 34 |
 | `[DAR]` | §16 | 1 | Ch 0 |
 | `[DAR]` | §17 | 2 | Ch 4, Ch 21 |
-| `[DAR]` | (untargeted) | 50 | Ch 0, Ch 1, Ch 2, Ch 3, Ch 4, Ch 5, Ch 6, Ch 7, Ch 8, Ch 9, Ch 10, Ch 11, Ch 12, Ch 13, Ch 14, Ch 15, Ch 16, Ch 17, Ch 18, Ch 19, Ch 20, Ch 21, Ch 22, Ch 23, Ch 24, Ch 25, Ch 26, Ch 27, Ch 28, Ch 29, Ch 30, Ch 31, Ch 32, Ch 33, Ch 34, Ch 35, Ch 36, Ch 37, Ch 38, Ch 39, Ch 40, Ch 41, Ch 42, Ch 43, Ch 44, Ch 45, Ch 46, Ch 47, Ch 48, Ch 49 |
+| `[DAR]` | (untargeted) | 51 | Ch 0, Ch 1, Ch 2, Ch 3, Ch 4, Ch 5, Ch 6, Ch 7, Ch 8, Ch 9, Ch 10, Ch 11, Ch 12, Ch 13, Ch 14, Ch 15, Ch 16, Ch 17, Ch 18, Ch 19, Ch 20, Ch 21, Ch 22, Ch 23, Ch 24, Ch 25, Ch 26, Ch 27, Ch 28, Ch 29, Ch 30, Ch 31, Ch 32, Ch 33, Ch 34, Ch 35, Ch 36, Ch 37, Ch 38, Ch 39, Ch 40, Ch 41, Ch 42, Ch 43, Ch 44, Ch 45, Ch 46, Ch 47, Ch 48, Ch 49, Ch 50 |
 
 ---
 
@@ -144,3 +144,4 @@ A chapter with no `[AHE]` or `[DAR]` citation is a chapter the handbook derived 
 | Ch 47 | 15 | 3 | 18 |
 | Ch 48 | 21 | 3 | 24 |
 | Ch 49 | 7 | 4 | 11 |
+| Ch 50 | 1 | 1 | 2 |

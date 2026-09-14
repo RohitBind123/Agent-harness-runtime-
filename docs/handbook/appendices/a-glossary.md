@@ -6,7 +6,7 @@
 > chapter by `tools/build_glossary.py`. To change an entry, edit the defining
 > chapter's table and regenerate.
 
-Covering 50 chapters and 489 terms.
+Covering 51 chapters and 496 terms.
 
 Provenance tags: `[AHE]` the Agentic Harness Engineering paper · `[DAR]` the durable
 runtime specification · `[INF]` handbook inference · `[BP]` industry practice ·
@@ -31,6 +31,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Activity ledger** | The table keyed by activity identity that records what has already been done, so it is never done twice. | `[DAR]` | Ch 21 |
 | **Activity runner** | The kernel component that dispatches a tool call, then releases its resources rather than waiting on them. | `[DAR]` | Ch 4 |
 | **Admission control** | Deciding at submission whether to admit, defer, or refuse, rather than accepting everything. | `[DAR]` | Ch 2, Ch 23 |
+| **Admission controller** | The only door through which a remote descriptor becomes a registry entry, and the author of every field a server may not write. | `[INF]` | Ch 50 |
 | **Admission validation** | Checking acyclicity and structural caps once at mint time, so the executor never needs a cycle detector. | `[INF]` | Ch 24 |
 | **Affected-population query** | Finding what shipped under a reverted harness by querying runs on their recorded triple. | `[INF]` | Ch 39 |
 | **Agent-Computer Interface (ACI)** | A tool as the model experiences it — verbs, arguments, results, errors — as distinct from the mechanism that executes it. | `[BP]` | Ch 15 |
@@ -162,6 +163,8 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Deletion test** | Remove the runtime; whatever must still make sense is domain state. Necessary but not sufficient on its own. | `[DAR]` | Ch 4, Ch 6 |
 | **Deprecation clock** | Days until a pinned model is withdrawn, treated as a scheduling input because it is the only metric guaranteed to reach zero. | `[BP]` | Ch 38 |
 | **Description drift** | A tool's behaviour changing while its description does not, producing valid answers to the wrong question. | `[INF]` | Ch 14 |
+| **Descriptor digest** | A hash over the name, schema and description a server advertised, pinned into the activity identity so that a changed claim refuses the call. | `[INF]` | Ch 50 |
+| **Descriptor quarantine** | The non-terminal state a descriptor enters when its digest changes, from which re-admission requires a new decision and a new digest. | `[INF]` | Ch 50 |
 | **Determinism quarantine** | The rule that everything outside an activity produces the same outcome given the same recorded results. | `[DAR]` | Ch 21 |
 | **Deterministic tier** | Tests of the runtime with fake ports and a controlled clock, covering most of Levels 2 and 3. | `[BP]` | Ch 40 |
 | **Diffuse pattern** | A defect appearing slightly in many task types and obviously in none, invisible to sampling, slicing, and aggregation alike. | `[INF]` | Ch 44 |
@@ -316,6 +319,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Liveness objective** | The promise that a run reaches a definite outcome within its class SLA, which covers stalls, stuck gates, and unfired joins in one ratio. | `[INF]` | Ch 36 |
 | **Load floor** | The confidence below which an entry stays in the file but is never loaded into context. | `[INF]` | Ch 12 |
 | **Load generator** | A run seen correctly: not a unit of work served and released, but a process emitting load at its own rate for its whole lifetime. | `[INF]` | Ch 33 |
+| **Local half** | The operator-authored fields of a descriptor: effect tag, tier, compensation, credential scope, egress allowlist, approval requirement. | `[INF]` | Ch 50 |
 | **Long-term memory** | Facts the system learned and kept; the only harness component a run writes to itself. | `[AHE]` | Ch 1, Ch 12 |
 
 ## M
@@ -406,6 +410,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Poison event** | A row whose handler cannot succeed; dead-lettered so its blast radius is one row. | `[INF]` | Ch 22 |
 | **Port** | One of six plug sockets where product-specific behaviour attaches: planner, tool, model, grader, approval, domain. | `[DAR]` | Ch 4 |
 | **Port boundary** | The model port as the test seam, below which the system is ordinary deterministic software. | `[INF]` | Ch 40 |
+| **Position** | Which of the three a given tool occupies, recorded so that pessimised debt is a number rather than a habit. | `[INF]` | Ch 50 |
 | **Predicted fixes** | The task ids an edit claims it will repair; the half of the claim that is easy to write. | `[AHE]` | Ch 20 |
 | **Predicted-set collision** | Two edits in one iteration naming a shared task, which makes both verdicts guesses and is detectable at sealing. | `[INF]` | Ch 47 |
 | **Presentational rank** | An ordering field kept for human reading and never consulted by the resolver, which is what lets display order stay stable while execution order varies. | `[INF]` | Ch 24 |
@@ -477,6 +482,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Rollback** | Restoring a kept prior version of state the runtime owns, which is local, cheap, and cannot half-fail. | `[AHE]` | Ch 27 |
 | **Rolling window** | A budget window that does not reset on a calendar boundary, removing both end-of-month gaming and date-dependent incident severity. | `[BP]` | Ch 36 |
 | **Rollouts per task** | Running each task k times and averaging, so a task yields a rate rather than a coin flip. | `[AHE]` | Ch 41 |
+| **Rug pull** | A tool whose descriptor or implementation changes underneath a plan that has already resolved it. | `[INF]` | Ch 50 |
 | **Run** | One goal under execution: a durable, versioned row that lives from minutes to weeks and holds nothing else. | `[DAR]` | Ch 5 |
 | **Run driver** | The kernel component that is the runtime loop; Chapter 3's replacement for the banned word. | `[DAR]` | Ch 4, Ch 18 |
 | **Run lifecycle** | The life of one goal, from arrival to a terminal state, independent of every process that touches it. | `[DAR]` | Ch 8 |
@@ -564,6 +570,7 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | **Tenant fairness** | Each tenant getting a share of capacity, as against arrival fairness which serves whoever queued first. | `[INF]` | Ch 23 |
 | **Tenant-in-the-key** | Requiring the tenant to write rather than filtering on read, so a missing key fails in development instead of returning someone else's data. | `[BP]` | Ch 37 |
 | **The record window** | The gap between an external effect happening and its result being recorded; narrowed by four mitigations and closed by none. | `[INF]` | Ch 21 |
+| **The trichotomy** | Refuse, pessimise, pin -- the three defensible positions on a third-party tool, and the argument that there is no fourth. | `[INF]` | Ch 50 |
 | **Timeout coupling** | Temporal parameters fitted to a benchmark's task lengths, invisible in that benchmark and worsening with tuning. | `[AHE]` | Ch 29 |
 | **Token kinds** | Input, cached, reasoning, and output — priced differently, and meaningless when aggregated into one number. | `[INF]` | Ch 13 |
 | **Tombstone** | The envelope that survives when a trajectory's content expires, preserving aggregate answers and an auditable deletion. | `[INF]` | Ch 16 |
@@ -681,3 +688,4 @@ runtime specification · `[INF]` handbook inference · `[BP]` industry practice 
 | Ch 47 | Attribution intersection, Undetermined verdict, Predicted-set collision, Inside-floor keep, Mechanism check, Surprise regression, Trial effect confinement, Runtime stability precondition, Edits per iteration |
 | Ch 48 | Interference, Redundant closure, Mechanism shift, Slice trade, Sub-floor drift, Per-slice gate, Undetermined residue, Convergence flattening, Indirect boundary erosion |
 | Ch 49 | Review scan, Relaxation gate, Scope gate, Gate refusal rate, Access inheritance, Harness cleanup, Autonomy ladder, Fallback atrophy, Evaluation capture |
+| Ch 50 | Admission controller, Descriptor digest, The trichotomy, Local half, Position, Rug pull, Descriptor quarantine |

@@ -5,7 +5,7 @@ where to start without reading anything twice. For the four structured reading t
 [F.1 — How to Read This Handbook](front-matter/f1-how-to-read-this-handbook.md).
 
 **What the book is:** how to build, operate, and improve the software that runs an AI agent — the
-*harness*, as distinct from the model. All fifty chapters are written (0–49).
+*harness*, as distinct from the model. All fifty-one chapters are written (0–50).
 
 **How chapters are built:** every chapter opens with a real failure, explains the idea in plain
 language before any jargon, derives the mechanism instead of asserting it, and ends with the terms
@@ -136,7 +136,7 @@ just the assembly.
 
 ---
 
-## Level 3 — Advanced Runtime *(Ch 21–32)*
+## Level 3 — Advanced Runtime *(Ch 21–32, and Ch 50)*
 
 Making it survive reality. **Every failure in this level produces no error message** — that is the
 level's whole character.
@@ -179,6 +179,12 @@ something that reads like an instruction. The example has no attacker in it at a
 
 **32. Distributed Execution** — Many machines, one job. A lease and a database check both worked
 perfectly and the deployment happened twice.
+
+---
+
+**50. Third-Party Tool Supply and the Model Context Protocol** — What changes when the tool
+registry has two authors and only one of them is you. A public server advertised documentation
+search, updated its implementation on a Tuesday, and pushed a branch nobody authorised.
 
 ---
 

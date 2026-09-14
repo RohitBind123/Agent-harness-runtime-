@@ -85,7 +85,7 @@ valuable finding this book can give you, and it costs one afternoon.
 
 ## What it is
 
-A derivation. Fifty chapters, each opening with a specific failure and deriving the mechanism that
+A derivation. Fifty-one chapters, each opening with a specific failure and deriving the mechanism that
 prevents it, in dependency order, with every claim marked by where it came from. If you disagree
 with a conclusion, the tag tells you whether to argue with the handbook or with a source.
 

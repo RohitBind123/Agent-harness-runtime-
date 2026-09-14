@@ -5,7 +5,7 @@
 > Repository structure, component responsibilities, the five core contracts, the enforceable
 > invariant set, the distributed execution model, and the diagnostics surface.
 >
-> **Revision 4 — final.** Supersedes revisions 1 to 3.
+> **Revision 5.** Supersedes revisions 1 to 4.
 
 ---
 
@@ -21,14 +21,15 @@
 | 6 | [**ExecutionGraph — the single runtime execution model**](#6-executiongraph--the-single-runtime-execution-model) | **new** |
 | 7 | [The complete repository tree](#7-the-complete-repository-tree) | |
 | 8 | [Component reference](#8-component-reference) | |
-| 9 | [Core specifications](#9-core-specifications) | 8 |
-| 10 | [Runtime invariants](#10-runtime-invariants) | **32** |
+| 9 | [Core specifications](#9-core-specifications) | **9** |
+| 10 | [Runtime invariants](#10-runtime-invariants) | **39** |
 | 11 | [Distributed runtime](#11-distributed-runtime) | |
 | 12 | [Observability: telemetry, diagnostics, experience](#12-observability-telemetry-diagnostics-experience) | |
 | 13 | [Dependency rules, enforced in CI](#13-dependency-rules-enforced-in-ci) | |
 | 14 | [Component block diagram](#14-component-block-diagram) | |
 | 15 | [Build order](#15-build-order) | |
-| 16 | [**Modification log**](#16-modification-log) | **new** |
+| 16 | [Modification log — revision 4](#16-modification-log) | |
+| 17 | [**Modification log — revision 5**](#17-modification-log--revision-5) | **new** |
 
 ---
 
@@ -199,6 +200,39 @@ indicator.
 | A | **The Execution Contract had no field specification.** | This is the largest omission in the previous revision and it is bigger than any of the seven raised. The Execution Contract is the centrepiece of the entire architecture — the artifact that makes the router's decision auditable — and it existed only as a filename. Specified in §9.5. |
 | B | **No runtime-to-package compatibility policy.** | `package_compatibility.py` existed with no stated rule. What happens when runtime v2 loads a package built against v1? §9.2.3 defines the policy and `runtime/manifest/compatibility_gate.py` refuses to boot on an incompatible set, rather than failing later in a way that looks like a model regression. |
 | C | **Diagnostics must reconstruct, never store.** | Not a missing folder — a design constraint that would have been violated by the obvious implementation. Assembled prompts are *derived* state; a prompt viewer that persists them recreates the anti-pattern that breaks replay, and doubles the surface holding customer data. §10.3 states the rule. |
+
+---
+
+### 1.7 Round five — third-party tool supply
+
+One gap, and it was hiding behind a directory that already existed.
+
+Revision 4 named `tools/mcp/` with six modules, listed
+`contracts/protocols/mcp-bridge-protocol.md` among the protocols, drew an *MCP bridge* box in the
+§14 block diagram, and stated one rule in §7.4.2: an unknown third-party effect defaults to
+`EFFECTFUL`. What it never did was write the protocol document. Six module names and one default is
+not a contract, and a reviewer reading §7 would reasonably conclude the bridge was specified
+somewhere.
+
+**What revision 5 adds.**
+
+| # | Gap | Resolution |
+|---|-----|-----------|
+| 1 | **MCP Bridge Protocol** | Specified in §9.9: the admission record, the three positions, the authorship split, the descriptor digest, and the state machine. This is the document `contracts/protocols/mcp-bridge-protocol.md` was always pointing at |
+| 2 | **Third-party supply invariants** | I33–I39 in §10.8. Without them, §7.4.2's default is advice rather than a checkable property |
+| 3 | **Build order** | New stage **9c · Third-party tools**, after packages. A bridge built before the policy engine has nothing to enforce against |
+| 4 | **Invariant count** | §10's preamble said "twenty properties" while the tables listed thirty-two — stale since revision 3. Corrected, and now thirty-nine |
+
+**The correction that drove it.** §7.4.2's rule and `mcp_effect_inferencer.py` were written as a
+*fallback*: what to do when a server does not tell you the effect. That framing is wrong, and §9.9
+states why. The tag must not come from the server **even when the server supplies one**, because the
+disqualification is about interest rather than availability. A tool's author is the party that wants
+the call to happen, which is the same reason §10.3's `I15` keeps the tag away from the model. A
+default that applies only to silent servers leaves the talkative ones trusted, and a talkative server
+is not the safer case.
+
+Handbook Chapter 50 carries the derivation in full. This section carries what an implementation is
+tested against.
 
 ---
 
@@ -3186,7 +3220,7 @@ the system.
 
 ### 8.18 `capabilities/` and `tools/` — WHAT and HOW
 
-> Descriptor schemas: **§9.3** and **§9.4**.
+> Descriptor schemas: **§9.3** and **§9.4**. Third-party supply: **§9.9**, invariants **§10.8**.
 
 **What they do.** A capability declares an outcome that can be accomplished. A tool performs the
 work. One capability may bind to several tools; swapping the tool does not change the capability.
@@ -3197,8 +3231,9 @@ implementation, and it gives the router a vocabulary at the right altitude — i
 
 **How tools work.** Every tool ships a descriptor with an `effect` tag of `PURE` or `EFFECTFUL`.
 `effect_tag_auditor.py` fails the build on an untagged tool, and
-`mcp/mcp_effect_inferencer.py` defaults an unknown third-party tool to `EFFECTFUL` — the safe
-direction. `error_message_formatter.py` exists because a tool's error message is the model's primary
+`mcp/mcp_effect_inferencer.py` defaults a third-party tool to `EFFECTFUL` — and per **I33** it does
+so whether or not the server declared an effect, because a tool's author is disqualified from tagging
+it (§9.9.1). `error_message_formatter.py` exists because a tool's error message is the model's primary
 feedback channel, and shaping it well is measurably worth more than most prompt work.
 
 ---
@@ -3772,8 +3807,9 @@ with the first and not the second will confidently replay a payment.
 - `EFFECTFUL` tools are structurally uncallable without a resolved approval reference — enforced in
   `runtime/policy/effect_tag_enforcer.py`, in the code path that constructs the invocation, never
   by instructing the model.
-- Third-party and MCP tools of unknown effect default to `EFFECTFUL`
-  (`tools/mcp/mcp_effect_inferencer.py`). The safe direction is the annoying one.
+- Third-party and MCP tools default to `EFFECTFUL` (`tools/mcp/mcp_effect_inferencer.py`). The safe
+  direction is the annoying one. **Revision 5 correction:** this applies whether or not the server
+  declared an effect. A server-supplied tag is discarded, not merged — see §9.9.1 and **I33**.
 - `blast_radius` is advisory today and exists so that policy can later scale approval requirements
   to consequence.
 
@@ -4184,11 +4220,164 @@ removed executes identically.
 ---
 ---
 
+### 9.9 MCP Bridge Protocol  `[+] r5`
+
+**Purpose.** Defines how a tool authored outside this repository becomes a registry entry, and which
+of its fields the runtime refuses to accept from the wire. This is the contract that
+`contracts/protocols/mcp-bridge-protocol.md` publishes and that `tools/mcp/` implements.
+
+**Scope note.** Nothing here is specific to one wire protocol. MCP is the case that forced the
+section; the rules apply to any tool supplied by a party that is not the operator, including a local
+subprocess server. A locally launched server is **not** automatically the safer case: it inherits the
+caller's process context in a way a remote endpoint does not.
+
+#### 9.9.1 The authorship split
+
+**NORMATIVE.** A remote server may author exactly three fields. Every other field of a
+`ToolDescriptor` (§9.4) is written by admission and is not readable from the wire.
+
+| Field | Author | Rationale |
+|-------|--------|-----------|
+| `id` | server | Identification. Namespaced by server at admission; a collision is a build error |
+| `input.schema` | server | Shape only. §7.4 is already honest that a schema cannot carry semantics |
+| `description` | server, **labelled untrusted** | The model reads it and nothing else about the tool. See I37 |
+| `effect` | **operator** | The whole safety model (§7.4.2) |
+| `idempotency` | **operator** | Decides replay (§7.4.1). A server-declared class would let a remote party authorise its own replay |
+| `blast_radius` | **operator** | Sizing a blast radius is a design act |
+| `permissions` | **operator** | Credential scope is minted from it per action |
+| `approval` | **operator** | Enforced in the runner, never by prompting |
+| `retry`, `timeout` | **operator** | A server-declared retry policy is a server-declared load pattern |
+| `descriptor_digest` | **runtime** | §9.9.3 |
+
+**NORMATIVE.** `mcp_descriptor_translator.py` **drops** any of the operator-authored fields present
+in a fetched descriptor rather than merging them, and records the attempt as an event. A server that
+sends `effect: PURE` is not malformed and must not fail the fetch — its claim is discarded, and the
+rate at which servers make discarded claims is a useful signal.
+
+#### 9.9.2 The three positions
+
+**NORMATIVE.** Every admitted remote tool occupies exactly one `position`, recorded in its admission
+record. There is no fourth position, and an allowlist is not one: an allowlist authenticates a
+counterparty, and the effect tag is a claim about behaviour.
+
+| Position | Meaning | Cost |
+|----------|---------|------|
+| `REFUSE` | Not admitted to the registry. **The default** | Loses the capability |
+| `PESSIMISE` | Admitted as `EFFECTFUL`, `blast_radius: external`, approval required | An approval on every call, reads included |
+| `PIN` | Admitted against an operator-authored descriptor carrying the full local half | Per-tool authorship, redone when the digest changes |
+
+**IMPLEMENTATION NOTE.** The count of tools at `PESSIMISE` is the bridge's debt figure. A surface
+that is entirely pessimised is safe and unusable; one that is entirely pinned is an ongoing cost. The
+number belongs on a dashboard rather than in a comment.
+
+#### 9.9.3 The descriptor digest, and its honest limit
+
+**NORMATIVE.** `descriptor_digest = sha256(id || input.schema || description)` — the three
+server-authored fields, canonicalised. It is computed at admission, stored in the admission record,
+pinned into the action identity at plan time per **I22**, and re-compared at invocation.
+
+| Change on the server | Digest | Runtime response |
+|---|---|---|
+| None | matches | Call proceeds |
+| Description reworded | differs | Quarantine; re-admission required |
+| Input schema changed | differs | Quarantine; re-admission required |
+| Implementation changed, descriptor identical | **matches** | **Call proceeds** |
+
+**NORMATIVE.** The last row is a stated limit rather than a defect to be fixed later. A digest over a
+descriptor cannot see behind the descriptor. The property that survives it is the operator-authored
+`effect` tag, which gates the call whatever the implementation became. **An implementation that
+relies on the digest for safety, rather than on the tag, has misread this section.**
+
+#### 9.9.4 The admission record
+
+```yaml
+# state, not a checked-in file: one row per (server, tool, digest)
+apiVersion: tools.universal/v1
+kind: AdmissionRecord
+
+server_id: mcp.acme.docs
+tool_id: mcp.acme.docs/search_reference
+descriptor_digest: sha256:9f2c...            # over the three server-authored fields
+position: PESSIMISE                          # REFUSE | PESSIMISE | PIN
+
+local_half:                                  # never read from the wire
+  effect: EFFECTFUL
+  idempotency: {class: NON_IDEMPOTENT}
+  blast_radius: external
+  permissions: []                            # narrowest that works; empty is legal
+  approval: {required: true, approver_role: operator}
+  retry: {policy: none, max_attempts: 1}
+  timeout: {seconds: 30, on_timeout: abort_and_report}
+  egress_allow: []                           # default-closed
+
+state: ADMITTED                              # ADMITTED | QUARANTINED | REFUSED | RETIRED
+decided_by: policy:default-pessimise         # a person, or a named policy
+decided_at: 2026-09-06T11:04:22Z
+```
+
+**NORMATIVE.** `decided_by` is required and may not be empty. An admission with no decider is a
+discovery presented as a decision.
+
+#### 9.9.5 State machine
+
+```
+                     advertised by a server
+                              │
+                              ▼
+                        DISCOVERED
+                    ┌─────────┴─────────┐
+             refuse │                   │ admit (PIN | PESSIMISE)
+                    ▼                   ▼
+                 REFUSED            ADMITTED ◄──────────┐
+                (terminal          (callable)           │
+                 for this              │                │ re-admission,
+                 digest)               │ digest         │ NEW digest
+                                       │ changed        │ recorded
+                                       ▼                │
+                                  QUARANTINED ──────────┘
+                                  (not callable)
+                                       │ withdrawn by server
+                                       ▼
+                                    RETIRED (terminal)
+```
+
+**NORMATIVE.** `QUARANTINED → ADMITTED` without a new `descriptor_digest` is an illegal transition.
+Re-admitting under the old digest is indistinguishable from never having quarantined.
+
+**NORMATIVE.** `REFUSED` and `RETIRED` are distinct terminal states and may not be merged.
+`REFUSED` records an operator decision and is what a review reads; `RETIRED` records server
+availability and is what plan repair reads.
+
+#### 9.9.6 Failure semantics
+
+**NORMATIVE.** A tool that is quarantined, retired or unreachable mid-plan is a **plan repair**, not
+a session failure. Attempt caps stay keyed by action identity so that repair does not reset them.
+
+**NORMATIVE.** An unreachable server does not park a session. Parking implies a promised resumption
+(§8.9); a third-party outage promises nothing.
+
+#### 9.9.7 Events
+
+| Event | Carries | Consumed by |
+|-------|---------|-------------|
+| `mcp.tool.discovered` | server, tool, digest | admission queue |
+| `mcp.tool.admitted` | digest, position, effect, decided_by | audit |
+| `mcp.claim.discarded` | field, value offered | server-quality signal |
+| `mcp.tool.quarantined` | digest, previous digest, reason | plan repair, alerting |
+| `mcp.tool.retired` | server, tool | plan repair |
+| `mcp.invocation.refused` | digest expected, digest found | **alerting — the rug-pull signal** |
+
+**IMPLEMENTATION NOTE.** Alert on `mcp.invocation.refused`, not on `mcp.tool.quarantined`.
+Quarantine tracks upstream release cadence and is normal. A refused invocation means a plan was
+already running against a descriptor that moved.
+
+---
+
 ## 10. Runtime invariants
 
-Twenty properties. Each is `NORMATIVE`, each is checkable by pointing at code, and each names the
-test that proves it. **An implementation that cannot demonstrate all twenty has not implemented this
-architecture.**
+Thirty-nine properties. Each is `NORMATIVE`, each is checkable by pointing at code, and each names
+the test that proves it. **An implementation that cannot demonstrate all thirty-nine has not
+implemented this architecture.**
 
 The scattered "never" clauses in §6 are shorthand for entries here.
 
@@ -4265,6 +4454,31 @@ distribution, and therefore a set of blind spots, with the model that produced i
 fluent, well-structured, wrong output because that is what it was trained to prefer. This is the
 failure most likely to damage a product, because a reliability defect produces an alert and a
 confidently wrong result produces an artifact someone acts on.
+
+---
+
+### 10.8 Third-party tool supply invariants  `[+] r5`
+
+| # | Invariant | Enforced by | Test |
+|---|-----------|-------------|------|
+| **I33** | A descriptor fetched from a third-party server never supplies `effect`, `idempotency`, `blast_radius`, `permissions`, `approval`, `retry` or `timeout`. Offered values are discarded, not merged. | `mcp_descriptor_translator.py` | `test_remote_descriptor_cannot_set_local_half.py` |
+| **I34** | Every admitted remote tool carries a `descriptor_digest` over exactly the server-authored fields. | `mcp_descriptor_translator.py` | `test_digest_covers_model_visible_fields.py` |
+| **I35** | An invocation whose live digest differs from the pinned digest is refused **before** any call is made. | `mcp_tool_adapter.py` | `test_digest_mismatch_refuses_invocation.py` |
+| **I36** | `QUARANTINED → ADMITTED` requires a new admission record with a new digest. | `mcp_server_registry.py` | `test_quarantine_requires_new_admission.py` |
+| **I37** | A remote tool description is rendered in the untrusted channel, never in the instruction channel. | `untrusted_content_marker.py` | `test_remote_description_is_untrusted.py` |
+| **I38** | A session that has consumed a remote result may not afterwards invoke a tool with `blast_radius: external`. Taint is monotonic and session-scoped. | `runtime/policy/` | `test_remote_taint_blocks_external_effects.py` |
+| **I39** | Credentials for a remote tool are minted per action from the node's declared scope and expire with it. A connection never holds one. | `mcp_client.py`, credential broker | `test_mcp_connection_holds_no_credential.py` |
+
+**I33 is the one that carries the group.** The others narrow a window; I33 removes the class. It is
+also the one most likely to be softened during implementation, because merging a server's declared
+effect *when we have no better information* reads as pragmatic. It is not: it makes a talkative
+server more trusted than a silent one, which inverts the property being relied on.
+
+**I38 will be argued about.** It means one documentation lookup disqualifies a session from sending
+an email. The proposed exception — *the lookup was unrelated* — requires establishing that an
+untrusted result did not influence a later decision, and no mechanism can establish that. The
+affordable answer is partitioning: run the untrusted read as its own session and return a structured
+result across the command boundary, so the effectful session consumes a fact rather than a payload.
 
 ---
 
@@ -4759,6 +4973,7 @@ Each stage is useless without the one before it and dangerous without the one af
 | **6b · Capability** | Capability runtime, tool orchestration, intent index, one real capability | The Controller invokes a capability and never names a tool |
 | **7b · Graph** | Execution graph, node states, ready-set scheduling | You can pause a session and resume it at the right node |
 | **9b · Experience** | Event taxonomy, progress tree, trace builder, one renderer | A terminal shows the nested tree, and reconnect rebuilds it |
+| **9c · Third-party tools** | MCP bridge, admission records, descriptor digests, the three positions | A remote tool is admitted at `PESSIMISE`, gated on every call, and a changed digest refuses the invocation |
 | **10 · Diagnostics** | Timeline, prompt reconstruction, replay viewer | You can answer *why did this session do that* without adding logging |
 | **11 · Evolution** | Trajectory store, distillation, change manifest, attribution, approval gate | Ten unattended rounds run and rejected edits revert themselves |
 | **12 · Distribution** | Partition ownership, rebalance, drain | Only when a single substrate can no longer serve the event rate |
@@ -4821,4 +5036,24 @@ Every section touched in revision 4, and why. Sections not listed are unchanged.
 
 ---
 
-*End of specification. Revision 4 — final.*
+---
+
+## 17. Modification log — revision 5
+
+| Section | Change | Driver |
+|---------|--------|--------|
+| Header | Revision 4 → **Revision 5** | — |
+| §1.7 | **New.** Round-five log, and the correction to §7.4.2's framing | review |
+| §7.4.2 | Corrected: a server-supplied effect tag is **discarded**, not treated as better than silence | §9.9.1 |
+| §8.18 | Pointer to §9.9 and §10.8; effect-inference sentence corrected | consistency |
+| §9.9 | **New.** MCP Bridge Protocol — the document `contracts/protocols/mcp-bridge-protocol.md` was pointing at | gap |
+| §10 | Preamble corrected: "twenty properties" → thirty-nine. It had said twenty since revision 3 while the tables listed thirty-two | stale count |
+| §10.8 | **New.** I33–I39, third-party tool supply | gap |
+| §15 | **New stage 9c** — third-party tools, after packages | build order |
+
+Sections not listed are unchanged. Revision 4's own modification log (§16) is left as written,
+including its historical note that §10.7 was renumbered from §10.6.
+
+---
+
+*End of specification. Revision 5.*
