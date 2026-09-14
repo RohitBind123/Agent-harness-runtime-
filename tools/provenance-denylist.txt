@@ -1,0 +1,36 @@
+# Provenance denylist — machine configuration, not documentation.
+#
+# WHY THIS FILE EXISTS
+#   This project's architecture was once written as a generalisation of external
+#   reference material that nobody here has read. That produced evidence claims,
+#   effort estimates and present-tense prose resting on artefacts outside this
+#   repository. All of it was removed (ADR-0025). This file stops it returning.
+#
+#   To forbid a string automatically, something must hold that string. This is
+#   the one place in the repository that does. It carries no narrative, so it
+#   cannot transmit the framing that was the actual problem.
+#
+# FORMAT
+#   One rule per line:  <kind>|<regex>|<message>
+#   kind = name    exact artefact identifiers
+#   kind = framing patterns that assert prior art without naming it
+#   Blank lines and lines starting with # are ignored.
+#   A line containing the marker <!-- lint-ok --> is skipped by the checker.
+
+name|(?i)parcelpilot|names a retired external artefact
+name|(?i)centralagent[-_]meeting[-_]agent|names a retired external artefact
+name|RohitBind123/(?!Agent-harness-runtime)|references an external repository
+
+# Framing rules. These need no artefact name and catch a reintroduction of the
+# claim under any label. Note "the substrate" is deliberately NOT listed: the
+# handbook uses it for the six-layer infrastructure tier, a different meaning.
+# Likewise "reuse unchanged" in generic layer prose is legitimate: the rule below
+# matches only the bucket-label form used by the retired reuse analysis.
+framing|(?i)already built this once|asserts prior art; nothing here has been built
+framing|(?i)(?:components?|decisions?) to reuse,? unchanged|asserts components exist to be carried over from prior work
+framing|(?i)reuse[-_ ]as[-_ ]is\b|a bucket label from a retired reuse analysis
+framing|(?i)the (?:reference|working|existing) codebase|appeals to an unreadable artefact as evidence
+framing|(?i)reference implementation it is modelled on|appeals to an unreadable artefact as evidence
+framing|(?i)154 (?:Python|implemented) files|a fingerprint of retired external material
+framing|(?i)design agreed, pre-implementation|a fingerprint of retired external material
+framing|(?i)Support Policy v3|a fingerprint of retired external material

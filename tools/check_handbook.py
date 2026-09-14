@@ -32,7 +32,7 @@ DIAGRAM_MAX_COLUMNS = 78
 # eight shipped chapters land at 154-264, so the band is set from the measured
 # corpus rather than the estimate. See CONVENTIONS.md, "Revisions".
 COLD_OPEN_MAX_WORDS = 250
-LAST_CHAPTER = 49
+LAST_CHAPTER = 50
 
 TIER_FIGURE_COUNT = {"Light": None, "Core": 5, "Full": 9}
 
