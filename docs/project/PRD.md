@@ -820,8 +820,20 @@ documents is not evidence that two things are the same thing.
 
 ### 11.3 The boundary that is genuinely disputed
 
-**FACT: two documents in this repository specify incompatible Phase 1 schemas
-and neither acknowledges the other.**
+**CORRECTED 2026-09-14.** This previously read *"**FACT:** two documents in this
+repository specify incompatible Phase 1 schemas and neither acknowledges the
+other."* **Only one of the two is in this repository**, so that sentence did not
+meet this project's own definition of FACT — *"verifiable in this repository,
+right now: point at the file or run the command."* What is verifiable:
+
+**FACT: one document in this repository specifies a Phase 1 schema. A second,
+cited by ten ADRs, is absent. Two further shapes exist, and no two of the four
+are a live disagreement between readable documents.** See
+[ADR-0029](decisions/ADR-0029-the-2026-09-05-review-is-not-in-this-repository.md),
+[ADR-0030](decisions/ADR-0030-the-recovered-schema-scopes-runtime-memory.md),
+and `01-architecture-map.md` §4.1 and §4.7. The table below is retained as the
+only surviving record of the absent document's position, and its right-hand
+column is **[REPORTED — source absent]**.
 
 | | Memory Management Architecture (2026-09-02) | knowledge system (2026-09-05) |
 |---|---|---|

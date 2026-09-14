@@ -48,8 +48,8 @@ Verified by file inventory at the audited commit:
 | Evidence / provenance | — | **DESIGNED** | None | Evidence must outlive the run (EV3); no conflicting position exists in this corpus |
 | Contradiction register | — | **DESIGNED** | None | **Disputed**; severity assignment rules unspecified |
 | World model | — | **DESIGNED** | None | Projection only; nothing to project from |
-| Memory subsystem | — | **DESIGNED** | None | Four-table schema has no migration |
-| Retrieval | — | **DESIGNED** | None | Scope-first; no scopes exist |
+| Memory subsystem | — | **DESIGNED** | None | **Corrected 2026-09-14:** a complete migration *does* exist — 5 enums, 6 tables, 8 indexes — in `learning-notes/Memory Management Architecture.docx` §17.2, self-labelled `[ILLUSTRATIVE REFERENCE CODE]`. Quoted at column level in `18-brain-mechanism-and-execution-trace.md` §5.1. It scopes runtime memory, not the organizational store ([ADR-0030](decisions/ADR-0030-the-recovered-schema-scopes-runtime-memory.md)) |
+| Retrieval | — | **DESIGNED** | None | Scope-first; no scopes exist. **The index set is no longer unspecified** — recovered and ratified in [ADR-0031](decisions/ADR-0031-the-phase-1-index-set.md) |
 | Context assembly | — | **DESIGNED** | None | Budget arithmetic unspecified numerically |
 | Verification loop (probes) | — | **DESIGNED** | None | No probe registered; `verifiable_by` vocabulary empty |
 | Capability layer | — | **DESIGNED** | None | Seven capabilities named; none has a typed signature written |

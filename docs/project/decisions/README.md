@@ -76,6 +76,9 @@ Record the new ADR in the index below **and** add an entry to
 | [0026](ADR-0026-product-direction-resolved-prd-is-exploratory.md) | Product direction resolved: `prd.md` is exploratory, not competing | ACCEPTED | Product |
 | [0027](ADR-0027-general-purpose-brain-and-runtime-organizational-first.md) | General-purpose agent Brain + Runtime; the Organizational Brain is its first substrate | ACCEPTED | Product |
 | [0028](ADR-0028-the-knowledge-core-is-domain-agnostic.md) | The knowledge core is domain-agnostic; organizational logic sits behind a boundary | ACCEPTED | Boundary |
+| [0029](ADR-0029-the-2026-09-05-review-is-not-in-this-repository.md) | The 2026-09-05 knowledge system review is not in this repository; ten ADRs cite it | ACCEPTED | Provenance |
+| [0030](ADR-0030-the-recovered-schema-scopes-runtime-memory.md) | The recovered Memory schema scopes runtime memory; the organizational claim store is unspecified | ACCEPTED | Boundary |
+| [0031](ADR-0031-the-phase-1-index-set.md) | The Phase 1 index set is recovered, not invented; two entries are constraints, not lookups | ACCEPTED | Storage |
 
 ## Decisions imported by reference
 

@@ -590,8 +590,27 @@ Recorded rather than resolved, per the discipline in
 
 ### 4.1 The Memory and knowledge system architectures specify incompatible Phase 1 schemas
 
-**This is a real contradiction between two documents in this repository, and
-neither acknowledges it.**
+> **CORRECTED 2026-09-14.** This section previously read *"a real contradiction
+> between two documents in this repository, and neither acknowledges it."*
+> **Only one of the two is in this repository.** The 2026-09-05 Knowledge System
+> Architecture is absent in every form, and is cited by ten ADRs besides this
+> table — see
+> [ADR-0029](decisions/ADR-0029-the-2026-09-05-review-is-not-in-this-repository.md).
+> The right-hand column below is therefore **[REPORTED — source absent]**: it is
+> a description of a document nobody can now open, retained because it is the
+> only record of that position.
+>
+> Two further corrections to this table's own contents:
+> - Its §17.3 citation **does not resolve as described.** §17.3 of the *readable*
+>   document is titled "Per-table specification" and lists `memory_claims`,
+>   `memory_claim_versions`, `memory_evidence`, `memory_proposals` — **no
+>   entities table and no contradiction register.** This does not prove
+>   mis-attribution; the absent document may have had its own §17.3.
+> - The left-hand document's schema **has been read** and is quoted at column
+>   level in [18-brain-mechanism-and-execution-trace.md](18-brain-mechanism-and-execution-trace.md)
+>   §5.1. Its own author labels it `[ILLUSTRATIVE REFERENCE CODE]`, so it is not
+>   a ratified schema either. See
+>   [ADR-0030](decisions/ADR-0030-the-recovered-schema-scopes-runtime-memory.md).
 
 | | Memory Management Architecture (2026-09-02) | Knowledge System Architecture (2026-09-05) |
 |---|---|---|
@@ -608,7 +627,18 @@ must be established — **is an inference, not a decision.** Nobody has written
 it down, and the two documents use the same words (`claims`, `evidence`,
 "Phase 1") for different things.
 
-**Do not build either schema until this is reconciled.** See Q7.
+**Updated 2026-09-14.** That reconciliation can now be argued from the readable
+document's own text rather than inferred: its provenance enums are runtime
+categories (`memory_origin` is `run | human | evolve`; evidence `kind` is
+`run|step|activity|document|probe|human|policy`), and it contains **no adapter,
+no observation table and no mention-to-entity mapping.** Recorded as
+[ADR-0030](decisions/ADR-0030-the-recovered-schema-scopes-runtime-memory.md).
+It remains an inference, and it **narrows Q7 by removing a candidate rather
+than by answering it** — the organizational claim store is now unspecified, with
+no readable advocate on either side.
+
+**Do not build either schema until this is reconciled.** See Q7 — whose stated
+method is **no longer executable**, since half its input is the absent document.
 
 ### 4.2 Two runtime vocabularies, no stated normativity
 
@@ -683,3 +713,39 @@ as excluded from the MVP and the knowledge system review defers the server entir
 Recorded as Finding B. These are consistent if read as "specified so it can be
 built correctly later, not scheduled" — but the specification's build order
 lists it as stage 9c, which reads as scheduled.
+
+### 4.7 A fourth claim-store shape, registered nowhere
+
+**Added 2026-09-14.** §4.5 records a *third* `entity_store` / `fact_store`
+shape. There is a **fourth**, with real DDL, in a source this repository cites
+in `../architecture/organizational-brain-architecture.md` §0.
+
+**[FACT — in this repository]** `learning-notes/Principal Agent - Organizational
+Intelligence Architecture.docx` contains, tagged `[NEW DESIGN — organizational
+knowledge]`, a table `org_knowledge` with columns `tenant_id`, `entry_id`,
+`scope`, `heading`, `body`, `state`, `confidence`, `evidence_episodes`,
+`first_written`, `last_confirmed`, `contradicted_count`, `origin`,
+`derived_from`, `horizon`, and `PRIMARY KEY (tenant_id, entry_id)`.
+
+`grep -rn "org_knowledge" --include=*.md .` returns **zero hits.**
+
+Two properties make it worth registering rather than ignoring:
+
+- **It is heading/body-shaped, not subject/predicate/object-shaped**, and its
+  identity is a surrogate `entry_id`. So two entries asserting different things
+  about the same subject **do not collide** — the key-collision mechanism CS2
+  exists to create is absent by construction, and with it the whole
+  contradiction-as-a-database-event design.
+- **`evidence_episodes int` is an evidence count.** EV1 states the opposite in
+  terms: *"Evidence is a table of references, never an integer count — a count
+  cannot be joined on."* **This is a direct conflict with an accepted
+  invariant**, in a document cited as a source for the Principal Agent's objects.
+
+Folded into Q7. See
+[18-brain-mechanism-and-execution-trace.md](18-brain-mechanism-and-execution-trace.md)
+§5.4.
+
+> **A smaller defect, noted rather than fixed:** the subsections of §4 are
+> ordered 4.1, 4.2, 4.3, 4.5, 4.6, 4.4. Renumbering would break inbound
+> references from doc 16 and `10-open-questions.md`, so the order is left alone
+> and recorded here.

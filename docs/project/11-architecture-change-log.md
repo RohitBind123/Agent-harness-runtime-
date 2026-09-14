@@ -196,6 +196,22 @@ has not been recorded.
 
 ---
 
+## 2026-09-14 — Ten ADRs found to cite a source that is not in this repository
+
+| Field | |
+|---|---|
+| **Change** | Tracing the knowledge pipeline against a concrete event established that the *"knowledge system architecture review, 2026-09-05"* — cited as the basis of **ten of twenty-eight ADRs**, most at section precision — **is not in this repository in any form.** Separately, the Memory Management Architecture's complete DDL was read for the first time, a fourth claim-store shape was found unregistered, and the Phase 1 index set was recovered |
+| **Previous design** | Q7 was recorded as a tractable reconciliation between *"two documents in this repository"*, with a half-day method. `PRD.md` §11.3 and `01-architecture-map.md` §4.1 both asserted that as **FACT**. `04-implementation-map.md` recorded that no index inventory existed and that the Memory schema had no migration |
+| **New design** | Q7 **restated**: one source is absent, the other self-labels its DDL illustrative and scopes itself to runtime memory, a third has no columns, and a fourth was unregistered. The organizational claim store is **unspecified, with no readable advocate** — the entities, relations and contradiction-register questions are reopened **with no prior**. The index set is recovered and ratified |
+| **Reason** | Q7's own *Next experiment* — *"read both §37 and §17.3 together"* — was attempted and **cannot be run.** Half its input does not exist. Nobody had tried |
+| **Evidence** | **[FACT]** Four independent checks: the string *"Knowledge System Architecture"* occurs once in the whole Markdown corpus, inside the table citing it; no `.docx` carries a 2026-09-05 date, while the *other* column's 2026-09-02 matches its file metadata exactly; the file bearing that title has sections 0-10 and the citations are to §13.1, §17.3, §20.2; `git log --all --diff-filter=D` finds no deletion. **[EVIDENCE]** `07-brain-observability.md` §1's chain, written independently, requires `kind`, `source_class` and `extractor_version` — the two columns the readable schema lacks and the one it spells differently |
+| **Impact** | `01-architecture-map.md` §4.1 corrected and §4.7 added; `PRD.md` §11.3's FACT corrected; `10-open-questions.md` Q7 restated and **Q23 added** (extraction identity specified two incompatible ways); `04-implementation-map.md` two rows corrected. **No ADR's Status or Decision changed, and no status was promoted.** Ten ADRs now carry a visible provenance gap; their reasoning is unaffected |
+| **Decision owner** | Project owner |
+| **Status** | ACCEPTED |
+| **Records** | [ADR-0029](decisions/ADR-0029-the-2026-09-05-review-is-not-in-this-repository.md), [ADR-0030](decisions/ADR-0030-the-recovered-schema-scopes-runtime-memory.md), [ADR-0031](decisions/ADR-0031-the-phase-1-index-set.md); [`18-brain-mechanism-and-execution-trace.md`](18-brain-mechanism-and-execution-trace.md) |
+
+---
+
 ## Prior history, reconstructed from git
 
 Recorded for continuity. These predate this log and were not written as change

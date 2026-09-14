@@ -112,12 +112,25 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 
 | | |
 |---|---|
-| **Why it matters** | Two documents specify **incompatible Phase 1 schemas** and neither acknowledges the other. Building either without reconciling means discovering it at integration. **Widened 2026-09-14: there is a third shape.** The runtime specification's own `knowledge/` tier (§8.15) ships `entity_store.py`, `entity_resolver.py`, `fact_store.py` and `relationship_graph.py` — same nouns, third time, for the runtime's internal world state rather than for organizational knowledge. See `01-architecture-map.md` §4.5 |
-| **Hypotheses** | **(A)** Different scopes — Memory covers a runtime memory subsystem where entities arrive already identified; knowledge system covers an organizational store where identity must be established. Both right about their own subject. **(B)** One supersedes the other. **(C)** A merged schema |
-| **Evidence available** | Both documents, side by side in `02-domain-model.md` §5. **Hypothesis A is an inference from each document's scope, not a stated claim in either.** The observation that they use identical words — `claims`, `evidence`, "Phase 1" — for different things is itself the strongest support for A |
-| **Decision required** | Which schema is built, for which subsystem, and whether they are one store or two |
-| **Blocking?** | **YES** for any schema work. Not for the decisions above it |
-| **Next experiment** | Read both §37 (Memory ADRs) and §17.3 (knowledge system build list) together and write one page reconciling them. **A is an inference; it needs ratifying or refuting** |
+> **RESTATED 2026-09-14, and the question is not what it said.** Q7 was recorded
+> as *"which of two incompatible schemas"*. In fact **one of the two documents is
+> not in this repository** ([ADR-0029](decisions/ADR-0029-the-2026-09-05-review-is-not-in-this-repository.md)),
+> the other **self-labels its DDL `[ILLUSTRATIVE REFERENCE CODE]`** and scopes
+> itself to runtime memory ([ADR-0030](decisions/ADR-0030-the-recovered-schema-scopes-runtime-memory.md)),
+> and there is now a **fourth** shape (`01-architecture-map.md` §4.7). Q7's own
+> *Next experiment* below **cannot be run** — half its input does not exist.
+> **The question is now: what should the organizational claim store be? It has no
+> specified design and no readable advocate.**
+
+| | |
+|---|---|
+| **Why it matters** | Unchanged: building a schema before this is settled means discovering the problem at integration. What changed is the shape of the problem. **There are four recorded shapes, and no two of them are a live disagreement between readable documents** |
+| **The four shapes** | **(1)** Memory Management Architecture — **readable**, complete DDL, self-labelled illustrative, and scoped to runtime memory by its own vocabulary (ADR-0030). **(2)** The 2026-09-05 knowledge system review — **absent from this repository** (ADR-0029); survives only as a five-row summary in `01-architecture-map.md` §4.1. **(3)** The runtime specification's `knowledge/world/` — **module filenames only, no columns** (§4.5); plausibly the same subsystem as (1) seen twice. **(4)** `org_knowledge` in the Principal Agent architecture — **real DDL, registered nowhere until now**, heading/body-shaped, and it **violates EV1** by storing evidence as an integer count (§4.7) |
+| **Hypotheses** | **(A)** — that Memory scopes runtime memory and the organizational store is a different thing — is **no longer a hypothesis.** It is argued from the readable document's own text in ADR-0030 and accepted. What remains open is everything downstream of it |
+| **Evidence available** | Shape (1) at column level in `18-brain-mechanism-and-execution-trace.md` §5.1. Shape (4) in `01-architecture-map.md` §4.7. Shape (2) **cannot be read.** Shape (3) has no columns to read |
+| **Decision required** | **What the organizational claim store is.** Specifically: does it carry an entities table, a relations table, and a contradiction register? Each was advocated only by the absent document, so **each is now reopened with no prior** |
+| **Blocking?** | **YES** for any schema work. Unchanged |
+| **Next experiment** | ~~Read both §37 and §17.3 together and write one page reconciling them~~ — **not executable; half the input is missing.** Instead: (i) test whether shapes (1) and (3) are the same subsystem, which is cheap and would remove one shape; (ii) decide the entities / relations / contradiction-register question **on its merits**, since it no longer has an advocate to defer to; (iii) start from `18-…-execution-trace.md` §5.5's delta, which lists what the readable shape lacks and what each omission costs if added late |
 
 ---
 
@@ -312,6 +325,22 @@ all five are cheap to answer.
 | **Decision required** | Whether to re-evaluate before Phase 1's claim-store work begins |
 | **Blocking?** | **No.** The current fit assessment is (A). But it is cheap to be wrong here and expensive to be wrong late |
 | **Next experiment** | Re-check at Phase 1 kickoff, and again if any of three triggers fires: the product reaches GA with a self-hostable licence · the embedding constraint is lifted · a published retrieval-quality result appears. **A day of reading, not a spike** |
+
+---
+
+## 2d. Raised by the mechanism trace (2026-09-14)
+
+### Q23 — What is an extraction attempt's deterministic identity?
+
+| | |
+|---|---|
+| **Why it matters** | **X1 is one of the eight irreversible properties** (doc 16 §8.2). It is also the subject of the one-week experiment `14-outside-in-review-2026-09-14.md:380-385` proposes as the project's first code — *a test that a redelivered observation does not produce a second claim*. **That test cannot be written until this is chosen**, because the two candidate identities give different correct answers to it |
+| **The conflict** | **[FACT]** Two specifications exist and they key different things. [ADR-0018](decisions/ADR-0018-identity-keyed-extraction-first.md) and `02-domain-model.md` §2.2 say `(observation_id, extractor_version)`. The recovered DDL's `memory_proposals.proposal_id` says `hash(run_id, episode_seq, observation_digest)`. `07-brain-observability.md` §1 sides with ADR-0018, recording *"proposal_id, **extractor_version**"* |
+| **What turns on it** | Under ADR-0018's key, re-extracting one observation with an improved extractor is a **new** attempt, and the same observation seen in two runs is **one**. Under the recovered key, an extractor upgrade is **invisible**, and the same observation in two runs is **two** attempts. The second behaviour fails the redelivery test for a reason that is not a bug |
+| **Hypotheses** | **(A)** ADR-0018 is right for the organizational store and the recovered form is right for runtime memory — consistent with [ADR-0030](decisions/ADR-0030-the-recovered-schema-scopes-runtime-memory.md), since a runtime subsystem's unit is a run and an organizational store's unit is an observation. **(B)** One is simply an error. **(C)** Both are needed, at different layers |
+| **Evidence available** | Both specifications, and the observability chain as a third voice siding with ADR-0018. **No document acknowledges the conflict** |
+| **Blocking?** | **YES**, and it blocks the smallest thing on the board — the first code this project would write |
+| **Next experiment** | Decide between (A) and (B). If (A), say so explicitly in ADR-0018, which currently reads as though it governs both. **An hour, not a day** — and it is `18-brain-mechanism-and-execution-trace.md` §22.4's recommended next action |
 
 ---
 
