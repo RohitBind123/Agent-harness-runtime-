@@ -637,8 +637,31 @@ It remains an inference, and it **narrows Q7 by removing a candidate rather
 than by answering it** — the organizational claim store is now unspecified, with
 no readable advocate on either side.
 
-**Do not build either schema until this is reconciled.** See Q7 — whose stated
-method is **no longer executable**, since half its input is the absent document.
+**Updated 2026-09-15 — and it is no longer an inference.** The readable document
+**states the boundary outright.** §30.1, headed *"The eight kinds of remembering,
+kept apart"* and marked `[CONFIRMED]` by its author, separates **run memory**
+— written by *"the running agent"*, lifetime *"dies with the run"* — from
+**organizational knowledge** — written *"proposed by the agent, applied by the
+write path"*, lifetime *"until contradicted"* — as different categories, and
+says *"The Principal Agent architecture already separates these, and this document
+adopts the separation unchanged rather than re-deriving it."* It also marks its
+`decisions` table **"PHASE 3,
+not the MVP"** and classifies it as *"HISTORY, and therefore not memory."*
+
+So ADR-0030's scope argument is **corroborated by the source itself**, not merely
+derived from its vocabulary. That section was one section away from the DDL quoted
+last session and had never been cited. See
+[`19-recovered-architecture-evidence.md`](19-recovered-architecture-evidence.md) §7.
+
+**On the ten ADRs:** the framing above is narrowed by
+[ADR-0032](decisions/ADR-0032-provenance-of-the-2026-09-05-citations.md). The
+absence is real, but the ten name **readable** artifacts in their `## Source`
+fields; the 2026-09-05 string sits in the separate `Date / context` field, which is
+attribution. The provenance concern is **two ADRs, not ten**.
+
+**Do not build either schema until this is reconciled.** See Q7 — restated a third
+time, and its next experiment is **now executable**, because both of its inputs are
+readable.
 
 ### 4.2 Two runtime vocabularies, no stated normativity
 

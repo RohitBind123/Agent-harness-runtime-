@@ -63,6 +63,38 @@ Already standard industry vocabulary; renaming would make things worse.
 | "World Model" (most files) vs. "WorldState" (`02-domain-model.md` §2.17) — one object, two names | Consolidated on **World Model** |
 | ADR-0003's six-kind labels ("Constraint / policy") vs. `02-domain-model.md`'s compact `kind` field ("constraint") | Not actually a conflict — one is prose, one is a schema enum value. Cross-referenced explicitly instead of forced to match verbatim |
 
+## 4a. One word, two domain concepts — `kind`
+
+**Registered 2026-09-15 (Architecture Gate 01).** Unlike the row above, this one
+**is** a real collision: two different domain concepts share a word across two
+documents, and it becomes a schema hazard the moment both appear in one migration.
+
+| | **Claim kind** | **Evidence kind** |
+|---|---|---|
+| **Where** | [ADR-0003](decisions/ADR-0003-the-brains-core-object-is-a-kind-typed-claim.md); `02-domain-model.md` §2.3 | `memory_evidence.kind` in the recovered DDL; called **"Provenance kind"** at `learning-notes/Memory Management Architecture.docx` §11.2 |
+| **Values** | `observation-backed`, `decision`, `implementation-fact`, `outcome`, `constraint`, `term` — **six** | `run`, `step`, `activity`, `document`, `probe`, `human`, `policy` — **seven** |
+| **Answers** | *What does this claim have authority over?* | *What shape of thing is this evidence?* |
+| **Enforced by** | `memory_predicates.kinds_allowed` | Nothing — it is descriptive |
+
+**Ruling.** Unqualified **`kind` means claim kind.** It is the core object's
+defining property and the project's stated differentiator. Evidence kind is
+**always written qualified** — `evidence_kind`, or `memory_evidence.kind` when
+quoting the recovered DDL.
+
+**A consequence worth stating**, because two of our own documents got it slightly
+wrong: *"the recovered schema cannot express `kind`"*
+([ADR-0030](decisions/ADR-0030-the-recovered-schema-scopes-runtime-memory.md),
+`18-brain-mechanism-and-execution-trace.md` §5.3) is true in substance and
+misleading as written — that schema **does** have a column named `kind`, on the
+wrong table, meaning something else. The precise form is **"no claim-kind column
+on `memory_claims`"**. Both documents now carry the correction. See
+[`19-recovered-architecture-evidence.md`](19-recovered-architecture-evidence.md) §5.
+
+**Not to be confused with** `source_class` (position in an authored precedence
+ordering), `memory_origin` (`run|human|evolve` — who produced it), or
+`trust_label` (`trusted|semi_trusted|untrusted` — a safety property). Four
+distinct concepts; doc 19 §6.1 tabulates all of them.
+
 ## 5. Sequenced, not renamed
 
 **"contradiction register" vs. "conflicts table"** sits on top of an

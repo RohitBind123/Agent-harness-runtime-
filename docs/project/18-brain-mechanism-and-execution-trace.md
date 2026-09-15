@@ -79,6 +79,24 @@ claim.
 
 ### 1.1 Ten ADRs cite a document that is not here
 
+> **CORRECTED 2026-09-15 — Architecture Gate 01. This section overstates, and
+> the overstatement is this document's headline.** The absence is real and every
+> check below stands. What is wrong is the **scope** of the conclusion drawn from
+> it. The `Date / context` field is **attribution** — when and in what setting a
+> decision was taken. The ADR template's separate `## Source` field is the
+> **evidentiary basis**, and **all ten ADRs name readable artifacts there**: nine
+> name `docs/architecture/organizational-brain-architecture.md`, and that file
+> carries the substance of eight of them. The provenance concern is **two ADRs,
+> not ten** — ADR-0013 (no readable advocate for its MCP claim) and ADR-0005
+> (readable reasoning, unverifiable attribution). See
+> [`19-recovered-architecture-evidence.md`](19-recovered-architecture-evidence.md)
+> §2 and
+> [ADR-0032](decisions/ADR-0032-provenance-of-the-2026-09-05-citations.md),
+> which supersedes ADR-0029. **This section is left standing rather than
+> rewritten**, because how a corpus audit reaches an overstated conclusion is
+> worth being able to read.
+
+
 **[FACT — verifiable in this repository]** Ten of the twenty-eight ADRs give
 their *Date / context* as the **knowledge system architecture review of
 2026-09-05**, most at section-level precision:
@@ -468,6 +486,17 @@ schema has `origin` (`run | human | evolve`) and `trust` (`trusted |
 semi_trusted | untrusted`). **Neither is `kind`; neither is `source_class`.**
 `origin` says who wrote it, `kind` says what sort of assertion it is,
 `source_class` says what it outranks. Three different questions.
+
+> **CORRECTED 2026-09-15.** *"Neither is `kind`"* is true in substance and
+> misleading as written: the recovered schema **does** contain a column named
+> `kind` — on `memory_evidence`, where it means **evidence kind**
+> (`run|step|activity|document|probe|human|policy`, called *"Provenance kind"* at
+> Memory §11.2). That is a different concept from **claim kind**, ADR-0003's six
+> values. The precise statement is: **the recovered schema has no claim-kind
+> column on `memory_claims`.** Registered in
+> [`15-vocabulary.md`](15-vocabulary.md);
+> analysed in [`19-recovered-architecture-evidence.md`](19-recovered-architecture-evidence.md)
+> §5. `source_class`, separately, occurs **zero times** in all nine `.docx`.
 
 **[INFERENCE] The scope argument.** This is positive evidence from the document
 about itself, not an inference from the absent document's silence:

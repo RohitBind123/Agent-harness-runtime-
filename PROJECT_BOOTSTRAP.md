@@ -434,7 +434,8 @@ Chat history is not.
 | `docs/project/15-vocabulary.md` | Every term retired, renamed, or aligned to the handbook, and why. **Check before coining a new name** |
 | `docs/project/16-high-level-implementation-architecture.md` | System boundaries, the knowledge pipeline, what is required now versus later, the single-writer invariant profile, and which capabilities become real in which phase |
 | `docs/project/17-target-repository-structure.md` | The target repository shape for the implementation repo, by phase, and the register of deferred runtime capabilities with a trigger for each |
-| `docs/project/18-brain-mechanism-and-execution-trace.md` | **Mechanism, not structure.** One event traced end to end at row level; the recovered claim-store DDL and index set; where a model is and is not required; the failure trace. **Read §1 first — ten ADRs cite a source that is not in this repository** |
+| `docs/project/18-brain-mechanism-and-execution-trace.md` | **Mechanism, not structure.** One event traced end to end at row level; the recovered claim-store DDL and index set; where a model is and is not required; the failure trace. **§1.1 is corrected — read doc 19 §2 with it** |
+| `docs/project/19-recovered-architecture-evidence.md` | **Architecture Gate 01 — read this before any schema work.** The provenance matrix and the ten-ADR audit; the recovered migration inventory; the domain↔storage map; `kind` and `source_class` settled from primary text; the Memory/organizational boundary recovered; and the readiness verdict with its conditions |
 | `docs/project/PRD.md` | **The live Product Requirements Document** — thesis, scope (V0/V1), functional and non-functional requirements, trust model, safety, roadmap, traceability. Covers the knowledge system direction, not `prd.md` |
 
 Existing material, unchanged by this baseline:

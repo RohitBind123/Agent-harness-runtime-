@@ -4,7 +4,7 @@
 finding, not an embarrassment. A question resolved here moves to
 `decisions/` as an ADR and to `11-architecture-change-log.md` as an entry.
 
-**Last reviewed:** 2026-09-14.
+**Last reviewed:** 2026-09-15.
 
 Each entry carries: why it matters, current hypotheses, evidence available,
 what decision is required, whether it blocks, and the next experiment.
@@ -109,6 +109,28 @@ See [ADR-0002](decisions/ADR-0002-specification-vocabulary-is-canonical-for-code
 ## 2. Hard — decide before Phase 2
 
 ### Q7 — How do the Memory and knowledge system schemas reconcile?
+
+> **RESTATED AGAIN 2026-09-15 — Architecture Gate 01. The boundary is no longer
+> open; the far side of it is.** The readable Memory document **states the
+> separation outright** at §30.1, headed *"The eight kinds of remembering, kept
+> apart"*, marked `[CONFIRMED]` by its author: run memory is written by *"the
+> running agent"*, lifetime *"dies with the run"*; organizational knowledge is
+> written *"proposed by the agent, applied by the write path"*, lifetime *"until
+> contradicted"*. It also marks its
+> `decisions` table **"PHASE 3, not the MVP"** and calls it *"HISTORY, and
+> therefore not memory"*. So **ADR-0030 is corroborated by the source, not merely
+> inferred from its vocabulary** — and shape (1) is settled as runtime memory.
+>
+> **The question is now narrower and sharper:** *what is the organizational claim
+> store's schema, given that the boundary is established and the far side is
+> unspecified?* Entities, relations and a contradiction register remain **reopened
+> with no prior** — their only advocate is absent — and must be decided on their
+> merits.
+>
+> **The next experiment below is now executable**, unlike either previous version:
+> **read §30.1 against `02-domain-model.md` §2.1–2.12 and mark each of the eight
+> categories in-scope or out-of-scope for Phase 1.** Both inputs are readable. See
+> [`19-recovered-architecture-evidence.md`](19-recovered-architecture-evidence.md) §7.
 
 | | |
 |---|---|
@@ -330,7 +352,14 @@ all five are cheap to answer.
 
 ## 2d. Raised by the mechanism trace (2026-09-14)
 
-### Q23 — What is an extraction attempt's deterministic identity?
+### Q23 — What is an extraction attempt's deterministic identity? *(RESOLVED 2026-09-15)*
+
+> **RESOLVED** by [ADR-0033](decisions/ADR-0033-extraction-identity-is-observation-and-extractor-version.md)
+> — the organizational store's extraction identity is `(observation_id,
+> extractor_version)`, UNIQUE, claimed before the model call. **Hypothesis (A) was
+> right**: the recovered form is not an error, it is the correct identity for
+> runtime memory. Full entry in §4. The original framing is kept below because the
+> question was open for a day and its analysis is what settled it.
 
 | | |
 |---|---|
@@ -341,6 +370,21 @@ all five are cheap to answer.
 | **Evidence available** | Both specifications, and the observability chain as a third voice siding with ADR-0018. **No document acknowledges the conflict** |
 | **Blocking?** | **YES**, and it blocks the smallest thing on the board — the first code this project would write |
 | **Next experiment** | Decide between (A) and (B). If (A), say so explicitly in ADR-0018, which currently reads as though it governs both. **An hour, not a day** — and it is `18-brain-mechanism-and-execution-trace.md` §22.4's recommended next action |
+
+---
+
+## 2e. Raised by Architecture Gate 01 (2026-09-15)
+
+### Q24 — Where does `source_class` live, and is it denormalised onto the claim?
+
+| | |
+|---|---|
+| **Why it matters** | `source_class` is **the entire input to reconciliation** — resolving a contradiction needs which claims collide, what each asserts, and which class outranks which on this axis. Get its placement wrong and either the hot-path query needs a join it cannot afford, or the same fact is stored in two places and they drift |
+| **What is established** | **[FACT]** The concept has a readable advocate — `docs/architecture/organizational-brain-architecture.md` §3 and §5 principle 1 — and a field list at `02-domain-model.md` §2.10: `source_class_id`, `intent_rank`, `reality_rank`, `owner`, `version`. **[FACT]** It occurs **zero times in all nine `learning-notes/*.docx`**, so it has no schema lineage to inherit. It is **not** `memory_origin` (who produced it), **not** `trust_label` (how dangerous it is), and **not** evidence `kind` (what shape the evidence is) — see `19-recovered-architecture-evidence.md` §6.1 |
+| **The question** | The *value* is derived from the observation's source at ingest and is knowable only then. The *ordering over values* is authored configuration and is never derived. What is undecided is the **physical placement**: denormalised onto the claim (where `02-domain-model.md` §2.3 and `07-brain-observability.md` §1's *"WHAT IT ACCEPTED"* stage both put it), or reached by joining through evidence |
+| **Hypotheses** | **(A)** On the claim, denormalised — the hot-path resolution query touches one table. **(B)** On evidence, joined — normalised, and correct when one claim has evidence from several source classes, which is the case corroboration produces. **(C)** Both, with the claim carrying the *winning* class as a derived column |
+| **Blocking?** | **NO** for the observation log and identity-keyed extraction. **YES** for the first reconciliation — but so is **Q2**, and Q2 is the harder half: the column is specifiable while its content is not |
+| **Next experiment** | Write the resolution query both ways against `18-brain-mechanism-and-execution-trace.md` §11's three-way conflict and compare what each costs. Cheap, and it does not need Q2 answered — only a placeholder ordering |
 
 ---
 
@@ -362,6 +406,20 @@ tasks.** Each is a limit stated by the design that has it.
 ---
 
 ## 4. Resolved
+
+### Q23 — What is an extraction attempt's deterministic identity? *(RESOLVED 2026-09-15)*
+
+| | |
+|---|---|
+| **Original framing** | Two specifications existed and keyed different things: `(observation_id, extractor_version)` (ADR-0018, `02-domain-model.md` §2.2, `07-brain-observability.md` §1) versus `hash(run_id, episode_seq, observation_digest)` (the recovered `memory_proposals.proposal_id`). **No document acknowledged the conflict.** It blocked the smallest item on the board |
+| **Resolution** | **`(observation_id, extractor_version)`**, UNIQUE, with the proposal row claimed **before** the model call. Hypothesis (A): the recovered form is **not an error** — it is the correct identity for *runtime memory*, whose unit of work is a run, whereas an organizational store's unit is an observation |
+| **What settled it** | **Four readable sources agree and none is illustrative**, chief among them `docs/architecture/organizational-brain-architecture.md` §7a — *"a deterministic id from `(observation_id, extractor_version)`, made a UNIQUE key, and claimed **before** the model call rather than after. **Retry is not replay.**"* The dissenting form sits inside a block its own author labels `[ILLUSTRATIVE REFERENCE CODE]`, in a document whose §30.1 draws the very boundary that scopes it elsewhere |
+| **Decision record** | [ADR-0033](decisions/ADR-0033-extraction-identity-is-observation-and-extractor-version.md). ADR-0018 is **scoped, not changed** |
+| **What this unblocks** | The one-week experiment at `14-outside-in-review-2026-09-14.md:380-385` — *a test that a redelivered observation produces one claim* — is now writable. It is this project's proposed first code |
+| **What this does NOT resolve** | Q7's far side, Q2, Q5. And the falsifier to watch: **if `observation_id` is not stable across adapters** — if one underlying event yields two ids from Git and from Jira — the key is keying the wrong thing. Measurable in the first week of ingestion |
+| **Change log** | `11-architecture-change-log.md`, 2026-09-15 |
+
+---
 
 ### Q1 — Which product are we building? *(RESOLVED 2026-09-14)*
 

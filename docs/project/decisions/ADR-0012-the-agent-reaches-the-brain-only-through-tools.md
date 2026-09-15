@@ -56,7 +56,17 @@ things that **must not be modified**.
 
 ## Source
 
-`../../architecture/organizational-brain-architecture.md` (G), §13.1, §13.2.
+`../../architecture/organizational-brain-architecture.md` §6, row 2 — *"Tool
+projection, curried with the Principal at build time … Every containment argument
+rests on this"* — and §4, row 7.
+
+> **Citation corrected 2026-09-15.** This field previously read *"(G), §13.1,
+> §13.2"*. **That file has sections §0–§10**; those two do not exist in it, and the
+> same numbers appear in this ADR's `Date / context` line, which attributes them to a
+> document absent from this repository. The sections named above are where the
+> substance actually is. **The decision is unchanged** — only the pointer to its
+> evidence. See [ADR-0032](ADR-0032-provenance-of-the-2026-09-05-citations.md) and
+> `../19-recovered-architecture-evidence.md` §2.5.
 
 ## Related
 

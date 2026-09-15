@@ -76,9 +76,11 @@ Record the new ADR in the index below **and** add an entry to
 | [0026](ADR-0026-product-direction-resolved-prd-is-exploratory.md) | Product direction resolved: `prd.md` is exploratory, not competing | ACCEPTED | Product |
 | [0027](ADR-0027-general-purpose-brain-and-runtime-organizational-first.md) | General-purpose agent Brain + Runtime; the Organizational Brain is its first substrate | ACCEPTED | Product |
 | [0028](ADR-0028-the-knowledge-core-is-domain-agnostic.md) | The knowledge core is domain-agnostic; organizational logic sits behind a boundary | ACCEPTED | Boundary |
-| [0029](ADR-0029-the-2026-09-05-review-is-not-in-this-repository.md) | The 2026-09-05 knowledge system review is not in this repository; ten ADRs cite it | ACCEPTED | Provenance |
+| [0029](ADR-0029-the-2026-09-05-review-is-not-in-this-repository.md) | The 2026-09-05 knowledge system review is not in this repository; ten ADRs cite it | **SUPERSEDED** by 0032 | Provenance |
 | [0030](ADR-0030-the-recovered-schema-scopes-runtime-memory.md) | The recovered Memory schema scopes runtime memory; the organizational claim store is unspecified | ACCEPTED | Boundary |
 | [0031](ADR-0031-the-phase-1-index-set.md) | The Phase 1 index set is recovered, not invented; two entries are constraints, not lookups | ACCEPTED | Storage |
+| [0032](ADR-0032-provenance-of-the-2026-09-05-citations.md) | The 2026-09-05 citations are attribution, not evidentiary basis; the concern is two ADRs, not ten | ACCEPTED | Provenance |
+| [0033](ADR-0033-extraction-identity-is-observation-and-extractor-version.md) | An extraction attempt's identity is `(observation_id, extractor_version)`, claimed before the model call | ACCEPTED | Storage |
 
 ## Decisions imported by reference
 

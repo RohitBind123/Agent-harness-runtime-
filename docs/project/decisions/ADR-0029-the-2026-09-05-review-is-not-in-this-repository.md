@@ -1,6 +1,10 @@
 # ADR-0029 — The 2026-09-05 knowledge system review is not in this repository
 
-**Status:** ACCEPTED
+**Status:** **SUPERSEDED** by [ADR-0032](ADR-0032-provenance-of-the-2026-09-05-citations.md), 2026-09-15.
+The finding of fact below stands — the document is absent. What is superseded is its
+**scope**: it reads the `Date / context` field as though it were the evidentiary basis,
+and all ten ADRs name readable artifacts in `## Source`. **The text below is preserved
+unchanged.**
 **Date / context:** 2026-09-14, while tracing the knowledge pipeline against a
 concrete event for `18-brain-mechanism-and-execution-trace.md`.
 

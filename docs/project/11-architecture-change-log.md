@@ -196,6 +196,22 @@ has not been recorded.
 
 ---
 
+## 2026-09-15 — Architecture Gate 01: the provenance finding narrowed, Q23 resolved
+
+| Field | |
+|---|---|
+| **Change** | The 2026-09-14 finding below was run to ground and is **overstated.** All ten ADRs name **readable** artifacts in their `## Source` fields; the 2026-09-05 string sits in the separate `Date / context` field, which is **attribution**, not evidentiary basis. The provenance concern narrows from **ten ADRs to two**. Separately: **Q23 resolved**, the Memory/organizational boundary **recovered from a readable source**, and `kind` / `source_class` semantics established from primary text |
+| **Previous design** | [ADR-0029](decisions/ADR-0029-the-2026-09-05-review-is-not-in-this-repository.md) recorded that ten ADRs *"rest solely"* on an absent document, and `18-brain-mechanism-and-execution-trace.md` §1 led with that as its headline finding. Q7 was recorded as having **no readable advocate** for the Memory/organizational boundary. Q23 was open and blocking the project's proposed first code |
+| **New design** | **Eight of the ten are ordinarily well-sourced** — their substance sits in `docs/architecture/organizational-brain-architecture.md`, read in full. **Two need attention:** ADR-0013 (no readable advocate for its MCP claim) and ADR-0005 (readable reasoning, unverifiable attribution). **One real defect found:** ADR-0012's `## Source` cited §13.1/§13.2 of a file with §0–§10 — a citation failing against a *readable* file, which is worse in kind. **Q23 resolved** to `(observation_id, extractor_version)`. **Q24 opened** on `source_class` placement |
+| **Reason** | The owner directed that the discovery be run to ground before implementation rather than acted on. Doing so found that the previous audit **read the wrong field** — the ADR template carries `Date / context` (attribution) and `## Source` (evidence) as separate fields answering separate questions |
+| **Evidence** | **[FACT]** Both fields extracted from all ten; the named readable source read end to end (272 lines) and matched to substance — §5 principle 3 is ADR-0003, §3 and §5 principle 1 are ADR-0006, §6 row 2 is ADR-0012, §7a is ADR-0018. **[FACT]** A mechanical sweep of every `## Source` in all 33 ADRs: **40 citation groups, 0 unresolved** after the ADR-0012 fix. **[FACT]** `source_class` occurs **zero times** across all nine `learning-notes/*.docx`. **[FACT]** `Memory Management Architecture.docx` §30.1, *"The eight kinds of remembering, kept apart"*, marked `[CONFIRMED]`, **states the Memory/organizational boundary outright** — corroborating ADR-0030 from the source rather than from inference |
+| **Impact** | **New:** [`19-recovered-architecture-evidence.md`](19-recovered-architecture-evidence.md), `tools/check_adr_citations.py`. **Corrected:** ADR-0029 → SUPERSEDED (text preserved byte-for-byte); ADR-0012's citation; `18-…-execution-trace.md` §1.1 and §5.3 (dated blocks, nothing removed); `01-architecture-map.md` §4.1. **Registered:** `15-vocabulary.md` §4a (claim kind vs. evidence kind); `10-open-questions.md` Q23 resolved, Q7 restated a third time, **Q24 added**. **No ADR's Decision changed, no status promoted, no product code written** |
+| **Decision owner** | Project owner |
+| **Status** | ACCEPTED |
+| **Records** | [ADR-0032](decisions/ADR-0032-provenance-of-the-2026-09-05-citations.md) *(supersedes ADR-0029)*, [ADR-0033](decisions/ADR-0033-extraction-identity-is-observation-and-extractor-version.md) *(resolves Q23)*; [`19-recovered-architecture-evidence.md`](19-recovered-architecture-evidence.md) |
+
+---
+
 ## 2026-09-14 — Ten ADRs found to cite a source that is not in this repository
 
 | Field | |

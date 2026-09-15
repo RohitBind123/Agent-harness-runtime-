@@ -19,7 +19,7 @@ the session-startup document and it links everything here.
 | — | [`PROJECT_BOOTSTRAP.md`](../../PROJECT_BOOTSTRAP.md) | Everything, briefly. **Read first** |
 | 00 | [North Star](00-north-star.md) | What system, what problem, who for, what wedge, what is *not* the product, what would falsify it |
 | 01 | [Architecture Map](01-architecture-map.md) | Every component: purpose, owns, does not own, inputs, outputs, dependencies, invariants, status. Plus where the architecture contradicts itself |
-| — | [Decisions](decisions/) | 31 architectural decision records |
+| — | [Decisions](decisions/) | 33 architectural decision records |
 | 02 | [Domain Model](02-domain-model.md) | The canonical objects, their fields, lifecycles, owners, invariants — and the objects rejected, with reasons |
 | 03 | [Lifecycles and State Machines](03-lifecycles-and-state-machines.md) | Every transition: trigger, preconditions, evidence, reversibility, persistence |
 | 04 | [Implementation Map](04-implementation-map.md) | Component → files → status → tests → limitations. **The honest one** |
@@ -28,7 +28,7 @@ the session-startup document and it links everything here.
 | 07 | [Knowledge System Observability](07-brain-observability.md) | The flight recorder, and how correctness is established without asking the knowledge system |
 | 08 | [Build Order](08-build-order.md) | The staged roadmap, with seven proposed changes and the reason for each |
 | 09 | [DO NOT ASSUME](09-do-not-assume.md) | The dangerous assumptions register. **Mandatory, and short** |
-| 10 | [Open Questions](10-open-questions.md) | 16 questions with blocking status and next experiment, plus 7 that are unsolved |
+| 10 | [Open Questions](10-open-questions.md) | 22 questions with blocking status and next experiment, plus 7 that are unsolved |
 | 11 | [Architecture Change Log](11-architecture-change-log.md) | Every architectural change, dated, with reason and evidence |
 | 12 | [Session Handoff Protocol](12-session-handoff-protocol.md) | The format every session ends with |
 | 13 | [Audit — 2026-09-14](13-audit-2026-09-14.md) | The full audit this baseline rests on |
@@ -36,7 +36,8 @@ the session-startup document and it links everything here.
 | 15 | [Vocabulary](15-vocabulary.md) | Every term retired, renamed, or aligned to the handbook, and why — check here before coining a new name |
 | 16 | [High-Level Implementation Architecture](16-high-level-implementation-architecture.md) | System boundaries, the knowledge pipeline, required-now versus required-later, the single-writer invariant profile, and what becomes real in each phase |
 | 17 | [Target Repository Structure](17-target-repository-structure.md) | The target shape for the implementation repo, by phase, plus the register of deferred runtime capabilities with a trigger for each |
-| 18 | [The Knowledge System, Made Mentally Executable](18-brain-mechanism-and-execution-trace.md) | Mechanism, not structure: one event traced end to end at row level, the recovered claim-store DDL and index set, the LLM call-site map, the failure trace — **and the finding that ten ADRs cite a document that is not here** |
+| 18 | [The Knowledge System, Made Mentally Executable](18-brain-mechanism-and-execution-trace.md) | Mechanism, not structure: one event traced end to end at row level, the recovered claim-store DDL and index set, the LLM call-site map, the failure trace. **§1.1 carries a dated correction — see doc 19** |
+| 19 | [Recovered Architecture Evidence](19-recovered-architecture-evidence.md) | **Architecture Gate 01.** The provenance matrix, the ten-ADR audit, the recovered migration inventory, the domain↔storage map, `kind` and `source_class` settled from primary text, Q7's recovered boundary — and the answer to *are we ready to implement?* |
 | — | [`handoffs/`](handoffs/) | One file per session |
 
 ---
